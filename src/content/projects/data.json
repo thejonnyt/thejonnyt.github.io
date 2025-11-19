@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Cook Up Kitchen",
+    "tagline": "PopUp Restaurant",
+    "description": "A few friends and me started a repeating PopUp Restaurant in Hamburg to explore whether food blogging could be a viable marketing strategy for restaurants, which resulted in a since then lasting business opportunity for one of us.",
+    "technologies": ["Hot Pan", "Oil", "Creativity", "Teamwork"],
+    "startDate": "2013",
+    "endDate": "2015",
+    "links": {
+      "Video": "https://vimeo.com/131561210"
+    },
+    "highlights": [
+      "catered to 100 people in one night on a 3-course menu basis in a kitchen very much not designed for that purpose"
+    ],
+    "featured": true
+  }
+]

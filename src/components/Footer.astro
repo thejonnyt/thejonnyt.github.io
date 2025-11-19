@@ -1,0 +1,65 @@
+---
+// Footer component
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <p class="text-muted">
+        © {currentYear} Johannes Tauscher. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
+      </p>
+      <div class="social-links">
+        <a href="https://github.com/thejonnyt" target="_blank" rel="noopener" aria-label="GitHub">
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn">
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .footer-content p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  .social-links a {
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+  }
+
+  .social-links a:hover {
+    color: var(--color-foreground);
+  }
+
+  @media (max-width: 640px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,38 @@
+[
+  {
+    "institution": "Leipzig University",
+    "degree": "M.Sc",
+    "field": "Data Science, Faculty of Mathematics and Computer Science",
+    "location": "Leipzig, Germany",
+    "startDate": "2021-04",
+    "endDate": "2024-10",
+    "highlights": [
+      "Overall Score: 1.7, personal focus on adv. Statistics, Machine Learning, Data Privacy, LLMs",
+      "Master's Thesis  (1.1): Neural Machine Translation with Transformers - Leveraging the Pivot Technique for Low-Resource Language Pairs"
+    ]
+  },
+    {
+    "institution": "Philipps University Marburg",
+    "degree": "B.Sc.",
+    "field": "Data Science, Faculty of Mathematics and Computer Science",
+    "location": "Marburg, Germany",
+    "startDate": "2017-10",
+    "endDate": "2021-03",
+    "highlights": [
+      "personal focus on Mathematics, Statistics, Computer Science and Programming",
+      "Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes"
+    ]
+  },
+    {
+    "institution": "HAW Hamburg",
+    "degree": "B.A.",
+    "field": "Marketing and Technical Business Administration",
+    "location": "Hamburg, Germany",
+    "startDate": "2012-03",
+    "endDate": "2017-10",
+    "highlights": [
+      "focus on Marketing, Engineering and Business Administration",
+      "Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes"
+    ]
+  }
+]
