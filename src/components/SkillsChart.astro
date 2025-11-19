@@ -23,7 +23,8 @@ const levelToStars: Record<string, number> = {
 
 const starCounts = [0, 0, 0, 0, 0]; // Index 0 for 1 star, etc.
 for (const key in skillsDatabase.skills) {
-  const skill = skillsDatabase.skills[key];
+  const k = key as keyof typeof skillsDatabase.skills;
+  const skill = skillsDatabase.skills[k];
   const starLevel = levelToStars[skill.level];
   if (starLevel >= 1 && starLevel <= 5) {
     starCounts[starLevel - 1]++;

@@ -4,7 +4,6 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import TermText from '../components/TermText.astro';
 import SkillTag from '../components/SkillTag.astro';
-import SkillsChart from '../components/SkillsChart.astro';
 import { Image } from 'astro:assets';
 
 // Import English content data
@@ -26,7 +25,7 @@ import miscDataDe from '../content/misc/data.de.json';
 
 // Process skills from database - group featured skills by category
 const featuredSkills = Object.entries(skillsDatabase.skills)
-  .filter(([_, skill]) => skill.featured)
+  .filter(([_, skill]) => 'featured' in skill && (skill as any).featured)
   .reduce((acc, [name, skill]) => {
     if (!acc[skill.category]) {
       acc[skill.category] = [];
@@ -853,33 +852,34 @@ const labels = {
 </style>
 
 <script>
-  // Initialize Lucide icons
-  if (typeof lucide !== 'undefined') {
-    lucide.createIcons();
-  }
+  // Initialize Lucide icons (access via window to avoid TypeScript/SSR "cannot find name" errors)
+    if (typeof window !== 'undefined' && typeof (window as any).lucide !== 'undefined') {
+      (window as any).lucide.createIcons();
+    }
 
   // Handle video thumbnail clicks
-  document.addEventListener('DOMContentLoaded', () => {
-    const thumbnails = document.querySelectorAll('.video-thumbnail');
-
-    thumbnails.forEach(thumbnail => {
-      thumbnail.addEventListener('click', () => {
-        const projectIndex = thumbnail.getAttribute('data-project-index');
-        const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`);
-
-        if (videoContainer) {
-          if (videoContainer.style.display === 'none') {
-            // Show video
-            videoContainer.style.display = 'block';
-            thumbnail.style.opacity = '0.5';
-          } else {
-            // Hide video
-            videoContainer.style.display = 'none';
-            thumbnail.style.opacity = '1';
+    document.addEventListener('DOMContentLoaded', () => {
+      const thumbnails = document.querySelectorAll('.video-thumbnail');
+  
+      thumbnails.forEach(thumbnailEl => {
+        const thumbnail = thumbnailEl as HTMLElement;
+        thumbnail.addEventListener('click', () => {
+          const projectIndex = thumbnail.getAttribute('data-project-index');
+          const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`) as HTMLElement | null;
+  
+          if (videoContainer) {
+            if (videoContainer.style.display === 'none') {
+              // Show video
+              videoContainer.style.display = 'block';
+              thumbnail.style.opacity = '0.5';
+            } else {
+              // Hide video
+              videoContainer.style.display = 'none';
+              thumbnail.style.opacity = '1';
+            }
           }
-        }
+        });
       });
-    });
 
     // Handle bio expand/collapse
     const bioToggles = document.querySelectorAll('.bio-toggle');
