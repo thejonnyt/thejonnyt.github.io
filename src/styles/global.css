@@ -42,14 +42,14 @@
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: #0a0a0a;
-    --color-foreground: #ffffff;
-    --color-muted: #a0a0a0;
-    --color-border: #2a2a2a;
-    --color-accent: #3399ff;
-    --color-accent-hover: #5cb3ff;
-    --color-bg-secondary: #1a1a1a;
-    --color-text-secondary: #c0c0c0;
+    --color-background: #1e1e1e;
+    --color-foreground: #d4d4d4;
+    --color-muted: #858585;
+    --color-border: #3e3e3e;
+    --color-accent: #4fc3f7;
+    --color-accent-hover: #81d4fa;
+    --color-bg-secondary: #252526;
+    --color-text-secondary: #cccccc;
   }
 }
 

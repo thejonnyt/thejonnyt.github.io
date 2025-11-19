@@ -3,6 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import TermText from '../components/TermText.astro';
+import SkillTag from '../components/SkillTag.astro';
+import { Image } from 'astro:assets';
 
 // Import English content data
 import introData from '../content/intro/data.json';
@@ -10,8 +12,8 @@ import educationData from '../content/education/data.json';
 import experienceData from '../content/experience/data.json';
 import projectsData from '../content/projects/data.json';
 import publicationsData from '../content/publications/data.json';
-import skillsData from '../content/skills/data.json';
 import miscData from '../content/misc/data.json';
+import skillsDatabase from '../content/skillsDatabase.json';
 
 // Import German content data
 import introDataDe from '../content/intro/data.de.json';
@@ -19,13 +21,28 @@ import educationDataDe from '../content/education/data.de.json';
 import experienceDataDe from '../content/experience/data.de.json';
 import projectsDataDe from '../content/projects/data.de.json';
 import publicationsDataDe from '../content/publications/data.de.json';
-import skillsDataDe from '../content/skills/data.de.json';
 import miscDataDe from '../content/misc/data.de.json';
+
+// Process skills from database - group featured skills by category
+const featuredSkills = Object.entries(skillsDatabase.skills)
+  .filter(([_, skill]) => skill.featured)
+  .reduce((acc, [name, skill]) => {
+    if (!acc[skill.category]) {
+      acc[skill.category] = [];
+    }
+    acc[skill.category].push({ name, ...skill });
+    return acc;
+  }, {} as Record<string, any[]>);
+
+const skillsCategories = Object.entries(featuredSkills).map(([category, skills]) => ({
+  name: category,
+  skills: skills.sort((a, b) => b.yearsOfExperience - a.yearsOfExperience)
+}));
 
 // Create content map for easy access
 const content = {
-  en: { intro: introData, education: educationData, experience: experienceData, projects: projectsData, publications: publicationsData, skills: skillsData, misc: miscData },
-  de: { intro: introDataDe, education: educationDataDe, experience: experienceDataDe, projects: projectsDataDe, publications: publicationsDataDe, skills: skillsDataDe, misc: miscDataDe }
+  en: { intro: introData, education: educationData, experience: experienceData, projects: projectsData, publications: publicationsData, skills: { categories: skillsCategories }, misc: miscData },
+  de: { intro: introDataDe, education: educationDataDe, experience: experienceDataDe, projects: projectsDataDe, publications: publicationsDataDe, skills: { categories: skillsCategories }, misc: miscDataDe }
 };
 
 // Helper function to format dates
@@ -61,8 +78,8 @@ const labels = {
     skills: 'Fähigkeiten',
     awards: 'Auszeichnungen & Anerkennungen',
     contact: 'Kontakt',
-    contactText: 'Ich bin derzeit auf der Suche nach neuen Möglichkeiten. Kontaktieren Sie mich gerne!',
-    sendEmail: 'Schreiben Sie mir eine E-Mail',
+    contactText: 'Ich bin derzeit auf der Suche nach neuen Möglichkeiten.',
+    sendEmail: 'Kontaktieren Sie mich gerne!',
     abstract: 'Zusammenfassung',
     citations: 'Zitierungen'
   }
@@ -88,11 +105,14 @@ const labels = {
     <section class="hero section">
       <div class="hero-content">
         <div class="profile-image-wrapper">
-          <img
+          <Image
             src="/images/profile.jpg"
             alt={intro.name}
+            width={180}
+            height={180}
             class="profile-image"
-            onError="this.style.display='none'"
+            loading="eager"
+            format="webp"
           />
         </div>
         <div class="hero-text">
@@ -172,7 +192,7 @@ const labels = {
           {exp.technologies && exp.technologies.length > 0 && (
             <div class="tags">
               {exp.technologies.map((tech: string) => (
-                <span class="tag">{tech}</span>
+                <SkillTag skillName={tech} />
               ))}
             </div>
           )}
@@ -220,7 +240,7 @@ const labels = {
           )}
           <div class="tags">
             {project.technologies.map((tech: string) => (
-              <span class="tag">{tech}</span>
+              <SkillTag skillName={tech} />
             ))}
           </div>
           {project.links && Object.keys(project.links).length > 0 && (
@@ -314,16 +334,13 @@ const labels = {
     <!-- Skills Section -->
     <section id="skills" class="section">
       <h2>{l.skills}</h2>
-      {skills.categories.map((category: any) => (
-        <div class="skills-category">
-          <h3>{category.name}</h3>
-          <div class="tags">
-            {category.skills.map((skill: any) => (
-              <span class="tag">{skill.name}</span>
-            ))}
-          </div>
-        </div>
-      ))}
+      <div class="skills-grid">
+        {skills.categories.flatMap((category: any) =>
+          category.skills.map((skill: any) => (
+            <SkillTag skillName={skill.name} showStars={true} />
+          ))
+        )}
+      </div>
     </section>
 
     <!-- Awards & Recognition Section -->
@@ -675,13 +692,11 @@ const labels = {
   }
 
   /* Skills */
-  .skills-category {
-    margin-bottom: var(--space-lg);
-  }
-
-  .skills-category h3 {
-    font-size: 1.125rem;
-    margin-bottom: var(--space-md);
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
   }
 
   /* Awards */
@@ -723,10 +738,20 @@ const labels = {
   .tag {
     display: inline-block;
     padding: var(--space-xs) var(--space-md);
-    background-color: var(--color-border);
+    background-color: var(--color-bg-secondary);
     border-radius: 4px;
     font-size: 0.85rem;
-    color: var(--color-muted);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-fast);
+    cursor: help;
+  }
+
+  .tag:hover {
+    background-color: var(--color-accent);
+    color: white;
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
   }
 
   /* Contact Section */

@@ -10,10 +10,10 @@ const glossaryJson = JSON.stringify(glossaryData);
 ---
 
 <!-- Tooltip container (hidden by default, positioned by JS) -->
-<div id="tech-term-tooltip" class="tooltip-container" role="tooltip" aria-hidden="true">
+<div id="tech-term-tooltip" class="tooltip-container" role="tooltip" aria-hidden="true" aria-live="polite">
   <div class="tooltip-arrow"></div>
   <div class="tooltip-content">
-    <h4 class="tooltip-title"></h4>
+    <h4 class="tooltip-title" aria-label="Technical term definition"><!-- Content populated by JS --></h4>
     <p class="tooltip-definition"></p>
     <div class="tooltip-links"></div>
   </div>

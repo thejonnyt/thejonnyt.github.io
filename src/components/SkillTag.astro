@@ -1,0 +1,324 @@
+---
+/**
+ * SkillTag - Displays a skill tag with hover tooltip showing metadata
+ */
+import skillsDatabase from '../content/skillsDatabase.json';
+
+interface Props {
+  skillName: string;
+  showTooltip?: boolean;
+  showStars?: boolean;
+}
+
+const { skillName, showTooltip = true, showStars = false } = Astro.props;
+
+// Look up skill in database (case-insensitive)
+const skillKey = Object.keys(skillsDatabase.skills).find(
+  key => key.toLowerCase() === skillName.toLowerCase()
+);
+const skillData = skillKey ? skillsDatabase.skills[skillKey] : null;
+
+// Category to color mapping (consolidated to 8 categories)
+const categoryColors: Record<string, string> = {
+  'Programming Languages': '#3b82f6', // blue
+  'Databases': '#8b5cf6', // purple
+  'Backend & DevOps': '#f59e0b', // amber
+  'AI & Machine Learning': '#10b981', // emerald
+  'Frontend & Web': '#ec4899', // pink
+  'Tools & Systems': '#64748b', // slate
+  'Design & Creative': '#d946ef', // fuchsia
+  'Business & Strategy': '#84cc16', // lime
+  'Data Analysis': '#14b8a6', // teal
+};
+
+const categoryColor = skillData ? categoryColors[skillData.category] || '#6366f1' : '#6366f1';
+
+// Convert level to stars
+const levelToStars: Record<string, number> = {
+  'beginner': 1,
+  'competent': 2,
+  'proficient': 3,
+  'expert': 4,
+  'wizard': 5
+};
+
+const stars = skillData ? levelToStars[skillData.level] || 0 : 0;
+---
+
+<span
+  class="skill-tag"
+  data-skill={skillName}
+  data-has-meta={skillData ? 'true' : 'false'}
+  data-category-color={categoryColor}
+  style={`border-color: ${categoryColor};`}
+>
+  <span class="skill-name">{skillName}</span>
+  {showTooltip && skillData && (
+    <span class="skill-tooltip">
+      <div class="tooltip-header">
+        <span class="tooltip-category">{skillData.category}</span>
+        {stars > 0 && (
+          <span class="tooltip-stars" aria-label={`${Math.min(stars, 4)} out of 4 stars`}>
+            {Array.from({ length: 4 }).map((_, i) => (
+              <span class={i < Math.min(stars, 4) ? 'star filled' : 'star'}>★</span>
+            ))}
+          </span>
+        )}
+      </div>
+      <span class="tooltip-level">{skillData.level}</span>
+      <span class="tooltip-experience">{skillData.yearsOfExperience}+ years experience</span>
+      {skillData.description && (
+        <span class="tooltip-description">{skillData.description}</span>
+      )}
+      {skillData.usedIn && skillData.usedIn.length > 0 && (
+        <div class="tooltip-used-in">
+          <strong>Used in:</strong>
+          <ul>
+            {skillData.usedIn.map(exp => <li>{exp}</li>)}
+          </ul>
+        </div>
+      )}
+    </span>
+  )}
+</span>
+
+<style>
+  .skill-tag {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-md);
+    background-color: var(--color-bg-secondary);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: var(--color-foreground);
+    border: 2px solid;
+    transition: all var(--transition-fast);
+    cursor: help;
+  }
+
+  .skill-tag:hover {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 101; /* Higher than header z-index */
+  }
+
+  .skill-tag[data-has-meta="false"] {
+    cursor: default;
+  }
+
+  .skill-name {
+    line-height: 1;
+  }
+
+  /* Tooltip header with category and stars side by side */
+  .tooltip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-xs);
+  }
+
+  /* Star rating in tooltip */
+  .tooltip-stars {
+    display: inline-flex;
+    gap: 2px;
+    font-size: 0.85rem;
+    line-height: 1;
+  }
+
+  .tooltip-stars .star {
+    color: #9ca3af; /* grey color for outlined stars */
+    opacity: 0.4;
+  }
+
+  .tooltip-stars .star.filled {
+    color: #6b7280; /* darker grey for filled stars */
+    opacity: 1;
+  }
+
+  /* Tooltip - smart positioning */
+  .skill-tooltip {
+    position: absolute;
+    background: var(--color-background);
+    border: 2px solid var(--color-accent);
+    border-radius: 8px;
+    padding: var(--space-md);
+    min-width: 250px;
+    max-width: 350px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    pointer-events: none;
+    z-index: 10000;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: left;
+    
+    /* Default position: below and centered */
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .skill-tag:hover .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .tooltip-category {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-muted);
+  }
+
+  .tooltip-level {
+    display: block;
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-bottom: var(--space-xs);
+    text-transform: capitalize;
+  }
+
+  .tooltip-experience {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    margin-bottom: var(--space-sm);
+  }
+
+  .tooltip-description {
+    display: block;
+    margin-bottom: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+  }
+
+  .tooltip-used-in {
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+    font-size: 0.85rem;
+  }
+
+  .tooltip-used-in strong {
+    display: block;
+    margin-bottom: var(--space-xs);
+    color: var(--color-foreground);
+  }
+
+  .tooltip-used-in ul {
+    margin: 0;
+    padding-left: var(--space-md);
+    list-style: disc;
+  }
+
+  .tooltip-used-in li {
+    margin-bottom: var(--space-xs);
+    color: var(--color-text-secondary);
+  }
+
+  /* Arrow pseudo-element */
+  .skill-tooltip::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-bottom-color: var(--color-accent);
+    top: -16px; /* Sits just inside the top border of tooltip */
+    z-index: 10001;
+  }
+
+  /* Position above tag */
+  .skill-tooltip.tooltip-above {
+    top: auto;
+    bottom: calc(100% + 10px);
+  }
+
+  .skill-tooltip.tooltip-above::after {
+    top: auto;
+    bottom: -16px;
+    border-bottom-color: transparent;
+    border-top-color: var(--color-accent);
+  }
+
+  /* Position flush to the left */
+  .skill-tooltip.tooltip-left {
+    left: 0;
+    transform: translateX(0);
+  }
+   .skill-tooltip.tooltip-left::after {
+    left: 15%;
+  }
+
+  /* Position flush to the right */
+  .skill-tooltip.tooltip-right {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+  }
+  .skill-tooltip.tooltip-right::after {
+    left: 85%;
+  }
+
+  /* Prevent tooltip from going off-screen on mobile */
+  @media (max-width: 640px) {
+    .skill-tooltip {
+      min-width: auto;
+      max-width: calc(100vw - var(--space-lg));
+    }
+  }
+</style>
+
+<script>
+  function positionTooltip(tag) {
+    const tooltip = tag.querySelector('.skill-tooltip');
+    if (!tooltip) return;
+
+    // Reset classes for re-calculation
+    tooltip.classList.remove('tooltip-above', 'tooltip-left', 'tooltip-right');
+
+    const tagRect = tag.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const margin = 16; // 1rem
+
+    // Vertical check: If tooltip would go below the viewport, move it above
+    if (tagRect.bottom + tooltipRect.height + margin > viewportHeight) {
+      tooltip.classList.add('tooltip-above');
+    }
+
+    // Horizontal check
+    const centeredLeft = tagRect.left + tagRect.width / 2 - tooltipRect.width / 2;
+    
+    if (centeredLeft < margin) {
+      // If it overflows the left edge, align it to the left
+      tooltip.classList.add('tooltip-left');
+    } else if (centeredLeft + tooltipRect.width + margin > viewportWidth) {
+      // If it overflows the right edge, align it to the right
+      tooltip.classList.add('tooltip-right');
+    }
+  }
+
+  function initSkillTooltips() {
+    const skillTags = document.querySelectorAll('.skill-tag[data-has-meta="true"]');
+    skillTags.forEach(tag => {
+      // Use 'pointerenter' for better compatibility with various devices
+      tag.addEventListener('pointerenter', () => positionTooltip(tag));
+    });
+  }
+
+  // Run on initial page load
+  initSkillTooltips();
+  
+  // Re-run when Astro swaps pages for client-side navigation
+  document.addEventListener('astro:after-swap', initSkillTooltips);
+</script>

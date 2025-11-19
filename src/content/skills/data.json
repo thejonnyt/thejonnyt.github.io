@@ -3,9 +3,10 @@
     {
       "name": "Programming Languages",
       "skills": [
-        { "name": "Python", "level": "competent to proficient", "years": 8 },
-        { "name": "Bash", "level": "competent to proficient", "years": 8 },
-        { "name": "R", "level": "proficient", "years": 6 },
+        { "name": "Python", "level": "proficient", "years": 8 },
+        { "name": "Bash", "level": "proficient", "years": 8 },
+        { "name": "R", "level": "proficient", "years": 3 },
+        { "name": "Java", "level": "competent", "years": 3 },
         { "name": "noSQL", "level": "proficient", "years": 6 },
         { "name": "SQL", "level": "proficient", "years": 6 },
         { "name": "JavaScript/TypeScript", "level": "competent", "years": 2 },
