@@ -1,19 +1,29 @@
 ---
 // Header component with navigation
+import LanguageToggle from './LanguageToggle.astro';
 ---
 
 <header class="header">
-  <div class="container">
+  <div class="container header-container">
     <nav class="nav">
       <a href="/" class="logo">Johannes Tauscher</a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#publications">Publications</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li data-lang="en"><a href="#about-en" data-nav-section="about">About</a></li>
+        <li data-lang="en"><a href="#experience-en" data-nav-section="experience">Experience</a></li>
+        <li data-lang="en"><a href="#projects-en" data-nav-section="projects">Projects</a></li>
+        <li data-lang="en"><a href="#publications-en" data-nav-section="publications">Publications</a></li>
+        <li data-lang="en"><a href="#contact-en" data-nav-section="contact">Contact</a></li>
+
+        <li data-lang="de"><a href="#about-de" data-nav-section="about">Über mich</a></li>
+        <li data-lang="de"><a href="#experience-de" data-nav-section="experience">Berufserfahrung</a></li>
+        <li data-lang="de"><a href="#projects-de" data-nav-section="projects">Projekte</a></li>
+        <li data-lang="de"><a href="#publications-de" data-nav-section="publications">Publikationen</a></li>
+        <li data-lang="de"><a href="#contact-de" data-nav-section="contact">Kontakt</a></li>
       </ul>
     </nav>
+    <div class="lang-toggle-wrapper">
+      <LanguageToggle />
+    </div>
   </div>
 </header>
 
@@ -34,11 +44,19 @@
     }
   }
 
-  .nav {
+  .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: var(--header-height);
+    position: relative;
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
   }
 
   .logo {
@@ -54,6 +72,11 @@
     margin: 0;
   }
 
+  .lang-toggle-wrapper {
+    margin-left: var(--space-lg);
+    padding-right: 20px;
+  }
+
   .nav-links a {
     color: var(--color-muted);
     font-size: 0.9rem;
@@ -64,10 +87,35 @@
     color: var(--color-foreground);
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
+    .header-container {
+      flex-wrap: wrap;
+    }
+
+    .nav {
+      flex: 1 1 100%;
+    }
+
+    .lang-toggle-wrapper {
+      padding-right: 10px;
+      margin-left: var(--space-md);
+    }
+
     .nav-links {
-      gap: var(--space-md);
+      gap: var(--space-sm);
       font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .lang-toggle-wrapper {
+      padding-right: 0;
+      margin-left: var(--space-sm);
+    }
+
+    .nav-links {
+      gap: var(--space-xs);
+      font-size: 0.8rem;
     }
   }
 </style>

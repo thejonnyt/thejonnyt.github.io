@@ -1,0 +1,16 @@
+---
+interface Props {
+  id?: string;
+  className?: string;
+}
+
+const { id, className = 'section' } = Astro.props;
+---
+
+{(['en', 'de'] as const).map(lang => (
+  <div data-lang={lang}>
+    <section id={id} class={className}>
+      <slot name={lang} />
+    </section>
+  </div>
+))}

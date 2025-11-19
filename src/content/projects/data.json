@@ -7,10 +7,12 @@
     "startDate": "2013",
     "endDate": "2015",
     "links": {
-      "Video": "https://vimeo.com/131561210"
+      "Video": "https://vimeo.com/131561210",
+      "Website": "https://thefoodguide.de/"
     },
     "highlights": [
-      "catered to 100 people in one night on a 3-course menu basis in a kitchen very much not designed for that purpose"
+      "(2nd Event) Video produced by professional videographer available on [Vimeo](https://vimeo.com/131561210)",
+      "(3rd Event) catered to 100 people in one night on a 3-course menu basis in a kitchen very much not designed for that purpose"
     ],
     "featured": true
   }

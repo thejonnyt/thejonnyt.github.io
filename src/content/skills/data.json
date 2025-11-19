@@ -10,18 +10,17 @@
         { "name": "SQL", "level": "proficient", "years": 6 },
         { "name": "JavaScript/TypeScript", "level": "competent", "years": 2 },
         { "name": "HTML", "level": "proficient", "years": 6 },
-        { "name": "CSS", "level": "proficient", "years": 6 },
         { "name": "CSS", "level": "proficient", "years": 6 }
       ]
     },
     {
       "name": "Tools & Technologies",
       "skills": [
-        { "name": "Linux", "level": "competent to proficient", "years": 8},
-        { "name": "Docker", "level": "proficient"},
+        { "name": "Linux", "level": "competent to proficient", "years": 8 },
+        { "name": "Docker", "level": "proficient" },
         { "name": "Git", "level": "proficient" },
         { "name": "VSCode", "level": "proficient" },
-        { "name": "LateX", "level": "proficient" },
+        { "name": "LaTeX", "level": "proficient" },
         { "name": "SPSS", "level": "proficient" }
       ]
     },

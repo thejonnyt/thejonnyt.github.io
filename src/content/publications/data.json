@@ -1,11 +1,21 @@
 [
-    {
-    "title": "Phenotypic differences between female and male individuals with suspicion of autism spectrum disorder",
-    "authors": ["Sanna Stroth", "Johannes Tauscher", "Nicole Beyer", "Charlotte Küpper", "Luise Poustka", "Stefan Roepke", "Veit Roessner", "Dominik Heider", "Inge Kamp-Becker"],
+  {
+    "title": "Phenotypic differences between female and male individuals with suspicion of {{asd}}",
+    "authors": [
+      "Sanna Stroth",
+      "Johannes Tauscher",
+      "Nicole Beyer",
+      "Charlotte Küpper",
+      "Luise Poustka",
+      "Stefan Roepke",
+      "Veit Roessner",
+      "Dominik Heider",
+      "Inge Kamp-Becker"
+    ],
     "venue": "Molecular Autism, 13 (1)",
     "year": 2022,
     "type": "article",
-    "abstract": "Diagnosing autism spectrum disorder (ASD) requires extensive clinical expertise and training as well as a focus on differential diagnoses. The diagnostic process is particularly complex given symptom overlap with other mental disorders and high rates of co-occurring physical and mental health concerns. The aim of this study was to conduct a data-driven selection of the most relevant diagnostic information collected from a behavior observation and an anamnestic interview in two clinical samples of children/younger adolescents and adolescents/adults with suspected ASD. Via random forests, the present study discovered patterns of symptoms in the diagnostic data of 2310 participants (46% ASD, 54% non-ASD, age range 4–72 years) using data from the combined Autism Diagnostic Observation Schedule (ADOS) and Autism Diagnostic Interview—Revised (ADI-R) and ADOS data alone.",
+    "abstract": "Background Although {{asd}} is a common developmental disorder, our knowledge about a behavioral and neurobiological female phenotype is still scarce. As the conceptualization and understanding of {{asd}} are mainly based on the investigation of male individuals, females with {{asd}} may not be adequately identified by routine clinical diagnostics. The present {{ml}} approach aimed to identify diagnostic information from the {{ados}} that discriminates best between {{asd}} and non-{{asd}} in females and males. Methods {{random-forests}} were used to discover patterns of symptoms in diagnostic data from the {{ados}} (modules 3 and 4) in 1057 participants with {{asd}} (18.1% female) and 1230 participants with non-{{asd}} (17.9% % female). Predictive performances of reduced feature models were explored and compared between females and males without intellectual disabilities. Results Reduced feature models relied on considerably fewer features from the {{ados}} in females compared to males, while still yielding similar classification performance (e.g., sensitivity, specificity). Limitations As in previous studies, the current sample of females with {{asd}} is smaller than the male sample and thus, females may still be underrepresented, limiting the statistical power to detect small to moderate effects. Conclusion Our results do not suggest the need for new or altered diagnostic algorithms for females with {{asd}}. Although we identified some phenotypic differences between females and males, the existing diagnostic tools seem to sufficiently capture the core autistic features in both groups.",
     "links": {
       "doi": "https://doi.org/10.1186/s13229-022-00491-9"
     },
@@ -14,24 +24,44 @@
   },
   {
     "title": "Is the Combination of ADOS and ADI-R Necessary to Classify ASD? Rethinking the “Gold Standard” in Diagnosing ASD",
-    "authors": ["Sanna Stroth", "Johannes Tauscher", "Nicole Beyer", "Charlotte Küpper", "Luise Poustka", "Stefan Roepke", "Veit Roessner", "Dominik Heider", "Inge Kamp-Becker"],
+    "authors": [
+      "Sanna Stroth",
+      "Johannes Tauscher",
+      "Nicole Beyer",
+      "Charlotte Küpper",
+      "Luise Poustka",
+      "Stefan Roepke",
+      "Veit Roessner",
+      "Dominik Heider",
+      "Inge Kamp-Becker"
+    ],
     "venue": "Frontiers of Psychiatry, 12",
     "year": 2021,
     "type": "article",
-    "abstract": "Diagnosing autism spectrum disorder (ASD) requires extensive clinical expertise and training as well as a focus on differential diagnoses. The diagnostic process is particularly complex given symptom overlap with other mental disorders and high rates of co-occurring physical and mental health concerns. The aim of this study was to conduct a data-driven selection of the most relevant diagnostic information collected from a behavior observation and an anamnestic interview in two clinical samples of children/younger adolescents and adolescents/adults with suspected ASD. Via random forests, the present study discovered patterns of symptoms in the diagnostic data of 2310 participants (46% ASD, 54% non-ASD, age range 4–72 years) using data from the combined Autism Diagnostic Observation Schedule (ADOS) and Autism Diagnostic Interview—Revised (ADI-R) and ADOS data alone.",
+    "abstract": "Diagnosing {{asd}} requires extensive clinical expertise and training as well as a focus on differential diagnoses. The diagnostic process is particularly complex given symptom overlap with other mental disorders and high rates of co-occurring physical and mental health concerns. The aim of this study was to conduct a data-driven selection of the most relevant diagnostic information collected from a behavior observation and an anamnestic interview in two clinical samples of children/younger adolescents and adolescents/adults with suspected {{asd}}. Via {{random-forests}}, the present study discovered patterns of symptoms in the diagnostic data of 2310 participants (46% {{asd}}, 54% non-{{asd}}, age range 4–72 years) using data from the combined {{ados}} and {{adi-r}} and {{ados}} data alone.",
     "links": {
       "doi": "https://doi.org/10.3389/fpsyt.2021.727308"
     },
     "citations": 45,
     "featured": true
   },
-    {
+  {
     "title": "Identification of the most indicative and discriminative features from diagnostic instruments for children with autism",
-    "authors": ["Sanna Stroth", "Johannes Tauscher", "Nicole Wolff", "Charlotte Küpper", "Luise Poustka", "Stefan Roepke", "Veit Roessner", "Dominik Heider", "Inge Kamp-Becker"],
+    "authors": [
+      "Sanna Stroth",
+      "Johannes Tauscher",
+      "Nicole Wolff",
+      "Charlotte Küpper",
+      "Luise Poustka",
+      "Stefan Roepke",
+      "Veit Roessner",
+      "Dominik Heider",
+      "Inge Kamp-Becker"
+    ],
     "venue": "JCPP Advances, Volume 1, Issue 2",
     "year": 2021,
     "type": "article",
-    "abstract": "Diagnosing autism spectrum disorder (ASD) is complex and time-consuming. The present work systematically examines the importance of items from the Autism Diagnostic Interview-Revised (ADI-R) and Autism Diagnostic Observation Schedule (ADOS) in discerning children with and without ASD. Knowledge of the most discriminative features and their underlying concepts may prove valuable for the future training tools that assist clinicians to substantiate or extenuate a suspicion of ASD in nonverbal and minimally verbal children.",
+    "abstract": "Diagnosing {{asd}} is complex and time-consuming. The present work systematically examines the importance of items from the {{adi-r}} and {{ados}} in discerning children with and without {{asd}}. Knowledge of the most discriminative features and their underlying concepts may prove valuable for the future training tools that assist clinicians to substantiate or extenuate a suspicion of {{asd}} in nonverbal and minimally verbal children.",
     "links": {
       "doi": "https://doi.org/10.1002/jcv2.12023"
     },

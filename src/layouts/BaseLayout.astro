@@ -1,4 +1,6 @@
 ---
+import TechnicalTermTooltip from '../components/TechnicalTermTooltip.astro';
+
 interface Props {
   title?: string;
   description?: string;
@@ -22,16 +24,32 @@ const {
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://thejonnyt.github.io" />
+    <meta property="og:site_name" content="Johannes Tauscher" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Additional SEO -->
+    <meta name="author" content="Johannes Tauscher" />
+    <link rel="canonical" href="https://thejonnyt.github.io" />
 
     <title>{title}</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <!-- Global Styles -->
     <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <slot />
+    <TechnicalTermTooltip />
   </body>
 </html>

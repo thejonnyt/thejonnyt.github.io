@@ -5,33 +5,54 @@
     "location": "Leipzig, Germany",
     "startDate": "2024-11",
     "endDate": "2025-11",
-    "current": false,
+    "current": true,
     "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. Conceptualized and architected the product; led product ideation workshops; managed a 4-person development team and coordinated external IT partners.",
-      "achievements": [
-        "Built engagement platform from 0 → 1 in 12 months on an overall €30k budget",
-        "Managed and led a small development team (4 people) and coordinated external IT partnerships",
-        "Led product ideation workshops to align team vision and roadmap",
-        "Designed microservices architecture, Docker containerization (distroless, multistage, dev/prod) and service mesh patterns",
-        "Implemented DevEx/DevOps: CI/CD pipelines, linting and pre-commit hooks, SSL/DNS management and nginx routing",
-        "Developed ML prototypes: semantic text-chunking, sentiment analysis, topic clustering and content summarization",
-        "Established GDPR-compliant data privacy and privacy-by-design practices"
-      ],
-      "technologies": ["Docker", "gRPC", "Python", "JavaScript", "TypeScript", "Next.js", "React", "Qdrant", "MongoDB", "MariaDB", "LLMs", "NLP/ML", "nginx", "CI/CD"]
-    },
-    {
+    "achievements": [
+      "Built engagement platform from 0 → 1 in 12 months on an overall €30k budget",
+      "Managed and led a small development team (4 people) and coordinated external IT partnerships",
+      "Led product ideation workshops to align team vision and roadmap",
+      "Designed {{microservices}} architecture, {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}, dev/prod) and {{service-mesh}} patterns",
+      "Implemented {{devex}}/{{devops}}: {{cicd}} pipelines, {{linting}} and {{pre-commit-hooks}}, {{ssl}}/{{dns}} management and {{nginx}} routing",
+      "Developed {{ml}} prototypes: {{semantic-chunking}}, {{sentiment-analysis}}, {{topic-clustering}} and content summarization",
+      "Established {{gdpr}}-compliant data privacy and {{privacy-by-design}} practices"
+    ],
+    "technologies": [
+      "Docker",
+      "gRPC",
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Qdrant",
+      "MongoDB",
+      "MariaDB",
+      "LLMs",
+      "NLP/ML",
+      "nginx",
+      "CI/CD"
+    ]
+  },
+  {
     "company": "Exist",
     "position": "Entrepreneur",
     "location": "Leipzig, Germany",
     "startDate": "2024-11",
     "endDate": "2025-10",
     "current": false,
-    "description": "Responsible for developing and launching a startup idea as part of the EXIST scholarship program funded by the German Federal Ministry for Economic Affairs and Climate Action (BMWK).",
+    "description": "Responsible for developing and launching a startup idea as part of the {{exist}} scholarship program funded by the German Federal Ministry for Economic Affairs and Climate Action (BMWK).",
     "achievements": [
-      "Visited selected Business Seminars on diverse Topics from Leipzig University and Handelshochschule Leipzig (HHL)"
+      "Visited selected Business Seminars on diverse Topics from Leipzig University and Leipzig Graduate School of Management ({{hhl}})"
     ],
-    "technologies": ["Miro", "Business Model Canvas", "Lean Startup", "Public Administration", "etc"]
+    "technologies": [
+      "Miro",
+      "Business Model Canvas",
+      "Lean Startup",
+      "Public Administration",
+      "etc"
+    ]
   },
-    {
+  {
     "company": "Rahn Education (Private School)",
     "position": "Mathematics Teacher (Substitute)",
     "location": "Leipzig, Germany",
@@ -45,21 +66,26 @@
     ],
     "technologies": ["Powerpoint", "Algebra", "gcode", "STL", "MS Teams"]
   },
-    {
+  {
     "company": "Child and Adolescent Psychiatry, Philipps University Marburg",
     "position": "Student Assistant",
     "location": "Marburg, Germany",
     "startDate": "2019-05",
     "endDate": "2021-01",
     "current": false,
-    "description": "Responsable for the validation and reproduction of earlier results of research aswell as for the implementation of machine learning algorithms in R to solve classification problems in the field of autism diagnosis.",
+    "description": "Responsible for the validation and reproduction of earlier results of research aswell as for the implementation of {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
     "achievements": [
       "My analysis results contributed to multiple publications that are listed in the publications section.",
       "worked highly interdisciplinary with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data-scientists"
     ],
-    "technologies": ["R", "Machine Learning", "Statistics", "Interdisciplinary Collaboration"]
+    "technologies": [
+      "R",
+      "Machine Learning",
+      "Statistics",
+      "Interdisciplinary Collaboration"
+    ]
   },
-    {
+  {
     "company": "Westphalia DataLab GmbH",
     "position": "Intern, Data Analyst",
     "location": "Münster, Germany",
@@ -74,12 +100,12 @@
     ],
     "technologies": ["Python", "R", "R Shiny", "MongoDB", "PostgreSQL", "Git"]
   },
-    {
+  {
     "company": "Red Bull Germany GmbH",
     "position": "Intern, Sport and Athletes Marketing",
-    "location": "City, Country",
-    "startDate": "2023-01",
-    "endDate": "2024-11",
+    "location": "Munic, Germany",
+    "startDate": "2016-03",
+    "endDate": "2016-08",
     "current": false,
     "description": "In my role as a Sports and Athletes Marketing Manager, I updated and maintained the Athletes Portfolio as an asset of high value to the marketing mix of Red Bull. I furthermore participated in the Business Planning Process for 2017 by generating Ideas, their evaluation and processing for presentation",
     "achievements": [
@@ -88,7 +114,7 @@
     ],
     "technologies": ["Excel", "Powerpoint", "MS Office"]
   },
-    {
+  {
     "company": "Red Bull Germany GmbH",
     "position": "Student Brand Manager",
     "location": "Hamburg, Germany",
@@ -103,7 +129,7 @@
     ],
     "technologies": ["Excel", "Powerpoint", "MS Office", "Adobe Photoshop"]
   },
-    {
+  {
     "company": "Goodgame Studios",
     "position": "Working Student, Human Resources",
     "location": "Hamburg, Germany",

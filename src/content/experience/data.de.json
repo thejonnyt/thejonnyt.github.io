@@ -1,0 +1,146 @@
+[
+  {
+    "company": "Raumdeuter GbR",
+    "position": "Mitgründer & CTO",
+    "location": "Leipzig, Deutschland",
+    "startDate": "2024-11",
+    "endDate": "2025-11",
+    "current": true,
+    "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen, um Beteiligung und Engagement zu ermöglichen – eine Möglichkeit, seine Meinung zu äußern. Konzeption und Architektur des Produkts; Leitung von Produkt-Ideation-Workshops; Management eines 4-köpfigen Entwicklungsteams und Koordination externer IT-Partner.",
+    "achievements": [
+      "Entwicklung einer Engagement-Plattform von 0 → 1 in 12 Monaten mit einem Gesamtbudget von 30.000 €",
+      "Management und Leitung eines kleinen Entwicklungsteams (4 Personen) und Koordination externer IT-Partnerschaften",
+      "Leitung von Produkt-Ideation-Workshops zur Abstimmung von Team-Vision und Roadmap",
+      "Entwurf einer {{microservices}}-Architektur, {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}, dev/prod) und {{service-mesh}}-Muster",
+      "Implementierung von {{devex}}/{{devops}}: {{cicd}}-Pipelines, {{linting}} und {{pre-commit-hooks}}, {{ssl}}/{{dns}}-Management und {{nginx}}-Routing",
+      "Entwicklung von {{ml}}-Prototypen: {{semantic-chunking}}, {{sentiment-analysis}}, {{topic-clustering}} und Content-Zusammenfassung",
+      "Etablierung {{gdpr}}-konformer Datenschutz- und {{privacy-by-design}}-Praktiken"
+    ],
+    "technologies": [
+      "Docker",
+      "gRPC",
+      "Python",
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Qdrant",
+      "MongoDB",
+      "MariaDB",
+      "LLMs",
+      "NLP/ML",
+      "nginx",
+      "CI/CD"
+    ]
+  },
+  {
+    "company": "Exist",
+    "position": "Unternehmer",
+    "location": "Leipzig, Deutschland",
+    "startDate": "2024-11",
+    "endDate": "2025-10",
+    "current": false,
+    "description": "Verantwortlich für die Entwicklung und den Launch einer Startup-Idee im Rahmen des {{exist}}-Stipendienprogramms, finanziert vom Bundesministerium für Wirtschaft und Klimaschutz (BMWK).",
+    "achievements": [
+      "Besuch ausgewählter Business-Seminare zu verschiedenen Themen an der Universität Leipzig und der Leipzig Graduate School of Management ({{hhl}})"
+    ],
+    "technologies": [
+      "Miro",
+      "Business Model Canvas",
+      "Lean Startup",
+      "Öffentliche Verwaltung",
+      "etc"
+    ]
+  },
+  {
+    "company": "Rahn Education (Privatschule)",
+    "position": "Mathematiklehrer (Vertretung)",
+    "location": "Leipzig, Deutschland",
+    "startDate": "2022-11",
+    "endDate": "2023-06",
+    "current": false,
+    "description": "Verantwortlich für die Betreuung einiger talentierter Schüler",
+    "achievements": [
+      "Erstellung individuell angepasster Materialien auf Universitätsniveau, um Herausforderungen zu bieten und Interesse an Mathematik zu wecken",
+      "Unterricht der mathematischen Grundlagen hinter 3D-Druck und Programmierung"
+    ],
+    "technologies": ["Powerpoint", "Algebra", "gcode", "STL", "MS Teams"]
+  },
+  {
+    "company": "Kinder- und Jugendpsychiatrie, Philipps-Universität Marburg",
+    "position": "Studentische Hilfskraft",
+    "location": "Marburg, Deutschland",
+    "startDate": "2019-05",
+    "endDate": "2021-01",
+    "current": false,
+    "description": "Verantwortlich für die Validierung und Reproduktion früherer Forschungsergebnisse sowie für die Implementierung von {{ml}}-Algorithmen in R zur Lösung von Klassifikationsproblemen im Bereich der {{asd}}-Diagnose.",
+    "achievements": [
+      "Meine Analyseergebnisse trugen zu mehreren Publikationen bei, die im Publikationsbereich aufgeführt sind.",
+      "Hochgradig interdisziplinäre Arbeit mit Psychologen und Medizinern, um den klinischen Hintergrund und die Implikationen der Daten zu verstehen + Erklärung der statistischen Methoden für Nicht-Data-Scientists"
+    ],
+    "technologies": [
+      "R",
+      "Machine Learning",
+      "Statistik",
+      "Interdisziplinäre Zusammenarbeit"
+    ]
+  },
+  {
+    "company": "Westphalia DataLab GmbH",
+    "position": "Praktikant, Data Analyst",
+    "location": "Münster, Deutschland",
+    "startDate": "2019-08",
+    "endDate": "2019-10",
+    "current": false,
+    "description": "Als Data Analyst Praktikant bei Westphalia DataLab GmbH arbeitete ich an einem medizinischen Diagnostikprojekt, das 3D-Bildgebung und klinische Daten kombinierte; entwickelte und verbesserte ein Experiment-Tracking R/Shiny-Frontend und führte klinische Datenanalysen mit Python und R durch.",
+    "achievements": [
+      "Implementierung und Verbesserung von Features für ein Experiment-Tracking R/Shiny-Frontend zur Verbesserung des Workflows und der Benutzerfreundlichkeit für Forscher",
+      "Analyse von 3D-Bild- und klinischen Datensätzen mit Python und R zur Ableitung umsetzbarer diagnostischer Erkenntnisse",
+      "Integration und Verwaltung von Projektdaten mit MongoDB und PostgreSQL sowie Pflege von Code/Versionierung mit Git"
+    ],
+    "technologies": ["Python", "R", "R Shiny", "MongoDB", "PostgreSQL", "Git"]
+  },
+  {
+    "company": "Red Bull Germany GmbH",
+    "position": "Praktikant, Sport- und Athleten-Marketing",
+    "location": "München, Deutschland",
+    "startDate": "2016-03",
+    "endDate": "2016-08",
+    "current": false,
+    "description": "In meiner Rolle als Sport- und Athleten-Marketing-Manager aktualisierte und pflegte ich das Athleten-Portfolio als wertvolles Asset für den Marketing-Mix von Red Bull. Außerdem nahm ich am Business-Planning-Prozess für 2017 teil, indem ich Ideen generierte, diese evaluierte und für Präsentationen aufbereitete.",
+    "achievements": [
+      "Team-Aktivierung von THW Kiel einschließlich personalisiertem Asset-Design und -Produktion sowie einem Flug in einem von Mateschitz' privaten Hangar-Flugzeugen",
+      "Event-Supervision und organisatorische Rolle in Projekten wie dem Hospitality-Bereich für Red Bulls VIPs beim MotoGP 2016"
+    ],
+    "technologies": ["Excel", "Powerpoint", "MS Office"]
+  },
+  {
+    "company": "Red Bull Germany GmbH",
+    "position": "Student Brand Manager",
+    "location": "Hamburg, Deutschland",
+    "startDate": "2013-05",
+    "endDate": "2016-12",
+    "current": false,
+    "description": "Das Student Brand Manager Programm von Red Bull ist darauf ausgelegt, die nächste Generation von Red Bull Marketing-Experten zu finden und auszubilden. Als Student Brand Manager war ich verantwortlich für die Organisation von Guerilla-Marketing-Events und die Schaffung von Markenbekanntheit in der Studentengemeinschaft. Die Rolle als SBM ermöglichte es mir, starke Marketing- und Führungskompetenzen zu entwickeln und praktische Erfahrungen im Markenmanagement von einer der weltweit bekanntesten Marken zu sammeln.",
+    "achievements": [
+      "Student Brand Manager des Jahres 2016 in Norddeutschland",
+      "Organisation eigener Campus-Events und Moderation von Campus-Events anderer Student Brand Manager",
+      "Teilnahme und Unterstützung regionaler und nationaler Events wie Red Bull Seifenkistenrennen und Red Bull Coast2Coast"
+    ],
+    "technologies": ["Excel", "Powerpoint", "MS Office", "Adobe Photoshop"]
+  },
+  {
+    "company": "Goodgame Studios",
+    "position": "Werkstudent, Human Resources",
+    "location": "Hamburg, Deutschland",
+    "startDate": "2011-08",
+    "endDate": "2012-09",
+    "current": false,
+    "description": "Beginnend als Praktikant unterstützte ich das HR-Team bei verschiedenen administrativen Aufgaben, Rekrutierungsprozessen und Mitarbeiter-Onboarding-Aktivitäten. Diese Rolle gab mir wertvolle Einblicke in HR-Abläufe innerhalb eines schnell wachsenden Startup-Unternehmens.",
+    "achievements": [
+      "Der HR-Rekrutierungsprozess war verantwortlich für die Einstellung von 70 neuen Mitarbeitern (von 30) innerhalb eines Jahres und trug zum schnellen Wachstum des Unternehmens bei.",
+      "Ich war verantwortlich für das Scouting und die Auswahl von Kandidaten, die Terminplanung von Interviews und die Koordination der Kommunikation zwischen Bewerbern und Hiring Managern, wodurch die Effizienz des Rekrutierungsprozesses verbessert wurde."
+    ],
+    "technologies": ["Excel", "MS Office"]
+  }
+]

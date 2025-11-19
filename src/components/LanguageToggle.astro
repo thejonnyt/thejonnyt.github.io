@@ -1,0 +1,102 @@
+---
+// Language toggle component
+---
+
+<div class="language-toggle">
+  <button
+    id="lang-toggle"
+    class="lang-button"
+    aria-label="Switch language"
+    title="Switch language / Sprache wechseln"
+  >
+    <span class="lang-label" id="lang-label">EN</span>
+  </button>
+</div>
+
+<script>
+  import { languageStore, setLanguage, type Language } from '../utils/languageStore';
+
+  const button = document.getElementById('lang-toggle') as HTMLButtonElement;
+  const label = document.getElementById('lang-label') as HTMLSpanElement;
+
+  // Function to toggle language visibility
+  function toggleLanguage(lang: Language) {
+    // Hide all language content
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      (el as HTMLElement).style.display = 'none';
+    });
+
+    // Show selected language content
+    document.querySelectorAll(`[data-lang="${lang}"]`).forEach(el => {
+      (el as HTMLElement).style.display = '';
+    });
+
+    // Update navigation links to point to correct language sections
+    document.querySelectorAll('a[data-nav-section]').forEach(link => {
+      const section = link.getAttribute('data-nav-section');
+      if (section) {
+        link.setAttribute('href', `#${section}-${lang}`);
+      }
+    });
+
+    // Update button label
+    label.textContent = lang === 'en' ? 'EN' : 'DE';
+  }
+
+  // Initialize from store on page load
+  const currentLang = languageStore.get();
+  toggleLanguage(currentLang);
+
+  // Toggle language on click
+  button.addEventListener('click', () => {
+    const newLang: Language = languageStore.get() === 'en' ? 'de' : 'en';
+    setLanguage(newLang);
+    toggleLanguage(newLang);
+  });
+</script>
+
+<style>
+  .language-toggle {
+    display: flex;
+    align-items: center;
+  }
+
+  .lang-button {
+    background: transparent;
+    border: 2px solid var(--text-color, #333);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 600;
+    color: var(--text-color, #333);
+  }
+
+  .lang-button:hover {
+    background: var(--text-color, #333);
+    color: var(--bg-color, #fff);
+  }
+
+  .lang-button:focus {
+    outline: 2px solid var(--accent-color, #0066cc);
+    outline-offset: 2px;
+  }
+
+  .lang-label {
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .lang-button {
+      border-color: var(--text-color, #e0e0e0);
+      color: var(--text-color, #e0e0e0);
+    }
+
+    .lang-button:hover {
+      background: var(--text-color, #e0e0e0);
+      color: var(--bg-color, #1a1a1a);
+    }
+  }
+</style>

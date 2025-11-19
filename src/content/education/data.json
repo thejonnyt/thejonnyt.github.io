@@ -7,11 +7,11 @@
     "startDate": "2021-04",
     "endDate": "2024-10",
     "highlights": [
-      "Overall Score: 1.7, personal focus on adv. Statistics, Machine Learning, Data Privacy, LLMs",
-      "Master's Thesis  (1.1): Neural Machine Translation with Transformers - Leveraging the Pivot Technique for Low-Resource Language Pairs"
+      "Overall Score, german grading: 1.7, personal focus on adv. Statistics, {{ml}}, Data Privacy, {{llm}}s",
+      "Master's Thesis  (1.1): {{nmt}} with {{transformers}} - Leveraging the {{pivot-technique}} for Low-Resource Language Pairs"
     ]
   },
-    {
+  {
     "institution": "Philipps University Marburg",
     "degree": "B.Sc.",
     "field": "Data Science, Faculty of Mathematics and Computer Science",
@@ -23,7 +23,7 @@
       "Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes"
     ]
   },
-    {
+  {
     "institution": "HAW Hamburg",
     "degree": "B.A.",
     "field": "Marketing and Technical Business Administration",
@@ -32,7 +32,7 @@
     "endDate": "2017-10",
     "highlights": [
       "focus on Marketing, Engineering and Business Administration",
-      "Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes"
+      "Bachelor's Thesis (1.7):    Use of {{lda}} as an alternative to tree analysis - methodological evaluation and exemplary implementation using a survey on the success of movies."
     ]
   }
 ]

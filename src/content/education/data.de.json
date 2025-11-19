@@ -1,0 +1,38 @@
+[
+  {
+    "institution": "Universität Leipzig",
+    "degree": "M.Sc",
+    "field": "Data Science, Fakultät für Mathematik und Informatik",
+    "location": "Leipzig, Deutschland",
+    "startDate": "2021-04",
+    "endDate": "2024-10",
+    "highlights": [
+      "Gesamtnote: 1,7, persönlicher Schwerpunkt auf fortgeschrittener Statistik, {{ml}}, Data Privacy, {{llm}}s",
+      "Masterarbeit (1,1): {{nmt}} mit {{transformers}} - Nutzung der {{pivot-technique}} für Sprachpaare mit geringen Ressourcen"
+    ]
+  },
+  {
+    "institution": "Philipps-Universität Marburg",
+    "degree": "B.Sc.",
+    "field": "Data Science, Fakultät für Mathematik und Informatik",
+    "location": "Marburg, Deutschland",
+    "startDate": "2017-10",
+    "endDate": "2021-03",
+    "highlights": [
+      "persönlicher Schwerpunkt auf Mathematik, Statistik, Informatik und Programmierung",
+      "Bachelorarbeit (1,7): Multidimensionale Datenexploration und Visualisierung von Membranprotein-Attributen"
+    ]
+  },
+  {
+    "institution": "HAW Hamburg",
+    "degree": "B.A.",
+    "field": "Marketing und Technische Betriebswirtschaft",
+    "location": "Hamburg, Deutschland",
+    "startDate": "2012-03",
+    "endDate": "2017-10",
+    "highlights": [
+      "Schwerpunkt auf Marketing, Engineering und Betriebswirtschaftslehre",
+      "Bachelorarbeit (1,7): Einsatz der {{lda}} als Alternative zur Baumanalyse - methodologische Bewertung und exemplarische Implementierung anhand einer Umfrage zum Erfolg von Filmen."
+    ]
+  }
+]

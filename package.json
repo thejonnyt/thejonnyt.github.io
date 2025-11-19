@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.15.9"
+    "@nanostores/persistent": "^1.2.0",
+    "astro": "^5.15.9",
+    "nanostores": "^1.1.0"
   }
 }

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Cook Up Kitchen",
+    "tagline": "PopUp Restaurant",
+    "description": "Ein paar Freunde und ich starteten ein wiederkehrendes PopUp-Restaurant in Hamburg, um herauszufinden, ob Food-Blogging eine echte Marketing-Strategie für Restaurants sein könnte, was zu einer seitdem anhaltenden Business-Opportunity für einen von uns führte.",
+    "technologies": ["Heiße Pfanne", "Öl", "Kreativität", "Teamarbeit"],
+    "startDate": "2013",
+    "endDate": "2015",
+    "links": {
+      "Video": "https://vimeo.com/131561210",
+      "Website": "https://thefoodguide.de/"
+    },
+    "highlights": [
+      "(2. Event) Video produziert von professionellem Videografen verfügbar auf Vimeo",
+      "(3. Event) Catering für 100 Personen in einer Nacht auf 3-Gänge-Menü-Basis in einer Küche, die sehr eindeutig nicht dafür ausgelegt war"
+    ],
+    "featured": true
+  }
+]

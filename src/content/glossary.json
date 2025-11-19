@@ -1,0 +1,496 @@
+{
+  "terms": [
+    {
+      "id": "hhl",
+      "term": "HHL",
+      "shortDefinition": "HHL Leipzig Graduate School of Management looks back to a long tradition, deeply rooted in the region of Saxony while at the same time enjoying a highly international reputation. HHL is known for its mixture of innovative, international and individual approaches by students, staff, faculty and alumni.",
+      "definition": "HHL Leipzig Graduate School of Management is a prestigious university with doctoral and habilitation rights and was the first private German Business School with AACSB accreditation. In addition, with more than 530 startups founded by HHL Alumni, our business school is the top address for entrepreneurship in Germany.",
+      "links": [
+        {"text": "HHL Homepage", "href": "www.hhl.de"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "llm",
+      "term": "LLM",
+      "shortDefinition": "(Large Language Model) AI models trained on vast text data to understand and generate human-like text",
+      "definition": "Large Language Models are neural networks with billions of parameters trained on massive text datasets. They can understand context, generate coherent text, answer questions, and perform various language tasks. Examples include GPT-4, Claude, and PaLM.",
+      "links": [
+        {"text": "Introduction to LLMs", "href": "https://en.wikipedia.org/wiki/Large_language_model"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "ml",
+      "term": "Machine Learning",
+      "shortDefinition": "Algorithms that learn patterns from data without explicit programming",
+      "definition": "Machine Learning is a subset of AI where systems automatically learn and improve from experience. Instead of being explicitly programmed, ML algorithms identify patterns in data to make predictions or decisions.",
+      "links": [
+        {"text": "What is Machine Learning?", "href": "https://en.wikipedia.org/wiki/Machine_learning"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "nlp",
+      "term": "NLP (Natural Language Processing)",
+      "shortDefinition": "AI field focused on enabling computers to understand and process human language",
+      "definition": "Natural Language Processing combines linguistics and machine learning to help computers understand, interpret, and generate human language. Applications include translation, sentiment analysis, text summarization, and chatbots.",
+      "links": [
+        {"text": "NLP Overview", "href": "https://en.wikipedia.org/wiki/Natural_language_processing"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "transformers",
+      "term": "Transformers",
+      "shortDefinition": "Neural network architecture using attention mechanisms, foundational to modern LLMs",
+      "definition": "Transformers are a neural network architecture introduced in 2017 that revolutionized NLP. They use self-attention mechanisms to process sequential data in parallel, making them highly efficient and effective. They're the foundation of models like GPT, BERT, and modern LLMs.",
+      "links": [
+        {"text": "Attention Is All You Need", "href": "https://arxiv.org/abs/1706.03762"},
+        {"text": "Illustrated Transformer", "href": "http://jalammar.github.io/illustrated-transformer/"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "nmt",
+      "term": "Neural Machine Translation",
+      "shortDefinition": "Using neural networks to automatically translate text between languages",
+      "definition": "Neural Machine Translation uses deep learning models to translate text from one language to another. Modern NMT systems use transformer architectures and can produce more fluent, context-aware translations than older statistical methods.",
+      "links": [
+        {"text": "NMT Wikipedia", "href": "https://en.wikipedia.org/wiki/Neural_machine_translation"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "pivot-technique",
+      "term": "Pivot Technique",
+      "shortDefinition": "Translation method using an intermediate language as a bridge",
+      "definition": "The pivot technique in machine translation uses a high-resource language (like English) as an intermediate bridge when translating between two low-resource languages. For example, translating Swahili→Finnish via Swahili→English→Finnish.",
+      "links": [
+        {"text": "Pivot-based Neural NMT", "href": "https://aclanthology.org/"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "random-forests",
+      "term": "Random Forests",
+      "shortDefinition": "Ensemble learning method using multiple decision trees",
+      "definition": "Random Forests are a machine learning algorithm that creates multiple decision trees and merges their predictions. This ensemble approach reduces overfitting and improves accuracy compared to single decision trees.",
+      "links": [
+        {"text": "Random Forest", "href": "https://en.wikipedia.org/wiki/Random_forest"}
+      ],
+      "category": "AI/ML"
+    },
+    {
+      "id": "lda",
+      "term": "Linear Discriminant Analysis",
+      "shortDefinition": "Statistical method for classification and dimensionality reduction",
+      "definition": "Linear Discriminant Analysis (LDA) is a technique used to find linear combinations of features that best separate different classes. It's used both for classification and reducing data dimensions while preserving class separability.",
+      "links": [
+        {"text": "LDA Explained", "href": "https://en.wikipedia.org/wiki/Linear_discriminant_analysis"}
+      ],
+      "category": "Statistics"
+    },
+    {
+      "id": "microservices",
+      "term": "Microservices",
+      "shortDefinition": "Architectural pattern where applications are built as independent, loosely-coupled services",
+      "definition": "Microservices architecture structures an application as a collection of small, independent services that communicate via APIs. Each service runs its own process, can be deployed independently, and focuses on a specific business capability.",
+      "links": [
+        {"text": "Microservices Guide", "href": "https://martinfowler.com/articles/microservices.html"}
+      ],
+      "category": "Software Architecture"
+    },
+    {
+      "id": "docker",
+      "term": "Docker",
+      "shortDefinition": "Platform for developing and running applications in isolated containers",
+      "definition": "Docker is a containerization platform that packages applications and their dependencies into standardized units called containers. Containers are lightweight, portable, and ensure consistent behavior across different environments.",
+      "links": [
+        {"text": "Docker Documentation", "href": "https://docs.docker.com/"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "containerization",
+      "term": "Containerization",
+      "shortDefinition": "Packaging software with all dependencies into isolated, portable units",
+      "definition": "Containerization bundles an application's code, runtime, libraries, and configuration into a single package that can run consistently across different computing environments. Unlike VMs, containers share the host OS kernel, making them lightweight and fast.",
+      "links": [
+        {"text": "What are Containers?", "href": "https://www.docker.com/resources/what-container/"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "distroless",
+      "term": "Distroless",
+      "shortDefinition": "Minimal container images containing only the application and runtime dependencies",
+      "definition": "Distroless images are Docker images stripped of everything except the application and its runtime dependencies—no shell, package managers, or unnecessary tools. This reduces attack surface, image size, and improves security.",
+      "links": [
+        {"text": "Distroless Containers", "href": "https://github.com/GoogleContainerTools/distroless"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "multistage-build",
+      "term": "Multistage Build",
+      "shortDefinition": "Docker technique using multiple FROM statements to optimize image size",
+      "definition": "Multistage builds use multiple FROM statements in a Dockerfile, allowing you to copy artifacts from one stage to another. This keeps final images small by excluding build tools and intermediate files.",
+      "links": [
+        {"text": "Multistage Builds", "href": "https://docs.docker.com/build/building/multi-stage/"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "service-mesh",
+      "term": "Service Mesh",
+      "shortDefinition": "Infrastructure layer for managing service-to-service communication in microservices",
+      "definition": "A service mesh is a dedicated infrastructure layer that handles communication between microservices. It provides features like load balancing, service discovery, encryption, authentication, and observability without changing application code.",
+      "links": [
+        {"text": "Service Mesh Explained", "href": "https://www.redhat.com/en/topics/microservices/what-is-a-service-mesh"}
+      ],
+      "category": "Software Architecture"
+    },
+    {
+      "id": "devops",
+      "term": "DevOps",
+      "shortDefinition": "Culture and practices combining software development and IT operations",
+      "definition": "DevOps is a set of practices that combines software development (Dev) and IT operations (Ops) to shorten development cycles and deliver high-quality software continuously. It emphasizes automation, collaboration, and rapid feedback.",
+      "links": [
+        {"text": "What is DevOps?", "href": "https://aws.amazon.com/devops/what-is-devops/"}
+      ],
+      "category": "Methodology"
+    },
+    {
+      "id": "devex",
+      "term": "DevEx",
+      "shortDefinition": "(Developer Experience) Tools, processes, and environments that affect developer productivity and satisfaction",
+      "definition": "Developer Experience encompasses everything that affects how developers interact with their tools and workflows. Good DevEx means fast feedback loops, minimal friction, clear documentation, and productive development environments.",
+      "links": [
+        {"text": "Developer Experience", "href": "https://github.com/readme/guides/developer-experience"}
+      ],
+      "category": "Methodology"
+    },
+    {
+      "id": "cicd",
+      "term": "CI/CD",
+      "shortDefinition": "Continuous Integration and Continuous Deployment/Delivery pipelines",
+      "definition": "CI/CD automates building, testing, and deploying code. Continuous Integration merges code changes frequently and runs automated tests. Continuous Deployment/Delivery automatically deploys tested code to production or staging.",
+      "links": [
+        {"text": "CI/CD Explained", "href": "https://www.redhat.com/en/topics/devops/what-is-ci-cd"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "linting",
+      "term": "Linting",
+      "shortDefinition": "Automated code analysis to detect errors, bugs, and style violations",
+      "definition": "Linting uses static analysis tools to scan code for potential errors, bugs, stylistic issues, and suspicious patterns. Linters enforce code quality standards and catch problems before runtime.",
+      "links": [
+        {"text": "What is a Linter?", "href": "https://en.wikipedia.org/wiki/Lint_(software)"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "pre-commit-hooks",
+      "term": "Pre-commit Hooks",
+      "shortDefinition": "Scripts that run automatically before each git commit",
+      "definition": "Pre-commit hooks are scripts that execute before a commit is finalized. They can run tests, format code, check for sensitive data, or enforce coding standards, preventing bad code from entering the repository.",
+      "links": [
+        {"text": "Git Hooks", "href": "https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks"},
+        {"text": "pre-commit framework", "href": "https://pre-commit.com/"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "ssl",
+      "term": "SSL/TLS",
+      "shortDefinition": "Protocols for secure, encrypted communication over networks",
+      "definition": "SSL (Secure Sockets Layer) and its successor TLS (Transport Layer Security) are cryptographic protocols that provide secure communication over networks. They encrypt data in transit and verify server authenticity via certificates.",
+      "links": [
+        {"text": "SSL/TLS Overview", "href": "https://en.wikipedia.org/wiki/Transport_Layer_Security"}
+      ],
+      "category": "Security"
+    },
+    {
+      "id": "dns",
+      "term": "DNS (Domain Name System)",
+      "shortDefinition": "System that translates domain names to IP addresses",
+      "definition": "DNS is like the internet's phone book—it translates human-readable domain names (like google.com) into IP addresses (like 142.250.185.46) that computers use to identify each other on networks.",
+      "links": [
+        {"text": "How DNS Works", "href": "https://www.cloudflare.com/learning/dns/what-is-dns/"}
+      ],
+      "category": "Networking"
+    },
+    {
+      "id": "nginx",
+      "term": "nginx",
+      "shortDefinition": "High-performance web server, reverse proxy, and load balancer",
+      "definition": "nginx is a web server known for high performance, stability, and low resource consumption. It's commonly used as a reverse proxy, load balancer, HTTP cache, and for serving static content.",
+      "links": [
+        {"text": "nginx Documentation", "href": "https://nginx.org/en/docs/"}
+      ],
+      "category": "Infrastructure"
+    },
+    {
+      "id": "grpc",
+      "term": "gRPC",
+      "shortDefinition": "High-performance RPC framework using Protocol Buffers",
+      "definition": "gRPC is a modern, high-performance Remote Procedure Call (RPC) framework developed by Google. It uses HTTP/2 for transport and Protocol Buffers for serialization, making it efficient for microservices communication.",
+      "links": [
+        {"text": "gRPC Documentation", "href": "https://grpc.io/docs/"}
+      ],
+      "category": "Technology"
+    },
+    {
+      "id": "nextjs",
+      "term": "Next.js",
+      "shortDefinition": "React framework with server-side rendering and static site generation",
+      "definition": "Next.js is a React framework that enables server-side rendering, static site generation, API routes, and optimized performance out of the box. It simplifies building production-ready React applications.",
+      "links": [
+        {"text": "Next.js Documentation", "href": "https://nextjs.org/docs"}
+      ],
+      "category": "Web Framework"
+    },
+    {
+      "id": "react",
+      "term": "React",
+      "shortDefinition": "JavaScript library for building user interfaces with reusable components",
+      "definition": "React is a JavaScript library developed by Facebook for building user interfaces. It uses a component-based architecture and a virtual DOM to efficiently update and render UI elements.",
+      "links": [
+        {"text": "React Documentation", "href": "https://react.dev/"}
+      ],
+      "category": "Web Framework"
+    },
+    {
+      "id": "qdrant",
+      "term": "Qdrant",
+      "shortDefinition": "Vector database for similarity search and AI applications",
+      "definition": "Qdrant is a vector database optimized for storing and searching high-dimensional vectors. It's commonly used for semantic search, recommendation systems, and LLM applications like RAG (Retrieval-Augmented Generation).",
+      "links": [
+        {"text": "Qdrant Documentation", "href": "https://qdrant.tech/documentation/"}
+      ],
+      "category": "Database"
+    },
+    {
+      "id": "mongodb",
+      "term": "MongoDB",
+      "shortDefinition": "NoSQL document database storing data in JSON-like format",
+      "definition": "MongoDB is a popular NoSQL database that stores data in flexible, JSON-like documents. It's schema-less, horizontally scalable, and well-suited for applications with evolving data structures.",
+      "links": [
+        {"text": "MongoDB Docs", "href": "https://www.mongodb.com/docs/"}
+      ],
+      "category": "Database"
+    },
+    {
+      "id": "mariadb",
+      "term": "MariaDB",
+      "shortDefinition": "Open-source relational database, MySQL-compatible fork",
+      "definition": "MariaDB is a community-driven fork of MySQL, created by MySQL's original developers. It's fully compatible with MySQL while offering additional features, better performance, and open-source governance.",
+      "links": [
+        {"text": "MariaDB Documentation", "href": "https://mariadb.org/documentation/"}
+      ],
+      "category": "Database"
+    },
+    {
+      "id": "postgresql",
+      "term": "PostgreSQL",
+      "shortDefinition": "Advanced open-source relational database with strong standards compliance",
+      "definition": "PostgreSQL is a powerful, open-source relational database known for its robustness, extensibility, and SQL compliance. It supports advanced features like JSONB, full-text search, and complex queries.",
+      "links": [
+        {"text": "PostgreSQL Documentation", "href": "https://www.postgresql.org/docs/"}
+      ],
+      "category": "Database"
+    },
+    {
+      "id": "nosql",
+      "term": "NoSQL",
+      "shortDefinition": "Non-relational databases optimized for specific data models and scale",
+      "definition": "NoSQL databases are non-relational databases designed for specific data models like documents, key-value pairs, graphs, or wide-columns. They're optimized for horizontal scaling and flexible schemas.",
+      "links": [
+        {"text": "NoSQL Overview", "href": "https://en.wikipedia.org/wiki/NoSQL"}
+      ],
+      "category": "Database"
+    },
+    {
+      "id": "sql",
+      "term": "SQL",
+      "shortDefinition": "Structured Query Language for managing relational databases",
+      "definition": "SQL is the standard language for managing and querying relational databases. It provides commands for creating tables, inserting data, running queries, and managing database structures.",
+      "links": [
+        {"text": "SQL Tutorial", "href": "https://www.w3schools.com/sql/"}
+      ],
+      "category": "Database"
+    },
+    {
+      "id": "git",
+      "term": "Git",
+      "shortDefinition": "Distributed version control system for tracking code changes",
+      "definition": "Git is a distributed version control system that tracks changes in source code during development. It enables collaboration, branching, merging, and maintains a complete history of project changes.",
+      "links": [
+        {"text": "Git Documentation", "href": "https://git-scm.com/doc"}
+      ],
+      "category": "DevOps"
+    },
+    {
+      "id": "gdpr",
+      "term": "GDPR",
+      "shortDefinition": "EU regulation on data protection and privacy",
+      "definition": "The General Data Protection Regulation is a comprehensive EU law protecting personal data and privacy. It grants individuals rights over their data and imposes strict obligations on organizations processing EU citizens' data.",
+      "links": [
+        {"text": "GDPR Official", "href": "https://gdpr.eu/"}
+      ],
+      "category": "Legal/Privacy"
+    },
+    {
+      "id": "privacy-by-design",
+      "term": "Privacy by Design",
+      "shortDefinition": "Approach embedding privacy into system design from the start",
+      "definition": "Privacy by Design is a framework that embeds privacy and data protection into the design and architecture of systems and processes from the beginning, rather than as an afterthought. It's a core principle of GDPR.",
+      "links": [
+        {"text": "Privacy by Design", "href": "https://en.wikipedia.org/wiki/Privacy_by_design"}
+      ],
+      "category": "Legal/Privacy"
+    },
+    {
+      "id": "exist",
+      "term": "EXIST",
+      "shortDefinition": "German startup grant program funding research-based business ideas",
+      "definition": "EXIST (Existenzgründungen aus der Wissenschaft) is a German federal program supporting university-based startups. Funded by the Federal Ministry for Economic Affairs and Climate Action (BMWK), it provides financial support and mentoring for founders developing innovative, research-based business ideas.",
+      "links": [
+        {"text": "EXIST Program", "href": "https://www.exist.de/"}
+      ],
+      "category": "Funding/Program"
+    },
+    {
+      "id": "business-model-canvas",
+      "term": "Business Model Canvas",
+      "shortDefinition": "Strategic management template for developing business models",
+      "definition": "The Business Model Canvas is a one-page visual template with nine building blocks (customer segments, value propositions, channels, etc.) that helps entrepreneurs and teams design, describe, and pivot business models.",
+      "links": [
+        {"text": "Business Model Canvas", "href": "https://www.strategyzer.com/library/the-business-model-canvas"}
+      ],
+      "category": "Business/Strategy"
+    },
+    {
+      "id": "lean-startup",
+      "term": "Lean Startup",
+      "shortDefinition": "Methodology for building businesses through validated learning and rapid iteration",
+      "definition": "Lean Startup is an approach to building businesses and products that emphasizes rapid experimentation, validated learning, and iterative product releases to shorten development cycles and discover what customers actually want.",
+      "links": [
+        {"text": "The Lean Startup", "href": "http://theleanstartup.com/"}
+      ],
+      "category": "Business/Strategy"
+    },
+    {
+      "id": "asd",
+      "term": "ASD (Autism Spectrum Disorder)",
+      "shortDefinition": "Developmental disorder affecting communication and behavior",
+      "definition": "Autism Spectrum Disorder is a developmental condition characterized by challenges with social communication and interaction, along with restricted or repetitive behaviors and interests. The 'spectrum' reflects the wide variation in challenges and strengths.",
+      "links": [
+        {"text": "CDC Autism", "href": "https://www.cdc.gov/autism/"}
+      ],
+      "category": "Medical/Research"
+    },
+    {
+      "id": "ados",
+      "term": "ADOS",
+      "shortDefinition": "Autism Diagnostic Observation Schedule—standardized assessment tool",
+      "definition": "The Autism Diagnostic Observation Schedule is a semi-structured assessment used by clinicians to observe and evaluate social interaction, communication, play, and behaviors associated with autism spectrum disorder.",
+      "links": [
+        {"text": "ADOS Overview", "href": "https://en.wikipedia.org/wiki/Autism_Diagnostic_Observation_Schedule"}
+      ],
+      "category": "Medical/Research"
+    },
+    {
+      "id": "adi-r",
+      "term": "ADI-R",
+      "shortDefinition": "Autism Diagnostic Interview-Revised—structured parent interview",
+      "definition": "The Autism Diagnostic Interview-Revised is a structured interview conducted with parents or caregivers to gather detailed developmental history and current behaviors related to autism spectrum disorder diagnosis.",
+      "links": [
+        {"text": "ADI-R Overview", "href": "https://en.wikipedia.org/wiki/Autism_Diagnostic_Interview"}
+      ],
+      "category": "Medical/Research"
+    },
+    {
+      "id": "r-shiny",
+      "term": "R Shiny",
+      "shortDefinition": "R framework for building interactive web applications",
+      "definition": "Shiny is an R package that makes it easy to build interactive web applications directly from R code. It's commonly used for data visualization, dashboards, and making statistical analyses accessible without web development expertise.",
+      "links": [
+        {"text": "Shiny Documentation", "href": "https://shiny.posit.co/"}
+      ],
+      "category": "Data Science Tools"
+    },
+    {
+      "id": "linux",
+      "term": "Linux",
+      "shortDefinition": "Open-source Unix-like operating system kernel",
+      "definition": "Linux is a family of open-source Unix-like operating systems based on the Linux kernel. It powers everything from servers and supercomputers to smartphones (Android) and IoT devices.",
+      "links": [
+        {"text": "Linux.org", "href": "https://www.linux.org/"}
+      ],
+      "category": "Operating System"
+    },
+    {
+      "id": "latex",
+      "term": "LaTeX",
+      "shortDefinition": "Document preparation system for high-quality typesetting",
+      "definition": "LaTeX is a document preparation system widely used in academia for scientific papers, theses, and technical documents. It excels at typesetting complex mathematical formulas, bibliographies, and professional layouts.",
+      "links": [
+        {"text": "LaTeX Project", "href": "https://www.latex-project.org/"}
+      ],
+      "category": "Publishing"
+    },
+    {
+      "id": "spss",
+      "term": "SPSS",
+      "shortDefinition": "Statistical software package for data analysis",
+      "definition": "SPSS (Statistical Package for the Social Sciences) is a software suite used for statistical analysis, data management, and data documentation. It's widely used in social sciences, health research, and market research.",
+      "links": [
+        {"text": "IBM SPSS", "href": "https://www.ibm.com/spss"}
+      ],
+      "category": "Data Science Tools"
+    },
+    {
+      "id": "typescript",
+      "term": "TypeScript",
+      "shortDefinition": "Typed superset of JavaScript adding static type checking",
+      "definition": "TypeScript is a strongly-typed programming language that builds on JavaScript by adding optional static types. It catches errors during development and improves code quality and maintainability.",
+      "links": [
+        {"text": "TypeScript Docs", "href": "https://www.typescriptlang.org/docs/"}
+      ],
+      "category": "Programming Language"
+    },
+    {
+      "id": "semantic-chunking",
+      "term": "Semantic Text Chunking",
+      "shortDefinition": "Splitting text into meaningful segments based on content understanding",
+      "definition": "Semantic text chunking divides documents into meaningful segments based on content and context rather than arbitrary character limits. This improves retrieval quality in RAG systems and search applications by preserving semantic coherence.",
+      "links": [
+        {"text": "Chunking Strategies", "href": "https://www.pinecone.io/learn/chunking-strategies/"}
+      ],
+      "category": "NLP"
+    },
+    {
+      "id": "sentiment-analysis",
+      "term": "Sentiment Analysis",
+      "shortDefinition": "NLP technique for detecting emotional tone in text",
+      "definition": "Sentiment analysis uses NLP to identify and extract subjective information from text—determining whether content is positive, negative, or neutral. It's used for social media monitoring, customer feedback analysis, and brand reputation management.",
+      "links": [
+        {"text": "Sentiment Analysis", "href": "https://en.wikipedia.org/wiki/Sentiment_analysis"}
+      ],
+      "category": "NLP"
+    },
+    {
+      "id": "topic-clustering",
+      "term": "Topic Clustering",
+      "shortDefinition": "Grouping documents by similar themes using ML algorithms",
+      "definition": "Topic clustering uses machine learning to automatically group documents or text segments by similar themes or topics. Algorithms like LDA or clustering on embeddings identify patterns and organize content without manual labeling.",
+      "links": [
+        {"text": "Topic Modeling", "href": "https://en.wikipedia.org/wiki/Topic_model"}
+      ],
+      "category": "NLP"
+    }
+  ]
+}

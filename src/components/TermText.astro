@@ -1,0 +1,19 @@
+---
+/**
+ * TermText - Renders text with {{term}} syntax parsed into technical term tooltips
+ * Usage: <TermText text={someText} />
+ */
+import { parseTerms } from '../utils/glossary';
+
+interface Props {
+  text: string;
+  as?: 'p' | 'span' | 'div' | 'li';
+  class?: string;
+}
+
+const { text, as: Element = 'span', class: className = '' } = Astro.props;
+
+const parsedHtml = parseTerms(text);
+---
+
+<Element class={className} set:html={parsedHtml} />

@@ -1,0 +1,356 @@
+---
+/**
+ * TechnicalTermTooltip - Global tooltip component for technical terms
+ * This component should be included once per page, typically in the layout
+ */
+import glossaryData from '../content/glossary.json';
+
+// Make glossary data available to client-side JS
+const glossaryJson = JSON.stringify(glossaryData);
+---
+
+<!-- Tooltip container (hidden by default, positioned by JS) -->
+<div id="tech-term-tooltip" class="tooltip-container" role="tooltip" aria-hidden="true">
+  <div class="tooltip-arrow"></div>
+  <div class="tooltip-content">
+    <h4 class="tooltip-title"></h4>
+    <p class="tooltip-definition"></p>
+    <div class="tooltip-links"></div>
+  </div>
+</div>
+
+<script define:vars={{ glossaryJson }}>
+  // Parse glossary data
+  const glossary = new Map(
+    JSON.parse(glossaryJson).terms.map((term) => [term.id, term])
+  );
+
+  let tooltip = null;
+  let currentTerm = null;
+  let hideTimeout = null;
+
+  // Initialize tooltip functionality
+  function initTooltips() {
+    tooltip = document.getElementById('tech-term-tooltip');
+    if (!tooltip) return;
+
+    // Find all technical terms
+    const terms = document.querySelectorAll('.tech-term');
+
+    terms.forEach((termElement) => {
+      // Show tooltip on hover
+      termElement.addEventListener('mouseenter', (e) => {
+        const termId = e.target.dataset.termId;
+        showTooltip(termId, e.target);
+      });
+
+      // Keep tooltip visible while hovering over the term
+      termElement.addEventListener('mouseleave', () => {
+        scheduleHide();
+      });
+    });
+
+    // Keep tooltip visible when hovering over it
+    tooltip.addEventListener('mouseenter', () => {
+      clearTimeout(hideTimeout);
+    });
+
+    tooltip.addEventListener('mouseleave', () => {
+      scheduleHide();
+    });
+  }
+
+  function showTooltip(termId, targetElement) {
+    clearTimeout(hideTimeout);
+
+    const term = glossary.get(termId);
+    if (!term || !tooltip) return;
+
+    currentTerm = termId;
+
+    // Populate tooltip content
+    const title = tooltip.querySelector('.tooltip-title');
+    const definition = tooltip.querySelector('.tooltip-definition');
+    const linksContainer = tooltip.querySelector('.tooltip-links');
+
+    title.textContent = term.term;
+    definition.textContent = term.definition;
+
+    // Populate links
+    if (term.links && term.links.length > 0) {
+      linksContainer.innerHTML = term.links
+        .map(
+          (link) =>
+            `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.text} →</a>`
+        )
+        .join('');
+      linksContainer.style.display = 'block';
+    } else {
+      linksContainer.innerHTML = '';
+      linksContainer.style.display = 'none';
+    }
+
+    // Position tooltip
+    positionTooltip(targetElement);
+
+    // Show tooltip
+    tooltip.classList.add('visible');
+    tooltip.setAttribute('aria-hidden', 'false');
+  }
+
+  function scheduleHide() {
+    hideTimeout = setTimeout(() => {
+      hideTooltip();
+    }, 200); // Small delay to allow moving to tooltip
+  }
+
+  function hideTooltip() {
+    if (!tooltip) return;
+    tooltip.classList.remove('visible');
+    tooltip.setAttribute('aria-hidden', 'true');
+    currentTerm = null;
+  }
+
+  function positionTooltip(targetElement) {
+    if (!tooltip) return;
+
+    const targetRect = targetElement.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Default: position below the term
+    let top = targetRect.bottom + window.scrollY + 8;
+    let left = targetRect.left + window.scrollX + targetRect.width / 2;
+
+    // Check if tooltip would overflow viewport
+    const wouldOverflowRight = left + tooltipRect.width / 2 > viewportWidth - 20;
+    const wouldOverflowLeft = left - tooltipRect.width / 2 < 20;
+    const wouldOverflowBottom =
+      targetRect.bottom + tooltipRect.height + 8 > viewportHeight - 20;
+
+    // Adjust horizontal position
+    if (wouldOverflowRight) {
+      left = viewportWidth - tooltipRect.width - 20;
+    } else if (wouldOverflowLeft) {
+      left = 20;
+    } else {
+      left = left - tooltipRect.width / 2;
+    }
+
+    // Position above if would overflow bottom
+    if (wouldOverflowBottom) {
+      top = targetRect.top + window.scrollY - tooltipRect.height - 8;
+      tooltip.classList.add('tooltip-above');
+    } else {
+      tooltip.classList.remove('tooltip-above');
+    }
+
+    tooltip.style.top = `${top}px`;
+    tooltip.style.left = `${left}px`;
+
+    // Position arrow to point at the term
+    const arrow = tooltip.querySelector('.tooltip-arrow');
+    const arrowLeft = targetRect.left + targetRect.width / 2 - left;
+    arrow.style.left = `${arrowLeft}px`;
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTooltips);
+  } else {
+    initTooltips();
+  }
+
+  // Re-initialize on navigation (for SPA-like behavior)
+  document.addEventListener('astro:page-load', initTooltips);
+</script>
+
+<style>
+  .tooltip-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    max-width: 400px;
+    min-width: 280px;
+    background: var(--color-background, #ffffff);
+    border: 2px solid var(--color-accent, #3b82f6);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    pointer-events: none;
+  }
+
+  .tooltip-container.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Arrow pointing to the term */
+  .tooltip-arrow {
+    position: absolute;
+    top: -8px;
+    width: 14px;
+    height: 14px;
+    background: var(--color-background, #ffffff);
+    border-left: 2px solid var(--color-accent, #3b82f6);
+    border-top: 2px solid var(--color-accent, #3b82f6);
+    transform: translateX(-50%) rotate(45deg);
+    z-index: 1;
+  }
+
+  .tooltip-container.tooltip-above .tooltip-arrow {
+    top: auto;
+    bottom: -8px;
+    border-left: none;
+    border-top: none;
+    border-right: 2px solid var(--color-accent, #3b82f6);
+    border-bottom: 2px solid var(--color-accent, #3b82f6);
+  }
+
+  .tooltip-content {
+    position: relative;
+    padding: 16px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 2;
+  }
+
+  /* Scrollbar styling */
+  .tooltip-content::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .tooltip-content::-webkit-scrollbar-track {
+    background: var(--color-muted, #f1f5f9);
+    border-radius: 4px;
+  }
+
+  .tooltip-content::-webkit-scrollbar-thumb {
+    background: var(--color-accent, #3b82f6);
+    border-radius: 4px;
+  }
+
+  .tooltip-content::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-hover, #2563eb);
+  }
+
+  .tooltip-title {
+    margin: 0 0 8px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-accent, #3b82f6);
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    padding-bottom: 8px;
+  }
+
+  .tooltip-definition {
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text, #1e293b);
+  }
+
+  .tooltip-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .tooltip-links a {
+    font-size: 0.85rem;
+    color: var(--color-accent, #3b82f6);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tooltip-links a:hover {
+    color: var(--color-accent-hover, #2563eb);
+    text-decoration: underline;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    .tooltip-container {
+      background: var(--color-background-dark, #1e293b);
+      border-color: var(--color-accent, #60a5fa);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .tooltip-arrow {
+      background: var(--color-background-dark, #1e293b);
+      border-color: var(--color-accent, #60a5fa);
+    }
+
+    .tooltip-title {
+      color: var(--color-accent, #60a5fa);
+      border-bottom-color: var(--color-border-dark, #334155);
+    }
+
+    .tooltip-definition {
+      color: var(--color-text-dark, #e2e8f0);
+    }
+
+    .tooltip-links {
+      border-top-color: var(--color-border-dark, #334155);
+    }
+
+    .tooltip-links a {
+      color: var(--color-accent, #60a5fa);
+    }
+
+    .tooltip-links a:hover {
+      color: var(--color-accent-hover, #93c5fd);
+    }
+
+    .tooltip-content::-webkit-scrollbar-track {
+      background: var(--color-muted-dark, #334155);
+    }
+
+    .tooltip-content::-webkit-scrollbar-thumb {
+      background: var(--color-accent, #60a5fa);
+    }
+  }
+
+  /* Global styles for technical terms */
+  :global(.tech-term) {
+    color: #2a3a4a;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 2px;
+    text-decoration-color: var(--color-accent, #3b82f6);
+    cursor: help;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+
+  :global(.tech-term:hover) {
+    color: #1a2a3a;
+    text-decoration-style: solid;
+    text-decoration-color: var(--color-accent-hover, #2563eb);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(.tech-term) {
+      color: #e8f2ff;
+      text-decoration-color: var(--color-accent, #60a5fa);
+    }
+
+    :global(.tech-term:hover) {
+      color: #d4e5fd;
+      text-decoration-color: var(--color-accent-hover, #93c5fd);
+    }
+  }
+</style>

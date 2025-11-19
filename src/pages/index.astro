@@ -2,8 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import TermText from '../components/TermText.astro';
 
-// Import content data
+// Import English content data
 import introData from '../content/intro/data.json';
 import educationData from '../content/education/data.json';
 import experienceData from '../content/experience/data.json';
@@ -12,49 +13,146 @@ import publicationsData from '../content/publications/data.json';
 import skillsData from '../content/skills/data.json';
 import miscData from '../content/misc/data.json';
 
+// Import German content data
+import introDataDe from '../content/intro/data.de.json';
+import educationDataDe from '../content/education/data.de.json';
+import experienceDataDe from '../content/experience/data.de.json';
+import projectsDataDe from '../content/projects/data.de.json';
+import publicationsDataDe from '../content/publications/data.de.json';
+import skillsDataDe from '../content/skills/data.de.json';
+import miscDataDe from '../content/misc/data.de.json';
+
+// Create content map for easy access
+const content = {
+  en: { intro: introData, education: educationData, experience: experienceData, projects: projectsData, publications: publicationsData, skills: skillsData, misc: miscData },
+  de: { intro: introDataDe, education: educationDataDe, experience: experienceDataDe, projects: projectsDataDe, publications: publicationsDataDe, skills: skillsDataDe, misc: miscDataDe }
+};
+
 // Helper function to format dates
-function formatDate(dateStr: string): string {
-  if (dateStr === 'present') return 'Present';
+function formatDate(dateStr: string, lang: string = 'en'): string {
+  if (dateStr === 'present') return lang === 'en' ? 'Present' : 'Aktuell';
   const date = new Date(dateStr);
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+  const locale = lang === 'en' ? 'en-US' : 'de-DE';
+  return date.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
 }
+
+// Section labels for both languages
+const labels = {
+  en: {
+    about: 'About',
+    experience: 'Experience',
+    projects: 'Projects',
+    publications: 'Publications',
+    education: 'Education',
+    skills: 'Skills',
+    awards: 'Awards & Recognition',
+    contact: 'Get in Touch',
+    contactText: "I'm currently looking for new opportunities. Feel free to reach out!",
+    sendEmail: 'Send me an email',
+    abstract: 'Abstract',
+    citations: 'citations'
+  },
+  de: {
+    about: 'Über mich',
+    experience: 'Erfahrung',
+    projects: 'Projekte',
+    publications: 'Publikationen',
+    education: 'Ausbildung',
+    skills: 'Fähigkeiten',
+    awards: 'Auszeichnungen & Anerkennungen',
+    contact: 'Kontakt',
+    contactText: 'Ich bin derzeit auf der Suche nach neuen Möglichkeiten. Kontaktieren Sie mich gerne!',
+    sendEmail: 'Schreiben Sie mir eine E-Mail',
+    abstract: 'Zusammenfassung',
+    citations: 'Zitierungen'
+  }
+};
 ---
 
 <BaseLayout title={`${introData.name} - Portfolio & Resume`} description={introData.tagline}>
   <Header />
 
-  <main class="container">
+  {(['en', 'de'] as const).map(lang => {
+    const intro = content[lang].intro;
+    const education = content[lang].education;
+    const experience = content[lang].experience;
+    const projects = content[lang].projects;
+    const publications = content[lang].publications;
+    const skills = content[lang].skills;
+    const misc = content[lang].misc;
+    const l = labels[lang];
+
+    return (
+  <main class="container" data-lang={lang}>
     <!-- Hero / Introduction Section -->
     <section class="hero section">
-      <h1>{introData.name}</h1>
-      <p class="tagline">{introData.title}</p>
-      <p class="text-muted">{introData.tagline}</p>
+      <div class="hero-content">
+        <div class="profile-image-wrapper">
+          <img
+            src="/images/profile.jpg"
+            alt={intro.name}
+            class="profile-image"
+            onError="this.style.display='none'"
+          />
+        </div>
+        <div class="hero-text">
+          <h1>{intro.name}<span class="degree">, M.Sc.</span></h1>
+          <p class="tagline">{intro.title}</p>
+          <p class="text-muted hero-tagline">{intro.tagline}</p>
 
-      <div class="contact-links">
-        {introData.email && (
-          <a href={`mailto:${introData.email}`}>Email</a>
-        )}
-        {introData.github && (
-          <a href={introData.github} target="_blank" rel="noopener">GitHub</a>
-        )}
-        {introData.linkedin && (
-          <a href={introData.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-        )}
+          <div class="contact-links">
+            {intro.email && (
+              <a href={`mailto:${intro.email}`} class="contact-link">
+                <i data-lucide="mail" class="icon"></i>
+                <span>Email</span>
+              </a>
+            )}
+            {intro.github && (
+              <a href={intro.github} target="_blank" rel="noopener" class="contact-link">
+                <i data-lucide="github" class="icon"></i>
+                <span>GitHub</span>
+              </a>
+            )}
+            {intro.linkedin && (
+              <a href={intro.linkedin} target="_blank" rel="noopener" class="contact-link">
+                <i data-lucide="linkedin" class="icon"></i>
+                <span>LinkedIn</span>
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section">
-      <h2>About</h2>
-      {introData.bio.map((paragraph: string) => (
-        <p>{paragraph}</p>
-      ))}
+    <section id={`about-${lang}`} class="section" data-section="about">
+      <h2>{l.about}</h2>
+      <div class="bio-expandable">
+        <div class="bio-preview">
+          <TermText text={intro.bio[0]} as="p" />
+        </div>
+        {intro.bio.length > 1 && (
+          <div class="bio-full" style="display: none;">
+            {intro.bio.slice(1).map((paragraph: string) => (
+              <TermText text={paragraph} as="p" />
+            ))}
+          </div>
+        )}
+        {intro.bio.length > 1 && (
+          <button class="bio-toggle" data-lang-scope={lang}>
+            <span class="toggle-text">{lang === 'en' ? 'Read more' : 'Mehr lesen'}</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        )}
+      </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section">
-      <h2>Experience</h2>
-      {experienceData.map((exp: any) => (
+    <section id={`experience-${lang}`} class="section" data-section="experience">
+      <h2>{l.experience}</h2>
+      {experience.map((exp: any) => (
         <div class="timeline-item">
           <div class="timeline-header">
             <div>
@@ -62,13 +160,13 @@ function formatDate(dateStr: string): string {
               <p class="text-muted">{exp.company} • {exp.location}</p>
             </div>
             <p class="text-muted date">
-              {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
+              {formatDate(exp.startDate, lang)} - {exp.current ? (lang === 'en' ? 'Present' : 'Aktuell') : formatDate(exp.endDate, lang)}
             </p>
           </div>
-          <p>{exp.description}</p>
+          <TermText text={exp.description} as="p" />
           <ul>
             {exp.achievements.map((achievement: string) => (
-              <li>{achievement}</li>
+              <TermText text={achievement} as="li" />
             ))}
           </ul>
           {exp.technologies && exp.technologies.length > 0 && (
@@ -83,12 +181,35 @@ function formatDate(dateStr: string): string {
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-      {projectsData.filter((p: any) => p.featured).map((project: any) => (
+    <section id={`projects-${lang}`} class="section" data-section="projects">
+      <h2>{l.projects}</h2>
+      {projects.filter((p: any) => p.featured).map((project: any, index: number) => (
         <div class="project-card">
-          <h3>{project.name}</h3>
-          <p class="text-muted">{project.tagline}</p>
+          <div class="project-header">
+            <div class="project-title-area">
+              <h3>{project.name}</h3>
+              <p class="text-muted">{project.tagline}</p>
+            </div>
+            {project.links?.Video && (
+              <div class="video-thumbnail" data-project-index={index}>
+                <div class="play-icon">▶</div>
+              </div>
+            )}
+          </div>
+          <div class="video-container" data-project-index={index} style="display: none;">
+            {project.links?.Video && (
+              <iframe
+                title={`${project.name} video`}
+                src={`https://player.vimeo.com/video/${project.links.Video.split('/').pop()}?h=15018e51f5`}
+                width="100%"
+                height="400"
+                frameborder="0"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                allowfullscreen
+              />
+            )}
+          </div>
           <p>{project.description}</p>
           {project.highlights && (
             <ul>
@@ -102,30 +223,56 @@ function formatDate(dateStr: string): string {
               <span class="tag">{tech}</span>
             ))}
           </div>
-          <div class="project-links">
-            {project.links.github && (
-              <a href={project.links.github} target="_blank" rel="noopener">GitHub →</a>
-            )}
-            {project.links.demo && (
-              <a href={project.links.demo} target="_blank" rel="noopener">Demo →</a>
-            )}
-          </div>
+          {project.links && Object.keys(project.links).length > 0 && (
+            <div class="project-links">
+              {Object.entries(project.links).map(([label, url]: [string, any]) => {
+                // Skip Video link as it's handled separately
+                if (label === 'Video') return null;
+
+                // If the value is an object with url and text, use that
+                if (typeof url === 'object' && url.url) {
+                  return (
+                    <a href={url.url} target="_blank" rel="noopener">{url.text} →</a>
+                  );
+                }
+
+                // Otherwise use the label as text
+                return (
+                  <a href={url} target="_blank" rel="noopener">{label} →</a>
+                );
+              })}
+            </div>
+          )}
         </div>
       ))}
     </section>
 
     <!-- Publications Section -->
-    {publicationsData.length > 0 && (
-      <section id="publications" class="section">
-        <h2>Publications</h2>
-        {publicationsData.map((pub: any) => (
+    {publications.length > 0 && (
+      <section id={`publications-${lang}`} class="section" data-section="publications">
+        <h2>{l.publications}</h2>
+        {publications.map((pub: any, index: number) => (
           <div class="publication-item">
-            <h3>{pub.title}</h3>
+            <TermText text={pub.title} as="h3" />
             <p class="text-muted">
               {pub.authors.join(', ')} • {pub.venue}, {pub.year}
+              {pub.citations && <span> • {pub.citations} {l.citations}</span>}
             </p>
-            <p>{pub.abstract}</p>
+            {pub.abstract && (
+              <details class="abstract-toggle">
+                <summary>
+                  <span class="abstract-label">{l.abstract}</span>
+                  <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </summary>
+                <TermText text={pub.abstract} as="p" class="abstract-content" />
+              </details>
+            )}
             <div class="publication-links">
+              {pub.links.doi && (
+                <a href={pub.links.doi} target="_blank" rel="noopener">DOI →</a>
+              )}
               {pub.links.paper && (
                 <a href={pub.links.paper} target="_blank" rel="noopener">Paper →</a>
               )}
@@ -139,9 +286,9 @@ function formatDate(dateStr: string): string {
     )}
 
     <!-- Education Section -->
-    <section id="education" class="section">
-      <h2>Education</h2>
-      {educationData.map((edu: any) => (
+    <section id={`education-${lang}`} class="section" data-section="education">
+      <h2>{l.education}</h2>
+      {education.map((edu: any) => (
         <div class="timeline-item">
           <div class="timeline-header">
             <div>
@@ -149,14 +296,14 @@ function formatDate(dateStr: string): string {
               <p class="text-muted">{edu.institution} • {edu.location}</p>
             </div>
             <p class="text-muted date">
-              {formatDate(edu.startDate)} - {formatDate(edu.endDate)}
+              {formatDate(edu.startDate, lang)} - {formatDate(edu.endDate, lang)}
             </p>
           </div>
-          {edu.description && <p>{edu.description}</p>}
+          {edu.description && <TermText text={edu.description} as="p" />}
           {edu.highlights && (
             <ul>
               {edu.highlights.map((highlight: string) => (
-                <li>{highlight}</li>
+                <TermText text={highlight} as="li" />
               ))}
             </ul>
           )}
@@ -166,8 +313,8 @@ function formatDate(dateStr: string): string {
 
     <!-- Skills Section -->
     <section id="skills" class="section">
-      <h2>Skills</h2>
-      {skillsData.categories.map((category: any) => (
+      <h2>{l.skills}</h2>
+      {skills.categories.map((category: any) => (
         <div class="skills-category">
           <h3>{category.name}</h3>
           <div class="tags">
@@ -179,27 +326,79 @@ function formatDate(dateStr: string): string {
       ))}
     </section>
 
+    <!-- Awards & Recognition Section -->
+    {misc.awards && misc.awards.length > 0 && (
+      <section id={`awards-${lang}`} class="section" data-section="awards">
+        <h2>{l.awards}</h2>
+        {misc.awards.map((award: any) => (
+          <div class="award-item">
+            <div class="award-header">
+              <h3>{award.title}</h3>
+              <p class="text-muted award-year">{award.year}</p>
+            </div>
+            <p class="text-muted">{award.organization}</p>
+            {award.description && <p>{award.description}</p>}
+          </div>
+        ))}
+      </section>
+    )}
+
     <!-- Contact Section -->
-    <section id="contact" class="section">
-      <h2>Get in Touch</h2>
-      <p>I'm currently looking for new opportunities. Feel free to reach out!</p>
+    <section id={`contact-${lang}`} class="section contact-section" data-section="contact">
+      <h2>{l.contact}</h2>
+      <p>{l.contactText}</p>
       <div class="contact-links">
-        <a href={`mailto:${introData.email}`} class="button">Send me an email</a>
+        <a href={`mailto:${intro.email}`} class="button">{l.sendEmail}</a>
       </div>
     </section>
   </main>
+    );
+  })}
 
   <Footer />
 </BaseLayout>
 
 <style>
   .hero {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-lg) 0;
+  }
+
+  .hero-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .profile-image-wrapper {
+    flex-shrink: 0;
+  }
+
+  .profile-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-border);
+    transition: border-color var(--transition-normal), transform var(--transition-normal);
+  }
+
+  .profile-image:hover {
+    border-color: var(--color-accent);
+    transform: scale(1.05);
+  }
+
+  .hero-text {
+    flex: 1;
   }
 
   .hero h1 {
     font-size: 3rem;
     margin-bottom: var(--space-sm);
+  }
+
+  .hero h1 .degree {
+    font-weight: 400;
+    opacity: 0.8;
   }
 
   .tagline {
@@ -208,16 +407,82 @@ function formatDate(dateStr: string): string {
     color: var(--color-muted);
   }
 
+  .hero-tagline {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
   .contact-links {
     display: flex;
     gap: var(--space-lg);
     margin-top: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+    font-size: 0.9rem;
+  }
+
+  .contact-link:hover {
+    background-color: var(--color-bg-secondary);
+    border-color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+
+  .contact-link .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Bio expandable section */
+  .bio-expandable {
+    position: relative;
+  }
+
+  .bio-preview {
+    margin-bottom: var(--space-md);
+  }
+
+  .bio-full {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .bio-toggle {
+    background: transparent;
+    border: none;
+    color: var(--color-accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
+    margin-top: var(--space-sm);
+    font-family: inherit;
+  }
+
+  .bio-toggle:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .bio-toggle .chevron {
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
   }
 
   /* Timeline items (for experience & education) */
   .timeline-item {
-    margin-bottom: var(--space-xl);
-    padding-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
     border-bottom: 1px solid var(--color-border);
   }
 
@@ -255,8 +520,85 @@ function formatDate(dateStr: string): string {
     border-color: var(--color-accent);
   }
 
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  .project-title-area {
+    flex: 1;
+  }
+
   .project-card h3 {
     margin-bottom: var(--space-xs);
+  }
+
+  .video-thumbnail {
+    width: 120px;
+    height: 68px;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-thumbnail::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .video-thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+  }
+
+  .video-thumbnail:hover::before {
+    opacity: 1;
+  }
+
+  .play-icon {
+    color: white;
+    font-size: 2rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .video-container {
+    margin-bottom: var(--space-lg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .video-container iframe {
+    display: block;
+    width: 100%;
   }
 
   .project-links {
@@ -286,6 +628,52 @@ function formatDate(dateStr: string): string {
     margin-top: var(--space-md);
   }
 
+  /* Collapsible abstract */
+  .abstract-toggle {
+    margin: var(--space-md) 0;
+  }
+
+  .abstract-toggle summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    color: var(--color-accent);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+    user-select: none;
+  }
+
+  .abstract-toggle summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .abstract-toggle summary:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .abstract-toggle summary .chevron {
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+  }
+
+  .abstract-toggle[open] summary .chevron {
+    transform: rotate(180deg);
+  }
+
+  .abstract-content {
+    margin-top: var(--space-sm);
+    padding: var(--space-md);
+    background-color: var(--color-bg-secondary);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 4px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+
   /* Skills */
   .skills-category {
     margin-bottom: var(--space-lg);
@@ -294,6 +682,34 @@ function formatDate(dateStr: string): string {
   .skills-category h3 {
     font-size: 1.125rem;
     margin-bottom: var(--space-md);
+  }
+
+  /* Awards */
+  .award-item {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .award-item:last-child {
+    border-bottom: none;
+  }
+
+  .award-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xs);
+  }
+
+  .award-header h3 {
+    margin-bottom: 0;
+  }
+
+  .award-year {
+    white-space: nowrap;
+    font-size: 0.9rem;
   }
 
   /* Tags */
@@ -311,6 +727,15 @@ function formatDate(dateStr: string): string {
     border-radius: 4px;
     font-size: 0.85rem;
     color: var(--color-muted);
+  }
+
+  /* Contact Section */
+  .contact-section {
+    text-align: center;
+  }
+
+  .contact-section .contact-links {
+    justify-content: center;
   }
 
   /* Button */
@@ -331,6 +756,21 @@ function formatDate(dateStr: string): string {
 
   /* Responsive */
   @media (max-width: 640px) {
+    .hero-content {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-lg);
+    }
+
+    .profile-image {
+      width: 150px;
+      height: 150px;
+    }
+
+    .contact-links {
+      justify-content: center;
+    }
+
     .hero h1 {
       font-size: 2rem;
     }
@@ -347,5 +787,87 @@ function formatDate(dateStr: string): string {
     .date {
       white-space: normal;
     }
+
+    .award-header {
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .award-year {
+      white-space: normal;
+    }
+
+    .project-header {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 180px;
+    }
+
+    .video-container iframe {
+      height: 250px;
+    }
   }
 </style>
+
+<script>
+  // Initialize Lucide icons
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
+  // Handle video thumbnail clicks
+  document.addEventListener('DOMContentLoaded', () => {
+    const thumbnails = document.querySelectorAll('.video-thumbnail');
+
+    thumbnails.forEach(thumbnail => {
+      thumbnail.addEventListener('click', () => {
+        const projectIndex = thumbnail.getAttribute('data-project-index');
+        const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`);
+
+        if (videoContainer) {
+          if (videoContainer.style.display === 'none') {
+            // Show video
+            videoContainer.style.display = 'block';
+            thumbnail.style.opacity = '0.5';
+          } else {
+            // Hide video
+            videoContainer.style.display = 'none';
+            thumbnail.style.opacity = '1';
+          }
+        }
+      });
+    });
+
+    // Handle bio expand/collapse
+    const bioToggles = document.querySelectorAll('.bio-toggle');
+
+    bioToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        const button = e.currentTarget as HTMLButtonElement;
+        const expandable = button.closest('.bio-expandable');
+        if (!expandable) return;
+
+        const bioFull = expandable.querySelector('.bio-full') as HTMLElement;
+        const toggleText = button.querySelector('.toggle-text');
+        const chevron = button.querySelector('.chevron') as HTMLElement;
+        const lang = button.getAttribute('data-lang-scope');
+
+        if (bioFull.style.display === 'none') {
+          // Expand
+          bioFull.style.display = 'block';
+          if (toggleText) toggleText.textContent = lang === 'en' ? 'Read less' : 'Weniger lesen';
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        } else {
+          // Collapse
+          bioFull.style.display = 'none';
+          if (toggleText) toggleText.textContent = lang === 'en' ? 'Read more' : 'Mehr lesen';
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+  });
+</script>

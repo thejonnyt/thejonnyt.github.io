@@ -1,0 +1,45 @@
+{
+  "categories": [
+    {
+      "name": "Programmiersprachen",
+      "skills": [
+        { "name": "Python", "level": "kompetent bis versiert", "years": 8 },
+        { "name": "Bash", "level": "kompetent bis versiert", "years": 8 },
+        { "name": "R", "level": "versiert", "years": 6 },
+        { "name": "noSQL", "level": "versiert", "years": 6 },
+        { "name": "SQL", "level": "versiert", "years": 6 },
+        { "name": "JavaScript/TypeScript", "level": "kompetent", "years": 2 },
+        { "name": "HTML", "level": "versiert", "years": 6 },
+        { "name": "CSS", "level": "versiert", "years": 6 }
+      ]
+    },
+    {
+      "name": "Tools & Technologien",
+      "skills": [
+        { "name": "Linux", "level": "kompetent bis versiert", "years": 8 },
+        { "name": "Docker", "level": "versiert" },
+        { "name": "Git", "level": "versiert" },
+        { "name": "VSCode", "level": "versiert" },
+        { "name": "LaTeX", "level": "versiert" },
+        { "name": "SPSS", "level": "versiert" }
+      ]
+    },
+    {
+      "name": "Fachkompetenz",
+      "skills": [
+        { "name": "Datenanalyse", "level": "Experte" },
+        { "name": "Large Language Models", "level": "versiert" },
+        { "name": "Machine Learning", "level": "versiert" },
+        { "name": "Mathematik und Statistik", "level": "versiert" },
+        { "name": "Systemarchitektur", "level": "versiert" },
+        { "name": "Microsoft Suite", "level": "Experte" },
+        { "name": "Adobe Creative Suite", "level": "versiert" }
+      ]
+    }
+  ],
+  "languages": [
+    { "name": "Englisch", "proficiency": "fließend" },
+    { "name": "Deutsch", "proficiency": "Muttersprache" },
+    { "name": "Japanisch", "proficiency": "lernend, Anfänger" }
+  ]
+}
