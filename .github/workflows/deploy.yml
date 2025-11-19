@@ -23,11 +23,6 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
   deploy:
     environment:
       name: github-pages
