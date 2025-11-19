@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import TermText from '../components/TermText.astro';
 import SkillTag from '../components/SkillTag.astro';
+import SkillsChart from '../components/SkillsChart.astro';
 import { Image } from 'astro:assets';
 
 // Import English content data
@@ -67,7 +68,10 @@ const labels = {
     contactText: "I'm currently looking for new opportunities. Feel free to reach out!",
     sendEmail: 'Send me an email',
     abstract: 'Abstract',
-    citations: 'citations'
+    citations: 'citations',
+    skillsChartTitle: 'Skill Proficiency Distribution',
+    skillsChartYAxis: 'Freq',
+    skillsChartXAxis: 'Proficiency',
   },
   de: {
     about: 'Über mich',
@@ -81,7 +85,10 @@ const labels = {
     contactText: 'Ich bin derzeit auf der Suche nach neuen Möglichkeiten.',
     sendEmail: 'Kontaktieren Sie mich gerne!',
     abstract: 'Zusammenfassung',
-    citations: 'Zitierungen'
+    citations: 'Zitierungen',
+    skillsChartTitle: 'Verteilung der Kompetenz',
+    skillsChartYAxis: 'Freq',
+    skillsChartXAxis: 'Kompetenz',
   }
 };
 ---
@@ -342,6 +349,13 @@ const labels = {
         )}
       </div>
     </section>
+
+<!--    <SkillsChart 
+      title={l.skillsChartTitle}
+      yAxisTitle={l.skillsChartYAxis}
+      xAxisTitle={l.skillsChartXAxis}
+    />
+-->
 
     <!-- Awards & Recognition Section -->
     {misc.awards && misc.awards.length > 0 && (

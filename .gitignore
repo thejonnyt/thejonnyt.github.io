@@ -5,7 +5,6 @@ dist/
 CLAUDE.md
 .claude/
 .vscode/
-.github/
 # dependencies
 node_modules/
 
