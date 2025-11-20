@@ -1,5 +1,6 @@
 ---
 import TechnicalTermTooltip from '../components/TechnicalTermTooltip.astro';
+import '../styles/global.css';
 
 interface Props {
   title?: string;
@@ -44,9 +45,6 @@ const {
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Global Styles -->
-    <link rel="stylesheet" href="/src/styles/global.css" />
   </head>
   <body>
     <slot />
