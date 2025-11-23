@@ -7,7 +7,7 @@
     "startDate": "2021-04",
     "endDate": "2024-10",
     "highlights": [
-      "Overall Score, german grading: 1.7, personal focus on adv. Statistics, {{ml}}, Data Privacy, {{llm}}s",
+      "Overall Score: 1.7, personal focus on advanced Statistics, {{ml}}, Data Privacy, {{llm}}s",
       "Master's Thesis  (1.1): {{nmt}} with {{transformers}} - Leveraging the {{pivot-technique}} for Low-Resource Language Pairs"
     ]
   },

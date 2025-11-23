@@ -51,8 +51,8 @@ function formatDate(dateStr: string): string {
           <Image
             src="/images/profile.jpg"
             alt={`Profile photo of ${introData.name}`}
-            width={180}
-            height={180}
+            width={234}
+            height={234}
             class="profile-image"
             loading="eager"
             format="webp"
@@ -115,8 +115,8 @@ function formatDate(dateStr: string): string {
     <!-- Experience Section -->
     <section id="experience" class="section" aria-labelledby="experience-heading">
       <h2 id="experience-heading">Experience</h2>
-      {experienceData.map((exp: any) => (
-        <div class="timeline-item">
+      {experienceData.map((exp: any, index: number) => (
+        <div class="timeline-item" data-experience-index={index} data-hidden={index >= 5 ? 'true' : 'false'}>
           <div class="timeline-header">
             <div>
               <h3>{exp.position}</h3>
@@ -141,6 +141,12 @@ function formatDate(dateStr: string): string {
           )}
         </div>
       ))}
+      <button class="experience-toggle" aria-expanded="false" id="experience-toggle">
+        <span class="toggle-text">Show more experience</span>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </section>
 
     <!-- Projects Section -->
@@ -341,8 +347,8 @@ function formatDate(dateStr: string): string {
   }
 
   .profile-image {
-    width: 180px;
-    height: 180px;
+    width: 234px;
+    height: 234px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid var(--color-border);
@@ -455,6 +461,35 @@ function formatDate(dateStr: string): string {
 
   .timeline-item:last-child {
     border-bottom: none;
+  }
+
+  .timeline-item[data-hidden="true"] {
+    display: none;
+  }
+
+  .experience-toggle {
+    background: transparent;
+    border: none;
+    color: var(--color-accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
+    margin-top: var(--space-md);
+    font-family: inherit;
+  }
+
+  .experience-toggle:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .experience-toggle .chevron {
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
   }
 
   .timeline-header {
@@ -747,8 +782,8 @@ function formatDate(dateStr: string): string {
     }
 
     .profile-image {
-      width: 150px;
-      height: 150px;
+      width: 195px;
+      height: 195px;
     }
 
     .contact-links {
@@ -797,14 +832,74 @@ function formatDate(dateStr: string): string {
   }
 </style>
 
+<script define:vars={{ experienceData }}>
+  // Make experience data available to client-side JavaScript
+  window.__experienceData = experienceData;
+</script>
+
 <script>
   // Initialize Lucide icons
   if (typeof window !== 'undefined' && typeof (window as any).lucide !== 'undefined') {
     (window as any).lucide.createIcons();
   }
 
-  // Handle video thumbnail clicks
+  // Handle experience section toggle
   document.addEventListener('DOMContentLoaded', () => {
+    // Calculate years of hidden experience
+    const hiddenExperiences = document.querySelectorAll('.timeline-item[data-hidden="true"]');
+    let totalYears = 0;
+
+    hiddenExperiences.forEach(exp => {
+      const index = parseInt(exp.getAttribute('data-experience-index') || '0');
+      const expData = (window as any).__experienceData[index];
+      if (expData) {
+        const startDate = new Date(expData.startDate);
+        const endDate = expData.current || expData.endDate === 'present'
+          ? new Date()
+          : new Date(expData.endDate);
+        const years = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+        totalYears += years;
+      }
+    });
+
+    const roundedYears = Math.round(totalYears);
+    const toggleButton = document.getElementById('experience-toggle');
+    const toggleText = toggleButton?.querySelector('.toggle-text');
+
+    if (toggleText && roundedYears > 0) {
+      toggleText.textContent = `Show ${roundedYears} more year${roundedYears !== 1 ? 's' : ''} of experience`;
+    }
+
+    // Handle toggle click
+    if (toggleButton) {
+      toggleButton.addEventListener('click', () => {
+        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+        const chevron = toggleButton.querySelector('.chevron') as HTMLElement;
+
+        hiddenExperiences.forEach(exp => {
+          const expEl = exp as HTMLElement;
+          if (!isExpanded) {
+            expEl.style.display = 'block';
+            expEl.setAttribute('data-hidden', 'false');
+          } else {
+            expEl.style.display = 'none';
+            expEl.setAttribute('data-hidden', 'true');
+          }
+        });
+
+        if (!isExpanded) {
+          toggleButton.setAttribute('aria-expanded', 'true');
+          if (toggleText) toggleText.textContent = 'Show less experience';
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        } else {
+          toggleButton.setAttribute('aria-expanded', 'false');
+          if (toggleText) toggleText.textContent = `Show ${roundedYears} more year${roundedYears !== 1 ? 's' : ''} of experience`;
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+
+    // Handle video thumbnail clicks
     const thumbnails = document.querySelectorAll('.video-thumbnail');
 
     thumbnails.forEach(thumbnailEl => {
