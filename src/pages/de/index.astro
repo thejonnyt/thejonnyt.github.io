@@ -1,20 +1,20 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import TermText from '../components/TermText.astro';
-import SkillTag from '../components/SkillTag.astro';
-import SkillsRadar from '../components/SkillsRadar.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import TermText from '../../components/TermText.astro';
+import SkillTag from '../../components/SkillTag.astro';
+import SkillsRadar from '../../components/SkillsRadar.astro';
 import { Image } from 'astro:assets';
 
-// Import English content data only
-import introData from '../content/intro/data.json';
-import educationData from '../content/education/data.json';
-import experienceData from '../content/experience/data.json';
-import projectsData from '../content/projects/data.json';
-import publicationsData from '../content/publications/data.json';
-import miscData from '../content/misc/data.json';
-import skillsDatabase from '../content/skillsDatabase.json';
+// Import German content data
+import introData from '../../content/intro/data.de.json';
+import educationData from '../../content/education/data.de.json';
+import experienceData from '../../content/experience/data.de.json';
+import projectsData from '../../content/projects/data.de.json';
+import publicationsData from '../../content/publications/data.de.json';
+import miscData from '../../content/misc/data.de.json';
+import skillsDatabase from '../../content/skillsDatabase.json';
 
 // Process skills from database - group featured skills by category
 const featuredSkills = Object.entries(skillsDatabase.skills)
@@ -32,25 +32,25 @@ const skillsCategories = Object.entries(featuredSkills).map(([category, skills])
   skills: skills.sort((a, b) => b.yearsOfExperience - a.yearsOfExperience)
 }));
 
-// Helper function to format dates
+// Helper function to format dates (German)
 function formatDate(dateStr: string): string {
-  if (dateStr === 'present') return 'Present';
+  if (dateStr === 'present') return 'Aktuell';
   const date = new Date(dateStr);
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+  return date.toLocaleDateString('de-DE', { year: 'numeric', month: 'short' });
 }
 ---
 
-<BaseLayout title={`${introData.name} - Portfolio & Resume`} description={introData.tagline}>
+<BaseLayout title={`${introData.name} - Portfolio & Lebenslauf`} description={introData.tagline}>
   <Header />
 
-  <main id="main-content" class="container" role="main">
+  <main class="container">
     <!-- Hero / Introduction Section -->
-    <section class="hero section" aria-label="Introduction">
+    <section class="hero section">
       <div class="hero-content">
         <div class="profile-image-wrapper">
           <Image
             src="/images/profile.jpg"
-            alt={`Profile photo of ${introData.name}`}
+            alt={introData.name}
             width={180}
             height={180}
             class="profile-image"
@@ -65,20 +65,20 @@ function formatDate(dateStr: string): string {
 
           <div class="contact-links">
             {introData.email && (
-              <a href={`mailto:${introData.email}`} class="contact-link" aria-label="Send email">
-                <i data-lucide="mail" class="icon" aria-hidden="true"></i>
+              <a href={`mailto:${introData.email}`} class="contact-link">
+                <i data-lucide="mail" class="icon"></i>
                 <span>Email</span>
               </a>
             )}
             {introData.github && (
-              <a href={introData.github} target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub profile (opens in new tab)">
-                <i data-lucide="github" class="icon" aria-hidden="true"></i>
+              <a href={introData.github} target="_blank" rel="noopener" class="contact-link">
+                <i data-lucide="github" class="icon"></i>
                 <span>GitHub</span>
               </a>
             )}
             {introData.linkedin && (
-              <a href={introData.linkedin} target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn profile (opens in new tab)">
-                <i data-lucide="linkedin" class="icon" aria-hidden="true"></i>
+              <a href={introData.linkedin} target="_blank" rel="noopener" class="contact-link">
+                <i data-lucide="linkedin" class="icon"></i>
                 <span>LinkedIn</span>
               </a>
             )}
@@ -88,23 +88,23 @@ function formatDate(dateStr: string): string {
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section" aria-labelledby="about-heading">
-      <h2 id="about-heading">About</h2>
+    <section id="about" class="section">
+      <h2>Über mich</h2>
       <div class="bio-expandable">
         <div class="bio-preview">
           <TermText text={introData.bio[0]} as="p" />
         </div>
         {introData.bio.length > 1 && (
-          <div class="bio-full" id="bio-full-content" style="display: none;">
+          <div class="bio-full" style="display: none;">
             {introData.bio.slice(1).map((paragraph: string) => (
               <TermText text={paragraph} as="p" />
             ))}
           </div>
         )}
         {introData.bio.length > 1 && (
-          <button class="bio-toggle" aria-expanded="false" aria-controls="bio-full-content">
-            <span class="toggle-text">Read more</span>
-            <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <button class="bio-toggle">
+            <span class="toggle-text">Mehr lesen</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
@@ -113,8 +113,8 @@ function formatDate(dateStr: string): string {
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section" aria-labelledby="experience-heading">
-      <h2 id="experience-heading">Experience</h2>
+    <section id="experience" class="section">
+      <h2>Erfahrung</h2>
       {experienceData.map((exp: any) => (
         <div class="timeline-item">
           <div class="timeline-header">
@@ -123,7 +123,7 @@ function formatDate(dateStr: string): string {
               <p class="text-muted">{exp.company} • {exp.location}</p>
             </div>
             <p class="text-muted date">
-              {formatDate(exp.startDate)} - {exp.current ? 'Present' : formatDate(exp.endDate)}
+              {formatDate(exp.startDate)} - {exp.current ? 'Aktuell' : formatDate(exp.endDate)}
             </p>
           </div>
           <TermText text={exp.description} as="p" />
@@ -144,8 +144,8 @@ function formatDate(dateStr: string): string {
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
+    <section id="projects" class="section">
+      <h2>Projekte</h2>
       {projectsData.filter((p: any) => p.featured).map((project: any, index: number) => (
         <div class="project-card">
           <div class="project-header">
@@ -154,18 +154,12 @@ function formatDate(dateStr: string): string {
               <p class="text-muted">{project.tagline}</p>
             </div>
             {project.links?.Video && (
-              <button
-                class="video-thumbnail"
-                data-project-index={index}
-                aria-label={`Play ${project.name} video`}
-                aria-expanded="false"
-                aria-controls={`video-container-${index}`}
-              >
-                <div class="play-icon" aria-hidden="true">▶</div>
-              </button>
+              <div class="video-thumbnail" data-project-index={index}>
+                <div class="play-icon">▶</div>
+              </div>
             )}
           </div>
-          <div class="video-container" id={`video-container-${index}`} data-project-index={index} style="display: none;" role="region" aria-label={`${project.name} video player`}>
+          <div class="video-container" data-project-index={index} style="display: none;">
             {project.links?.Video && (
               <iframe
                 title={`${project.name} video`}
@@ -200,13 +194,13 @@ function formatDate(dateStr: string): string {
                 // If the value is an object with url and text, use that
                 if (typeof url === 'object' && url.url) {
                   return (
-                    <a href={url.url} target="_blank" rel="noopener noreferrer" aria-label={`${url.text} (opens in new tab)`}>{url.text} →</a>
+                    <a href={url.url} target="_blank" rel="noopener">{url.text} →</a>
                   );
                 }
 
                 // Otherwise use the label as text
                 return (
-                  <a href={url} target="_blank" rel="noopener noreferrer" aria-label={`${label} (opens in new tab)`}>{label} →</a>
+                  <a href={url} target="_blank" rel="noopener">{label} →</a>
                 );
               })}
             </div>
@@ -217,19 +211,19 @@ function formatDate(dateStr: string): string {
 
     <!-- Publications Section -->
     {publicationsData.length > 0 && (
-      <section id="publications" class="section" aria-labelledby="publications-heading">
-        <h2 id="publications-heading">Publications</h2>
+      <section id="publications" class="section">
+        <h2>Publikationen</h2>
         {publicationsData.map((pub: any) => (
           <div class="publication-item">
             <TermText text={pub.title} as="h3" />
             <p class="text-muted">
               {pub.authors.join(', ')} • {pub.venue}, {pub.year}
-              {pub.citations && <span> • {pub.citations} citations</span>}
+              {pub.citations && <span> • {pub.citations} Zitierungen</span>}
             </p>
             {pub.abstract && (
               <details class="abstract-toggle">
                 <summary>
-                  <span class="abstract-label">Abstract</span>
+                  <span class="abstract-label">Zusammenfassung</span>
                   <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
@@ -239,13 +233,13 @@ function formatDate(dateStr: string): string {
             )}
             <div class="publication-links">
               {pub.links.doi && (
-                <a href={pub.links.doi} target="_blank" rel="noopener noreferrer" aria-label="View DOI (opens in new tab)">DOI →</a>
+                <a href={pub.links.doi} target="_blank" rel="noopener">DOI →</a>
               )}
               {pub.links.paper && (
-                <a href={pub.links.paper} target="_blank" rel="noopener noreferrer" aria-label="View paper (opens in new tab)">Paper →</a>
+                <a href={pub.links.paper} target="_blank" rel="noopener">Paper →</a>
               )}
               {pub.links.code && (
-                <a href={pub.links.code} target="_blank" rel="noopener noreferrer" aria-label="View code (opens in new tab)">Code →</a>
+                <a href={pub.links.code} target="_blank" rel="noopener">Code →</a>
               )}
             </div>
           </div>
@@ -254,8 +248,8 @@ function formatDate(dateStr: string): string {
     )}
 
     <!-- Education Section -->
-    <section id="education" class="section" aria-labelledby="education-heading">
-      <h2 id="education-heading">Education</h2>
+    <section id="education" class="section">
+      <h2>Ausbildung</h2>
       {educationData.map((edu: any) => (
         <div class="timeline-item">
           <div class="timeline-header">
@@ -280,8 +274,8 @@ function formatDate(dateStr: string): string {
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
+    <section id="skills" class="section">
+      <h2>Fähigkeiten</h2>
       <div class="skills-grid">
         {skillsCategories.flatMap((category: any) =>
           category.skills.map((skill: any) => (
@@ -297,8 +291,8 @@ function formatDate(dateStr: string): string {
 
     <!-- Awards & Recognition Section -->
     {miscData.awards && miscData.awards.length > 0 && (
-      <section id="awards" class="section" aria-labelledby="awards-heading">
-        <h2 id="awards-heading">Awards & Recognition</h2>
+      <section id="awards" class="section">
+        <h2>Auszeichnungen & Anerkennungen</h2>
         {miscData.awards.map((award: any) => (
           <div class="award-item">
             <div class="award-header">
@@ -313,11 +307,11 @@ function formatDate(dateStr: string): string {
     )}
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Get in Touch</h2>
-      <p>I'm currently looking for new opportunities. Feel free to reach out!</p>
+    <section id="contact" class="section contact-section">
+      <h2>Kontakt</h2>
+      <p>Ich bin derzeit auf der Suche nach neuen Möglichkeiten. Kontaktieren Sie mich gerne!</p>
       <div class="contact-links">
-        <a href={`mailto:${introData.email}`} class="button" aria-label="Send me an email">Send me an email</a>
+        <a href={`mailto:${introData.email}`} class="button">Email schreiben</a>
       </div>
     </section>
   </main>
@@ -516,9 +510,6 @@ function formatDate(dateStr: string): string {
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
-    border: none;
-    padding: 0;
-    font-family: inherit;
   }
 
   .video-thumbnail::before {
@@ -809,38 +800,21 @@ function formatDate(dateStr: string): string {
 
     thumbnails.forEach(thumbnailEl => {
       const thumbnail = thumbnailEl as HTMLElement;
-
-      // Make it keyboard accessible
       thumbnail.addEventListener('click', () => {
-        toggleVideo(thumbnail);
-      });
+        const projectIndex = thumbnail.getAttribute('data-project-index');
+        const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`) as HTMLElement | null;
 
-      thumbnail.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleVideo(thumbnail);
+        if (videoContainer) {
+          if (videoContainer.style.display === 'none') {
+            videoContainer.style.display = 'block';
+            thumbnail.style.opacity = '0.5';
+          } else {
+            videoContainer.style.display = 'none';
+            thumbnail.style.opacity = '1';
+          }
         }
       });
     });
-
-    function toggleVideo(thumbnail: HTMLElement) {
-      const projectIndex = thumbnail.getAttribute('data-project-index');
-      const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`) as HTMLElement | null;
-
-      if (videoContainer) {
-        const isExpanded = thumbnail.getAttribute('aria-expanded') === 'true';
-
-        if (!isExpanded) {
-          videoContainer.style.display = 'block';
-          thumbnail.style.opacity = '0.5';
-          thumbnail.setAttribute('aria-expanded', 'true');
-        } else {
-          videoContainer.style.display = 'none';
-          thumbnail.style.opacity = '1';
-          thumbnail.setAttribute('aria-expanded', 'false');
-        }
-      }
-    }
 
     // Handle bio expand/collapse
     const bioToggles = document.querySelectorAll('.bio-toggle');
@@ -854,20 +828,17 @@ function formatDate(dateStr: string): string {
         const bioFull = expandable.querySelector('.bio-full') as HTMLElement;
         const toggleText = button.querySelector('.toggle-text');
         const chevron = button.querySelector('.chevron') as HTMLElement;
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-        if (!isExpanded) {
+        if (bioFull.style.display === 'none') {
           // Expand
           bioFull.style.display = 'block';
-          if (toggleText) toggleText.textContent = 'Read less';
+          if (toggleText) toggleText.textContent = 'Weniger lesen';
           if (chevron) chevron.style.transform = 'rotate(180deg)';
-          button.setAttribute('aria-expanded', 'true');
         } else {
           // Collapse
           bioFull.style.display = 'none';
-          if (toggleText) toggleText.textContent = 'Read more';
+          if (toggleText) toggleText.textContent = 'Mehr lesen';
           if (chevron) chevron.style.transform = 'rotate(0deg)';
-          button.setAttribute('aria-expanded', 'false');
         }
       });
     });

@@ -1,0 +1,756 @@
+---
+/**
+ * SkillsRadar.astro - Interactive radar/spider chart for skill categories
+ */
+import skillsDatabase from '../content/skillsDatabase.json';
+
+interface Props {
+  size?: number;
+}
+
+const { size = 750 } = Astro.props;
+
+// Map skill levels to numeric values (0-5)
+const levelToValue: Record<string, number> = {
+  'beginner': 1,
+  'competent': 2,
+  'proficient': 3,
+  'expert': 4,
+  'wizard': 5
+};
+
+// Calculate average proficiency and years of experience per category
+const categoryStats: Record<string, {
+  sumProficiency: number;
+  sumExperience: number;
+  count: number;
+  skills: string[]
+}> = {};
+
+for (const key in skillsDatabase.skills) {
+  const k = key as keyof typeof skillsDatabase.skills;
+  const skill = skillsDatabase.skills[k];
+  const category = skill.category;
+  const proficiencyValue = levelToValue[skill.level] || 0;
+  const experienceYears = skill.yearsOfExperience || 0;
+
+  if (!categoryStats[category]) {
+    categoryStats[category] = { sumProficiency: 0, sumExperience: 0, count: 0, skills: [] };
+  }
+
+  categoryStats[category].sumProficiency += proficiencyValue;
+  categoryStats[category].sumExperience += experienceYears;
+  categoryStats[category].count++;
+  categoryStats[category].skills.push(key);
+}
+
+// Calculate averages and prepare data, filtering out Business & Strategy
+const categories = Object.entries(categoryStats)
+  .filter(([name]) => name !== 'Business & Strategy')
+  .map(([name, stats]) => {
+    const avgProficiency = stats.sumProficiency / stats.count;
+    const avgExperience = stats.sumExperience / stats.count;
+    // Scale experience: 10 years = 4.0 on visual scale
+    const visualExperience = Math.min((avgExperience / 10) * 4, 4);
+
+    const goal = skillsDatabase.categoryGoals?.[name];
+    return {
+      name,
+      proficiency: avgProficiency,
+      visualProficiency: Math.min(avgProficiency, 4), // Clamped to 4 for display
+      experience: avgExperience,
+      visualExperience: visualExperience,
+      count: stats.count,
+      skills: stats.skills,
+      goal: goal || null,
+      goalProficiency: goal?.proficiencyTarget || avgProficiency,
+      visualGoalProficiency: Math.min(goal?.proficiencyTarget || avgProficiency, 4)
+    };
+  });
+
+// SVG configuration
+const center = size / 2;
+const maxRadius = (size / 2) - 150; // More space for labels
+const numCategories = categories.length;
+const maxValue = 4; // Visual scale is 1-4
+
+// Generate polygon points for the radar chart
+const angleStep = (2 * Math.PI) / numCategories;
+
+// Data points for proficiency
+const proficiencyPoints = categories.map((cat, i) => {
+  const angle = (i * angleStep) - (Math.PI / 2); // Start at top
+  const radius = (cat.visualProficiency / maxValue) * maxRadius;
+  const x = center + radius * Math.cos(angle);
+  const y = center + radius * Math.sin(angle);
+  return { x, y, angle, cat };
+});
+
+// Data points for experience
+const experiencePoints = categories.map((cat, i) => {
+  const angle = (i * angleStep) - (Math.PI / 2);
+  const radius = (cat.visualExperience / maxValue) * maxRadius;
+  const x = center + radius * Math.cos(angle);
+  const y = center + radius * Math.sin(angle);
+  return { x, y, angle, cat };
+});
+
+// Data points for goal proficiency (for extension visualization)
+const goalProficiencyPoints = categories.map((cat, i) => {
+  const angle = (i * angleStep) - (Math.PI / 2);
+  const radius = (cat.visualGoalProficiency / maxValue) * maxRadius;
+  const x = center + radius * Math.cos(angle);
+  const y = center + radius * Math.sin(angle);
+  return { x, y, angle, cat };
+});
+
+// Generate grid levels (concentric polygons) - 1 to 4 scale
+const gridLevels = [1, 2, 3, 4];
+const gridPolygons = gridLevels.map(level => {
+  const points = Array.from({ length: numCategories }, (_, i) => {
+    const angle = (i * angleStep) - (Math.PI / 2);
+    const radius = (level / maxValue) * maxRadius;
+    const x = center + radius * Math.cos(angle);
+    const y = center + radius * Math.sin(angle);
+    return `${x},${y}`;
+  }).join(' ');
+  return { level, points };
+});
+
+// Generate axis lines from center to each category point
+const axisLines = categories.map((cat, i) => {
+  const angle = (i * angleStep) - (Math.PI / 2);
+  const x = center + maxRadius * Math.cos(angle);
+  const y = center + maxRadius * Math.sin(angle);
+  return { x1: center, y1: center, x2: x, y2: y };
+});
+
+// Generate label positions (outside the chart)
+const labels = categories.map((cat, i) => {
+  const angle = (i * angleStep) - (Math.PI / 2);
+  const labelRadius = maxRadius + 100;
+  const x = center + labelRadius * Math.cos(angle);
+  const y = center + labelRadius * Math.sin(angle);
+
+  // Determine text anchor based on position
+  let textAnchor = 'middle';
+  if (Math.abs(Math.cos(angle)) > 0.5) {
+    textAnchor = Math.cos(angle) > 0 ? 'start' : 'end';
+  }
+
+  return { x, y, text: cat.name, textAnchor };
+});
+
+// Data polygon points strings for the filled areas
+const proficiencyPolygonPoints = proficiencyPoints.map(p => `${p.x},${p.y}`).join(' ');
+const experiencePolygonPoints = experiencePoints.map(p => `${p.x},${p.y}`).join(' ');
+const goalProficiencyPolygonPoints = goalProficiencyPoints.map(p => `${p.x},${p.y}`).join(' ');
+
+// Prepare category data for JavaScript
+const categoryData = categories.map((cat, i) => ({
+  index: i,
+  name: cat.name,
+  proficiency: cat.visualProficiency.toFixed(2),
+  experience: cat.experience.toFixed(1),
+  count: cat.count,
+  skills: cat.skills,
+  goal: cat.goal,
+  goalProficiency: cat.visualGoalProficiency.toFixed(2)
+}));
+---
+
+<div class="radar-container">
+  <svg
+    viewBox={`0 0 ${size} ${size}`}
+    class="radar-chart"
+    role="img"
+    aria-labelledby="radar-title"
+  >
+    <title id="radar-title">Skill proficiency and experience radar chart across {numCategories} categories</title>
+
+    <defs>
+      <linearGradient id="proficiencyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:var(--color-accent);stop-opacity:0.6" />
+        <stop offset="100%" style="stop-color:var(--color-accent-hover);stop-opacity:0.3" />
+      </linearGradient>
+      <linearGradient id="experienceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.5" />
+        <stop offset="100%" style="stop-color:#059669;stop-opacity:0.2" />
+      </linearGradient>
+      <pattern id="diagonalHatch" patternUnits="userSpaceOnUse" width="8" height="8">
+        <path d="M-1,1 l2,-2 M0,8 l8,-8 M7,9 l2,-2"
+              style="stroke:var(--color-accent);stroke-width:1.5;opacity:0.6" />
+      </pattern>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- Grid background (concentric polygons) -->
+    <g class="grid">
+      {gridPolygons.map(({ level, points }) => (
+        <polygon
+          points={points}
+          class="grid-level"
+          data-level={level}
+        />
+      ))}
+    </g>
+
+    <!-- Axis lines -->
+    <g class="axes">
+      {axisLines.map((line, i) => (
+        <line
+          x1={line.x1}
+          y1={line.y1}
+          x2={line.x2}
+          y2={line.y2}
+          class="axis-line"
+          data-category={i}
+        />
+      ))}
+    </g>
+
+    <!-- Data area (filled polygons) -->
+    <g class="data">
+      <!-- Experience polygon (behind proficiency) -->
+      <polygon
+        points={experiencePolygonPoints}
+        class="data-polygon experience-polygon"
+      />
+
+      <!-- Proficiency polygon -->
+      <polygon
+        points={proficiencyPolygonPoints}
+        class="data-polygon proficiency-polygon"
+      />
+
+      <!-- Goal extension wedges (one per category, shown on hover) -->
+      {categories.map((cat, i) => {
+        const prevIndex = (i - 1 + numCategories) % numCategories;
+        const nextIndex = (i + 1) % numCategories;
+
+        const prevPoint = proficiencyPoints[prevIndex];
+        const currentPoint = proficiencyPoints[i];
+        const nextPoint = proficiencyPoints[nextIndex];
+        const goalPoint = goalProficiencyPoints[i];
+
+        // Create a wedge path that replaces current point with goal point
+        // Forms a triangle: prev → goal → next → back to prev
+        const wedgePath = `M ${prevPoint.x},${prevPoint.y} L ${goalPoint.x},${goalPoint.y} L ${nextPoint.x},${nextPoint.y} Z`;
+
+        return (
+          <path
+            d={wedgePath}
+            class="goal-wedge"
+            data-category={i}
+          />
+        );
+      })}
+
+      <!-- Experience data points -->
+      {experiencePoints.map((point, i) => (
+        <g class="data-point-group experience-point" data-category={i}>
+          <circle
+            cx={point.x}
+            cy={point.y}
+            r="6"
+            class="data-point"
+          />
+        </g>
+      ))}
+
+      <!-- Proficiency data points -->
+      {proficiencyPoints.map((point, i) => (
+        <g class="data-point-group proficiency-point" data-category={i}>
+          <circle
+            cx={point.x}
+            cy={point.y}
+            r="6"
+            class="data-point"
+          />
+        </g>
+      ))}
+    </g>
+
+    <!-- Category labels -->
+    <g class="labels">
+      {labels.map((label, i) => (
+        <text
+          x={label.x}
+          y={label.y}
+          text-anchor={label.textAnchor}
+          class="category-label"
+          data-category={i}
+        >
+          {label.text}
+        </text>
+      ))}
+    </g>
+  </svg>
+
+  <!-- Legend -->
+  <div class="radar-legend">
+    <div class="legend-item">
+      <div class="legend-marker proficiency"></div>
+      <span>Self-Assessment</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-marker experience"></div>
+      <span>Years of Experience</span>
+    </div>
+  </div>
+
+  <!-- Tooltip -->
+  <div class="radar-tooltip" id="radar-tooltip">
+    <div class="tooltip-header"></div>
+    <div class="tooltip-content">
+      <div class="tooltip-row">
+        <span class="tooltip-label">Self-Assessment:</span>
+        <span class="tooltip-value" id="tooltip-proficiency"></span>
+      </div>
+      <div class="tooltip-row">
+        <span class="tooltip-label">Avg Experience:</span>
+        <span class="tooltip-value" id="tooltip-experience"></span>
+      </div>
+      <div class="tooltip-row">
+        <span class="tooltip-label">Skills:</span>
+        <span class="tooltip-value" id="tooltip-count"></span>
+      </div>
+      <div class="tooltip-goal" id="tooltip-goal"></div>
+      <div class="tooltip-skills" id="tooltip-skills"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .radar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-md);
+    position: relative;
+    gap: var(--space-lg);
+  }
+
+  .radar-chart {
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+    overflow: visible;
+  }
+
+  /* Grid styling */
+  .grid-level {
+    fill: none;
+    stroke: var(--color-border);
+    stroke-width: 1;
+    opacity: 0.3;
+    transition: opacity var(--transition-fast);
+  }
+
+  .grid-level:hover {
+    opacity: 0.6;
+  }
+
+  /* Axis lines */
+  .axis-line {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    opacity: 0.4;
+  }
+
+  /* Data visualization */
+  .data-polygon {
+    stroke-width: 2.5;
+    filter: url(#glow);
+    transition: all var(--transition-normal);
+  }
+
+  .proficiency-polygon {
+    fill: url(#proficiencyGradient);
+    stroke: var(--color-accent);
+  }
+
+  .experience-polygon {
+    fill: url(#experienceGradient);
+    stroke: #10b981;
+  }
+
+  .goal-wedge {
+    fill: url(#diagonalHatch);
+    stroke: var(--color-accent);
+    stroke-width: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+  }
+
+  .goal-wedge.visible {
+    opacity: 1;
+  }
+
+  .radar-chart:hover .data-polygon {
+    fill-opacity: 0.8;
+    stroke-width: 3;
+  }
+
+  .data-point {
+    stroke: var(--color-bg);
+    stroke-width: 2;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .proficiency-point .data-point {
+    fill: var(--color-accent);
+  }
+
+  .experience-point .data-point {
+    fill: #10b981;
+  }
+
+  .data-point.highlighted {
+    filter: url(#glow);
+  }
+
+  .proficiency-point .data-point.highlighted {
+    fill: var(--color-accent-hover);
+  }
+
+  .experience-point .data-point.highlighted {
+    fill: #059669;
+  }
+
+  .data-point.dimmed {
+    fill: #6b7280 !important;
+    opacity: 0.5;
+  }
+
+  /* Labels - 2x bigger */
+  .category-label {
+    fill: var(--color-text-secondary);
+    font-size: 26px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .category-label.highlighted {
+    fill: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* Legend */
+  .radar-legend {
+    display: flex;
+    gap: var(--space-xl);
+    justify-content: center;
+    padding: var(--space-md);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 14px;
+    color: var(--color-foreground);
+  }
+
+  .legend-marker {
+    width: 24px;
+    height: 12px;
+    border-radius: 2px;
+    border: 2px solid;
+  }
+
+  .legend-marker.proficiency {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    opacity: 0.6;
+  }
+
+  .legend-marker.experience {
+    background: #10b981;
+    border-color: #10b981;
+    opacity: 0.5;
+  }
+
+  /* Tooltip */
+  .radar-tooltip {
+    position: absolute;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: var(--space-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    z-index: 1000;
+    min-width: 280px;
+    max-width: 350px;
+  }
+
+  .radar-tooltip.visible {
+    opacity: 1;
+  }
+
+  .tooltip-header {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: var(--space-sm);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-xs);
+  }
+
+  .tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xs);
+    font-size: 13px;
+  }
+
+  .tooltip-label {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+  }
+
+  .tooltip-value {
+    color: var(--color-foreground);
+    font-weight: 600;
+  }
+
+  .tooltip-goal {
+    margin-top: var(--space-sm);
+    padding: var(--space-sm);
+    background: var(--color-bg);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+
+  .tooltip-skills {
+    margin-top: var(--space-sm);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    font-size: 11px;
+  }
+
+  .tooltip-skills .skill-tag {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    color: var(--color-text-secondary);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .radar-chart {
+      max-width: 600px;
+    }
+
+    .category-label {
+      font-size: 20px;
+    }
+
+    .radar-legend {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .radar-chart {
+      max-width: 450px;
+    }
+
+    .category-label {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<script define:vars={{ categoryData }}>
+  // Add interactive tooltips/highlights
+  document.addEventListener('DOMContentLoaded', () => {
+    const labels = document.querySelectorAll('.category-label');
+    const dataPoints = document.querySelectorAll('.data-point-group');
+    const tooltip = document.getElementById('radar-tooltip');
+    const tooltipHeader = tooltip.querySelector('.tooltip-header');
+    const tooltipProficiency = document.getElementById('tooltip-proficiency');
+    const tooltipExperience = document.getElementById('tooltip-experience');
+    const tooltipCount = document.getElementById('tooltip-count');
+    const tooltipGoal = document.getElementById('tooltip-goal');
+    const tooltipSkills = document.getElementById('tooltip-skills');
+    const goalWedges = document.querySelectorAll('.goal-wedge');
+
+    // Helper function to show tooltip
+    const showTooltip = (category, categoryIndex, showGoalExtension = false) => {
+      if (!tooltip || !category) return;
+
+      tooltipHeader.textContent = category.name;
+      tooltipProficiency.textContent = `${category.proficiency} / 4.00`;
+      tooltipExperience.textContent = `${category.experience} years`;
+      tooltipCount.textContent = category.count;
+
+      // Add goal if available
+      if (category.goal) {
+        const goalInfo = showGoalExtension
+          ? `<strong>Goal:</strong> ${category.goal.description}<br/><strong>Target:</strong> ${category.goalProficiency} / 4.00`
+          : `<strong>Goal:</strong> ${category.goal.description}`;
+        tooltipGoal.innerHTML = goalInfo;
+        tooltipGoal.style.display = 'block';
+      } else {
+        tooltipGoal.style.display = 'none';
+      }
+
+      // Add skill tags
+      tooltipSkills.innerHTML = category.skills
+        .map(skill => `<span class="skill-tag">${skill}</span>`)
+        .join('');
+
+      tooltip.classList.add('visible');
+
+      // Show specific goal wedge if requested
+      if (showGoalExtension && categoryIndex !== undefined) {
+        const wedge = document.querySelector(`.goal-wedge[data-category="${categoryIndex}"]`);
+        if (wedge) {
+          wedge.classList.add('visible');
+        }
+      }
+    };
+
+    // Helper function to hide tooltip
+    const hideTooltip = () => {
+      if (tooltip) {
+        tooltip.classList.remove('visible');
+      }
+      // Hide all goal wedges
+      goalWedges.forEach(wedge => wedge.classList.remove('visible'));
+    };
+
+    // Helper function to position tooltip intelligently
+    const positionTooltip = (element) => {
+      const rect = element.getBoundingClientRect();
+      const containerRect = tooltip.parentElement.getBoundingClientRect();
+
+      // Calculate element position relative to container center
+      const elementCenterY = rect.top + rect.height / 2 - containerRect.top;
+      const containerCenterY = containerRect.height / 2;
+
+      // Determine if element is in bottom half (6-9 o'clock position)
+      const isBottomHalf = elementCenterY > containerCenterY;
+
+      // Position horizontally (centered on element)
+      tooltip.style.left = `${rect.left - containerRect.left + rect.width / 2}px`;
+
+      // Position vertically based on element location
+      if (isBottomHalf) {
+        // Bottom half: show tooltip below the element
+        tooltip.style.top = `${rect.bottom - containerRect.top + 10}px`;
+      } else {
+        // Top half: show tooltip above the element (current behavior)
+        tooltip.style.top = `${rect.top - containerRect.top - tooltip.offsetHeight - 10}px`;
+      }
+    };
+
+    // Add hover handlers for category labels
+    labels.forEach((label) => {
+      const categoryIndex = parseInt(label.getAttribute('data-category'));
+      const category = categoryData[categoryIndex];
+
+      label.addEventListener('mouseenter', () => {
+        // Highlight label
+        label.classList.add('highlighted');
+
+        // Dim the current proficiency point and highlight experience point
+        const proficiencyPoint = document.querySelector(`.proficiency-point[data-category="${categoryIndex}"] .data-point`);
+        const experiencePoint = document.querySelector(`.experience-point[data-category="${categoryIndex}"] .data-point`);
+
+        if (proficiencyPoint) {
+          proficiencyPoint.classList.add('dimmed');
+          proficiencyPoint.setAttribute('r', '6');
+        }
+        if (experiencePoint) {
+          experiencePoint.classList.add('highlighted');
+          experiencePoint.setAttribute('r', '8');
+        }
+
+        // Show tooltip with goal extension
+        showTooltip(category, categoryIndex, true);
+        positionTooltip(label);
+      });
+
+      label.addEventListener('mouseleave', () => {
+        // Remove highlights
+        label.classList.remove('highlighted');
+
+        const proficiencyPoint = document.querySelector(`.proficiency-point[data-category="${categoryIndex}"] .data-point`);
+        const experiencePoint = document.querySelector(`.experience-point[data-category="${categoryIndex}"] .data-point`);
+
+        if (proficiencyPoint) {
+          proficiencyPoint.classList.remove('dimmed');
+          proficiencyPoint.classList.remove('highlighted');
+          proficiencyPoint.setAttribute('r', '6');
+        }
+        if (experiencePoint) {
+          experiencePoint.classList.remove('highlighted');
+          experiencePoint.setAttribute('r', '6');
+        }
+
+        // Hide tooltip
+        hideTooltip();
+      });
+    });
+
+    // Add hover handlers for data points (dots)
+    dataPoints.forEach((pointGroup) => {
+      const categoryIndex = parseInt(pointGroup.getAttribute('data-category'));
+      const category = categoryData[categoryIndex];
+      const point = pointGroup.querySelector('.data-point');
+
+      pointGroup.addEventListener('mouseenter', () => {
+        // Highlight only this point
+        if (point) {
+          point.classList.add('highlighted');
+          point.setAttribute('r', '8');
+        }
+
+        // Show tooltip without goal extension
+        showTooltip(category, categoryIndex, false);
+        positionTooltip(pointGroup);
+      });
+
+      pointGroup.addEventListener('mouseleave', () => {
+        // Remove highlight
+        if (point) {
+          point.classList.remove('highlighted');
+          point.setAttribute('r', '6');
+        }
+
+        // Hide tooltip
+        hideTooltip();
+      });
+    });
+  });
+</script>

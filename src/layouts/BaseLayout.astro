@@ -5,16 +5,22 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  lang?: string;
 }
 
 const {
   title = "Johannes Tauscher - Portfolio & Resume",
-  description = "Website and resume of Johannes Tauscher"
+  description = "Website and resume of Johannes Tauscher",
+  lang = "en"
 } = Astro.props;
+
+// Determine if this is German page
+const isGerman = Astro.url.pathname.startsWith('/de');
+const pageLang = isGerman ? 'de' : lang;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang={pageLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,6 +53,7 @@ const {
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
     <TechnicalTermTooltip />
   </body>

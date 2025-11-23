@@ -278,5 +278,47 @@
       "usedIn": ["Child and Adolescent Psychiatry", "Tutoring", "Economics Bachelor's Thesis", "Westphalia DataLab GmbH"],
       "featured": true
     }
+  },
+  "categoryGoals": {
+    "Programming Languages": {
+      "proficiencyTarget": 3.5,
+      "experienceTarget": 5,
+      "description": "Maintain strong proficiency across core languages, expand into new paradigms"
+    },
+    "Databases": {
+      "proficiencyTarget": 3.0,
+      "experienceTarget": 3,
+      "description": "Build expertise in both SQL and NoSQL systems for scalable architectures"
+    },
+    "Backend & DevOps": {
+      "proficiencyTarget": 3.5,
+      "experienceTarget": 4,
+      "description": "Master containerization, CI/CD pipelines, and cloud infrastructure"
+    },
+    "Frontend & Web": {
+      "proficiencyTarget": 3.0,
+      "experienceTarget": 3,
+      "description": "Develop modern, responsive, and accessible web applications"
+    },
+    "AI & Machine Learning": {
+      "proficiencyTarget": 3.5,
+      "experienceTarget": 5,
+      "description": "Lead AI/ML projects from research to production deployment"
+    },
+    "Tools & Systems": {
+      "proficiencyTarget": 3.5,
+      "experienceTarget": 8,
+      "description": "Maintain deep expertise in essential development tools and workflows"
+    },
+    "Design & Creative": {
+      "proficiencyTarget": 3.0,
+      "experienceTarget": 5,
+      "description": "Create polished visual content for technical communication"
+    },
+    "Data Analysis": {
+      "proficiencyTarget": 3.5,
+      "experienceTarget": 5,
+      "description": "Apply statistical methods to extract insights from complex datasets"
+    }
   }
 }

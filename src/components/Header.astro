@@ -1,28 +1,39 @@
 ---
 // Header component with navigation
-import LanguageToggle from './LanguageToggle.astro';
+// Get current path to determine language
+const currentPath = Astro.url.pathname;
+const isGerman = currentPath.startsWith('/de');
 ---
 
-<header class="header">
+<header class="header" role="banner">
+  <div class="progress-bar" aria-hidden="true"></div>
   <div class="container header-container">
-    <nav class="nav">
-      <a href="/" class="logo">Johannes Tauscher</a>
-      <ul class="nav-links">
-        <li data-lang="en"><a href="#about-en" data-nav-section="about">About</a></li>
-        <li data-lang="en"><a href="#experience-en" data-nav-section="experience">Experience</a></li>
-        <li data-lang="en"><a href="#projects-en" data-nav-section="projects">Projects</a></li>
-        <li data-lang="en"><a href="#publications-en" data-nav-section="publications">Publications</a></li>
-        <li data-lang="en"><a href="#contact-en" data-nav-section="contact">Contact</a></li>
-
-        <li data-lang="de"><a href="#about-de" data-nav-section="about">Über mich</a></li>
-        <li data-lang="de"><a href="#experience-de" data-nav-section="experience">Erfahrung</a></li>
-        <li data-lang="de"><a href="#projects-de" data-nav-section="projects">Projekte</a></li>
-        <li data-lang="de"><a href="#publications-de" data-nav-section="publications">Publikationen</a></li>
-        <li data-lang="de"><a href="#contact-de" data-nav-section="contact">Kontakt</a></li>
+    <nav class="nav" role="navigation" aria-label={isGerman ? "Hauptnavigation" : "Main navigation"}>
+      <a href={isGerman ? '/de' : '/'} class="logo" aria-label={isGerman ? "Startseite" : "Home"}>Johannes Tauscher</a>
+      <ul class="nav-links" role="list">
+        {isGerman ? (
+          <>
+            <li><a href="#about" data-section="about">Über mich</a></li>
+            <li><a href="#experience" data-section="experience">Erfahrung</a></li>
+            <li><a href="#projects" data-section="projects">Projekte</a></li>
+            <li><a href="#education" data-section="education">Ausbildung</a></li>
+            <li><a href="#contact" data-section="contact">Kontakt</a></li>
+          </>
+        ) : (
+          <>
+            <li><a href="#about" data-section="about">About</a></li>
+            <li><a href="#experience" data-section="experience">Experience</a></li>
+            <li><a href="#projects" data-section="projects">Projects</a></li>
+            <li><a href="#education" data-section="education">Education</a></li>
+            <li><a href="#contact" data-section="contact">Contact</a></li>
+          </>
+        )}
       </ul>
     </nav>
-    <div class="lang-toggle-wrapper">
-      <LanguageToggle />
+    <div class="lang-switcher" role="navigation" aria-label={isGerman ? "Sprachauswahl" : "Language selection"}>
+      <a href="/" class={!isGerman ? 'active' : ''} aria-label="English" aria-current={!isGerman ? 'page' : undefined} lang="en">EN</a>
+      <span class="separator" aria-hidden="true">/</span>
+      <a href="/de" class={isGerman ? 'active' : ''} aria-label="Deutsch" aria-current={isGerman ? 'page' : undefined} lang="de">DE</a>
     </div>
   </div>
 </header>
@@ -41,6 +52,24 @@ import LanguageToggle from './LanguageToggle.astro';
   @media (prefers-color-scheme: dark) {
     .header {
       background-color: rgba(30, 30, 30, 0.9);
+    }
+  }
+
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+    width: 0%;
+    transition: width 100ms ease-out;
+    z-index: 101;
+    box-shadow: 0 0 10px var(--color-accent);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .progress-bar {
+      box-shadow: 0 0 15px var(--color-accent);
     }
   }
 
@@ -63,6 +92,11 @@ import LanguageToggle from './LanguageToggle.astro';
     font-weight: 600;
     font-size: 1.125rem;
     color: var(--color-foreground);
+    transition: color var(--transition-fast);
+  }
+
+  .logo:hover {
+    color: var(--color-accent);
   }
 
   .nav-links {
@@ -72,19 +106,61 @@ import LanguageToggle from './LanguageToggle.astro';
     margin: 0;
   }
 
-  .lang-toggle-wrapper {
-    margin-left: var(--space-lg);
-    padding-right: 20px;
-  }
-
   .nav-links a {
     color: var(--color-muted);
     font-size: 0.9rem;
-    transition: color var(--transition-fast);
+    transition: all var(--transition-fast);
+    position: relative;
   }
 
   .nav-links a:hover {
     color: var(--color-foreground);
+  }
+
+  .nav-links a.active {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+  }
+
+  .lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-left: var(--space-lg);
+    font-size: 0.9rem;
+  }
+
+  .lang-switcher a {
+    color: var(--color-muted);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 4px;
+  }
+
+  .lang-switcher a:hover {
+    color: var(--color-foreground);
+    background-color: var(--color-bg-secondary);
+  }
+
+  .lang-switcher a.active {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .lang-switcher .separator {
+    color: var(--color-border);
   }
 
   @media (max-width: 768px) {
@@ -96,8 +172,7 @@ import LanguageToggle from './LanguageToggle.astro';
       flex: 1 1 100%;
     }
 
-    .lang-toggle-wrapper {
-      padding-right: 10px;
+    .lang-switcher {
       margin-left: var(--space-md);
     }
 
@@ -108,9 +183,9 @@ import LanguageToggle from './LanguageToggle.astro';
   }
 
   @media (max-width: 640px) {
-    .lang-toggle-wrapper {
-      padding-right: 0;
+    .lang-switcher {
       margin-left: var(--space-sm);
+      font-size: 0.85rem;
     }
 
     .nav-links {
@@ -119,3 +194,93 @@ import LanguageToggle from './LanguageToggle.astro';
     }
   }
 </style>
+
+<script>
+  // Update scroll progress bar
+  function updateProgressBar() {
+    const progressBar = document.querySelector('.progress-bar') as HTMLElement;
+    if (!progressBar) return;
+
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const scrollTop = window.scrollY;
+
+    // Calculate scroll percentage
+    const scrollableHeight = documentHeight - windowHeight;
+    const scrollPercentage = (scrollTop / scrollableHeight) * 100;
+
+    progressBar.style.width = `${Math.min(scrollPercentage, 100)}%`;
+  }
+
+  // Update active section in navigation
+  function updateActiveSection() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 150; // Offset for better UX
+
+    // Check if we're at the bottom of the page
+    const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+
+    if (isAtBottom) {
+      // If at bottom, highlight the last section
+      const lastSection = sections[sections.length - 1];
+      if (lastSection) {
+        currentSection = lastSection.getAttribute('id') || '';
+      }
+    } else {
+      // Normal scroll detection
+      sections.forEach((section) => {
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).clientHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          currentSection = section.getAttribute('id') || '';
+        }
+      });
+    }
+
+    navLinks.forEach((link) => {
+      const linkElement = link as HTMLAnchorElement;
+      const linkSection = linkElement.dataset.section;
+
+      // Education nav item is active for education, publications, and skills sections
+      const isEducationActive = linkSection === 'education' &&
+        (currentSection === 'education' || currentSection === 'publications' || currentSection === 'skills');
+
+      if (linkSection === currentSection || isEducationActive) {
+        linkElement.classList.add('active');
+      } else {
+        linkElement.classList.remove('active');
+      }
+    });
+  }
+
+  // Throttle function for better performance
+  function throttle(func: () => void, delay: number) {
+    let timeoutId: number | null = null;
+    return () => {
+      if (!timeoutId) {
+        timeoutId = window.setTimeout(() => {
+          func();
+          timeoutId = null;
+        }, delay);
+      }
+    };
+  }
+
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updateProgressBar();
+    updateActiveSection();
+  });
+
+  // Update on scroll with throttling for performance
+  const throttledUpdate = throttle(() => {
+    updateProgressBar();
+    updateActiveSection();
+  }, 50);
+
+  window.addEventListener('scroll', throttledUpdate);
+</script>
