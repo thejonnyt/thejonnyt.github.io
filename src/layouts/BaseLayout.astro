@@ -1,4 +1,5 @@
 ---
+import InteractiveBackground from '../components/InteractiveBackground.astro';
 import TechnicalTermTooltip from '../components/TechnicalTermTooltip.astro';
 import '../styles/global.css';
 
@@ -53,6 +54,7 @@ const pageLang = isGerman ? 'de' : lang;
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body>
+    <InteractiveBackground />
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
     <TechnicalTermTooltip />
