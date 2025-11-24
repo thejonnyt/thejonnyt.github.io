@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
 import InteractiveBackground from '../components/InteractiveBackground.astro';
 import TechnicalTermTooltip from '../components/TechnicalTermTooltip.astro';
 import '../styles/global.css';
@@ -49,6 +50,9 @@ const pageLang = isGerman ? 'de' : lang;
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- View Transitions for smooth page navigation -->
+    <ViewTransitions />
 
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "18c2944ca68243ab9c61ee755d7324fa"}'></script>
