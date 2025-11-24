@@ -17,7 +17,7 @@
     {
       "name": "Tools & Technologies",
       "skills": [
-        { "name": "Linux", "level": "competent to proficient", "years": 8 },
+        { "name": "Linux", "level": "proficient", "years": 8 },
         { "name": "Docker", "level": "proficient" },
         { "name": "Git", "level": "proficient" },
         { "name": "VSCode", "level": "proficient" },

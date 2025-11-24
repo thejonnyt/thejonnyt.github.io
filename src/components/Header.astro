@@ -3,13 +3,15 @@
 // Get current path to determine language
 const currentPath = Astro.url.pathname;
 const isGerman = currentPath.startsWith('/de');
+import CopyResumeButton from './CopyResumeButton.astro';
 ---
 
 <header class="header" role="banner">
   <div class="progress-bar" aria-hidden="true"></div>
   <div class="container header-container">
+    <a href={isGerman ? '/de' : '/'} class="logo" aria-label={isGerman ? "Startseite" : "Home"}>Johannes Tauscher</a>
+
     <nav class="nav" role="navigation" aria-label={isGerman ? "Hauptnavigation" : "Main navigation"}>
-      <a href={isGerman ? '/de' : '/'} class="logo" aria-label={isGerman ? "Startseite" : "Home"}>Johannes Tauscher</a>
       <ul class="nav-links" role="list">
         {isGerman ? (
           <>
@@ -30,10 +32,16 @@ const isGerman = currentPath.startsWith('/de');
         )}
       </ul>
     </nav>
-    <div class="lang-switcher" role="navigation" aria-label={isGerman ? "Sprachauswahl" : "Language selection"}>
-      <a href="/" class={!isGerman ? 'active' : ''} aria-label="English" aria-current={!isGerman ? 'page' : undefined} lang="en">EN</a>
-      <span class="separator" aria-hidden="true">/</span>
-      <a href="/de" class={isGerman ? 'active' : ''} aria-label="Deutsch" aria-current={isGerman ? 'page' : undefined} lang="de">DE</a>
+
+    <div class="header-actions">
+      <div class="copy-btn-wrapper">
+        <CopyResumeButton />
+      </div>
+      <div class="lang-switcher" role="navigation" aria-label={isGerman ? "Sprachauswahl" : "Language selection"}>
+        <a href="/" class={!isGerman ? 'active' : ''} aria-label="English" aria-current={!isGerman ? 'page' : undefined} lang="en">EN</a>
+        <span class="separator" aria-hidden="true">/</span>
+        <a href="/de" class={isGerman ? 'active' : ''} aria-label="Deutsch" aria-current={isGerman ? 'page' : undefined} lang="de">DE</a>
+      </div>
     </div>
   </div>
 </header>
@@ -79,13 +87,7 @@ const isGerman = currentPath.startsWith('/de');
     align-items: center;
     height: var(--header-height);
     position: relative;
-  }
-
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
+    gap: var(--space-xl);
   }
 
   .logo {
@@ -93,10 +95,18 @@ const isGerman = currentPath.startsWith('/de');
     font-size: 1.125rem;
     color: var(--color-foreground);
     transition: color var(--transition-fast);
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .logo:hover {
     color: var(--color-accent);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
   }
 
   .nav-links {
@@ -133,11 +143,22 @@ const isGerman = currentPath.startsWith('/de');
     border-radius: 2px;
   }
 
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-shrink: 0;
+  }
+
+  .copy-btn-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   .lang-switcher {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
-    margin-left: var(--space-lg);
     font-size: 0.9rem;
   }
 
@@ -165,32 +186,39 @@ const isGerman = currentPath.startsWith('/de');
 
   @media (max-width: 768px) {
     .header-container {
-      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .logo {
+      display: none;
     }
 
     .nav {
-      flex: 1 1 100%;
-    }
-
-    .lang-switcher {
-      margin-left: var(--space-md);
+      flex: 1;
     }
 
     .nav-links {
-      gap: var(--space-sm);
+      gap: var(--space-md);
       font-size: 0.85rem;
+    }
+
+    .header-actions {
+      gap: var(--space-sm);
     }
   }
 
   @media (max-width: 640px) {
-    .lang-switcher {
-      margin-left: var(--space-sm);
-      font-size: 0.85rem;
+    .header-container {
+      gap: var(--space-sm);
     }
 
     .nav-links {
-      gap: var(--space-xs);
+      gap: var(--space-sm);
       font-size: 0.8rem;
+    }
+
+    .lang-switcher {
+      font-size: 0.85rem;
     }
   }
 </style>

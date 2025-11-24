@@ -1,0 +1,9 @@
+# Generated files
+cv.typ
+output/
+
+# Personal information (keep private)
+personal.typ
+
+# Typst build artifacts
+*.pdf
