@@ -315,7 +315,13 @@ function formatDate(dateStr: string): string {
     <section id="contact" class="section contact-section">
       <h2>Kontakt</h2>
       <p>Ich bin derzeit auf der Suche nach neuen Möglichkeiten. Kontaktieren Sie mich gerne!</p>
-      <div class="badge-base LI-profile-badge" data-locale="de_DE" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="johannes-tauscher" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://de.linkedin.com/in/johannes-tauscher?trk=profile-badge">Vernetzen Sie sich mit Johannes Tauscher auf LinkedIn</a></div>
+
+      <div class="linkedin-badge-wrapper">
+        <div class="badge-base LI-profile-badge" data-locale="de_DE" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="johannes-tauscher" data-version="v1">
+          <a class="badge-base__link LI-simple-link" href="https://de.linkedin.com/in/johannes-tauscher?trk=profile-badge">Johannes Tauscher</a>
+        </div>
+      </div>
+
       <MagneticContactCarousel email={introData.email} language="de" />
     </section>
   </main>
@@ -715,6 +721,14 @@ function formatDate(dateStr: string): string {
 
   .contact-section .contact-links {
     justify-content: center;
+  }
+
+  /* LinkedIn Badge */
+  .linkedin-badge-wrapper {
+    margin: var(--space-xl) auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   /* Button */
