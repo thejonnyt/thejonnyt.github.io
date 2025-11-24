@@ -197,11 +197,23 @@ function formatDate(dateStr: string): string {
               <SkillTag skillName={tech} />
             ))}
           </div>
+          {project.links?.Podcast && (
+            <div class="audio-player-container">
+              <div class="audio-player-header">
+                <i data-lucide="headphones" class="icon" aria-hidden="true"></i>
+                <span>Listen to thesis podcast</span>
+              </div>
+              <audio controls preload="metadata" class="audio-player">
+                <source src={project.links.Podcast} type="audio/wav" />
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+          )}
           {project.links && Object.keys(project.links).length > 0 && (
             <div class="project-links">
               {Object.entries(project.links).map(([label, url]: [string, any]) => {
-                // Skip Video link as it's handled separately
-                if (label === 'Video') return null;
+                // Skip Video and Podcast links as they're handled separately
+                if (label === 'Video' || label === 'Podcast') return null;
 
                 // If the value is an object with url and text, use that
                 if (typeof url === 'object' && url.url) {
@@ -610,6 +622,48 @@ function formatDate(dateStr: string): string {
     display: flex;
     gap: var(--space-lg);
     margin-top: var(--space-md);
+  }
+
+  /* Audio Player */
+  .audio-player-container {
+    margin-top: var(--space-lg);
+    padding: var(--space-md);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: border-color var(--transition-normal);
+  }
+
+  .audio-player-container:hover {
+    border-color: var(--color-accent);
+  }
+
+  .audio-player-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .audio-player-header .icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-accent);
+  }
+
+  .audio-player {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    outline: none;
+  }
+
+  .audio-player:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 
   /* Publication items */

@@ -5,7 +5,10 @@
       "level": "competent",
       "yearsOfExperience": 3,
       "description": "General-purpose programming, backend development",
-      "usedIn": ["Introduction to Computer Science and Software Engineering during Bachelor's Degree"]
+      "usedIn": [
+        "Introduction to Computer Science and Software Engineering during Bachelor's Degree"
+      ],
+      "featured": true
     },
     "Python": {
       "category": "Programming Languages",

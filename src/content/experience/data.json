@@ -7,7 +7,7 @@
     "endDate": "2025-11",
     "current": true,
     "cvInclude": true,
-    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. Conceptualized and architected the product; led product ideation workshops; managed a 4-person development team and coordinated external IT partners.",
+    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. From Conceptualization and architecture to implementation of the product as an MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievements": [
       "Built engagement platform from 0 → 1 in 12 months on an overall €30k budget",
       "Managed and led a small development team (4 people) and coordinated external IT partnerships",
@@ -44,6 +44,10 @@
     "cvInclude": true,
     "description": "Responsible for developing and launching a startup idea as part of the {{exist}} scholarship program funded by the German Federal Ministry for Economic Affairs and Climate Action (BMWK).",
     "achievements": [
+      "Winner of the Impulse Summit 2025",
+      "Winner of the TGFS Technologiegründerfonds Sachsen Award as part of the HHL Digitale Space Program 2025",
+      "Idea is 1 of 3 winners of TechStart Dresden 2025",
+      "Top 5 out of 150 Finalists at Samsung: Solve for Tomorrow 2025",
       "Visited selected Business Seminars on diverse Topics from Leipzig University and Leipzig Graduate School of Management ({{hhl}})"
     ],
     "technologies": [
@@ -85,6 +89,8 @@
     "technologies": [
       "R",
       "Machine Learning",
+      "Decision Trees",
+      "Random Forests",
       "Statistics",
       "Interdisciplinary Collaboration"
     ]
@@ -103,7 +109,15 @@
       "Analyzed 3D-image and clinical datasets with Python and R to derive actionable diagnostic insights",
       "Integrated and managed project data using MongoDB and PostgreSQL and maintained code/versioning with Git"
     ],
-    "technologies": ["Python", "R", "R Shiny", "MongoDB", "PostgreSQL", "Git"]
+    "technologies": [
+      "Python",
+      "Convolutional Neural Networks",
+      "R",
+      "R Shiny",
+      "MongoDB",
+      "PostgreSQL",
+      "Git"
+    ]
   },
   {
     "company": "Red Bull Germany GmbH",

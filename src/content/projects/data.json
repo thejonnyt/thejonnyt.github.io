@@ -1,11 +1,64 @@
 [
   {
+    "name": "Raumdeuter",
+    "tagline": "Fanrelationship Management Software",
+    "description": "Listen. Understand. Act. The Raumdeuter Software helps Sportclubs turn fan opinions into data-driven decisions and sustainable knowledge",
+    "technologies": [
+      "way too few resources",
+      "overtime",
+      "creativity",
+      "teamwork",
+      "responsibility"
+    ],
+    "startDate": "2024",
+    "endDate": "2025",
+    "links": {
+      "User-Demo": "https://chat.dieraumdeuter.de/api/auth/auto-login",
+      "Website": "https://dieraumdeuter.de"
+    },
+    "highlights": [
+      "Raumdeuter stands for the intuition to recognize and transform opportunities, like Thomas Müller on the field. The software provides sports clubs with the tools to translate their fans' voices into successes off the field.",
+      "Quantitative surveys, summarization of similar texts using embedded vectors and clustering methods in qualitative surveys, sentiment analysis of results for early trend detection",
+      "The software integrates seamlessly into existing systems such as websites, club apps, or member portals. This keeps everything within the familiar environment of the club. Fans do not need to learn a new platform but can participate directly where they are already active.",
+      "Pilot project (website integration + users) with a football club from the region (Chemie Leipzig)"
+    ],
+    "featured": true
+  },
+  {
+    "name": "Neural Machine Translation with Pivot Strategies",
+    "tagline": "Master's Thesis on Low-Resource Language Pairs",
+    "description": "Master's thesis demonstrating that pivot translation strategies can achieve compareable translation quality with 99% less parallel training data, making NMT viable for low-resource language pairs.",
+    "technologies": [
+      "Neural Machine Translation",
+      "Pivot-Based Translation",
+      "Transformer Architecture",
+      "OpenNMT-Library",
+      "Large Language Models",
+      "Artificial Neural Networks",
+      "Bash",
+      "Python"
+    ],
+    "startDate": "2024",
+    "endDate": "2024",
+    "links": {
+      "Thesis": "/files/Thesis, Tauscher.pdf",
+      "Podcast": "/files/Thesis Podcast.wav"
+    },
+    "highlights": [
+      "Achieved 70-80% of direct translation quality using only 1% of parallel data by leveraging English as a bridge language between French and German",
+      "Best-performing pivot model showed substantial improvements over baseline: +15.4% BLEU, +5.8% chrF, and -4.7% TER scores",
+      "Demonstrated clear relationship between pivot resource availability and translation quality using transformer architecture",
+      "Provided fundamental insights for low-resource NMT and large language model development"
+    ],
+    "featured": true
+  },
+  {
     "name": "Cook Up Kitchen",
     "tagline": "PopUp Restaurant",
     "description": "A few friends and me started a repeating PopUp Restaurant in Hamburg to explore whether food blogging could be a viable marketing strategy for restaurants, which resulted in a since then lasting business opportunity for one of us.",
     "technologies": ["Hot Pan", "Oil", "Creativity", "Teamwork"],
     "startDate": "2013",
-    "endDate": "2015",
+    "endDate": "2016",
     "links": {
       "Video": "https://vimeo.com/131561210",
       "Website": "https://thefoodguide.de/"

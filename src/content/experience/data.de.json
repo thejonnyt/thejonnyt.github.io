@@ -6,7 +6,7 @@
     "startDate": "2024-11",
     "endDate": "2025-11",
     "current": true,
-    "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen, um Beteiligung und Engagement zu ermöglichen – eine Möglichkeit, seine Meinung zu äußern. Konzeption und Architektur des Produkts; Leitung von Produkt-Ideation-Workshops; Management eines 4-köpfigen Entwicklungsteams und Koordination externer IT-Partner.",
+    "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen, um Beteiligung und Engagement zu ermöglichen – eine Möglichkeit, seine Meinung zu äußern. Von Konzeption, Architektur bis Umsetzung des Produkts als MVP mit der Hilfe eines 4-köpfigen Entwicklungsteams und Koordination externer IT-Partner.",
     "achievements": [
       "Entwicklung einer Engagement-Plattform von 0 → 1 in 12 Monaten mit einem Gesamtbudget von 30.000 €",
       "Management und Leitung eines kleinen Entwicklungsteams (4 Personen) und Koordination externer IT-Partnerschaften",
@@ -42,6 +42,10 @@
     "current": false,
     "description": "Verantwortlich für die Entwicklung und den Launch einer Startup-Idee im Rahmen des {{exist}}-Stipendienprogramms, finanziert vom Bundesministerium für Wirtschaft und Klimaschutz (BMWK).",
     "achievements": [
+      "Gewinner der Impulse Summit 2025",
+      "Gewinner des TGFS Technologiegründerfonds Sachsen Awards im Rahmen des HHL Digitale Space Programms 2025",
+      "Idee ist 1 von 3 Gewinnern der TechStart Dresden 2025",
+      "Top 5 von 150 Finalist bei Samsung: Solve for Tomorrow 2025",
       "Besuch ausgewählter Business-Seminare zu verschiedenen Themen an der Universität Leipzig und der Leipzig Graduate School of Management ({{hhl}})"
     ],
     "technologies": [
@@ -59,7 +63,7 @@
     "startDate": "2022-11",
     "endDate": "2023-06",
     "current": false,
-    "description": "Verantwortlich für die Betreuung einiger talentierter Schüler",
+    "description": "Verantwortlich für die Betreuung einiger talentierter Schülerinnen und Schüler.",
     "achievements": [
       "Erstellung individuell angepasster Materialien auf Universitätsniveau, um Herausforderungen zu bieten und Interesse an Mathematik zu wecken",
       "Unterricht der mathematischen Grundlagen hinter 3D-Druck und Programmierung"
@@ -81,6 +85,8 @@
     "technologies": [
       "R",
       "Machine Learning",
+      "Decision Trees",
+      "Random Forests",
       "Statistik",
       "Interdisziplinäre Zusammenarbeit"
     ]
@@ -94,11 +100,19 @@
     "current": false,
     "description": "Als Data Analyst Praktikant bei Westphalia DataLab GmbH arbeitete ich an einem medizinischen Diagnostikprojekt, das 3D-Bildgebung und klinische Daten kombinierte; entwickelte und verbesserte ein Experiment-Tracking R/Shiny-Frontend und führte klinische Datenanalysen mit Python und R durch.",
     "achievements": [
-      "Implementierung und Verbesserung von Features für ein Experiment-Tracking R/Shiny-Frontend zur Verbesserung des Workflows und der Benutzerfreundlichkeit für Forscher",
+      "Implementierung und Verbesserung von Features für ein Experiment-Tracking R/Shiny-Frontend zur Verbesserung des Workflows und der Benutzerfreundlichkeit",
       "Analyse von 3D-Bild- und klinischen Datensätzen mit Python und R zur Ableitung umsetzbarer diagnostischer Erkenntnisse",
       "Integration und Verwaltung von Projektdaten mit MongoDB und PostgreSQL sowie Pflege von Code/Versionierung mit Git"
     ],
-    "technologies": ["Python", "R", "R Shiny", "MongoDB", "PostgreSQL", "Git"]
+    "technologies": [
+      "Python",
+      "Convolutional Neural Networks",
+      "R",
+      "R Shiny",
+      "MongoDB",
+      "PostgreSQL",
+      "Git"
+    ]
   },
   {
     "company": "Red Bull Germany GmbH",
@@ -107,9 +121,9 @@
     "startDate": "2016-03",
     "endDate": "2016-08",
     "current": false,
-    "description": "In meiner Rolle als Sport- und Athleten-Marketing-Manager aktualisierte und pflegte ich das Athleten-Portfolio als wertvolles Asset für den Marketing-Mix von Red Bull. Außerdem nahm ich am Business-Planning-Prozess für 2017 teil, indem ich Ideen generierte, diese evaluierte und für Präsentationen aufbereitete.",
+    "description": "In meiner Rolle als Sport- und Athleten-Marketing-Manager aktualisierte und pflegte ich das Athleten-Portfolio als wertvolles Asset für den Marketing-Mix von Red Bull. Außerdem nahm ich am Business-Planning-Prozess für 2017 teil, indem ich Ideen generierte, diese evaluierte und für BP-Präsentationen aufbereitete.",
     "achievements": [
-      "Team-Aktivierung von THW Kiel einschließlich personalisiertem Asset-Design und -Produktion sowie einem Flug in einem von Mateschitz' privaten Hangar-Flugzeugen",
+      "Team-Aktivierung von THW Kiel einschließlich personalisiertem Asset-Design und -Produktion sowie einem Flug in einem von Mateschitz' privaten Flugzeugen",
       "Event-Supervision und organisatorische Rolle in Projekten wie dem Hospitality-Bereich für Red Bulls VIPs beim MotoGP 2016"
     ],
     "technologies": ["Excel", "Powerpoint", "MS Office"]
@@ -125,7 +139,7 @@
     "achievements": [
       "Student Brand Manager des Jahres 2016 in Norddeutschland",
       "Organisation eigener Campus-Events und Moderation von Campus-Events anderer Student Brand Manager",
-      "Teilnahme und Unterstützung regionaler und nationaler Events wie Red Bull Seifenkistenrennen und Red Bull Coast2Coast"
+      "Teilnahme und Unterstützung diverser regionaler und nationaler Events wie Red Bull Seifenkistenrennen und Red Bull Coast2Coast"
     ],
     "technologies": ["Excel", "Powerpoint", "MS Office", "Adobe Photoshop"]
   },
@@ -136,7 +150,7 @@
     "startDate": "2011-08",
     "endDate": "2012-09",
     "current": false,
-    "description": "Beginnend als Praktikant unterstützte ich das HR-Team bei verschiedenen administrativen Aufgaben, Rekrutierungsprozessen und Mitarbeiter-Onboarding-Aktivitäten. Diese Rolle gab mir wertvolle Einblicke in HR-Abläufe innerhalb eines schnell wachsenden Startup-Unternehmens.",
+    "description": "Angefangen als Praktikant unterstützte ich das HR-Team bei verschiedenen administrativen Aufgaben, Rekrutierungsprozessen und Mitarbeiter-Onboarding-Aktivitäten. Diese Rolle gab mir wertvolle Einblicke in HR-Abläufe innerhalb eines schnell wachsenden Startup-Unternehmens.",
     "achievements": [
       "Der HR-Rekrutierungsprozess war verantwortlich für die Einstellung von 70 neuen Mitarbeitern (von 30) innerhalb eines Jahres und trug zum schnellen Wachstum des Unternehmens bei.",
       "Ich war verantwortlich für das Scouting und die Auswahl von Kandidaten, die Terminplanung von Interviews und die Koordination der Kommunikation zwischen Bewerbern und Hiring Managern, wodurch die Effizienz des Rekrutierungsprozesses verbessert wurde."

@@ -1,6 +1,6 @@
 [
   {
-    "title": "Phänotypische Unterschiede zwischen weiblichen und männlichen Personen mit Verdacht auf {{asd}}",
+    "title": "Phenotypic differences between female and male individuals with suspicion of {{asd}}",
     "authors": [
       "Sanna Stroth",
       "Johannes Tauscher",
@@ -15,7 +15,7 @@
     "venue": "Molecular Autism, 13 (1)",
     "year": 2022,
     "type": "article",
-    "abstract": "Hintergrund Obwohl {{asd}} eine häufige Entwicklungsstörung ist, ist unser Wissen über einen verhaltensbezogenen und neurobiologischen weiblichen Phänotyp noch spärlich. Da die Konzeptualisierung und das Verständnis von {{asd}} hauptsächlich auf der Untersuchung männlicher Personen basieren, werden Frauen mit {{asd}} möglicherweise nicht angemessen durch routinemäßige klinische Diagnostik identifiziert. Der vorliegende {{ml}}-Ansatz zielte darauf ab, diagnostische Informationen aus dem {{ados}} zu identifizieren, die am besten zwischen {{asd}} und Nicht-{{asd}} bei Frauen und Männern unterscheiden. Methoden {{random-forests}} wurden verwendet, um Muster von Symptomen in diagnostischen Daten aus dem {{ados}} (Module 3 und 4) bei 1057 Teilnehmern mit {{asd}} (18,1% weiblich) und 1230 Teilnehmern mit Nicht-{{asd}} (17,9% weiblich) zu entdecken. Prädiktive Leistungen reduzierter Feature-Modelle wurden bei Frauen und Männern ohne intellektuelle Beeinträchtigungen untersucht und verglichen. Ergebnisse Reduzierte Feature-Modelle beruhten auf erheblich weniger Features aus dem {{ados}} bei Frauen im Vergleich zu Männern, während sie dennoch ähnliche Klassifikationsleistungen (z.B. Sensitivität, Spezifität) erzielten. Einschränkungen Wie in früheren Studien ist die aktuelle Stichprobe von Frauen mit {{asd}} kleiner als die männliche Stichprobe, und daher könnten Frauen immer noch unterrepräsentiert sein, was die statistische Macht zur Erkennung kleiner bis moderater Effekte einschränkt. Schlussfolgerung Unsere Ergebnisse deuten nicht auf die Notwendigkeit neuer oder veränderter diagnostischer Algorithmen für Frauen mit {{asd}} hin. Obwohl wir einige phänotypische Unterschiede zwischen Frauen und Männern identifizierten, scheinen die bestehenden diagnostischen Werkzeuge die Kern-autistischen Merkmale in beiden Gruppen ausreichend zu erfassen.",
+    "abstract": "Although autism spectrum disorder ({{asd}}) is a common developmental disorder, our knowledge about a behavioral and neurobiological female {{phenotype}} is still scarce. As the conceptualization and understanding of {{asd}} are mainly based on the investigation of male individuals, females with {{asd}} may not be adequately identified by routine clinical diagnostics. The present {{ml}} approach aimed to identify diagnostic information from the Autism Diagnostic Observation Schedule ({{ados}}) that discriminates best between {{asd}} and non-{{asd}} in females and males. {{random-forests}} were used to discover patterns of symptoms in diagnostic data from the {{ados}} (modules 3 and 4) in 1057 participants with {{asd}} (18.1% female) and 1230 participants with non-{{asd}} (17.9% % female). Predictive performances of reduced feature models were explored and compared between females and males without {{intellectual-disability}}. Reduced feature models relied on considerably fewer features from the {{ados}} in females compared to males, while still yielding similar classification performance (e.g., {{sensitivity-specificity}}). As in previous studies, the current sample of females with {{asd}} is smaller than the male sample and thus, females may still be underrepresented, limiting the statistical power to detect small to moderate effects. Our results do not suggest the need for new or altered diagnostic algorithms for females with {{asd}}. Although we identified some {{phenotype}} differences between females and males, the existing diagnostic tools seem to sufficiently capture the core autistic features in both groups.",
     "links": {
       "doi": "https://doi.org/10.1186/s13229-022-00491-9"
     },
@@ -23,7 +23,7 @@
     "featured": true
   },
   {
-    "title": "Ist die Kombination von ADOS und ADI-R notwendig, um ASD zu klassifizieren? Überdenken des 'Goldstandards' bei der Diagnose von ASD",
+    "title": "Is the Combination of ADOS and ADI-R Necessary to Classify ASD? Rethinking the 'Gold Standard' in Diagnosing ASD",
     "authors": [
       "Sanna Stroth",
       "Johannes Tauscher",
@@ -38,7 +38,7 @@
     "venue": "Frontiers of Psychiatry, 12",
     "year": 2021,
     "type": "article",
-    "abstract": "Die Diagnose von {{asd}} erfordert umfangreiche klinische Expertise und Schulung sowie einen Fokus auf Differentialdiagnosen. Der diagnostische Prozess ist besonders komplex angesichts der Symptomüberlappung mit anderen psychischen Störungen und hohen Raten von gleichzeitig auftretenden körperlichen und psychischen Gesundheitsproblemen. Das Ziel dieser Studie war es, eine datengesteuerte Auswahl der relevantesten diagnostischen Informationen durchzuführen, die aus einer Verhaltensbeobachtung und einem anamnestischen Interview in zwei klinischen Stichproben von Kindern/jüngeren Jugendlichen und Jugendlichen/Erwachsenen mit Verdacht auf {{asd}} gesammelt wurden. Über {{random-forests}} entdeckte die vorliegende Studie Muster von Symptomen in den diagnostischen Daten von 2310 Teilnehmern (46% {{asd}}, 54% Nicht-{{asd}}, Altersbereich 4-72 Jahre) unter Verwendung von Daten aus dem kombinierten {{ados}} und {{adi-r}} und {{ados}}-Daten allein.",
+    "abstract": "Diagnosing autism spectrum disorder ({{asd}}) requires extensive clinical expertise and training as well as a focus on {{differential-diagnosis}}. The diagnostic process is particularly complex given symptom overlap with other mental disorders and high rates of co-occurring physical and mental health concerns. The aim of this study was to conduct a data-driven selection of the most relevant diagnostic information collected from a behavior observation and an anamnestic interview in two clinical samples of children/younger adolescents and adolescents/adults with suspected {{asd}}. Via {{random-forests}}, the present study discovered patterns of symptoms in the diagnostic data of 2310 participants (46% {{asd}}, 54% non-{{asd}}, age range 4–72 years) using data from the combined Autism Diagnostic Observation Schedule ({{ados}}) and Autism Diagnostic Interview-Revised ({{adi-r}}) and {{ados}} data alone. Classifiers built on reduced subsets of diagnostic features yield satisfactory {{sensitivity-specificity}} values. For adolescents/adults specificity values were lower compared to those for children/younger adolescents. The models including {{ados}} and {{adi-r}} data were mainly built on {{ados}} items and in the adolescent/adult sample the classifier including only {{ados}} items performed even better than the classifier including information from both instruments. Results suggest that reduced subsets of {{ados}} and {{adi-r}} items may suffice to effectively differentiate {{asd}} from other mental disorders. The imbalance of {{ados}} and {{adi-r}} items included in the models leads to the assumption that, particularly in adolescents and adults, the {{adi-r}} may play a lesser role than current behavior observations.",
     "links": {
       "doi": "https://doi.org/10.3389/fpsyt.2021.727308"
     },
@@ -46,7 +46,7 @@
     "featured": true
   },
   {
-    "title": "Identifikation der aussagekräftigsten und diskriminierendsten Merkmale aus diagnostischen Instrumenten für Kinder mit Autismus",
+    "title": "Identification of the most indicative and discriminative features from diagnostic instruments for children with autism",
     "authors": [
       "Sanna Stroth",
       "Johannes Tauscher",
@@ -61,7 +61,7 @@
     "venue": "JCPP Advances, Volume 1, Issue 2",
     "year": 2021,
     "type": "article",
-    "abstract": "Die Diagnose von {{asd}} ist komplex und zeitaufwendig. Die vorliegende Arbeit untersucht systematisch die Bedeutung von Items aus dem {{adi-r}} und {{ados}} bei der Unterscheidung von Kindern mit und ohne {{asd}}. Kenntnisse über die diskriminierendsten Merkmale und ihre zugrunde liegenden Konzepte können sich als wertvoll für zukünftige Trainingstools erweisen, die Kliniker dabei unterstützen, einen Verdacht auf {{asd}} bei nonverbalen und minimal verbalen Kindern zu erhärten oder abzuschwächen.",
+    "abstract": "Diagnosing autism spectrum disorder ({{asd}}) is complex and time-consuming. The present work systematically examines the importance of items from the Autism Diagnostic Interview-Revised ({{adi-r}}) and Autism Diagnostic Observation Schedule ({{ados}}) in discerning children with and without {{asd}}. Knowledge of the most discriminative features and their underlying concepts may prove valuable for the future training tools that assist clinicians to substantiate or extenuate a suspicion of {{asd}} in nonverbal and minimally verbal children. In two samples of nonverbal (N = 466) and minimally verbal (N = 566) children with {{asd}} (N = 509) and other mental disorders or developmental delays (N = 523), we applied {{random-forests}} to (i) the combination of {{adi-r}} and {{ados}} data versus (ii) {{ados}} data alone. We compared the predictive performance of reduced feature models against outcomes provided by models containing all features. For nonverbal children, the {{random-forests}} classifier indicated social orientation to be most powerful in differentiating {{asd}} from non-{{asd}} cases. In minimally verbal children, we find language/speech peculiarities in combination with facial/nonverbal expressions and reciprocity to be most distinctive. Based on {{ml}} strategies, we carve out those symptoms of {{asd}} that prove to be central for the differentiation of {{asd}} cases from those with other developmental or mental disorders (high {{sensitivity-specificity}} in minimally verbal children). These core concepts ought to be considered in the future training tools for clinicians.",
     "links": {
       "doi": "https://doi.org/10.1002/jcv2.12023"
     },
