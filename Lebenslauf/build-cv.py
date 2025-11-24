@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Build script to generate CV from JSON data.
-Converts src/content/*.json → cv.typ → output/cv.pdf
+Converts src/content/*.json → cv.typ → ../public/files/Johannes_Tauscher_CV.pdf
 """
 
 import json
@@ -36,9 +36,21 @@ def escape_typst(text: str) -> str:
     """Escape special characters for Typst."""
     if not text:
         return ""
-    # Remove template placeholders like {{microservices}}
     import re
+    # Remove template placeholders like {{microservices}}
     text = re.sub(r'\{\{[^}]+\}\}', '', text)
+    # Clean up multiple spaces and commas left behind
+    text = re.sub(r'\s+', ' ', text)  # Multiple spaces -> single space
+    text = re.sub(r'\s*,\s*,+\s*', ', ', text)  # Multiple commas -> single comma
+    text = re.sub(r',\s+,', ', ', text)  # ", ," -> ", "
+    text = re.sub(r':\s+,', ':', text)  # ": ," -> ":"
+    text = re.sub(r'\(\s*,\s*', '(', text)  # "(, " -> "("
+    text = re.sub(r',\s*\)', ')', text)  # ", )" -> ")"
+    text = re.sub(r',\s*$', '', text)  # Trailing comma at end
+    text = re.sub(r',\s+([.!?])', r'\1', text)  # ", ." -> "."
+    # Clean up orphaned single letters after commas (from incomplete removals)
+    text = re.sub(r',\s+[a-z]\s*$', '', text)  # ", s" at end -> ""
+    text = re.sub(r',\s+[a-z]\s+', ', ', text)  # ", s " in middle -> ", "
     # Escape special Typst characters
     text = text.replace("#", "\\#")
     text = text.replace("[", "\\[")
@@ -63,7 +75,20 @@ def generate_experience_section(data: List[Dict]) -> str:
     """Generate experience section from JSON."""
     lines = ['#section("Professional Experience")\n']
 
+    # Filter experiences: only include if cvInclude=true OR started after 2019
+    filtered = []
     for exp in data:
+        cv_include = exp.get("cvInclude", None)
+        if cv_include is True:
+            filtered.append(exp)
+        elif cv_include is None:
+            # No flag set - auto-filter by date (show 2019 onwards)
+            start = exp.get("startDate", "")
+            if start and start >= "2019-01":
+                filtered.append(exp)
+        # If cvInclude is explicitly False, skip it
+
+    for exp in filtered:
         company = escape_typst(exp.get("company", ""))
         position = escape_typst(exp.get("position", ""))
         location = escape_typst(exp.get("location", ""))
@@ -79,10 +104,10 @@ def generate_experience_section(data: List[Dict]) -> str:
 
         # Build entry call
         lines.append("#entry(")
-        lines.append(f'  title: "{position}",')
-        lines.append(f'  subtitle: "{company}",')
-        lines.append(f'  location: "{location}",')
-        lines.append(f'  date: format-date("{start}", "{end}", current: {str(current).lower()}),')
+        lines.append(f'  "{position}",')
+        lines.append(f'  "{company}",')
+        lines.append(f'  "{location}",')
+        lines.append(f'  format-date("{start}", "{end}", current: {str(current).lower()}),')
 
         if description:
             lines.append(f'  description: [{description}],')
@@ -118,16 +143,48 @@ def generate_education_section(data: List[Dict]) -> str:
         highlights = format_achievements(edu.get("highlights", []))
 
         lines.append("#simple-entry(")
-        lines.append(f'  title: "{title}",')
-        lines.append(f'  subtitle: "{institution}",')
-        lines.append(f'  location: "{location}",')
-        lines.append(f'  date: format-date("{start}", "{end}"),')
+        lines.append(f'  "{title}",')
+        lines.append(f'  "{institution}",')
+        lines.append(f'  "{location}",')
+        lines.append(f'  format-date("{start}", "{end}"),')
 
         if highlights:
             lines.append('  highlights: (')
             for hl in highlights:
                 lines.append(f'    [{hl}],')
             lines.append('  ),')
+
+        lines.append(')\n')
+
+    return '\n'.join(lines)
+
+
+def generate_publications_section(data: List[Dict]) -> str:
+    """Generate publications section from JSON."""
+    if not data:
+        return ""
+
+    lines = ['#section("Publications")\n']
+
+    for pub in data:
+        title = escape_typst(pub.get("title", ""))
+        authors = [escape_typst(a) for a in pub.get("authors", [])]
+        authors_str = ", ".join(authors)
+        venue = escape_typst(pub.get("venue", ""))
+        year = pub.get("year", "")
+        doi = pub.get("links", {}).get("doi", "")
+        citations = pub.get("citations", None)
+
+        lines.append("#publication(")
+        lines.append(f'  "{title}",')
+        lines.append(f'  "{authors_str}",')
+        lines.append(f'  "{venue}",')
+        lines.append(f'  {year},')
+
+        if doi:
+            lines.append(f'  doi: "{doi}",')
+        if citations:
+            lines.append(f'  citations: {citations},')
 
         lines.append(')\n')
 
@@ -155,8 +212,8 @@ def generate_skills_section(data: Dict) -> str:
     # Build skills section
     lines.append("#skills-section((")
     for category, skills in sorted(categories.items()):
-        skills_str = '", "'.join(skills)
-        lines.append(f'  ("{category}", ("{skills_str}")),')
+        skills_array = ", ".join([f'"{s}"' for s in skills])
+        lines.append(f'  ("{category}", ({skills_array},)),')
     lines.append('))\n')
 
     return '\n'.join(lines)
@@ -171,6 +228,7 @@ def main():
         intro = load_json(CONTENT_DIR / "intro" / "data.json")
         experience = load_json(CONTENT_DIR / "experience" / "data.json")
         education = load_json(CONTENT_DIR / "education" / "data.json")
+        publications = load_json(CONTENT_DIR / "publications" / "data.json")
         skills_db = load_json(CONTENT_DIR / "skillsDatabase.json")
     except FileNotFoundError as e:
         print(f"Error: Could not find data file: {e}")
@@ -191,14 +249,14 @@ def main():
         '#show: cv-document',
         '',
         '#cv-header(',
-        f'  name: "{name}",',
-        f'  title: "{title}",',
-        f'  email: "{email}",',
-        f'  linkedin: link("{linkedin}")[{linkedin.replace("https://", "")}],',
-        f'  github: link("{github}")[{github.replace("https://", "")}],',
-        f'  website: link("{website}")[{website.replace("https://", "")}],',
-        '  // phone: "YOUR PHONE",  // Add in personal.typ or here',
-        '  // address: "YOUR ADDRESS",  // Add in personal.typ or here',
+        f'  "{name}",',
+        f'  "{title}",',
+        f'  "{email}",',
+        f'  link("{linkedin}")[{linkedin.replace("https://", "")}],',
+        f'  link("{github}")[{github.replace("https://", "")}],',
+        f'  link("{website}")[{website.replace("https://", "")}],',
+        '  // phone: "YOUR PHONE",  // Uncomment and add your phone',
+        '  // address: "YOUR ADDRESS",  // Uncomment and add your address',
         ')',
         '',
     ]
@@ -206,6 +264,7 @@ def main():
     # Add sections
     lines.append(generate_experience_section(experience))
     lines.append(generate_education_section(education))
+    lines.append(generate_publications_section(publications))
     lines.append(generate_skills_section(skills_db))
 
     # Write output
@@ -215,8 +274,8 @@ def main():
     print(f"✓ Generated {OUTPUT_FILE}")
     print("\nNext steps:")
     print("  1. Review cv.typ and add personal info (phone, address)")
-    print("  2. Run: typst compile cv.typ output/cv.pdf")
-    print("  3. Or run: ./build-cv.sh (compiles automatically)")
+    print("  2. Run: typst compile cv.typ ../public/files/Johannes_Tauscher_CV.pdf")
+    print("  3. Or run: ./build-cv.sh (compiles automatically to public/files/)")
 
 
 if __name__ == "__main__":

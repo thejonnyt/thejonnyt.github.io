@@ -7,8 +7,8 @@
 #let light-gray = rgb("#e5e7eb")
 
 // Fonts
-#let body-font = "New Computer Modern"
-#let heading-font = "New Computer Modern Sans"
+#let body-font = "Linux Libertine"
+#let heading-font = "Linux Biolinum"
 
 // Document setup
 #let cv-document(body) = {
@@ -162,10 +162,55 @@
 
 // Skills section with categories
 #let skills-section(categories) = {
-  for (category, skills) in categories [
-    #text(weight: "bold", size: 10pt)[#category:] #skills.join(", ")
-    #v(0.4em)
+  for item in categories {
+    let category = item.at(0)
+    let skills_list = item.at(1)
+    text(weight: "bold", size: 10pt)[#category:]
+    [ ]
+    // Manual join since skills_list is a tuple
+    for (i, skill) in skills_list.enumerate() {
+      if i > 0 { [, ] }
+      skill
+    }
+    v(0.4em)
+  }
+}
+
+// Publication entry
+#let publication(
+  title,
+  authors,
+  venue,
+  year,
+  doi: none,
+  citations: none
+) = {
+  // Title in quotes
+  text(weight: "medium")[\"#title\"]
+
+  // Authors
+  v(0.1em)
+  text(size: 9.5pt, fill: gray-color)[#authors]
+
+  // Venue and year
+  v(0.1em)
+  grid(
+    columns: (1fr, auto),
+    text(size: 9.5pt, style: "italic")[#venue],
+    text(size: 9.5pt, fill: gray-color)[#year]
+  )
+
+  // DOI and citations on same line
+  if doi != none or citations != none [
+    #v(0.1em)
+    #text(size: 9pt, fill: gray-color)[
+      #if doi != none [DOI: #link(doi)[#doi.replace("https://doi.org/", "")]]
+      #if doi != none and citations != none [ • ]
+      #if citations != none [#citations citations]
+    ]
   ]
+
+  v(0.6em)
 }
 
 // Format date range

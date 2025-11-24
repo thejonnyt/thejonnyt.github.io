@@ -6,6 +6,7 @@
     "startDate": "2024-11",
     "endDate": "2025-11",
     "current": true,
+    "cvInclude": true,
     "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. Conceptualized and architected the product; led product ideation workshops; managed a 4-person development team and coordinated external IT partners.",
     "achievements": [
       "Built engagement platform from 0 → 1 in 12 months on an overall €30k budget",
@@ -40,6 +41,7 @@
     "startDate": "2024-11",
     "endDate": "2025-10",
     "current": false,
+    "cvInclude": true,
     "description": "Responsible for developing and launching a startup idea as part of the {{exist}} scholarship program funded by the German Federal Ministry for Economic Affairs and Climate Action (BMWK).",
     "achievements": [
       "Visited selected Business Seminars on diverse Topics from Leipzig University and Leipzig Graduate School of Management ({{hhl}})"
@@ -59,6 +61,7 @@
     "startDate": "2022-11",
     "endDate": "2023-06",
     "current": false,
+    "cvInclude": true,
     "description": "Responsible for the supervision of a few talented pupils",
     "achievements": [
       "Prepared customized university level material to challenge and spark interest for Mathematics",
@@ -73,6 +76,7 @@
     "startDate": "2019-05",
     "endDate": "2021-01",
     "current": false,
+    "cvInclude": true,
     "description": "Responsible for the validation and reproduction of earlier results of research aswell as for the implementation of {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
     "achievements": [
       "My analysis results contributed to multiple publications that are listed in the publications section.",
@@ -92,6 +96,7 @@
     "startDate": "2019-08",
     "endDate": "2019-10",
     "current": false,
+    "cvInclude": true,
     "description": "As a Data Analyst intern at Westphalia DataLab GmbH, I worked on a medical-diagnostics project combining 3D imaging and clinical data; developed and improved an experiment-tracking R/Shiny frontend and performed clinical-data analysis with Python and R.",
     "achievements": [
       "Implemented and enhanced features for an experiment-tracking R/Shiny frontend to improve researcher workflow and usability",
@@ -107,6 +112,7 @@
     "startDate": "2016-03",
     "endDate": "2016-08",
     "current": false,
+    "cvInclude": false,
     "description": "In my role as a Sports and Athletes Marketing Manager, I updated and maintained the Athletes Portfolio as an asset of high value to the marketing mix of Red Bull. I furthermore participated in the Business Planning Process for 2017 by generating Ideas, their evaluation and processing for presentation",
     "achievements": [
       "Team Activation of THW Kiel including personalized Asset Design and Production and a flight in one of Mateschitz's private hangar airplanes",
@@ -121,6 +127,7 @@
     "startDate": "2013-05",
     "endDate": "2016-12",
     "current": false,
+    "cvInclude": false,
     "description": "The Student Brand Manager Programm by Red Bull is designed find and educate the next generation of Red Bull Marketing Experts. As a Student Brand Manager, I was responsible for organizing guerilla marketing events and creating brand awareness among the student community. The role as a SBM allowed me to develop strong marketing and leadership skills while gaining practical experience in brand management from one of the most recognized brands worldwide.",
     "achievements": [
       "Student Brand Manager of the Year 2016 in North Germany",
@@ -136,6 +143,7 @@
     "startDate": "2011-08",
     "endDate": "2012-09",
     "current": false,
+    "cvInclude": false,
     "description": "Starting as an intern, I supported the HR team in various administrative tasks, recruitment processes, and employee onboarding activities. This role provided me with valuable insights into HR operations within a fast growing startup company.",
     "achievements": [
       "The HR recruiting process was responsible for hiring 70 new employees (from 30) within one year, contributing to the company's rapid growth.",

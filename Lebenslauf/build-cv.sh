@@ -21,20 +21,26 @@ if ! command -v typst &> /dev/null; then
     exit 1
 fi
 
-# Step 3: Create output directory
+# Step 3: Create output directories
+echo "[2/3] Creating output directories..."
 mkdir -p output
+mkdir -p ../public/files
 
-# Step 4: Compile to PDF
+# Step 4: Compile to PDF (outputs to both local and public directories)
 echo "[2/3] Compiling Typst to PDF..."
-typst compile cv.typ output/cv.pdf
+typst compile cv.typ ../public/files/Johannes_Tauscher_CV.pdf
+
+# Also create a local copy for convenience
+cp ../public/files/Johannes_Tauscher_CV.pdf output/cv.pdf
 
 echo "[3/3] Done!"
 echo ""
-echo "✓ CV generated: output/cv.pdf"
+echo "✓ CV generated: ../public/files/Johannes_Tauscher_CV.pdf"
+echo "✓ Local copy: output/cv.pdf"
 echo ""
 echo "To view:"
-echo "  xdg-open output/cv.pdf  # Linux"
-echo "  open output/cv.pdf      # macOS"
+echo "  xdg-open ../public/files/Johannes_Tauscher_CV.pdf  # Linux"
+echo "  open ../public/files/Johannes_Tauscher_CV.pdf      # macOS"
 echo ""
 echo "To watch for changes:"
-echo "  typst watch cv.typ output/cv.pdf"
+echo "  typst watch cv.typ ../public/files/Johannes_Tauscher_CV.pdf"

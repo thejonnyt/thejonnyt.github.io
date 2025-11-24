@@ -8,30 +8,32 @@ import CopyResumeButton from './CopyResumeButton.astro';
 
 <header class="header" role="banner">
   <div class="progress-bar" aria-hidden="true"></div>
-  <div class="container header-container">
+  <div class="header-wrapper">
     <a href={isGerman ? '/de' : '/'} class="logo" aria-label={isGerman ? "Startseite" : "Home"}>Johannes Tauscher</a>
 
-    <nav class="nav" role="navigation" aria-label={isGerman ? "Hauptnavigation" : "Main navigation"}>
-      <ul class="nav-links" role="list">
-        {isGerman ? (
-          <>
-            <li><a href="#about" data-section="about">Über mich</a></li>
-            <li><a href="#experience" data-section="experience">Erfahrung</a></li>
-            <li><a href="#projects" data-section="projects">Projekte</a></li>
-            <li><a href="#education" data-section="education">Ausbildung</a></li>
-            <li><a href="#contact" data-section="contact">Kontakt</a></li>
-          </>
-        ) : (
-          <>
-            <li><a href="#about" data-section="about">About</a></li>
-            <li><a href="#experience" data-section="experience">Experience</a></li>
-            <li><a href="#projects" data-section="projects">Projects</a></li>
-            <li><a href="#education" data-section="education">Education</a></li>
-            <li><a href="#contact" data-section="contact">Contact</a></li>
-          </>
-        )}
-      </ul>
-    </nav>
+    <div class="header-content container">
+      <nav class="nav" role="navigation" aria-label={isGerman ? "Hauptnavigation" : "Main navigation"}>
+        <ul class="nav-links" role="list">
+          {isGerman ? (
+            <>
+              <li><a href="#about" data-section="about">Über mich</a></li>
+              <li><a href="#experience" data-section="experience">Erfahrung</a></li>
+              <li><a href="#projects" data-section="projects">Projekte</a></li>
+              <li><a href="#education" data-section="education">Ausbildung</a></li>
+              <li><a href="#contact" data-section="contact">Kontakt</a></li>
+            </>
+          ) : (
+            <>
+              <li><a href="#about" data-section="about">About</a></li>
+              <li><a href="#experience" data-section="experience">Experience</a></li>
+              <li><a href="#projects" data-section="projects">Projects</a></li>
+              <li><a href="#education" data-section="education">Education</a></li>
+              <li><a href="#contact" data-section="contact">Contact</a></li>
+            </>
+          )}
+        </ul>
+      </nav>
+    </div>
 
     <div class="header-actions">
       <div class="copy-btn-wrapper">
@@ -81,13 +83,14 @@ import CopyResumeButton from './CopyResumeButton.astro';
     }
   }
 
-  .header-container {
+  .header-wrapper {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: var(--header-height);
     position: relative;
     gap: var(--space-xl);
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
   }
 
   .logo {
@@ -103,14 +106,23 @@ import CopyResumeButton from './CopyResumeButton.astro';
     color: var(--color-accent);
   }
 
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
   .nav {
     display: flex;
     align-items: center;
-    flex: 1;
   }
 
   .nav-links {
     display: flex;
+    justify-content: center;
     gap: var(--space-lg);
     list-style: none;
     margin: 0;
@@ -185,12 +197,18 @@ import CopyResumeButton from './CopyResumeButton.astro';
   }
 
   @media (max-width: 768px) {
-    .header-container {
+    .header-wrapper {
       gap: var(--space-md);
+      padding-left: var(--space-lg);
     }
 
     .logo {
       display: none;
+    }
+
+    .header-content {
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .nav {
@@ -208,7 +226,7 @@ import CopyResumeButton from './CopyResumeButton.astro';
   }
 
   @media (max-width: 640px) {
-    .header-container {
+    .header-wrapper {
       gap: var(--space-sm);
     }
 
