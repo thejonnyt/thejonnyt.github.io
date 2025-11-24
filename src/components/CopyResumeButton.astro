@@ -77,6 +77,12 @@ const cvJSON = JSON.stringify(machineReadableCV, null, 2);
     <line x1="6" y1="6" x2="18" y2="18"></line>
   </svg>
   <span class="toast-message"></span>
+  <button class="toast-close" aria-label="Close notification">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg>
+  </button>
 </div>
 
 <style>
@@ -198,11 +204,36 @@ const cvJSON = JSON.stringify(machineReadableCV, null, 2);
   .toast-notification.show {
     transform: translateY(calc(100px + var(--space-lg)));
     opacity: 1;
+    pointer-events: auto;
   }
 
   .toast-icon {
     flex-shrink: 0;
     color: var(--color-accent);
+  }
+
+  .toast-close {
+    background: none;
+    border: none;
+    padding: 4px;
+    margin-left: var(--space-xs);
+    cursor: pointer;
+    color: var(--color-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .toast-close:hover {
+    background: var(--color-border);
+    color: var(--color-foreground);
+  }
+
+  .toast-close:active {
+    transform: scale(0.9);
   }
 
   .toast-icon-success {
@@ -243,6 +274,23 @@ const cvJSON = JSON.stringify(machineReadableCV, null, 2);
 </style>
 
 <script>
+  // Store timeout ID to allow manual clearing
+  let toastTimeout: number | null = null;
+
+  // Function to hide toast
+  function hideToast() {
+    const toast = document.getElementById('copy-toast') as HTMLElement;
+    if (!toast) return;
+
+    // Clear any existing timeout
+    if (toastTimeout !== null) {
+      clearTimeout(toastTimeout);
+      toastTimeout = null;
+    }
+
+    toast.classList.remove('show');
+  }
+
   // Function to show toast notification
   function showToast(message: string, type: 'success' | 'error' = 'success') {
     const toast = document.getElementById('copy-toast') as HTMLElement;
@@ -250,6 +298,11 @@ const cvJSON = JSON.stringify(machineReadableCV, null, 2);
 
     const messageEl = toast.querySelector('.toast-message') as HTMLElement;
     if (!messageEl) return;
+
+    // Clear any existing timeout first
+    if (toastTimeout !== null) {
+      clearTimeout(toastTimeout);
+    }
 
     // Set message
     messageEl.textContent = message;
@@ -259,12 +312,19 @@ const cvJSON = JSON.stringify(machineReadableCV, null, 2);
     toast.classList.add(type, 'show');
 
     // Hide after 3 seconds
-    setTimeout(() => {
+    toastTimeout = window.setTimeout(() => {
       toast.classList.remove('show');
-    }, 3000);
+      toastTimeout = null;
+    }, 3000) as unknown as number;
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Handle toast close button
+    const toastCloseBtn = document.querySelector('#copy-toast .toast-close') as HTMLButtonElement;
+    if (toastCloseBtn) {
+      toastCloseBtn.addEventListener('click', hideToast);
+    }
+
     // Handle PDF download button
     const downloadBtn = document.getElementById('download-pdf-btn') as HTMLButtonElement;
     if (downloadBtn) {

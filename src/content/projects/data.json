@@ -4,7 +4,7 @@
     "tagline": "Fanrelationship Management Software",
     "description": "Listen. Understand. Act. The Raumdeuter Software helps Sportclubs turn fan opinions into data-driven decisions and sustainable knowledge",
     "technologies": [
-      "way too few resources",
+      "way to few resources",
       "overtime",
       "creativity",
       "teamwork",
@@ -13,6 +13,7 @@
     "startDate": "2024",
     "endDate": "2025",
     "links": {
+      "LinkedIn": "https://www.linkedin.com/company/dieraumdeuter/",
       "User-Demo": "https://chat.dieraumdeuter.de/api/auth/auto-login",
       "Website": "https://dieraumdeuter.de"
     },
@@ -42,7 +43,7 @@
     "endDate": "2024",
     "links": {
       "Thesis": "/files/Thesis, Tauscher.pdf",
-      "Podcast": "/files/Thesis Podcast.wav"
+      "Podcast": "/files/Thesis Podcast.mp3"
     },
     "highlights": [
       "Achieved 70-80% of direct translation quality using only 1% of parallel data by leveraging English as a bridge language between French and German",
@@ -61,7 +62,7 @@
     "endDate": "2016",
     "links": {
       "Video": "https://vimeo.com/131561210",
-      "Website": "https://thefoodguide.de/"
+      "resulted in": "https://thefoodguide.de/"
     },
     "highlights": [
       "2nd Event: Video produced by professional videographer available on Vimeo",

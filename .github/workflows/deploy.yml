@@ -29,6 +29,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install Typst
+        uses: typst-community/setup-typst@v3
+        with:
+          typst-version: 'latest'
+
+      - name: Build CV
+        run: |
+          cd Lebenslauf
+          python3 build-cv.py
+          typst compile cv.typ ../public/files/Johannes_Tauscher_CV.pdf
+          echo "✓ CV generated at public/files/Johannes_Tauscher_CV.pdf"
+
       - name: Build site
         run: npm run build
 

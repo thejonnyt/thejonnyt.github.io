@@ -1,0 +1,1221 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+}
+
+const { src, title = "Podcast" } = Astro.props;
+---
+
+<div class="podcast-player-wrapper" data-src={src} data-title={title}>
+  <!-- Main Audio Player -->
+  <div class="audio-player-container">
+    <div class="audio-player-header">
+      <i data-lucide="headphones" class="icon" aria-hidden="true"></i>
+      <span>{title}</span>
+    </div>
+
+    <div class="custom-audio-player">
+      <audio preload="none" crossorigin="anonymous" class="hidden-audio">
+        <source src={src} type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+
+      <div class="player-controls">
+        <button class="play-pause-btn" aria-label="Play/Pause">
+          <i data-lucide="play" class="icon play-icon" aria-hidden="true"></i>
+          <i data-lucide="pause" class="icon pause-icon" style="display: none;" aria-hidden="true"></i>
+        </button>
+
+        <div class="time-display">
+          <span class="current-time">0:00</span>
+          <span class="separator">/</span>
+          <span class="duration">0:00</span>
+        </div>
+
+        <div class="progress-container">
+          <input
+            type="range"
+            class="progress-bar"
+            min="0"
+            max="100"
+            value="0"
+            aria-label="Seek"
+          />
+        </div>
+
+        <div class="volume-control">
+          <button class="volume-btn" aria-label="Mute/Unmute">
+            <i data-lucide="volume-2" class="icon volume-icon" aria-hidden="true"></i>
+            <i data-lucide="volume-x" class="icon muted-icon" style="display: none;" aria-hidden="true"></i>
+          </button>
+          <input
+            type="range"
+            class="volume-slider"
+            min="0"
+            max="100"
+            value="100"
+            aria-label="Volume"
+          />
+        </div>
+
+        <div class="speed-control">
+          <button class="speed-btn" aria-label="Playback speed">
+            <span class="speed-value">1×</span>
+          </button>
+          <div class="speed-menu" style="display: none;">
+            <button data-speed="0.5">0.5×</button>
+            <button data-speed="0.75">0.75×</button>
+            <button data-speed="1" class="active">1×</button>
+            <button data-speed="1.25">1.25×</button>
+            <button data-speed="1.5">1.5×</button>
+            <button data-speed="1.75">1.75×</button>
+            <button data-speed="2">2×</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini Sticky Player (shown when scrolled away) -->
+  <div class="mini-player" style="display: none;">
+    <div class="mini-player-content">
+      <button class="mini-play-pause-btn" aria-label="Play/Pause">
+        <i data-lucide="play" class="icon mini-play-icon" aria-hidden="true"></i>
+        <i data-lucide="pause" class="icon mini-pause-icon" style="display: none;" aria-hidden="true"></i>
+      </button>
+
+      <div class="mini-info">
+        <span class="mini-title">{title}</span>
+        <span class="mini-time">0:00 / 0:00</span>
+      </div>
+
+      <div class="mini-progress-container">
+        <input
+          type="range"
+          class="mini-progress-bar"
+          min="0"
+          max="100"
+          value="0"
+          aria-label="Seek"
+        />
+      </div>
+
+      <div class="mini-volume-control">
+        <button class="mini-volume-btn" aria-label="Volume">
+          <i data-lucide="volume-2" class="icon mini-volume-icon" aria-hidden="true"></i>
+          <i data-lucide="volume-x" class="icon mini-muted-icon" style="display: none;" aria-hidden="true"></i>
+        </button>
+        <div class="mini-volume-slider-container">
+          <input
+            type="range"
+            class="mini-volume-slider"
+            min="0"
+            max="100"
+            value="100"
+            aria-label="Volume"
+          />
+        </div>
+      </div>
+
+      <div class="mini-speed-control">
+        <button class="mini-speed-btn" aria-label="Playback speed">
+          <span class="mini-speed-value">1×</span>
+        </button>
+        <div class="mini-speed-menu" style="display: none;">
+          <button data-speed="0.5">0.5×</button>
+          <button data-speed="0.75">0.75×</button>
+          <button data-speed="1" class="active">1×</button>
+          <button data-speed="1.25">1.25×</button>
+          <button data-speed="1.5">1.5×</button>
+          <button data-speed="1.75">1.75×</button>
+          <button data-speed="2">2×</button>
+        </div>
+      </div>
+
+      <button class="mini-minimize-btn" aria-label="Minimize player">
+        <i data-lucide="minimize-2" class="icon" aria-hidden="true"></i>
+      </button>
+
+      <button class="mini-close-btn" aria-label="Stop and close player">
+        <i data-lucide="x" class="icon" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Minimized Player (ultra-compact) -->
+  <div class="minimized-player" style="display: none;">
+    <button class="minimized-play-pause-btn" aria-label="Play/Pause">
+      <i data-lucide="play" class="icon minimized-play-icon" aria-hidden="true"></i>
+      <i data-lucide="pause" class="icon minimized-pause-icon" style="display: none;" aria-hidden="true"></i>
+    </button>
+    <span class="minimized-time">0:00 / 0:00</span>
+    <button class="minimized-expand-btn" aria-label="Expand player">
+      <i data-lucide="maximize-2" class="icon" aria-hidden="true"></i>
+    </button>
+    <button class="minimized-close-btn" aria-label="Stop and close player">
+      <i data-lucide="x" class="icon" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+
+<style>
+  .hidden-audio {
+    display: none;
+  }
+
+  /* Main Audio Player */
+  .audio-player-container {
+    margin-top: var(--space-lg);
+    padding: var(--space-md);
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: border-color var(--transition-normal);
+  }
+
+  .audio-player-container:hover {
+    border-color: var(--color-accent);
+  }
+
+  .audio-player-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .audio-player-header .icon {
+    width: 18px;
+    height: 18px;
+    color: var(--color-accent);
+  }
+
+  .custom-audio-player {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .player-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  .play-pause-btn {
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .play-pause-btn:hover {
+    background: var(--color-accent-hover);
+    transform: scale(1.05);
+  }
+
+  .play-pause-btn .icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+  }
+
+  .play-pause-btn .play-icon {
+    display: inline-block;
+  }
+
+  .play-pause-btn .pause-icon {
+    display: none;
+  }
+
+  .time-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    font-family: 'Courier New', monospace;
+    min-width: 90px;
+    flex-shrink: 0;
+  }
+
+  .progress-container {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--color-border);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    transition: transform var(--transition-fast);
+  }
+
+  .progress-bar::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  .progress-bar::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    border: none;
+    transition: transform var(--transition-fast);
+  }
+
+  .progress-bar::-moz-range-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  .volume-control {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .volume-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-fast);
+  }
+
+  .volume-btn:hover {
+    color: var(--color-accent);
+  }
+
+  .volume-btn .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .volume-slider {
+    width: 80px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--color-border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+  }
+
+  .volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    border: none;
+  }
+
+  .speed-control {
+    position: relative;
+  }
+
+  .speed-btn {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: var(--space-xs) var(--space-sm);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-fast);
+    min-width: 48px;
+  }
+
+  .speed-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .speed-menu {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: var(--space-xs);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: var(--space-xs);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+  }
+
+  .speed-menu button {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: var(--space-xs) var(--space-md);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    text-align: left;
+    border-radius: 4px;
+    transition: all var(--transition-fast);
+  }
+
+  .speed-menu button:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .speed-menu button.active {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  /* Mini Player (Sticky) */
+  .mini-player {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: var(--space-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    min-width: 600px;
+    animation: slideInUp 0.3s ease-out;
+    overflow: visible;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .mini-player-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .mini-play-pause-btn {
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .mini-play-pause-btn:hover {
+    background: var(--color-accent-hover);
+    transform: scale(1.05);
+  }
+
+  .mini-play-pause-btn .icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+  }
+
+  .mini-play-pause-btn .mini-play-icon {
+    display: inline-block;
+  }
+
+  .mini-play-pause-btn .mini-pause-icon {
+    display: none;
+  }
+
+  .mini-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 100px;
+  }
+
+  .mini-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mini-time {
+    font-size: 0.7rem;
+    color: var(--color-text-secondary);
+    font-family: 'Courier New', monospace;
+  }
+
+  .mini-progress-container {
+    flex: 1;
+    min-width: 80px;
+  }
+
+  .mini-progress-bar {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--color-border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .mini-progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+  }
+
+  .mini-progress-bar::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    border: none;
+  }
+
+  .mini-volume-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .mini-volume-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-fast);
+  }
+
+  .mini-volume-btn:hover {
+    color: var(--color-accent);
+  }
+
+  .mini-volume-btn .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .mini-volume-slider-container {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 12px;
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: var(--space-md) var(--space-xs);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 20px;
+  }
+
+  .mini-volume-slider-container::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 16px;
+  }
+
+  .mini-volume-control:hover .mini-volume-slider-container,
+  .mini-volume-slider-container:hover {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .mini-volume-slider {
+    width: 90px;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--color-border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+    transform: rotate(-90deg);
+    transform-origin: center;
+  }
+
+  .mini-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+  }
+
+  .mini-volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    border: none;
+  }
+
+  .mini-speed-control {
+    position: relative;
+  }
+
+  .mini-speed-btn {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: all var(--transition-fast);
+    min-width: 40px;
+  }
+
+  .mini-speed-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .mini-speed-menu {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: var(--space-xs);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: var(--space-xs);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+  }
+
+  .mini-speed-menu button {
+    display: block;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: var(--space-xs) var(--space-sm);
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    text-align: left;
+    border-radius: 4px;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+  }
+
+  .mini-speed-menu button:hover {
+    background: var(--color-accent);
+    color: white;
+  }
+
+  .mini-speed-menu button.active {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .mini-minimize-btn,
+  .mini-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-fast);
+    flex-shrink: 0;
+    margin-left: var(--space-xs);
+  }
+
+  .mini-minimize-btn:hover,
+  .mini-close-btn:hover {
+    color: var(--color-accent);
+  }
+
+  .mini-minimize-btn .icon,
+  .mini-close-btn .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Minimized Player (Ultra-Compact) */
+  .minimized-player {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: var(--space-sm) var(--space-md);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: slideInUp 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .minimized-play-pause-btn {
+    background: var(--color-accent);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .minimized-play-pause-btn:hover {
+    background: var(--color-accent-hover);
+    transform: scale(1.05);
+  }
+
+  .minimized-play-pause-btn .icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+  }
+
+  .minimized-play-pause-btn .minimized-play-icon {
+    display: inline-block;
+  }
+
+  .minimized-play-pause-btn .minimized-pause-icon {
+    display: none;
+  }
+
+  .minimized-time {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    font-family: 'Courier New', monospace;
+    min-width: 90px;
+  }
+
+  .minimized-expand-btn,
+  .minimized-close-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-fast);
+    flex-shrink: 0;
+  }
+
+  .minimized-expand-btn:hover,
+  .minimized-close-btn:hover {
+    color: var(--color-accent);
+  }
+
+  .minimized-expand-btn .icon,
+  .minimized-close-btn .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .player-controls {
+      flex-wrap: wrap;
+    }
+
+    .progress-container {
+      order: 10;
+      width: 100%;
+      flex: unset;
+    }
+
+    .mini-player {
+      left: var(--space-sm);
+      right: var(--space-sm);
+      bottom: var(--space-sm);
+      min-width: unset;
+    }
+
+    .mini-player-content {
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .mini-progress-container {
+      order: 10;
+      width: 100%;
+      flex: unset;
+    }
+
+    .mini-info {
+      min-width: 80px;
+      max-width: 140px;
+    }
+
+    .volume-slider {
+      width: 60px;
+    }
+
+    .mini-minimize-btn,
+    .mini-close-btn {
+      order: 11;
+      margin-left: 0;
+    }
+
+    .minimized-player {
+      left: var(--space-sm);
+      right: var(--space-sm);
+      bottom: var(--space-sm);
+    }
+
+    .minimized-time {
+      font-size: 0.75rem;
+      min-width: 80px;
+    }
+  }
+</style>
+
+<script>
+  function initPodcastPlayer() {
+    const wrapper = document.querySelector('.podcast-player-wrapper') as HTMLElement;
+    if (!wrapper) return;
+
+    const audio = wrapper.querySelector('.hidden-audio') as HTMLAudioElement;
+    const mainContainer = wrapper.querySelector('.audio-player-container') as HTMLElement;
+    const miniPlayer = wrapper.querySelector('.mini-player') as HTMLElement;
+    const minimizedPlayer = wrapper.querySelector('.minimized-player') as HTMLElement;
+
+    // Main player elements
+    const playPauseBtn = wrapper.querySelector('.play-pause-btn') as HTMLButtonElement;
+    const playIcon = wrapper.querySelector('.play-icon') as HTMLElement;
+    const pauseIcon = wrapper.querySelector('.pause-icon') as HTMLElement;
+    const currentTimeEl = wrapper.querySelector('.current-time') as HTMLElement;
+    const durationEl = wrapper.querySelector('.duration') as HTMLElement;
+    const progressBar = wrapper.querySelector('.progress-bar') as HTMLInputElement;
+    const volumeBtn = wrapper.querySelector('.volume-btn') as HTMLButtonElement;
+    const volumeIcon = wrapper.querySelector('.volume-icon') as HTMLElement;
+    const mutedIcon = wrapper.querySelector('.muted-icon') as HTMLElement;
+    const volumeSlider = wrapper.querySelector('.volume-slider') as HTMLInputElement;
+    const speedBtn = wrapper.querySelector('.speed-btn') as HTMLButtonElement;
+    const speedValue = wrapper.querySelector('.speed-value') as HTMLElement;
+    const speedMenu = wrapper.querySelector('.speed-menu') as HTMLElement;
+
+    // Mini player elements
+    const miniPlayPauseBtn = wrapper.querySelector('.mini-play-pause-btn') as HTMLButtonElement;
+    const miniPlayIcon = wrapper.querySelector('.mini-play-icon') as HTMLElement;
+    const miniPauseIcon = wrapper.querySelector('.mini-pause-icon') as HTMLElement;
+    const miniTime = wrapper.querySelector('.mini-time') as HTMLElement;
+    const miniProgressBar = wrapper.querySelector('.mini-progress-bar') as HTMLInputElement;
+    const miniVolumeBtn = wrapper.querySelector('.mini-volume-btn') as HTMLButtonElement;
+    const miniVolumeIcon = wrapper.querySelector('.mini-volume-icon') as HTMLElement;
+    const miniMutedIcon = wrapper.querySelector('.mini-muted-icon') as HTMLElement;
+    const miniVolumeSlider = wrapper.querySelector('.mini-volume-slider') as HTMLInputElement;
+    const miniSpeedBtn = wrapper.querySelector('.mini-speed-btn') as HTMLButtonElement;
+    const miniSpeedValue = wrapper.querySelector('.mini-speed-value') as HTMLElement;
+    const miniSpeedMenu = wrapper.querySelector('.mini-speed-menu') as HTMLElement;
+    const miniMinimizeBtn = wrapper.querySelector('.mini-minimize-btn') as HTMLButtonElement;
+    const miniCloseBtn = wrapper.querySelector('.mini-close-btn') as HTMLButtonElement;
+
+    // Minimized player elements
+    const minimizedPlayPauseBtn = wrapper.querySelector('.minimized-play-pause-btn') as HTMLButtonElement;
+    const minimizedPlayIcon = wrapper.querySelector('.minimized-play-icon') as HTMLElement;
+    const minimizedPauseIcon = wrapper.querySelector('.minimized-pause-icon') as HTMLElement;
+    const minimizedTime = wrapper.querySelector('.minimized-time') as HTMLElement;
+    const minimizedExpandBtn = wrapper.querySelector('.minimized-expand-btn') as HTMLButtonElement;
+    const minimizedCloseBtn = wrapper.querySelector('.minimized-close-btn') as HTMLButtonElement;
+
+    let isUserManuallyHidingMini = false;
+
+    // LocalStorage key for saving playback position
+    const storageKey = `podcast-position-${audio.src}`;
+
+    // Format time helper
+    function formatTime(seconds: number): string {
+      if (isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Save playback position to localStorage
+    function savePlaybackPosition() {
+      if (audio.currentTime > 0 && audio.currentTime < audio.duration - 5) {
+        localStorage.setItem(storageKey, JSON.stringify({
+          currentTime: audio.currentTime,
+          duration: audio.duration,
+          timestamp: Date.now()
+        }));
+      }
+    }
+
+    // Restore playback position from localStorage
+    function restorePlaybackPosition() {
+      try {
+        const saved = localStorage.getItem(storageKey);
+        if (saved) {
+          const data = JSON.parse(saved);
+          // Only restore if saved within last 7 days
+          const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+          if (data.timestamp > sevenDaysAgo && data.currentTime > 5) {
+            audio.currentTime = data.currentTime;
+            console.log(`Resumed playback from ${formatTime(data.currentTime)}`);
+          }
+        }
+      } catch (e) {
+        console.error('Failed to restore playback position:', e);
+      }
+    }
+
+    // Clear saved position
+    function clearPlaybackPosition() {
+      localStorage.removeItem(storageKey);
+    }
+
+    // Play/Pause functionality
+    function togglePlayPause() {
+      if (audio.paused) {
+        audio.play();
+        updatePlayPauseIcons(true);
+      } else {
+        audio.pause();
+        updatePlayPauseIcons(false);
+      }
+    }
+
+    function updatePlayPauseIcons(isPlaying: boolean) {
+      if (isPlaying) {
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'inline-block';
+        miniPlayIcon.style.display = 'none';
+        miniPauseIcon.style.display = 'inline-block';
+        minimizedPlayIcon.style.display = 'none';
+        minimizedPauseIcon.style.display = 'inline-block';
+      } else {
+        playIcon.style.display = 'inline-block';
+        pauseIcon.style.display = 'none';
+        miniPlayIcon.style.display = 'inline-block';
+        miniPauseIcon.style.display = 'none';
+        minimizedPlayIcon.style.display = 'inline-block';
+        minimizedPauseIcon.style.display = 'none';
+      }
+    }
+
+    playPauseBtn?.addEventListener('click', togglePlayPause);
+    miniPlayPauseBtn?.addEventListener('click', togglePlayPause);
+    minimizedPlayPauseBtn?.addEventListener('click', togglePlayPause);
+
+    // Update time and progress
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+      // Restore saved playback position
+      restorePlaybackPosition();
+    });
+
+    // Auto-save playback position every 5 seconds
+    let autoSaveInterval: number;
+    audio.addEventListener('play', () => {
+      autoSaveInterval = window.setInterval(savePlaybackPosition, 5000);
+    });
+
+    audio.addEventListener('pause', () => {
+      clearInterval(autoSaveInterval);
+      savePlaybackPosition();
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      const currentTime = audio.currentTime;
+      const duration = audio.duration;
+
+      currentTimeEl.textContent = formatTime(currentTime);
+      miniTime.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+      minimizedTime.textContent = `${formatTime(currentTime)} / ${formatTime(duration)}`;
+
+      if (duration) {
+        const progress = (currentTime / duration) * 100;
+        progressBar.value = progress.toString();
+        miniProgressBar.value = progress.toString();
+      }
+    });
+
+    // Seek functionality
+    function seek(e: Event) {
+      const target = e.target as HTMLInputElement;
+      const seekTime = (parseFloat(target.value) / 100) * audio.duration;
+      audio.currentTime = seekTime;
+    }
+
+    progressBar?.addEventListener('input', seek);
+    miniProgressBar?.addEventListener('input', seek);
+
+    // Volume control
+    function updateVolume(value: number) {
+      audio.volume = value / 100;
+      volumeSlider.value = value.toString();
+      miniVolumeSlider.value = value.toString();
+
+      if (value === 0) {
+        volumeIcon.style.display = 'none';
+        mutedIcon.style.display = 'inline-block';
+        miniVolumeIcon.style.display = 'none';
+        miniMutedIcon.style.display = 'inline-block';
+      } else {
+        volumeIcon.style.display = 'inline-block';
+        mutedIcon.style.display = 'none';
+        miniVolumeIcon.style.display = 'inline-block';
+        miniMutedIcon.style.display = 'none';
+      }
+    }
+
+    volumeSlider?.addEventListener('input', (e) => {
+      updateVolume(parseFloat((e.target as HTMLInputElement).value));
+    });
+
+    miniVolumeSlider?.addEventListener('input', (e) => {
+      updateVolume(parseFloat((e.target as HTMLInputElement).value));
+    });
+
+    // Mute toggle
+    let previousVolume = 100;
+    function toggleMute() {
+      if (audio.volume > 0) {
+        previousVolume = audio.volume * 100;
+        updateVolume(0);
+      } else {
+        updateVolume(previousVolume);
+      }
+    }
+
+    volumeBtn?.addEventListener('click', toggleMute);
+    miniVolumeBtn?.addEventListener('click', toggleMute);
+
+    // Speed control
+    function setSpeed(speed: number) {
+      audio.playbackRate = speed;
+      speedValue.textContent = `${speed}×`;
+      miniSpeedValue.textContent = `${speed}×`;
+
+      // Update active state in menus
+      wrapper.querySelectorAll('.speed-menu button, .mini-speed-menu button').forEach(btn => {
+        btn.classList.remove('active');
+        if (parseFloat((btn as HTMLElement).dataset.speed || '1') === speed) {
+          btn.classList.add('active');
+        }
+      });
+    }
+
+    // Speed button toggle
+    speedBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      speedMenu.style.display = speedMenu.style.display === 'none' ? 'block' : 'none';
+    });
+
+    miniSpeedBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      miniSpeedMenu.style.display = miniSpeedMenu.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Speed menu item clicks
+    wrapper.querySelectorAll('.speed-menu button, .mini-speed-menu button').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const speed = parseFloat((e.target as HTMLElement).dataset.speed || '1');
+        setSpeed(speed);
+        speedMenu.style.display = 'none';
+        miniSpeedMenu.style.display = 'none';
+      });
+    });
+
+    // Close speed menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!speedBtn?.contains(e.target as Node) && !speedMenu?.contains(e.target as Node)) {
+        speedMenu.style.display = 'none';
+      }
+      if (!miniSpeedBtn?.contains(e.target as Node) && !miniSpeedMenu?.contains(e.target as Node)) {
+        miniSpeedMenu.style.display = 'none';
+      }
+    });
+
+    // Mini player visibility based on scroll
+    let miniPlayerTimeout: number;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // Show mini player if main player is not visible and audio has been played
+        if (!entry.isIntersecting && (audio.currentTime > 0 || !audio.paused) && !isUserManuallyHidingMini) {
+          clearTimeout(miniPlayerTimeout);
+          // Only show mini player if minimized player is not visible
+          if (minimizedPlayer.style.display !== 'flex') {
+            miniPlayer.style.display = 'block';
+          }
+          // Re-initialize Lucide icons for mini player
+          if (typeof (window as any).lucide !== 'undefined') {
+            (window as any).lucide.createIcons();
+          }
+        } else if (entry.isIntersecting) {
+          // Hide both players when main player is visible and reset manual hiding flag
+          miniPlayerTimeout = window.setTimeout(() => {
+            miniPlayer.style.display = 'none';
+            minimizedPlayer.style.display = 'none';
+            isUserManuallyHidingMini = false;
+          }, 300);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    observer.observe(mainContainer);
+
+    // Minimize mini player (show minimized version)
+    miniMinimizeBtn?.addEventListener('click', () => {
+      miniPlayer.style.display = 'none';
+      minimizedPlayer.style.display = 'flex';
+      if (typeof (window as any).lucide !== 'undefined') {
+        (window as any).lucide.createIcons();
+      }
+    });
+
+    // Expand minimized player (show full mini player)
+    minimizedExpandBtn?.addEventListener('click', () => {
+      minimizedPlayer.style.display = 'none';
+      miniPlayer.style.display = 'block';
+      if (typeof (window as any).lucide !== 'undefined') {
+        (window as any).lucide.createIcons();
+      }
+    });
+
+    // Close mini player button - Pause and hide (save position)
+    miniCloseBtn?.addEventListener('click', () => {
+      audio.pause();
+      savePlaybackPosition();
+      updatePlayPauseIcons(false);
+      miniPlayer.style.display = 'none';
+      minimizedPlayer.style.display = 'none';
+      isUserManuallyHidingMini = true;
+    });
+
+    // Close minimized player button - Pause and hide (save position)
+    minimizedCloseBtn?.addEventListener('click', () => {
+      audio.pause();
+      savePlaybackPosition();
+      updatePlayPauseIcons(false);
+      miniPlayer.style.display = 'none';
+      minimizedPlayer.style.display = 'none';
+      isUserManuallyHidingMini = true;
+    });
+
+    // Handle audio end - Clear saved position when podcast completes
+    audio.addEventListener('ended', () => {
+      clearPlaybackPosition();
+      updatePlayPauseIcons(false);
+      miniPlayer.style.display = 'none';
+      minimizedPlayer.style.display = 'none';
+    });
+
+    // Save position when page is about to unload
+    window.addEventListener('beforeunload', () => {
+      if (!audio.paused) {
+        savePlaybackPosition();
+      }
+    });
+
+    // Initialize play/pause icons to show play by default
+    updatePlayPauseIcons(false);
+
+    // Initialize Lucide icons
+    if (typeof (window as any).lucide !== 'undefined') {
+      (window as any).lucide.createIcons();
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPodcastPlayer);
+  } else {
+    initPodcastPlayer();
+  }
+</script>
