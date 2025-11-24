@@ -316,10 +316,57 @@ import CopyResumeButton from './CopyResumeButton.astro';
     };
   }
 
+  // Get currently active section
+  function getCurrentSection(): string {
+    const sections = document.querySelectorAll('section[id]');
+    const scrollPosition = window.scrollY + 150;
+
+    // Check if at bottom of page
+    const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50;
+
+    if (isAtBottom && sections.length > 0) {
+      const lastSection = sections[sections.length - 1];
+      return lastSection?.getAttribute('id') || '';
+    }
+
+    // Normal scroll detection
+    let currentSection = '';
+    sections.forEach((section) => {
+      const sectionTop = (section as HTMLElement).offsetTop;
+      const sectionHeight = (section as HTMLElement).clientHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        currentSection = section.getAttribute('id') || '';
+      }
+    });
+
+    return currentSection;
+  }
+
+  // Handle language switching with scroll position preservation
+  function setupLanguageSwitcher() {
+    const langLinks = document.querySelectorAll('.lang-switcher a');
+
+    langLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const currentSection = getCurrentSection();
+
+        // If we're viewing a specific section, add it to the URL
+        if (currentSection && currentSection !== 'hero') {
+          e.preventDefault();
+          const targetUrl = (link as HTMLAnchorElement).href;
+          window.location.href = `${targetUrl}#${currentSection}`;
+        }
+        // Otherwise, let the link navigate normally (to top of page)
+      });
+    });
+  }
+
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {
     updateProgressBar();
     updateActiveSection();
+    setupLanguageSwitcher();
   });
 
   // Update on scroll with throttling for performance
