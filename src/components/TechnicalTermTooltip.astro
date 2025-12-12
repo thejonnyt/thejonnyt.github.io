@@ -38,26 +38,42 @@ const glossaryJson = JSON.stringify(glossaryData);
     const terms = document.querySelectorAll('.tech-term');
 
     terms.forEach((termElement) => {
-      // Show tooltip on hover
-      termElement.addEventListener('mouseenter', (e) => {
-        const termId = e.target.dataset.termId;
-        showTooltip(termId, e.target);
-      });
+      // Make term focusable for accessibility
+      if (!termElement.hasAttribute('tabindex')) {
+        termElement.setAttribute('tabindex', '0');
+      }
 
-      // Keep tooltip visible while hovering over the term
-      termElement.addEventListener('mouseleave', () => {
+      const showHandler = (event) => {
+        const target = event.currentTarget;
+        if (!target) return;
+        const termId = target.dataset.termId;
+        showTooltip(termId, target);
+      };
+
+      const hideHandler = () => {
         scheduleHide();
-      });
+      };
+
+      // Show on hover or focus
+      termElement.addEventListener('mouseenter', showHandler);
+      termElement.addEventListener('focusin', showHandler);
+
+      // Hide on mouse leave or focus out
+      termElement.addEventListener('mouseleave', hideHandler);
+      termElement.addEventListener('focusout', hideHandler);
     });
 
-    // Keep tooltip visible when hovering over it
-    tooltip.addEventListener('mouseenter', () => {
+    const cancelHide = () => {
       clearTimeout(hideTimeout);
-    });
+    };
 
-    tooltip.addEventListener('mouseleave', () => {
-      scheduleHide();
-    });
+    // Keep tooltip open when it's hovered or has focus
+    tooltip.addEventListener('mouseenter', cancelHide);
+    tooltip.addEventListener('focusin', cancelHide);
+
+    // Hide when mouse leaves or focus moves out
+    tooltip.addEventListener('mouseleave', scheduleHide);
+    tooltip.addEventListener('focusout', scheduleHide);
   }
 
   function showTooltip(termId, targetElement) {
