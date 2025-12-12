@@ -14,8 +14,14 @@
       "category": "Programming Languages",
       "level": "proficient",
       "yearsOfExperience": 7,
-      "description": "General-purpose programming, data analysis, ML/AI, backend development",
-      "usedIn": ["Raumdeuter GbR", "Westphalia DataLab GmbH", "Child and Adolescent Psychiatry", "Master's Thesis", "Bachelor's Thesis"],
+      "description": "General-purpose programming, Analysis, ML & AI, ML/AI, backend development",
+      "usedIn": [
+        "Raumdeuter GbR",
+        "Westphalia DataLab GmbH",
+        "Child and Adolescent Psychiatry",
+        "Master's Thesis",
+        "Bachelor's Thesis"
+      ],
       "featured": true
     },
     "JavaScript": {
@@ -23,7 +29,7 @@
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Frontend development, Node.js, modern frameworks",
-      "usedIn": ["Raumdeuter GbR", "Github Pages", "The Odin Project"],
+      "usedIn": ["Raumdeuter GbR", "Github Page", "The Odin Project"],
       "featured": true
     },
     "TypeScript": {
@@ -31,13 +37,13 @@
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "Type-safe JavaScript for scalable applications",
-      "usedIn": ["Raumdeuter GbR"]
+      "usedIn": ["Raumdeuter GbR", "Github Page"]
     },
     "R": {
       "category": "Programming Languages",
       "level": "proficient",
       "yearsOfExperience": 5,
-      "description": "Statistical computing, data analysis, visualization",
+      "description": "Statistical computing, Analysis, ML & AI, visualization",
       "usedIn": ["Child and Adolescent Psychiatry", "Westphalia DataLab GmbH"],
       "featured": true
     },
@@ -46,30 +52,39 @@
       "level": "proficient",
       "yearsOfExperience": 4,
       "description": "Shell scripting, automation, system administration",
-      "usedIn": ["Raumdeuter GbR", "Master's Thesis", "Navigating Linux Systems"],
+      "usedIn": [
+        "Raumdeuter GbR",
+        "Master's Thesis",
+        "Linux System Administration",
+        "Linux"
+      ],
       "featured": true
     },
     "SQL": {
-      "category": "Databases",
+      "category": "Programming Languages",
       "level": "competent",
       "yearsOfExperience": 3,
       "description": "Relational database queries and management",
-      "usedIn": ["Raumdeuter GbR", "Bachelor's Thesis"],
+      "usedIn": [
+        "Raumdeuter GbR",
+        "Westphalia DataLab GmbH",
+        "Bachelor's Thesis"
+      ],
       "featured": true
     },
     "noSQL": {
-      "category": "Databases",
+      "category": "Programming Languages",
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "Document and key-value databases",
-      "usedIn": ["Raumdeuter GbR"],
+      "usedIn": ["Raumdeuter GbR", "Westphalia DataLab GmbH"],
       "featured": true
     },
     "Docker": {
       "category": "Backend & DevOps",
       "level": "proficient",
       "yearsOfExperience": 2,
-      "description": "Containerization, multi-stage builds, orchestration",
+      "description": "Containerization, (distroless) multi-stage builds, orchestration",
       "usedIn": ["Raumdeuter GbR", "Master's Thesis"],
       "featured": true
     },
@@ -77,18 +92,20 @@
       "category": "Backend & DevOps",
       "level": "beginner",
       "yearsOfExperience": 1,
-      "description": "High-performance RPC framework",
-      "usedIn": ["Raumdeuter GbR"]
+      "description": "High-performance RPC framework for, e.g., microservices",
+      "usedIn": ["Raumdeuter GbR"],
+      "featured": true
     },
     "Next.js": {
-      "category": "Frontend & Web",
-      "level": "beginner",
+      "category": "Web & Creative",
+      "level": "competent",
       "yearsOfExperience": 1,
       "description": "React framework with server-side rendering and static site generation",
-      "usedIn": ["Raumdeuter GbR"]
+      "usedIn": ["Raumdeuter GbR", "Github Page"],
+      "featured": true
     },
     "React": {
-      "category": "Frontend & Web",
+      "category": "Web & Creative",
       "level": "beginner",
       "yearsOfExperience": 1,
       "description": "Component-based UI library",
@@ -99,7 +116,8 @@
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Document-oriented NoSQL database",
-      "usedIn": ["Raumdeuter GbR", "Westphalia DataLab GmbH"]
+      "usedIn": ["Raumdeuter GbR", "Westphalia DataLab GmbH"],
+      "featured": true
     },
     "MariaDB": {
       "category": "Databases",
@@ -110,39 +128,45 @@
     },
     "PostgreSQL": {
       "category": "Databases",
-      "level": "beginner",
-      "yearsOfExperience": 1,
+      "level": "competent",
+      "yearsOfExperience": 2,
       "description": "Advanced open-source relational database",
-      "usedIn": ["Westphalia DataLab GmbH"]
+      "usedIn": ["Raumdeuter GbR", "Westphalia DataLab GmbH"],
+      "featured": true
     },
     "Qdrant": {
-      "category": "Databases",
+      "category": "Programming Languages",
       "level": "beginner",
       "yearsOfExperience": 1,
       "description": "Vector database for semantic search and AI",
       "usedIn": ["Raumdeuter GbR"]
     },
     "LLMs": {
-      "category": "AI & Machine Learning",
+      "category": "Analysis, ML & AI",
       "level": "proficient",
-      "yearsOfExperience": 2,
+      "yearsOfExperience": 3,
       "description": "Large Language Models integration and deployment",
-      "usedIn": ["Raumdeuter GbR", "Master's Thesis"],
+      "usedIn": ["Raumdeuter GbR", "Master's Thesis", "Interests & Hobby"],
       "featured": true
     },
     "NLP/ML": {
-      "category": "AI & Machine Learning",
+      "category": "Analysis, ML & AI",
       "level": "proficient",
       "yearsOfExperience": 4,
       "description": "Natural Language Processing and Machine Learning",
-      "usedIn": ["Raumdeuter GbR", "Master's Thesis"]
+      "usedIn": ["Raumdeuter GbR", "Master's Thesis"],
+      "featured": true
     },
     "Machine Learning": {
-      "category": "AI & Machine Learning",
+      "category": "Analysis, ML & AI",
       "level": "proficient",
       "yearsOfExperience": 8,
       "description": "Classification, regression, clustering algorithms",
-      "usedIn": ["Child and Adolescent Psychiatry", "Economics Bachelor's Thesis", "Westphalia DataLab GmbH"],
+      "usedIn": [
+        "Child and Adolescent Psychiatry",
+        "Bachelor's Thesis (Economics)",
+        "Westphalia DataLab GmbH"
+      ],
       "featured": true
     },
     "nginx": {
@@ -150,14 +174,15 @@
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "Web server, reverse proxy, load balancer",
-      "usedIn": ["Raumdeuter GbR"]
+      "usedIn": ["Raumdeuter GbR"],
+      "featured": true
     },
     "CI/CD": {
       "category": "Backend & DevOps",
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Continuous Integration and Deployment pipelines",
-      "usedIn": ["Raumdeuter GbR"]
+      "usedIn": ["Raumdeuter GbR", "Github Page"]
     },
     "Git": {
       "category": "Tools & Systems",
@@ -171,12 +196,12 @@
       "category": "Tools & Systems",
       "level": "proficient",
       "yearsOfExperience": 8,
-      "description": "System administration, shell scripting, servers",
+      "description": "System administration, shell scripting, servers and personal use",
       "usedIn": ["everywhere"],
       "featured": true
     },
     "R Shiny": {
-      "category": "Frontend & Web",
+      "category": "Web & Creative",
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Interactive web applications for data science",
@@ -186,22 +211,33 @@
       "category": "Tools & Systems",
       "level": "expert",
       "yearsOfExperience": 15,
-      "description": "Advanced formulas, macros, data analysis",
-      "usedIn": ["Red Bull Germany GmbH", "Goodgame Studios", "Raumdeuter GbR"]
+      "description": "Advanced formulas, macros, Analysis, ML & AI",
+      "usedIn": ["Red Bull Germany GmbH", "Goodgame Studios", "Raumdeuter GbR"],
+      "featured": true
     },
     "Powerpoint": {
       "category": "Tools & Systems",
       "level": "wizard",
       "yearsOfExperience": 12,
       "description": "Presentations, storytelling, visual design",
-      "usedIn": ["Red Bull Germany GmbH", "Rahn Education", "Raumdeuter GbR", "..."]
+      "usedIn": [
+        "Red Bull Germany GmbH",
+        "Rahn Education",
+        "Raumdeuter GbR",
+        "everywhere"
+      ]
     },
     "MS Office": {
       "category": "Tools & Systems",
       "level": "expert",
       "yearsOfExperience": 15,
-      "description": "Word, Excel, PowerPoint, Outlook mastery",
-      "usedIn": ["Red Bull Germany GmbH", "Goodgame Studios", "Raumdeuter GbR", "..."]
+      "description": "Word, Excel, PowerPoint, Outlook",
+      "usedIn": [
+        "Red Bull Germany GmbH",
+        "Goodgame Studios",
+        "Raumdeuter GbR",
+        "everywhere"
+      ]
     },
     "MS Teams": {
       "category": "Tools & Systems",
@@ -211,11 +247,17 @@
       "usedIn": ["Rahn Education", "Raumdeuter GbR"]
     },
     "Adobe Photoshop": {
-      "category": "Design & Creative",
+      "category": "Web & Creative",
       "level": "proficient",
       "yearsOfExperience": 20,
-      "description": "Image editing, graphic design, digital art",
-      "usedIn": ["Red Bull Germany GmbH", "Hobby Projects", "Raumdeuter GbR"]
+      "description": "Image editing, graphic design, digital art. GNU's GIMP or photopea are alternatives.",
+      "usedIn": [
+        "Red Bull Germany GmbH",
+        "Hobby Projects",
+        "Raumdeuter GbR",
+        "everywhere"
+      ],
+      "featured": true
     },
     "Miro": {
       "category": "Tools & Systems",
@@ -225,103 +267,108 @@
       "usedIn": ["Exist", "Raumdeuter GbR"]
     },
     "Business Model Canvas": {
-      "category": "Business & Strategy",
-      "level": "beginner",
+      "category": "Tools & Systems",
+      "level": "competent",
       "yearsOfExperience": 1,
       "description": "Business strategy and model development",
       "usedIn": ["Exist", "Raumdeuter GbR"]
     },
     "Lean Startup": {
-      "category": "Business & Strategy",
+      "category": "Tools & Systems",
       "level": "beginner",
       "yearsOfExperience": 1,
       "description": "Iterative product development methodology",
-      "usedIn": ["Exist"]
+      "usedIn": ["Exist", "Raumdeuter GbR"]
     },
     "HTML": {
-      "category": "Frontend & Web",
-      "level": "competent",
-      "yearsOfExperience": 2,
+      "category": "Web & Creative",
+      "level": "proficient",
+      "yearsOfExperience": 4,
       "description": "Semantic markup, accessibility, modern standards",
-      "usedIn": ["Github Pages", "The Odin Project", "Raumdeuter GbR"]
+      "usedIn": [
+        "Github Page",
+        "The Odin Project",
+        "Raumdeuter GbR",
+        "Markdown",
+        "everywhere"
+      ]
     },
     "CSS": {
-      "category": "Frontend & Web",
+      "category": "Web & Creative",
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Responsive design, animations, modern layouts",
-      "usedIn": ["Github Pages", "The Odin Project", "Raumdeuter GbR"]
+      "usedIn": ["Github Page", "The Odin Project", "Raumdeuter GbR"]
     },
     "VSCode": {
       "category": "Tools & Systems",
       "level": "proficient",
       "yearsOfExperience": 4,
       "description": "IDE configuration, extensions, productivity",
-      "usedIn": ["Github Pages", "The Odin Project", "Raumdeuter GbR", "everywhere"]
+      "usedIn": [
+        "Github Page",
+        "The Odin Project",
+        "Raumdeuter GbR",
+        "everywhere"
+      ]
     },
     "LaTeX": {
       "category": "Tools & Systems",
       "level": "proficient",
       "yearsOfExperience": 4,
       "description": "Scientific document preparation and typesetting",
-      "usedIn": ["Master's Thesis", "Bachelor's Thesis", "Academic Papers"]
+      "usedIn": ["Master's Thesis", "Bachelor's Thesis", "Academic Papers"],
+      "featured": true
     },
     "SPSS": {
-      "category": "Data Analysis",
+      "category": "Analysis, ML & AI",
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Statistical analysis software",
       "usedIn": ["Economics Bachelor's Thesis"]
     },
     "Statistics": {
-      "category": "Data Analysis",
+      "category": "Analysis, ML & AI",
       "level": "proficient",
       "yearsOfExperience": 5,
       "description": "Inferential and descriptive statistics, modeling",
-      "usedIn": ["Child and Adolescent Psychiatry", "Tutoring", "Economics Bachelor's Thesis", "Westphalia DataLab GmbH"],
+      "usedIn": [
+        "Child and Adolescent Psychiatry",
+        "Tutoring",
+        "Economics Bachelor's Thesis",
+        "Westphalia DataLab GmbH"
+      ],
       "featured": true
     }
   },
   "categoryGoals": {
     "Programming Languages": {
-      "proficiencyTarget": 3.5,
+      "proficiencyTarget": 4.0,
       "experienceTarget": 5,
-      "description": "Maintain strong proficiency across core languages, expand into new paradigms"
-    },
-    "Databases": {
-      "proficiencyTarget": 3.0,
-      "experienceTarget": 3,
-      "description": "Build expertise in both SQL and NoSQL systems for scalable architectures"
+      "description": "I want to get to know Rust and lean more into functional programming paradigms. Furthermore, I want to build more complex projcets and packages using Python. I am proud to be a non-jupyter data scientist but I also have room to improve, and I look forward to it!"
     },
     "Backend & DevOps": {
       "proficiencyTarget": 3.5,
       "experienceTarget": 4,
-      "description": "Master containerization, CI/CD pipelines, and cloud infrastructure"
+      "description": "I am strong using Docker/Containers but I lack experience when it comes to cloud services, orchestration and monitoring. Hands-on experience on these topics would boost my skills significantly."
     },
-    "Frontend & Web": {
-      "proficiencyTarget": 3.0,
+    "Web & Creative": {
+      "proficiencyTarget": 1.5,
       "experienceTarget": 3,
-      "description": "Develop modern, responsive, and accessible web applications"
+      "description": "I never learned web development. I am self-taught. If possible, I'll leave the field to designated professionals but I want to be able to communicate with them on a solid technical level and fix any issues that may arise."
     },
-    "AI & Machine Learning": {
-      "proficiencyTarget": 3.5,
+    "Analysis, ML & AI": {
+      "proficiencyTarget": 4,
       "experienceTarget": 5,
-      "description": "Lead AI/ML projects from research to production deployment"
+      "description": [
+        "I very well know my way around Analysis, ML & AI. But knowing isn't the same as doing. I want to build more complex AI systems and products to solidify that knowledge.",
+        "Statistics and Numbers are the energy that fuels my thinking. I want to further deepen my knowledge in statistical methods and Analysis, ML & AI techniques to become an even better data scientist to solve even harder problems."
+      ]
     },
     "Tools & Systems": {
       "proficiencyTarget": 3.5,
       "experienceTarget": 8,
-      "description": "Maintain deep expertise in essential development tools and workflows"
-    },
-    "Design & Creative": {
-      "proficiencyTarget": 3.0,
-      "experienceTarget": 5,
-      "description": "Create polished visual content for technical communication"
-    },
-    "Data Analysis": {
-      "proficiencyTarget": 3.5,
-      "experienceTarget": 5,
-      "description": "Apply statistical methods to extract insights from complex datasets"
+      "description": "I love automation. Anything I touch for the third time is touched one time to often. Ideally, I want to maintain deep expertise in essential development tools and workflows to stay true to my automation philosophy."
     }
   }
 }
