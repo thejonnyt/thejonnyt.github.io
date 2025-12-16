@@ -5,6 +5,7 @@ Converts src/content/*.json → cv.typ → ../public/files/Johannes_Tauscher_CV.
 """
 
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
@@ -14,6 +15,9 @@ ROOT = Path(__file__).parent.parent
 CONTENT_DIR = ROOT / "src" / "content"
 CV_DIR = ROOT / "Lebenslauf"
 OUTPUT_FILE = CV_DIR / "cv.typ"
+
+# Global glossary map
+GLOSSARY_MAP = {}
 
 
 def load_json(path: Path) -> Any:
@@ -33,24 +37,21 @@ def get_cv_text(item: Any, field: str, cv_field: str = None) -> str:
 
 
 def escape_typst(text: str) -> str:
-    """Escape special characters for Typst."""
+    """Escape special characters for Typst and replace glossary terms."""
     if not text:
         return ""
-    import re
-    # Remove template placeholders like {{microservices}}
-    text = re.sub(r'\{\{[^}]+\}\}', '', text)
-    # Clean up multiple spaces and commas left behind
+
+    def replace_term(match):
+        term_id = match.group(1)
+        return GLOSSARY_MAP.get(term_id, term_id)
+
+    # Replace template placeholders like {{microservices}}
+    text = re.sub(r'\{\{([^}]+)\}\}', replace_term, text)
+
+    # Clean up any leftover weirdness, but less aggressively
     text = re.sub(r'\s+', ' ', text)  # Multiple spaces -> single space
-    text = re.sub(r'\s*,\s*,+\s*', ', ', text)  # Multiple commas -> single comma
-    text = re.sub(r',\s+,', ', ', text)  # ", ," -> ", "
-    text = re.sub(r':\s+,', ':', text)  # ": ," -> ":"
-    text = re.sub(r'\(\s*,\s*', '(', text)  # "(, " -> "("
-    text = re.sub(r',\s*\)', ')', text)  # ", )" -> ")"
-    text = re.sub(r',\s*$', '', text)  # Trailing comma at end
-    text = re.sub(r',\s+([.!?])', r'\1', text)  # ", ." -> "."
-    # Clean up orphaned single letters after commas (from incomplete removals)
-    text = re.sub(r',\s+[a-z]\s*$', '', text)  # ", s" at end -> ""
-    text = re.sub(r',\s+[a-z]\s+', ', ', text)  # ", s " in middle -> ", "
+    text = re.sub(r'\s*,\s*', ', ', text) # Normalize commas
+
     # Escape special Typst characters
     text = text.replace("#", "\\#")
     text = text.replace("[", "\\[")
@@ -222,6 +223,20 @@ def generate_skills_section(data: Dict) -> str:
 def main():
     """Main build function."""
     print("Building CV from JSON data...")
+
+    # Load glossary
+    global GLOSSARY_MAP
+    try:
+        glossary_data = load_json(CONTENT_DIR / "glossary.json")
+        if isinstance(glossary_data, dict) and 'terms' in glossary_data and isinstance(glossary_data.get('terms'), list):
+            GLOSSARY_MAP = {item['id']: item['term'] for item in glossary_data['terms'] if 'id' in item and 'term' in item}
+        else:
+            print("Warning: glossary.json does not contain a 'terms' list. Skipping.")
+    except FileNotFoundError:
+        print("Warning: glossary.json not found. Placeholders will not be replaced.")
+    except (KeyError, TypeError) as e:
+        print(f"Warning: Could not parse glossary.json. Placeholders may not be replaced correctly. Error: {e}")
+
 
     # Load data
     try:

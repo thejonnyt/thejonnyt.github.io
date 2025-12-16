@@ -112,7 +112,7 @@
       "usedIn": ["Raumdeuter GbR"]
     },
     "MongoDB": {
-      "category": "Databases",
+      "category": "Backend & DevOps",
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Document-oriented NoSQL database",
@@ -120,14 +120,14 @@
       "featured": true
     },
     "MariaDB": {
-      "category": "Databases",
+      "category": "Backend & DevOps",
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "MySQL-compatible relational database",
       "usedIn": ["Raumdeuter GbR"]
     },
     "PostgreSQL": {
-      "category": "Databases",
+      "category": "Backend & DevOps",
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Advanced open-source relational database",
@@ -361,7 +361,7 @@
       "proficiencyTarget": 4,
       "experienceTarget": 5,
       "description": [
-        "I very well know my way around Analysis, ML & AI. But knowing isn't the same as doing. I want to build more complex AI systems and products to solidify that knowledge.",
+        "I very well know my way around Analysis, ML & AI. Yet knowing only isn't enough. I want to build more complex AI systems and products to solidify that knowledge.",
         "Statistics and Numbers are the energy that fuels my thinking. I want to further deepen my knowledge in statistical methods and Analysis, ML & AI techniques to become an even better data scientist to solve even harder problems."
       ]
     },

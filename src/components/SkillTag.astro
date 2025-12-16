@@ -18,15 +18,14 @@ const skillKey = Object.keys(skillsDatabase.skills).find(
 );
 const skillData = skillKey ? skillsDatabase.skills[skillKey] : null;
 
-// Category to color mapping (consolidated to 8 categories)
+// Category to color mapping (consolidated to categories)
 const categoryColors: Record<string, string> = {
   'Programming Languages': '#3b82f6', // blue
   'Databases': '#8b5cf6', // purple
   'Backend & DevOps': '#f59e0b', // amber
-  'AI & Machine Learning': '#10b981', // emerald
-  'Frontend & Web': '#ec4899', // pink
+  'Analysis, Machine Learning & AI': '#10b981', // emerald
   'Tools & Systems': '#64748b', // slate
-  'Design & Creative': '#d946ef', // fuchsia
+  'Web & Creative': '#ec4899', // fuchsia
   'Business & Strategy': '#84cc16', // lime
   'Data Analysis': '#14b8a6', // teal
 };
