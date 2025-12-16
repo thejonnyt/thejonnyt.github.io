@@ -208,12 +208,21 @@ def generate_skills_section(data: Dict) -> str:
         if featured or level in ["proficient", "expert", "wizard"]:
             if category not in categories:
                 categories[category] = []
-            categories[category].append(escape_typst(skill_name))
+            # Append the raw skill name. Processing will happen later.
+            categories[category].append(skill_name)
 
     # Build skills section
     lines.append("#skills-section((")
     for category, skills in sorted(categories.items()):
-        skills_array = ", ".join([f'"{s}"' for s in skills])
+        processed_skills = []
+        for s in skills:
+            if s == "LaTeX":
+                # Call the Typst element from the metalogo package
+                processed_skills.append("LaTeX")
+            else:
+                processed_skills.append(f'"{escape_typst(s)}"')
+
+        skills_array = ", ".join(processed_skills)
         lines.append(f'  ("{category}", ({skills_array},)),')
     lines.append('))\n')
 

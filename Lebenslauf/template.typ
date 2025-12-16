@@ -1,3 +1,5 @@
+#import "@preview/metalogo:1.2.0": TeX, LaTeX
+
 // CV Template - Professional styling for academic/technical CVs
 
 // Color scheme

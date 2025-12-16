@@ -674,35 +674,6 @@ const initialDetailsText = "Hover over a category for details";
     font-weight: 600;
   }
 
-  .animated-arrow {
-    display: inline-block;
-    flex-shrink: 0;
-    width: 30px;
-    height: 2px;
-    background-image: linear-gradient(to right, var(--color-accent) 75%, transparent 25%);
-    background-size: 8px 2px;
-    background-repeat: repeat-x;
-    animation: dashing-html 0.8s linear infinite;
-    position: relative;
-  }
-
-  .animated-arrow::after {
-      content: "";
-      position: absolute;
-      right: -3px;
-      top: -3px;
-      border: solid var(--color-accent);
-      border-width: 0 2px 2px 0;
-      display: inline-block;
-      padding: 3px;
-      transform: rotate(-45deg);
-  }
-
-  @keyframes dashing-html {
-      from { background-position-x: 0; }
-      to { background-position-x: -16px; }
-  }
-
   /* Responsive adjustments */
   @media (max-width: 1024px) {
     .side-by-side-container {
@@ -771,19 +742,9 @@ const initialDetailsText = "Hover over a category for details";
       detailsCount.textContent = category.count;
 
       if (category.goal) {
-        let goalInfo = `<strong>Goal:</strong> ${category.goal.description}`;
-        if (showGoalExtension && parseFloat(category.proficiency) < parseFloat(category.goalProficiency)) {
-          goalInfo += `<div class="target-display">
-            <strong>Target:</strong>
-            <span class="target-values">
-              <span>${category.proficiency}</span>
-              <span class="animated-arrow"></span>
-              <span>${category.goalProficiency}</span>
-            </span>
-          </div>`;
-        } else if (showGoalExtension) {
-          goalInfo += `<div class="target-display"><strong>Target:</strong> ${category.goalProficiency} / 4.00</div>`;
-        }
+        const goalInfo = showGoalExtension
+          ? `<strong>Goal:</strong> ${category.goal.description}<br/><strong>Target:</strong> ${category.goalProficiency} / 4.00`
+          : `<strong>Goal:</strong> ${category.goal.description}`;
         detailsGoal.innerHTML = goalInfo;
         detailsGoal.style.display = 'block';
       } else {

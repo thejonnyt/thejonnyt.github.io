@@ -10,10 +10,9 @@
     "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. From Conceptualization and architecture to implementation of the product as an MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievements": [
       "Built engagement platform from 0 → 1 in 12 months on an overall €30k budget",
-      "Managed and led a small development team (4 people) and coordinated external IT partnerships",
       "Led product ideation workshops to align team vision and roadmap",
       "Designed {{microservices}} architecture, {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}, dev/prod) and {{service-mesh}} patterns",
-      "Implemented {{devex}}/{{devops}}: {{cicd}} pipelines, {{linting}} and {{pre-commit-hooks}}, {{ssl}}/{{dns}} management and {{nginx}} routing",
+      "Established {{devex}}/{{devops}}: {{cicd}} pipelines, {{linting}} and {{pre-commit-hooks}}, {{ssl}}/{{dns}} management and {{nginx}} routing",
       "Developed {{ml}} prototypes: {{semantic-chunking}}, {{sentiment-analysis}}, {{topic-clustering}} and content summarization",
       "Established {{gdpr}}-compliant data privacy and {{privacy-by-design}} practices"
     ],
@@ -81,7 +80,7 @@
     "endDate": "2021-01",
     "current": false,
     "cvInclude": true,
-    "description": "Responsible for the validation and reproduction of earlier results of research aswell as for the implementation of {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
+    "description": "Responsible for the validation and reproduction of earlier results of research aswell as for programming {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
     "achievements": [
       "My analysis results contributed to multiple publications that are listed in the publications section.",
       "worked highly interdisciplinary with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data-scientists"
@@ -105,7 +104,7 @@
     "cvInclude": true,
     "description": "As a Data Analyst intern at Westphalia DataLab GmbH, I worked on a medical-diagnostics project combining 3D imaging and clinical data; developed and improved an experiment-tracking R/Shiny frontend and performed clinical-data analysis with Python and R.",
     "achievements": [
-      "Implemented and enhanced features for an experiment-tracking R/Shiny frontend to improve researcher workflow and usability",
+      "Worked out and enhanced existing features for an experiment-tracking R/Shiny frontend to improve researcher workflow and usability",
       "Analyzed 3D-image and clinical datasets with Python and R to derive actionable diagnostic insights",
       "Integrated and managed project data using MongoDB and PostgreSQL and maintained code/versioning with Git"
     ],
