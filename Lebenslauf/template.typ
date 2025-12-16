@@ -38,26 +38,37 @@
 }
 
 // Header with name and contact info
-#let cv-header(name, title, email, linkedin, github, website, phone: none, address: none) = {
+#let cv-header(name, title, email, linkedin, github, website, phone: none, address: none, summary: none) = {
   set text(font: heading-font)
 
   align(center)[
     #text(size: 24pt, weight: "bold")[#name]
     #v(0.3em)
     #text(size: 11pt, fill: gray-color)[#title]
-    #v(0.5em)
+  ]
+  
+  if summary != none [
+    v(0.8em)
+    set par(justify: true)
+    text(size: 10pt, fill: text-color, font: body-font)[
+      #summary
+    ]
+  ]
 
+  v(0.5em)
+  
+  align(center)[
     #let contacts = (email, phone, linkedin, github, website).filter(x => x != none)
     #text(size: 9pt, fill: gray-color)[
       #contacts.join(" • ")
     ]
 
-    #if address != none [
-      #v(0.2em)
-      #text(size: 9pt, fill: gray-color)[#address]
+    if address != none [
+      v(0.2em)
+      text(size: 9pt, fill: gray-color)[#address]
     ]
   ]
-
+  
   v(1em)
   line(length: 100%, stroke: 0.5pt + light-gray)
   v(0.8em)

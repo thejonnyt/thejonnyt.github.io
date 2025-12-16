@@ -194,3 +194,50 @@ li {
   outline: 2px solid var(--color-foreground);
   outline-offset: 2px;
 }
+
+/* Collapsible abstract */
+.abstract-toggle {
+    margin: var(--space-md) 0;
+  }
+
+  .abstract-toggle summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    color: var(--color-accent);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+    user-select: none;
+  }
+
+  .abstract-toggle summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .abstract-toggle summary:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .abstract-toggle summary .chevron {
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+  }
+
+  .abstract-toggle[open] summary .chevron {
+    transform: rotate(180deg);
+  }
+
+  .abstract-content {
+    margin-top: var(--space-sm);
+    padding: var(--space-md);
+    background-color: var(--color-bg-secondary);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 4px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+  }
+

@@ -736,24 +736,28 @@ const initialDetailsText = "Hover over a category for details";
     const updateDetailsPanel = (category, showGoalExtension = false) => {
       if (!detailsPanel || !category) return;
 
-      detailsHeader.textContent = category.name;
-      detailsProficiency.textContent = `${category.proficiency} / 4.0`;
-      detailsExperience.textContent = `${category.experience} years`;
-      detailsCount.textContent = category.count;
+      if (detailsHeader) detailsHeader.textContent = category.name;
+      if (detailsProficiency) detailsProficiency.textContent = `${category.proficiency} / 4.0`;
+      if (detailsExperience) detailsExperience.textContent = `${category.experience} years`;
+      if (detailsCount) detailsCount.textContent = category.count;
 
-      if (category.goal) {
-        const goalInfo = showGoalExtension
-          ? `<strong>Goal:</strong> ${category.goal.description}<br/><strong>Target:</strong> ${category.goalProficiency} / 4.00`
-          : `<strong>Goal:</strong> ${category.goal.description}`;
-        detailsGoal.innerHTML = goalInfo;
-        detailsGoal.style.display = 'block';
-      } else {
-        detailsGoal.style.display = 'none';
+      if (detailsGoal) {
+        if (category.goal) {
+          const goalInfo = showGoalExtension
+            ? `<strong>Goal:</strong> ${category.goal.description}<br/><strong>Target:</strong> ${category.goalProficiency} / 4.00`
+            : `<strong>Goal:</strong> ${category.goal.description}`;
+          detailsGoal.innerHTML = goalInfo;
+          detailsGoal.style.display = 'block';
+        } else {
+          detailsGoal.style.display = 'none';
+        }
       }
 
-      detailsSkills.innerHTML = category.skills
-        .map(skill => `<span class="skill-tag">${skill}</span>`)
-        .join('');
+      if (detailsSkills) {
+        detailsSkills.innerHTML = (category.skills || [])
+          .map(skill => `<span class="skill-tag">${skill}</span>`)
+          .join('');
+      }
       
       detailsPanel.classList.add('active');
     };
@@ -761,13 +765,14 @@ const initialDetailsText = "Hover over a category for details";
     const clearHighlights = (categoryIndex) => {
         if (categoryIndex === -1) return;
         document.querySelector(`.category-label[data-category="${categoryIndex}"]`)?.classList.remove('highlighted');
-        proficiencyPolygon.classList.remove('dimmed');
+        proficiencyPolygon?.classList.remove('dimmed');
         goalWedges.forEach(wedge => wedge.classList.remove('visible'));
         migrationLines.forEach(line => line.classList.remove('visible'));
     };
 
     // Hover handler
     const handleMouseEnter = (categoryIndex) => {
+        if (typeof categoryIndex !== 'number' || Number.isNaN(categoryIndex)) return;
         if (activeCategoryIndex === categoryIndex) return;
 
         clearHighlights(activeCategoryIndex);
@@ -781,7 +786,7 @@ const initialDetailsText = "Hover over a category for details";
         document.querySelector(`.category-label[data-category="${categoryIndex}"]`)?.classList.add('highlighted');
         
         // Show goal visuals
-        proficiencyPolygon.classList.add('dimmed');
+        proficiencyPolygon?.classList.add('dimmed');
         const wedge = document.querySelector(`.goal-wedge[data-category="${categoryIndex}"]`);
         if (wedge) wedge.classList.add('visible');
         
@@ -794,20 +799,24 @@ const initialDetailsText = "Hover over a category for details";
     
     // Add hover handlers for category labels
     labels.forEach((label) => {
-      const categoryIndex = parseInt(label.getAttribute('data-category'));
+      const raw = label.getAttribute('data-category');
+      const categoryIndex = raw ? parseInt(raw, 10) : NaN;
       label.addEventListener('mouseenter', () => handleMouseEnter(categoryIndex));
     });
 
     // Add hover handlers for data points (dots)
     dataPoints.forEach((pointGroup) => {
-      const categoryIndex = parseInt(pointGroup.getAttribute('data-category'));
+      const raw = pointGroup.getAttribute('data-category');
+      const categoryIndex = raw ? parseInt(raw, 10) : NaN;
       pointGroup.addEventListener('mouseenter', () => handleMouseEnter(categoryIndex));
     });
 
-    // Set initial state
+    // Set initial state: prefer 'Programming Languages', fallback to first category
     const initialCategoryName = 'Programming Languages';
-    const initialCategoryIndex = categoryData.findIndex(cat => cat.name === initialCategoryName);
+    let initialCategoryIndex = categoryData.findIndex(cat => cat.name === initialCategoryName);
+    if (initialCategoryIndex === -1 && categoryData.length > 0) initialCategoryIndex = 0;
     if (initialCategoryIndex !== -1) {
+        // Ensure UI shows the initial category details even if there are no hover events
         handleMouseEnter(initialCategoryIndex);
     }
   });

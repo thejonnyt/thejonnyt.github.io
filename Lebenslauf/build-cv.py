@@ -265,6 +265,11 @@ def main():
     linkedin = intro.get("linkedin", "")
     github = intro.get("github", "")
     website = intro.get("website", "")
+    # `cvSummary` may contain Typst markup that should be evaluated by Typst.
+    # Do not run it through `escape_typst` so Typst commands are preserved.
+    # If you want to ensure safety for plain-text summaries, escape manually
+    # in the JSON or add a separate raw flag in the future.
+    cv_summary = intro.get("cvSummary", "")
 
     # Build CV document
     lines = [
@@ -279,6 +284,7 @@ def main():
         f'  link("{linkedin}")[{linkedin.replace("https://", "")}],',
         f'  link("{github}")[{github.replace("https://", "")}],',
         f'  link("{website}")[{website.replace("https://", "")}],',
+        f'  summary: [{cv_summary}],',
         '  // phone: "YOUR PHONE",  // Uncomment and add your phone',
         '  // address: "YOUR ADDRESS",  // Uncomment and add your address',
         ')',

@@ -1,4 +1,5 @@
 ---
+import AudioSummaryPlayer from '../components/AudioSummaryPlayer.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -112,6 +113,20 @@ function formatDate(dateStr: string): string {
           </button>
         )}
       </div>
+    </section>
+
+    <!-- Audio Summary Section -->
+    <section id="audio-summary" class="section" aria-labelledby="audio-summary-heading">
+        <details class="abstract-toggle">
+            <summary>
+                <h3 id="audio-summary-heading">Audio Summary</h3>
+                <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </summary>
+            <p>Listen to the Summary of Johannes Profile by Google's NotebookLM.</p>
+            <AudioSummaryPlayer />
+        </details>
     </section>
 
     <!-- Experience Section -->
@@ -641,52 +656,6 @@ function formatDate(dateStr: string): string {
     display: flex;
     gap: var(--space-lg);
     margin-top: var(--space-md);
-  }
-
-  /* Collapsible abstract */
-  .abstract-toggle {
-    margin: var(--space-md) 0;
-  }
-
-  .abstract-toggle summary {
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm) 0;
-    color: var(--color-accent);
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: color var(--transition-fast);
-    user-select: none;
-  }
-
-  .abstract-toggle summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .abstract-toggle summary:hover {
-    color: var(--color-accent-hover);
-  }
-
-  .abstract-toggle summary .chevron {
-    transition: transform var(--transition-normal);
-    flex-shrink: 0;
-  }
-
-  .abstract-toggle[open] summary .chevron {
-    transform: rotate(180deg);
-  }
-
-  .abstract-content {
-    margin-top: var(--space-sm);
-    padding: var(--space-md);
-    background-color: var(--color-bg-secondary);
-    border-left: 3px solid var(--color-accent);
-    border-radius: 4px;
-    line-height: 1.7;
-    color: var(--color-text-secondary);
   }
 
   /* Skills */
