@@ -16,19 +16,19 @@ import CopyResumeButton from './CopyResumeButton.astro';
         <ul class="nav-links" role="list">
           {isGerman ? (
             <>
-              <li><a href="#about" data-section="about">Über mich</a></li>
-              <li><a href="#experience" data-section="experience">Erfahrung</a></li>
-              <li><a href="#projects" data-section="projects">Projekte</a></li>
-              <li><a href="#education" data-section="education">Ausbildung</a></li>
-              <li><a href="#contact" data-section="contact">Kontakt</a></li>
+              <li><a href="#about" data-section="about">Über mich</a><div class="section-indicator"></div></li>
+              <li><a href="#experience" data-section="experience">Erfahrung</a><div class="section-indicator"></div></li>
+              <li><a href="#projects" data-section="projects">Projekte</a><div class="section-indicator"></div></li>
+              <li><a href="#education" data-section="education">Ausbildung</a><div class="section-indicator"></div></li>
+              <li><a href="#contact" data-section="contact">Kontakt</a><div class="section-indicator"></div></li>
             </>
           ) : (
             <>
-              <li><a href="#about" data-section="about">About</a></li>
-              <li><a href="#experience" data-section="experience">Experience</a></li>
-              <li><a href="#projects" data-section="projects">Projects</a></li>
-              <li><a href="#education" data-section="education">Education</a></li>
-              <li><a href="#contact" data-section="contact">Contact</a></li>
+              <li><a href="#about" data-section="about">About</a><div class="section-indicator"></div></li>
+              <li><a href="#experience" data-section="experience">Experience</a><div class="section-indicator"></div></li>
+              <li><a href="#projects" data-section="projects">Projects</a><div class="section-indicator"></div></li>
+              <li><a href="#education" data-section="education">Education</a><div class="section-indicator"></div></li>
+              <li><a href="#contact" data-section="contact">Contact</a><div class="section-indicator"></div></li>
             </>
           )}
         </ul>
@@ -142,17 +142,6 @@ import CopyResumeButton from './CopyResumeButton.astro';
   .nav-links a.active {
     color: var(--color-accent);
     font-weight: 600;
-  }
-
-  .nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--color-accent);
-    border-radius: 2px;
   }
 
   .header-actions {

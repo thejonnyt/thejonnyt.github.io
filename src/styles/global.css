@@ -87,6 +87,21 @@ h2 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative; /* Needed for positioning the ::after pseudo-element */
+  padding-bottom: var(--space-sm); /* Space for the line */
+  margin-bottom: var(--space-md);
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px; /* Made more subtle */
+  background-color: var(--color-accent);
+  opacity: 0.8;
+  border-radius: 1px; /* Soften the edges */
 }
 
 h3 {
@@ -240,4 +255,27 @@ li {
     line-height: 1.7;
     color: var(--color-text-secondary);
   }
+
+  .section-indicator {
+    position: absolute;
+    height: 1.2px;
+    background-color: var(--color-accent); /* Changed to accent color */
+    opacity: 1;
+    bottom: 0;
+    left: 0;
+    width: 0; /* Initially set to 0, will be updated by JS */
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a.active + .section-indicator,
+  .nav-links a:hover + .section-indicator {
+    width: 100%;
+  }
+
+  .nav-links li {
+    position: relative;
+  }
+
+
+
 
