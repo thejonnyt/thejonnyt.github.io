@@ -18,7 +18,7 @@
   "Co-Founder & CTO",
   "Raumdeuter GbR",
   "Leipzig, Germany",
-  format-date("2024-11", "2025-11", current: true),
+  format-date("2024-11", "2025-12", current: false),
   description: [Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. From Conceptualization and architecture to implementation of the product as an MVP with the help of a 4-person development team and coordinated external IT partners.],
   achievements: (
     [Built engagement platform from 0 → 1 in 12 months on an overall €30k budget],
@@ -86,6 +86,11 @@
   technologies: ("Python", "Convolutional Neural Networks", "R", "R Shiny", "MongoDB", "PostgreSQL", "Git"),
 )
 
+
+#v(0.2em)
+#align(center)[
+  #text(size: 9pt, style: "italic", fill: gray-color)[For brevity, this CV is curated. A complete work history is available on my #link("https://thejonnyt.github.io")[webpage] or upon request.]
+]
 #section("Education")
 
 #simple-entry(

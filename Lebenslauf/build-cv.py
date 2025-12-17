@@ -72,7 +72,7 @@ def format_achievements(achievements: List[Any]) -> List[str]:
     return formatted
 
 
-def generate_experience_section(data: List[Dict]) -> str:
+def generate_experience_section(data: List[Dict], website: str = "") -> str:
     """Generate experience section from JSON."""
     lines = ['#section("Professional Experience")\n']
 
@@ -124,6 +124,17 @@ def generate_experience_section(data: List[Dict]) -> str:
             lines.append(f'  technologies: ("{tech_str}"),')
 
         lines.append(')\n')
+
+    # Add concluding note
+    lines.append('')
+    lines.append('#v(0.2em)')
+    lines.append('#align(center)[')
+    if website:
+        note = f'For brevity, this CV is curated. A complete work history is available on my #link("{website}")[webpage] or upon request.'
+    else:
+        note = 'For brevity, this CV is curated. A complete work history is available upon request.'
+    lines.append(f'  #text(size: 9pt, style: "italic", fill: gray-color)[{note}]')
+    lines.append(']')
 
     return '\n'.join(lines)
 
@@ -288,7 +299,7 @@ def main():
     ]
 
     # Add sections
-    lines.append(generate_experience_section(experience))
+    lines.append(generate_experience_section(experience, website=website))
     lines.append(generate_education_section(education))
     lines.append(generate_publications_section(publications))
     lines.append(generate_skills_section(skills_db))
