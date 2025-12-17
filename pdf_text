@@ -1,0 +1,173 @@
+Johannes Michael Tauscher
+Data Scientist and Technical Generalist
+v(0.8em) set par(justify: true) text(size: 10pt, fill: text-color, font: body-font)[ Data Scientist and Technical Generalist
+with a strong background in software engineering, machine learning, and data analysis. Experienced in building
+scalable systems and leading technical projects from concept to deployment. ]
+j-tauscher@hotmail.com • linkedin.com/in/johannes-tauscher • github.com/thejonnyt • thejonnyt.github.io
+
+if address != none [ v(0.2em) text(size: 9pt, fill: gray-color)[] ]
+
+PROFESSIONAL EXPERIENCE
+Co-Founder & CTO
+
+Nov 2024 – Present
+
+Raumdeuter GbR
+
+Leipzig, Germany
+
+Building a modern communication and engagement platform for members and fans of clubs and associations to
+enable participation and engagement — a way to voice your opinion. From Conceptualization and architecture to
+implementation of the product as an MVP with the help of a 4-person development team and coordinated external
+IT partners.
+• Built engagement platform from 0 → 1 in 12 months on an overall €30k budget
+• Led product ideation workshops to align team vision and roadmap
+• Designed Microservices architecture, Docker Containerization (Distroless, Multistage Build, dev/prod) and
+Service Mesh patterns
+• Established DevEx/DevOps: CI/CD pipelines, Linting and Pre-commit Hooks, SSL/TLS/DNS (Domain Name
+System) management and nginx routing
+• Developed Machine Learning prototypes: Semantic Text Chunking, Sentiment Analysis, Topic Clustering and
+content summarization
+• Established GDPR-compliant data privacy and Privacy by Design practices
+
+Entrepreneur
+
+Nov 2024 – Oct 2025
+
+Exist
+
+Leipzig, Germany
+
+Responsible for developing and launching a startup idea as part of the EXIST scholarship program funded by the
+German Federal Ministry for Economic Affairs and Climate Action (BMWK).
+• Winner of the Impulse Summit 2025
+• Winner of the TGFS Technologiegründerfonds Sachsen Award as part of the HHL Digitale Space Program 2025
+• Idea is 1 of 3 winners of TechStart Dresden 2025
+• Top 5 out of 150 Finalists at Samsung: Solve for Tomorrow 2025
+• Visited selected Business Seminars on diverse Topics from Leipzig University and Leipzig Graduate School of
+Management (HHL)
+Technologies: Miro, Business Model Canvas, Lean Startup, Public Administration, etc
+
+Mathematics Teacher (Substitute)
+
+Nov 2022 – Jun 2023
+
+Rahn Education (Private School)
+
+Leipzig, Germany
+
+Responsible for the supervision of a few talented pupils
+
+1
+
+• Prepared customized university level material to challenge and spark interest for Mathematics
+• Taught basic principles of the mathematics behind 3D printing and coding
+Technologies: Powerpoint, Algebra, gcode, STL, MS Teams
+
+Student Assistant
+
+May 2019 – Jan 2021
+
+Child and Adolescent Psychiatry, Philipps University Marburg
+
+Marburg, Germany
+
+Responsible for the validation and reproduction of earlier results of research aswell as for programming Machine
+Learning algorithms in R to solve classification problems in the field of ASD diagnosis.
+• My analysis results supported the findings of 3 peer-reviewed publications that are listed in the publications
+section.
+• worked highly interdisciplinary with psychologists and medical doctors to understand the clinical background
+and implications of the data + explain the statistical methods to non-data-scientists
+Technologies: R, Machine Learning, Decision Trees, Random Forests, Statistics, Interdisciplinary Collaboration
+
+Intern, Data Analyst
+
+Aug 2019 – Oct 2019
+
+Westphalia DataLab GmbH
+
+Münster, Germany
+
+As a Data Analyst intern at Westphalia DataLab GmbH, I worked on a medical-diagnostics project combining 3D
+imaging and clinical data; developed and improved an experiment-tracking R/Shiny frontend and performed clinicaldata analysis with Python and R.
+• Worked out and enhanced existing features for an experiment-tracking R/Shiny frontend to improve researcher
+workflow and usability
+• Analyzed 3D-image and clinical datasets with Python and R to derive actionable diagnostic insights
+• Integrated and managed project data using MongoDB and PostgreSQL and maintained code/versioning with Git
+Technologies: Python, Convolutional Neural Networks, R, R Shiny, MongoDB, PostgreSQL, Git
+
+EDUCATION
+M.Sc Data Science, Faculty of Mathematics and Computer Science
+Leipzig University
+
+Apr 2021 – Oct 2024
+Leipzig, Germany
+
+• Overall Score: 1.7, personal focus on advanced Statistics, Machine Learning, Data Privacy, LLMs
+• Master’s Thesis (1.1): Neural Machine Translation with Transformers - Leveraging the Pivot Technique for LowResource Language Pairs
+
+B.Sc. Data Science, Faculty of Mathematics and Computer Science
+
+Oct 2017 – Mar 2021
+
+Philipps University Marburg
+
+Marburg, Germany
+
+• Bachelor’s Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes
+• Curriculum focusses on Mathematics, Statistics, Computer Science and Programming
+
+B.A. Marketing and Technical Business Administration
+
+Mar 2012 – Oct 2017
+
+HAW Hamburg
+
+Hamburg, Germany
+
+• Bachelor’s Thesis (1.7): Use of Linear Discriminant Analysis as an alternative to tree analysis - methodological
+evaluation and exemplary implementation using a survey on the success of movies.
+• Curriculum focusses on Marketing, Engineering and Business Administration
+
+2
+
+PUBLICATIONS
+"Phenotypic differences between female and male individuals with suspicion of ASD"
+Sanna Stroth, Johannes Tauscher, Nicole Beyer, Charlotte Küpper, Luise Poustka, Stefan Roepke, Veit Roessner, Dominik Heider,
+Inge Kamp-Becker
+Molecular Autism, 13 (1)
+
+2022
+
+DOI: 10.1186/s13229-022-00491-9 • 16 citations
+
+"Is the Combination of ADOS and ADI-R Necessary to Classify ASD? Rethinking the “Gold Standard” in Diagnosing
+ASD"
+Sanna Stroth, Johannes Tauscher, Nicole Beyer, Charlotte Küpper, Luise Poustka, Stefan Roepke, Veit Roessner, Dominik Heider,
+Inge Kamp-Becker
+Frontiers of Psychiatry, 12
+
+2021
+
+DOI: 10.3389/fpsyt.2021.727308 • 45 citations
+
+"Identification of the most indicative and discriminative features from diagnostic instruments for children with
+autism"
+Sanna Stroth, Johannes Tauscher, Nicole Wolff, Charlotte Küpper, Luise Poustka, Stefan Roepke, Veit Roessner, Dominik Heider,
+Inge Kamp-Becker
+JCPP Advances, Volume 1, Issue 2
+
+2021
+
+DOI: 10.1002/jcv2.12023 • 9 citations
+
+TECHNICAL SKILLS
+Analysis, ML & AI: LLMs, NLP/ML, Machine Learning, Statistics
+Backend & DevOps: Docker, gRPC, MongoDB, PostgreSQL, nginx
+Programming Languages: Java, Python, JavaScript, R, Bash, SQL, noSQL
+Tools & Systems: Git, Linux, Excel, Powerpoint, MS Office, MS Teams, VSCode, LATEX
+Web & Creative: Next.js, Adobe Photoshop, HTML
+
+3
+
+

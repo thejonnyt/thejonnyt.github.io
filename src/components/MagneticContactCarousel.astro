@@ -32,6 +32,10 @@ const text = labels[language];
   >
     <i data-lucide="download" class="card-icon" aria-hidden="true"></i>
     <span class="card-label">{text.download}</span>
+    <div class="tooltip" role="tooltip">
+      <strong>Human-Readable CV (PDF)</strong>
+      <p>Download a printable PDF version of the CV, optimized for human readers and traditional application processes.</p>
+    </div>
   </button>
 
   <a
@@ -54,6 +58,10 @@ const text = labels[language];
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
     </svg>
     <span class="card-label">{text.copy}</span>
+    <div class="tooltip" role="tooltip">
+      <strong>Machine-Readable CV (JSON)</strong>
+      <p>Copy structured JSON data for AI-powered CV screening tools, LLMs, and automated processing systems. No prompt injection—just clean, structured information.</p>
+    </div>
   </button>
 </div>
 
@@ -90,6 +98,7 @@ const text = labels[language];
   }
 
   .carousel-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -146,6 +155,65 @@ const text = labels[language];
     font-weight: 500;
     text-align: center;
     white-space: nowrap;
+  }
+
+  /* Tooltip */
+  .tooltip {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--color-background);
+    border: 2px solid var(--color-accent);
+    color: var(--color-foreground);
+    padding: var(--space-md);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 320px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 1000;
+    pointer-events: none;
+  }
+
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    background: var(--color-background);
+    border-right: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+    transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  }
+
+  .carousel-card:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+
+  .tooltip strong {
+    display: block;
+    margin: 0 0 var(--space-xs) 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .tooltip p {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--color-foreground);
+    text-align: left;
   }
 
   /* Responsive - hide text on smaller screens */

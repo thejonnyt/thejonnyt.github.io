@@ -78,7 +78,7 @@
       "yearsOfExperience": 1,
       "description": "Document and key-value databases",
       "usedIn": ["Raumdeuter GbR", "Westphalia DataLab GmbH"],
-      "featured": true
+      "featured": false
     },
     "Docker": {
       "category": "Backend & DevOps",

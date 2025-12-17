@@ -4,8 +4,8 @@
     "position": "Co-Founder & CTO",
     "location": "Leipzig, Germany",
     "startDate": "2024-11",
-    "endDate": "2025-11",
-    "current": true,
+    "endDate": "2025-12",
+    "current": false,
     "cvInclude": true,
     "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. From Conceptualization and architecture to implementation of the product as an MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievements": [

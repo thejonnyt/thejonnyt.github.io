@@ -347,6 +347,7 @@ const initialDetailsText = "Hover over a category for details";
                     <span class="tooltip-value" id="details-count"></span>
                 </div>
                 <div class="tooltip-goal" id="details-goal"></div>
+                <div class="tooltip-target-value" id="details-target-value"></div>
                 <div class="tooltip-skills" id="details-skills"></div>
                 </div>
             </div>
@@ -614,6 +615,7 @@ const initialDetailsText = "Hover over a category for details";
   .tooltip-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: var(--space-sm);
     font-size: 13px;
   }
@@ -639,6 +641,19 @@ const initialDetailsText = "Hover over a category for details";
     font-size: 12px;
     color: var(--color-text-secondary);
     line-height: 1.4;
+  }
+
+  .tooltip-target-value {
+    margin-top: var(--space-sm); /* Add some space below the goal */
+    padding: var(--space-xs);
+    background: var(--color-bg-secondary);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+    display: flex; /* For aligning content within */
+    align-items: center;
+    justify-content: center;
   }
 
   .tooltip-skills {
@@ -711,6 +726,11 @@ const initialDetailsText = "Hover over a category for details";
       font-size: 16px;
     }
   }
+
+  /* Goal animation in details panel */
+  .current-prof, .goal-prof {
+    font-weight: 600;
+  }
 </style>
 
 <script define:vars={{ categoryData, proficiencyPoints, center, maxRadius, initialDetailsText }}>
@@ -732,20 +752,44 @@ const initialDetailsText = "Hover over a category for details";
     const detailsCount = document.getElementById('details-count');
     const detailsGoal = document.getElementById('details-goal');
     const detailsSkills = document.getElementById('details-skills');
+    const detailsTargetValue = document.getElementById('details-target-value');
 
     const updateDetailsPanel = (category, showGoalExtension = false) => {
       if (!detailsPanel || !category) return;
 
       if (detailsHeader) detailsHeader.textContent = category.name;
-      if (detailsProficiency) detailsProficiency.textContent = `${category.proficiency} / 4.0`;
+      
+      if (detailsProficiency) {
+        detailsProficiency.innerHTML = `<span class="current-prof">${category.proficiency}</span>`;
+      }
+      
+      if (detailsTargetValue) {
+        detailsTargetValue.style.display = 'none'; // Hide by default
+        const proficiencyValue = parseFloat(category.proficiency);
+        const goalProficiencyValue = parseFloat(category.goalProficiency);
+
+        if (showGoalExtension && category.goal && proficiencyValue !== goalProficiencyValue) {
+            const isIncrease = goalProficiencyValue > proficiencyValue;
+            const arrowColor = isIncrease ? 'green' : 'hsl(0, 60%, 50%)';
+            const arrowSymbol = isIncrease ? '▲' : '▼'; // Use Unicode triangles
+            
+            detailsTargetValue.innerHTML = `
+              <div class="target-values">
+                <span class="current-prof">${category.proficiency}</span>
+                <span style="color: ${arrowColor}; font-weight: bold; margin: 0 8px; font-size: 1.2em;">${arrowSymbol}</span>
+                <span class="goal-prof visible">${category.goalProficiency}</span>
+              </div>
+            `;
+            detailsTargetValue.style.display = 'flex'; // Show if content
+        }
+      }
+      
       if (detailsExperience) detailsExperience.textContent = `${category.experience} years`;
       if (detailsCount) detailsCount.textContent = category.count;
 
       if (detailsGoal) {
         if (category.goal) {
-          const goalInfo = showGoalExtension
-            ? `<strong>Goal:</strong> ${category.goal.description}<br/><strong>Target:</strong> ${category.goalProficiency} / 4.00`
-            : `<strong>Goal:</strong> ${category.goal.description}`;
+          const goalInfo = `<strong>Goal:</strong> ${category.goal.description}`;
           detailsGoal.innerHTML = goalInfo;
           detailsGoal.style.display = 'block';
         } else {

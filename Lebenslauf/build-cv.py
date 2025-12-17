@@ -265,15 +265,9 @@ def main():
     linkedin = intro.get("linkedin", "")
     github = intro.get("github", "")
     website = intro.get("website", "")
-    # `cvSummary` may contain Typst markup that should be evaluated by Typst.
-    # Do not run it through `escape_typst` so Typst commands are preserved.
-    # If you want to ensure safety for plain-text summaries, escape manually
-    # in the JSON or add a separate raw flag in the future.
+    # `cvSummary` is plain text. Escape it and pass it as a string to the template.
     cv_summary = intro.get("cvSummary", "")
-    # Explicit raw flag: if true, treat `cvSummary` as raw Typst and emit
-    # it without wrapping/escaping. Useful when you want the JSON to contain
-    # Typst markup that should be executed directly.
-    cv_summary_raw = bool(intro.get("cvSummaryRaw", False))
+    safe_summary = escape_typst(cv_summary)
 
     # Build CV document
     lines = [
@@ -284,47 +278,14 @@ def main():
         '#cv-header(',
         f'  "{name}",',
         f'  "{title}",',
-        f'  "{email}",',
-        f'  link("{linkedin}")[{linkedin.replace("https://", "")}],',
-        f'  link("{github}")[{github.replace("https://", "")}],',
-        f'  link("{website}")[{website.replace("https://", "")}],',
-        # Insert the summary. If the JSON `cvSummary` contains Typst markup
-        # (e.g., calls like `v(...)`, `text(...)`, `#...` etc.), emit it
-        # directly so Typst parses and executes it. Otherwise escape it and
-        # place it inside content brackets so it is rendered as plain text.
-        ]
-
-    def looks_like_typst(s: str) -> bool:
-        if not s:
-            return False
-        patterns = (r"#", r"v\(", r"text\(", r"set par", r"line\(", r"link\(")
-        for p in patterns:
-            if re.search(p, s):
-                return True
-        return False
-
-    # Decide emission based on explicit flag and heuristic
-    # Emit summary inside brackets so the template's `text(...)[#summary]`
-    # will render it. If `cvSummaryRaw` is set and the content looks like
-    # Typst, insert it raw so Typst executes it; otherwise insert escaped
-    # plain text.
-    if cv_summary_raw and looks_like_typst(cv_summary):
-        summary_line = f'  summary: [{cv_summary}],'
-    else:
-        safe = escape_typst(cv_summary)
-        summary_line = f'  summary: [{safe}],'
-
-    # Debug log: show exactly what we insert for inspection
-    print("DEBUG: Emitting summary line for cv.typ:")
-    print(summary_line)
-
-    lines.append(summary_line)
-
-    # Continue the header list
-    lines.append('  // phone: "YOUR PHONE",  // Uncomment and add your phone')
-    lines.append('  // address: "YOUR ADDRESS",  // Uncomment and add your address')
-    lines.append(')')
-    lines.append('')
+        f'  summary: "{safe_summary}",',
+        f'  email: "{email}",',
+        f'  linkedin: link("{linkedin}")[{linkedin.replace("https://", "")}],',
+        f'  github: link("{github}")[{github.replace("https://", "")}],',
+        f'  website: link("{website}")[{website.replace("https://", "")}]',
+        ')',
+        ''
+    ]
 
     # Add sections
     lines.append(generate_experience_section(experience))
@@ -338,7 +299,7 @@ def main():
 
     print(f"✓ Generated {OUTPUT_FILE}")
     print("\nNext steps:")
-    print("  1. Review cv.typ and add personal info (phone, address)")
+    print("  1. Review cv.typ")
     print("  2. Run: typst compile cv.typ ../public/files/Johannes_Tauscher_CV.pdf")
     print("  3. Or run: ./build-cv.sh (compiles automatically to public/files/)")
 

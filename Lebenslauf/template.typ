@@ -2,15 +2,15 @@
 
 // CV Template - Professional styling for academic/technical CVs
 
-// Color scheme
-#let accent-color = rgb("#2563eb")  // Professional blue
-#let text-color = rgb("#1f2937")
-#let gray-color = rgb("#6b7280")
-#let light-gray = rgb("#e5e7eb")
-
+// A refined, high-contrast color scheme
+#let accent-color = rgb("#427bbbff")  // A classic, deep navy blue (solid)
+#let text-color = rgb("#28313fff")    // A slightly softer dark gray/black
+#let gray-color = rgb("#a1a1a1ff")    // A medium-dark gray for readable secondary text
+#let light-gray = rgb("#edededff")    // A light, subtle gray for dividers (solid)
+/usr/share/fonts/truetype/ubuntu/[wdth,wght].ttf
 // Fonts
-#let body-font = "Linux Libertine"
-#let heading-font = "Linux Biolinum"
+#let body-font = "Lato"
+#let heading-font = "Lato"
 
 // Document setup
 #let cv-document(body) = {
@@ -38,7 +38,7 @@
 }
 
 // Header with name and contact info
-#let cv-header(name, title, email, linkedin, github, website, phone: none, address: none, summary: none) = {
+#let cv-header(name, title, summary: none, email: none, linkedin: none, github: none, website: none) = {
   set text(font: heading-font)
 
   align(center)[
@@ -46,26 +46,21 @@
     #v(0.3em)
     #text(size: 11pt, fill: gray-color)[#title]
   ]
-  
-  if summary != none [
-    v(0.8em)
-    set par(justify: true)
-    text(size: 10pt, fill: text-color, font: body-font)[
-      #summary
-    ]
-  ]
 
-  v(0.5em)
+  if summary != none and summary != "" {
+    v(0.6em)
+    align(center)[
+      #set text(font: body-font)
+      #text(size: 10pt)[#summary]
+    ]
+  }
+
+  v(0.6em)
   
   align(center)[
-    #let contacts = (email, phone, linkedin, github, website).filter(x => x != none)
+    #let contacts = (email, linkedin, github, website).filter(x => x != none)
     #text(size: 9pt, fill: gray-color)[
       #contacts.join(" • ")
-    ]
-
-    if address != none [
-      v(0.2em)
-      text(size: 9pt, fill: gray-color)[#address]
     ]
   ]
   

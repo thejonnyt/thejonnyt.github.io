@@ -4,8 +4,8 @@
     "position": "Mitgründer & CTO",
     "location": "Leipzig, Deutschland",
     "startDate": "2024-11",
-    "endDate": "2025-11",
-    "current": true,
+    "endDate": "2025-12",
+    "current": false,
     "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen, um Beteiligung und Engagement zu ermöglichen – eine Möglichkeit, seine Meinung zu äußern. Von Konzeption, Architektur bis Umsetzung des Produkts als MVP mit der Hilfe eines 4-köpfigen Entwicklungsteams und Koordination externer IT-Partner.",
     "achievements": [
       "Entwicklung einer Engagement-Plattform von 0 → 1 in 12 Monaten mit einem Gesamtbudget von 30.000 €",
@@ -40,7 +40,7 @@
     "startDate": "2024-11",
     "endDate": "2025-10",
     "current": false,
-    "description": "Verantwortlich für die Entwicklung und den Launch einer Startup-Idee im Rahmen des {{exist}}-Stipendienprogramms, finanziert vom Bundesministerium für Wirtschaft und Klimaschutz (BMWK).",
+    "description": "Verantwortlich für die Entwicklung und den Launch einer Startup-Idee im Rahmen des {{exist}}-Stipendienprogramms, finanziert vom Bundesministerium für Wirtschaft und Energie (BMWK).",
     "achievements": [
       "Gewinner der Impulse Summit 2025",
       "Gewinner des TGFS Technologiegründerfonds Sachsen Awards im Rahmen des HHL Digitale Space Programms 2025",
