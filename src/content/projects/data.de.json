@@ -13,7 +13,6 @@
     "startDate": "2024",
     "endDate": "2025",
     "links": {
-      "User-Demo": "https://chat.dieraumdeuter.de/api/auth/auto-login",
       "Website": "https://dieraumdeuter.de"
     },
     "highlights": [
