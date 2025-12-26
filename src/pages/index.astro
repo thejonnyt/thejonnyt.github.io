@@ -8,6 +8,7 @@ import SkillTag from '../components/SkillTag.astro';
 import SkillsRadar from '../components/SkillsRadar.astro';
 import MagneticContactCarousel from '../components/MagneticContactCarousel.astro';
 import PodcastPlayer from '../components/PodcastPlayer.astro';
+import LinkedInBadge from '../components/LinkedInBadge.astro';
 import { Image } from 'astro:assets';
 
 // Import English content data only
@@ -344,9 +345,14 @@ function formatDate(dateStr: string): string {
       <p>I'm currently looking for new opportunities. Feel free to reach out!</p>
 
       <div class="linkedin-badge-wrapper">
-        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="johannes-tauscher" data-version="v1">
-          <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/johannes-tauscher?trk=profile-badge">Johannes Tauscher</a>
-        </div>
+        <LinkedInBadge
+          name={introData.name}
+          title={introData.title}
+          location={introData.location}
+          profileUrl={introData.linkedin}
+          ctaLabel="View LinkedIn Profile"
+          ariaLabel={`View ${introData.name}'s LinkedIn profile (opens in new tab)`}
+        />
       </div>
 
       <MagneticContactCarousel email={introData.email} language="en" />
@@ -636,6 +642,7 @@ function formatDate(dateStr: string): string {
     gap: var(--space-lg);
     margin-top: var(--space-md);
   }
+
 
   /* Publication items */
   .publication-item {

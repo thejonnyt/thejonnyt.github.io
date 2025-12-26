@@ -5,12 +5,22 @@ interface Props {
   location: string;
   profileUrl: string;
   imageUrl?: string;
+  ctaLabel?: string;
+  ariaLabel?: string;
 }
 
-const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = Astro.props;
+const {
+  name,
+  title,
+  location,
+  profileUrl,
+  imageUrl = "/images/profile.jpg",
+  ctaLabel = "View LinkedIn Profile",
+  ariaLabel = `View ${name}'s LinkedIn profile (opens in new tab)`
+} = Astro.props;
 ---
 
-<a href={profileUrl} target="_blank" rel="noopener noreferrer" class="linkedin-badge" aria-label={`View ${name}'s LinkedIn profile (opens in new tab)`}>
+<a href={profileUrl} target="_blank" rel="noopener noreferrer" class="linkedin-badge" aria-label={ariaLabel}>
   <div class="badge-header">
     <img src={imageUrl} alt={name} class="badge-avatar" />
     <div class="badge-info">
@@ -23,7 +33,7 @@ const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = 
     <svg class="linkedin-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
     </svg>
-    <span class="badge-cta">View LinkedIn Profile</span>
+    <span class="badge-cta">{ctaLabel}</span>
     <svg class="arrow-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
@@ -32,21 +42,29 @@ const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = 
 
 <style>
   .linkedin-badge {
+    --linkedin-badge-bg: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
+    --linkedin-badge-text: #ffffff;
+    --linkedin-badge-muted: rgba(255, 255, 255, 0.9);
+    --linkedin-badge-subtle: rgba(255, 255, 255, 0.7);
+    --linkedin-badge-divider: rgba(255, 255, 255, 0.2);
+    --linkedin-badge-shadow: 0 4px 20px rgba(10, 102, 194, 0.2);
+    --linkedin-badge-shadow-hover: 0 8px 30px rgba(10, 102, 194, 0.4);
+
     display: block;
     max-width: 500px;
     margin: 0 auto;
     padding: var(--space-lg);
-    background: linear-gradient(135deg, #0A66C2 0%, #004182 100%);
+    background: var(--linkedin-badge-bg);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(10, 102, 194, 0.2);
+    box-shadow: var(--linkedin-badge-shadow);
     transition: all var(--transition-normal);
     text-decoration: none;
-    color: white;
+    color: var(--linkedin-badge-text);
   }
 
   .linkedin-badge:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(10, 102, 194, 0.4);
+    box-shadow: var(--linkedin-badge-shadow-hover);
   }
 
   .badge-header {
@@ -55,7 +73,7 @@ const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = 
     gap: var(--space-md);
     margin-bottom: var(--space-md);
     padding-bottom: var(--space-md);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid var(--linkedin-badge-divider);
   }
 
   .badge-avatar {
@@ -63,7 +81,7 @@ const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = 
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    border: 3px solid var(--linkedin-badge-divider);
     flex-shrink: 0;
   }
 
@@ -76,20 +94,20 @@ const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = 
     font-size: 1.25rem;
     font-weight: 600;
     margin: 0 0 var(--space-xs) 0;
-    color: white;
+    color: var(--linkedin-badge-text);
   }
 
   .badge-title {
     font-size: 0.95rem;
     margin: 0 0 var(--space-xs) 0;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--linkedin-badge-muted);
     font-weight: 500;
   }
 
   .badge-location {
     font-size: 0.85rem;
     margin: 0;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--linkedin-badge-subtle);
     display: flex;
     align-items: center;
     gap: var(--space-xs);
@@ -104,7 +122,7 @@ const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = 
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    color: white;
+    color: var(--linkedin-badge-text);
   }
 
   .linkedin-icon {
@@ -126,6 +144,18 @@ const { name, title, location, profileUrl, imageUrl = "/images/profile.jpg" } = 
 
   .linkedin-badge:hover .arrow-icon {
     transform: translateX(4px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .linkedin-badge {
+      --linkedin-badge-bg: linear-gradient(135deg, #0b5fb8 0%, #0a315c 100%);
+      --linkedin-badge-text: #f5f8ff;
+      --linkedin-badge-muted: rgba(245, 248, 255, 0.88);
+      --linkedin-badge-subtle: rgba(245, 248, 255, 0.68);
+      --linkedin-badge-divider: rgba(245, 248, 255, 0.2);
+      --linkedin-badge-shadow: 0 6px 24px rgba(8, 37, 71, 0.55);
+      --linkedin-badge-shadow-hover: 0 10px 32px rgba(8, 37, 71, 0.7);
+    }
   }
 
   /* Responsive */

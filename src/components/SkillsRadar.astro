@@ -159,6 +159,8 @@ const labels = categories.map((cat, i) => {
 // Data polygon points strings for the filled areas
 const proficiencyPolygonPoints = proficiencyPoints.map(p => `${p.x},${p.y}`).join(' ');
 const experiencePolygonPoints = experiencePoints.map(p => `${p.x},${p.y}`).join(' ');
+const proficiencyPolygonPath = `M ${proficiencyPoints.map(p => `${p.x},${p.y}`).join(' L ')} Z`;
+const experiencePolygonPath = `M ${experiencePoints.map(p => `${p.x},${p.y}`).join(' L ')} Z`;
 
 // Prepare category data for JavaScript
 const categoryData = categories.map((cat, i) => ({
@@ -178,10 +180,10 @@ const initialDetailsText = "Hover over a category for details";
     <div class="side-by-side-container">
     <div class="chart-wrapper">
         <svg
-        viewBox={`0 0 ${size} ${size}`}
-        class="radar-chart"
-        role="img"
-        aria-labelledby="radar-title"
+            viewBox={`0 0 ${size} ${size}`}
+            class="radar-chart"
+            role="img"
+            aria-labelledby="radar-title"
         >
         <title id="radar-title">Skill proficiency and experience radar chart across {numCategories} categories</title>
 
@@ -210,7 +212,42 @@ const initialDetailsText = "Hover over a category for details";
                 <feMergeNode in="SourceGraphic"/>
             </feMerge>
             </filter>
+            <filter id="edgeGlow">
+            <feGaussianBlur stdDeviation="6" result="softGlow"/>
+            <feColorMatrix
+                in="softGlow"
+                type="matrix"
+                values="1 0 0 0 0
+                        0 1 0 0 0
+                        0 0 1 0 0
+                        0 0 0 1.4 0"
+                result="boostedGlow"
+            />
+            <feMerge>
+                <feMergeNode in="boostedGlow"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+            </filter>
+            <radialGradient id="radarGlowGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(255, 255, 255, 0.9)" />
+            <stop offset="45%" stop-color="rgba(6, 182, 212, 0.4)" />
+            <stop offset="100%" stop-color="rgba(6, 182, 212, 0)" />
+            </radialGradient>
+            <radialGradient id="radarGlowCore" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(6, 182, 212, 0.65)" />
+            <stop offset="65%" stop-color="rgba(6, 182, 212, 0.1)" />
+            <stop offset="100%" stop-color="rgba(6, 182, 212, 0)" />
+            </radialGradient>
+            <mask id="radarGlowMask">
+            <polygon points={experiencePolygonPoints} fill="white" />
+            <polygon points={proficiencyPolygonPoints} fill="white" />
+            </mask>
         </defs>
+
+        <g class="radar-glow-layer" mask="url(#radarGlowMask)" aria-hidden="true">
+            <circle class="radar-glow-spot core" cx={center} cy={center} r={maxRadius} fill="url(#radarGlowCore)" />
+            <circle class="radar-glow-spot halo" cx={center} cy={center} r={maxRadius} fill="url(#radarGlowGradient)" />
+        </g>
 
         <!-- Grid background (concentric polygons) -->
         <g class="grid">
@@ -243,12 +280,16 @@ const initialDetailsText = "Hover over a category for details";
             <polygon
             points={experiencePolygonPoints}
             class="data-polygon experience-polygon"
+            fill="url(#experienceGradient)"
+            filter="url(#glow)"
             />
 
             <!-- Proficiency polygon -->
             <polygon
             points={proficiencyPolygonPoints}
             class="data-polygon proficiency-polygon"
+            fill="url(#proficiencyGradient)"
+            filter="url(#glow)"
             />
 
             <!-- Goal extension wedges (one per category, shown on hover) -->
@@ -266,6 +307,7 @@ const initialDetailsText = "Hover over a category for details";
                 d={wedgePath}
                 class="goal-wedge"
                 data-category={i}
+                fill="url(#diagonalHatch)"
                 />
             );
             })}
@@ -284,6 +326,40 @@ const initialDetailsText = "Hover over a category for details";
                 />
             )
             ))}
+
+            <!-- Edge highlight overlays -->
+            <path
+            d={experiencePolygonPath}
+            class="edge-highlight glow experience-highlight"
+            filter="url(#edgeGlow)"
+            />
+            <path
+            d={experiencePolygonPath}
+            class="edge-highlight sparks experience-highlight"
+            filter="url(#edgeGlow)"
+            />
+            <path
+            d={experiencePolygonPath}
+            class="edge-highlight core experience-highlight"
+            filter="url(#glow)"
+            />
+            <g class="edge-sparks experience-sparks" aria-hidden="true"></g>
+            <path
+            d={proficiencyPolygonPath}
+            class="edge-highlight glow proficiency-highlight"
+            filter="url(#edgeGlow)"
+            />
+            <path
+            d={proficiencyPolygonPath}
+            class="edge-highlight sparks proficiency-highlight"
+            filter="url(#edgeGlow)"
+            />
+            <path
+            d={proficiencyPolygonPath}
+            class="edge-highlight core proficiency-highlight"
+            filter="url(#glow)"
+            />
+            <g class="edge-sparks proficiency-sparks" aria-hidden="true"></g>
 
             <!-- Experience data points -->
             {experiencePoints.map((point, i) => (
@@ -434,6 +510,25 @@ const initialDetailsText = "Hover over a category for details";
     height: 100%;
     filter: drop-shadow(0 4px 12px rgba(1, 255, 255, 0.25));
     overflow: visible;
+    display: block;
+  }
+
+  .radar-glow-layer {
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .radar-glow-spot {
+    opacity: 0.95;
+    transition: opacity var(--transition-fast);
+  }
+
+  .radar-glow-spot.core {
+    opacity: 0.75;
+  }
+
+  .radar-glow-spot.halo {
+    opacity: 0.6;
   }
 
   /* Grid styling */
@@ -459,7 +554,6 @@ const initialDetailsText = "Hover over a category for details";
   /* Data visualization */
   .data-polygon {
     stroke-width: 2.5;
-    filter: url(#glow);
     transition: all var(--transition-normal);
   }
 
@@ -478,8 +572,120 @@ const initialDetailsText = "Hover over a category for details";
     stroke: #10b981;
   }
 
+  .edge-highlight {
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: var(--highlight-size) calc(var(--path-length) - var(--highlight-size));
+    stroke-dashoffset: 0;
+    opacity: 0;
+    pointer-events: none;
+    animation-timing-function: cubic-bezier(0.25, 0.7, 0.2, 1);
+    animation-fill-mode: both;
+  }
+
+  .edge-highlight.core {
+    stroke-width: 2;
+    --highlight-size: 5px;
+  }
+
+  .edge-highlight.core.animate {
+    animation: edge-travel-core 2.8s linear 1;
+  }
+
+  .edge-highlight.glow {
+    stroke-width: 6;
+    mix-blend-mode: screen;
+    --highlight-size: 16px;
+  }
+
+  .edge-highlight.glow.animate {
+    animation: edge-travel-glow 3.2s linear 1;
+  }
+
+  .edge-highlight.sparks {
+    stroke-width: 2.5;
+    opacity: 0.6;
+    stroke-dasharray: 2px 10px 2px 12px 2px 8px calc(var(--path-length) - 36px);
+  }
+
+  .edge-highlight.sparks.animate {
+    animation: edge-travel-sparks 3.8s linear 1;
+  }
+
+  :global(.edge-sparks .spark) {
+    opacity: 0;
+    mix-blend-mode: screen;
+    filter: url(#edgeGlow);
+  }
+
+  :global(.proficiency-sparks .spark) {
+    fill: rgba(6, 182, 212, 0.95);
+  }
+
+  :global(.experience-sparks .spark) {
+    fill: rgba(16, 185, 129, 0.95);
+  }
+
+  .proficiency-highlight {
+    stroke: rgba(6, 182, 212, 1);
+  }
+
+  .experience-highlight {
+    stroke: rgba(16, 185, 129, 1);
+  }
+
+  @keyframes edge-travel-core {
+    0% {
+      opacity: 0;
+      stroke-dashoffset: var(--highlight-start-offset, 0px);
+    }
+    12% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 0.85;
+    }
+    100% {
+      opacity: 0;
+      stroke-dashoffset: calc(var(--highlight-start-offset, 0px) + var(--highlight-travel-offset));
+    }
+  }
+
+  @keyframes edge-travel-glow {
+    0% {
+      opacity: 0;
+      stroke-dashoffset: var(--highlight-start-offset, 0px);
+    }
+    18% {
+      opacity: 0.7;
+    }
+    65% {
+      opacity: 0.45;
+    }
+    100% {
+      opacity: 0;
+      stroke-dashoffset: calc(var(--highlight-start-offset, 0px) + var(--highlight-travel-offset));
+    }
+  }
+
+  @keyframes edge-travel-sparks {
+    0% {
+      opacity: 0;
+      stroke-dashoffset: var(--highlight-start-offset, 0px);
+    }
+    25% {
+      opacity: 0.8;
+    }
+    70% {
+      opacity: 0.35;
+    }
+    100% {
+      opacity: 0;
+      stroke-dashoffset: calc(var(--highlight-start-offset, 0px) + var(--highlight-travel-offset));
+    }
+  }
+
   .goal-wedge {
-    fill: url(#diagonalHatch);
     stroke: var(--color-accent);
     stroke-width: 2;
     opacity: 0;
@@ -531,10 +737,6 @@ const initialDetailsText = "Hover over a category for details";
 
   .experience-point .data-point {
     fill: #10b981;
-  }
-
-  .data-point.highlighted {
-    filter: url(#glow);
   }
 
   .proficiency-point .data-point.highlighted {
@@ -733,11 +935,22 @@ const initialDetailsText = "Hover over a category for details";
   }
 </style>
 
-<script define:vars={{ categoryData, proficiencyPoints, center, maxRadius, initialDetailsText }}>
+<script define:vars={{ categoryData, proficiencyPoints, experiencePoints, center, maxRadius, initialDetailsText }}>
   document.addEventListener('DOMContentLoaded', () => {
     let activeCategoryIndex = -1;
 
     const proficiencyPolygon = document.querySelector('.proficiency-polygon');
+    const experiencePolygon = document.querySelector('.experience-polygon');
+    const proficiencyHighlightCore = document.querySelector('.proficiency-highlight.core');
+    const proficiencyHighlightGlow = document.querySelector('.proficiency-highlight.glow');
+    const proficiencyHighlightSparks = document.querySelector('.proficiency-highlight.sparks');
+    const experienceHighlightCore = document.querySelector('.experience-highlight.core');
+    const experienceHighlightGlow = document.querySelector('.experience-highlight.glow');
+    const experienceHighlightSparks = document.querySelector('.experience-highlight.sparks');
+    const proficiencySparkLayer = document.querySelector('.proficiency-sparks');
+    const experienceSparkLayer = document.querySelector('.experience-sparks');
+    const chartSvg = document.querySelector('.radar-chart');
+    const glowSpots = document.querySelectorAll('.radar-glow-spot');
     const goalWedges = document.querySelectorAll('.goal-wedge');
     const migrationLines = document.querySelectorAll('.migration-line');
     
@@ -814,6 +1027,200 @@ const initialDetailsText = "Hover over a category for details";
         migrationLines.forEach(line => line.classList.remove('visible'));
     };
 
+    const setEdgeHighlightMetrics = (element) => {
+      if (!(element instanceof SVGPathElement)) return;
+      const length = element.getTotalLength();
+      element.style.setProperty('--path-length', `${length}px`);
+      element.style.setProperty('--highlight-travel-offset', `${-(length * 0.75)}px`);
+    };
+
+    const getLocalPoint = (event) => {
+      if (!chartSvg || !(chartSvg instanceof SVGSVGElement) || !chartSvg.createSVGPoint) return null;
+      const point = chartSvg.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      const matrix = chartSvg.getScreenCTM();
+      if (!matrix) return null;
+      return point.matrixTransform(matrix.inverse());
+    };
+
+    const setGlowPosition = (event) => {
+      const localPoint = getLocalPoint(event);
+      if (!localPoint) return;
+      glowSpots.forEach((spot) => {
+        if (!(spot instanceof SVGCircleElement)) return;
+        spot.setAttribute('cx', localPoint.x.toFixed(2));
+        spot.setAttribute('cy', localPoint.y.toFixed(2));
+      });
+    };
+
+    const resetGlowPosition = () => {
+      glowSpots.forEach((spot) => {
+        if (!(spot instanceof SVGCircleElement)) return;
+        spot.setAttribute('cx', center.toFixed(2));
+        spot.setAttribute('cy', center.toFixed(2));
+      });
+    };
+
+    const getClosestPathOffset = (points, target) => {
+      if (!points?.length || !target) return 0;
+      let bestDist = Infinity;
+      let bestOffset = 0;
+      let accumulated = 0;
+
+      for (let i = 0; i < points.length; i++) {
+        const start = points[i];
+        const end = points[(i + 1) % points.length];
+        const dx = end.x - start.x;
+        const dy = end.y - start.y;
+        const segLenSq = dx * dx + dy * dy;
+        const segLen = Math.sqrt(segLenSq);
+        if (!segLen) continue;
+
+        const t = Math.max(0, Math.min(1, ((target.x - start.x) * dx + (target.y - start.y) * dy) / segLenSq));
+        const projX = start.x + t * dx;
+        const projY = start.y + t * dy;
+        const distSq = (target.x - projX) ** 2 + (target.y - projY) ** 2;
+
+        if (distSq < bestDist) {
+          bestDist = distSq;
+          bestOffset = accumulated + (t * segLen);
+        }
+
+        accumulated += segLen;
+      }
+
+      return bestOffset;
+    };
+
+    const getPathLengthFromPoints = (points) => {
+      if (!points?.length) return 0;
+      let total = 0;
+      for (let i = 0; i < points.length; i++) {
+        const start = points[i];
+        const end = points[(i + 1) % points.length];
+        total += Math.hypot(end.x - start.x, end.y - start.y);
+      }
+      return total;
+    };
+
+    const getPointAtOffset = (points, offset) => {
+      if (!points?.length) return null;
+      const total = getPathLengthFromPoints(points);
+      let remaining = ((offset % total) + total) % total;
+
+      for (let i = 0; i < points.length; i++) {
+        const start = points[i];
+        const end = points[(i + 1) % points.length];
+        const dx = end.x - start.x;
+        const dy = end.y - start.y;
+        const segLen = Math.hypot(dx, dy);
+        if (segLen === 0) continue;
+        if (remaining <= segLen) {
+          const t = remaining / segLen;
+          return {
+            x: start.x + t * dx,
+            y: start.y + t * dy,
+            angle: Math.atan2(dy, dx)
+          };
+        }
+        remaining -= segLen;
+      }
+      return null;
+    };
+
+    const getSparkColor = (baseColor) => {
+      const rgb = baseColor.match(/\d+/g)?.map(Number) ?? [255, 255, 255];
+      const variance = 35;
+      const channel = (value) => Math.max(0, Math.min(255, value + (Math.random() * variance - variance / 2)));
+      const [r, g, b] = rgb;
+      return `rgba(${channel(r)}, ${channel(g)}, ${channel(b)}, ${0.6 + Math.random() * 0.35})`;
+    };
+
+    const spawnSparks = (layer, points, startOffset, baseColor) => {
+      if (!(layer instanceof SVGGElement)) return;
+      const pathLength = getPathLengthFromPoints(points);
+      if (!pathLength) return;
+
+      const sparkCount = 18;
+      const sparks = Array.from({ length: sparkCount }, () => {
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.classList.add('spark');
+        circle.setAttribute('r', (0.8 + Math.random() * 2.4).toFixed(2));
+        if (baseColor) {
+          circle.style.fill = getSparkColor(baseColor);
+        }
+        layer.appendChild(circle);
+        const life = 420 + Math.random() * 900;
+        return {
+          circle,
+          offset: (startOffset - Math.random() * (pathLength * 0.06) + pathLength) % pathLength,
+          speed: (pathLength * (0.18 + Math.random() * 0.12)) / life,
+          drift: (Math.random() * 2 - 1) * (10 + Math.random() * 14),
+          angleOffset: (Math.random() * 0.9 - 0.45),
+          life
+        };
+      });
+
+      const startTime = performance.now();
+
+      const tick = (time) => {
+        const elapsed = time - startTime;
+        let active = false;
+
+        sparks.forEach((spark) => {
+          const age = elapsed;
+          if (age >= spark.life) {
+            spark.circle.remove();
+            return;
+          }
+          active = true;
+          const progress = age / spark.life;
+          const offset = spark.offset + (spark.speed * age);
+          const point = getPointAtOffset(points, offset);
+          if (!point) return;
+
+          const normalAngle = point.angle + (spark.drift >= 0 ? Math.PI / 2 : -Math.PI / 2) + spark.angleOffset;
+          const drift = spark.drift * (1 - progress);
+          const jitter = (Math.random() - 0.5) * 1.2;
+          const x = point.x + Math.cos(normalAngle) * drift + jitter;
+          const y = point.y + Math.sin(normalAngle) * drift + jitter;
+          spark.circle.setAttribute('cx', x.toFixed(2));
+          spark.circle.setAttribute('cy', y.toFixed(2));
+          spark.circle.style.opacity = `${0.9 * (1 - progress)}`;
+        });
+
+        if (active) {
+          requestAnimationFrame(tick);
+        }
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const triggerEdgeHighlight = (elements, startOffset = 0, sparkConfig = null) => {
+      const [core, glow, sparks] = elements;
+      if (!(core instanceof SVGPathElement)) return;
+      if (core.dataset.running === 'true') return;
+      core.dataset.running = 'true';
+
+      [core, glow, sparks].forEach((element) => {
+        if (!(element instanceof SVGPathElement)) return;
+        element.style.setProperty('--highlight-start-offset', `${-startOffset}px`);
+        element.classList.remove('animate');
+      });
+
+      void core.getBoundingClientRect();
+      [core, glow, sparks].forEach((element) => {
+        if (!(element instanceof SVGPathElement)) return;
+        element.classList.add('animate');
+      });
+
+      if (sparkConfig) {
+        spawnSparks(sparkConfig.layer, sparkConfig.points, startOffset, sparkConfig.color);
+      }
+    };
+
     // Hover handler
     const handleMouseEnter = (categoryIndex) => {
         if (typeof categoryIndex !== 'number' || Number.isNaN(categoryIndex)) return;
@@ -845,7 +1252,22 @@ const initialDetailsText = "Hover over a category for details";
     labels.forEach((label) => {
       const raw = label.getAttribute('data-category');
       const categoryIndex = raw ? parseInt(raw, 10) : NaN;
-      label.addEventListener('mouseenter', () => handleMouseEnter(categoryIndex));
+      label.addEventListener('mouseenter', (event) => {
+        handleMouseEnter(categoryIndex);
+        const localPoint = getLocalPoint(event);
+        const proficiencyOffset = getClosestPathOffset(proficiencyPoints, localPoint);
+        const experienceOffset = getClosestPathOffset(experiencePoints, localPoint);
+        triggerEdgeHighlight(
+          [proficiencyHighlightCore, proficiencyHighlightGlow, proficiencyHighlightSparks],
+          proficiencyOffset,
+          { layer: proficiencySparkLayer, points: proficiencyPoints, color: '6, 182, 212' }
+        );
+        triggerEdgeHighlight(
+          [experienceHighlightCore, experienceHighlightGlow, experienceHighlightSparks],
+          experienceOffset,
+          { layer: experienceSparkLayer, points: experiencePoints, color: '16, 185, 129' }
+        );
+      });
     });
 
     // Add hover handlers for data points (dots)
@@ -854,6 +1276,66 @@ const initialDetailsText = "Hover over a category for details";
       const categoryIndex = raw ? parseInt(raw, 10) : NaN;
       pointGroup.addEventListener('mouseenter', () => handleMouseEnter(categoryIndex));
     });
+
+    [
+      proficiencyHighlightCore,
+      proficiencyHighlightGlow,
+      proficiencyHighlightSparks,
+      experienceHighlightCore,
+      experienceHighlightGlow,
+      experienceHighlightSparks
+    ].forEach((element) => {
+      setEdgeHighlightMetrics(element);
+    });
+
+    const wireHighlightReset = (core, glow, sparks) => {
+      if (!(core instanceof SVGPathElement)) return;
+      core.addEventListener('animationend', () => {
+        core.dataset.running = 'false';
+        [core, glow, sparks].forEach((element) => {
+          if (element instanceof SVGPathElement) {
+            element.classList.remove('animate');
+          }
+        });
+      });
+    };
+
+    wireHighlightReset(proficiencyHighlightCore, proficiencyHighlightGlow, proficiencyHighlightSparks);
+    wireHighlightReset(experienceHighlightCore, experienceHighlightGlow, experienceHighlightSparks);
+
+    proficiencyPolygon?.addEventListener('mouseenter', (event) => {
+      const localPoint = getLocalPoint(event);
+      const startOffset = getClosestPathOffset(proficiencyPoints, localPoint);
+      triggerEdgeHighlight(
+        [proficiencyHighlightCore, proficiencyHighlightGlow, proficiencyHighlightSparks],
+        startOffset,
+        { layer: proficiencySparkLayer, points: proficiencyPoints, color: '6, 182, 212' }
+      );
+    });
+
+    experiencePolygon?.addEventListener('mouseenter', (event) => {
+      const localPoint = getLocalPoint(event);
+      const startOffset = getClosestPathOffset(experiencePoints, localPoint);
+      triggerEdgeHighlight(
+        [experienceHighlightCore, experienceHighlightGlow, experienceHighlightSparks],
+        startOffset,
+        { layer: experienceSparkLayer, points: experiencePoints, color: '16, 185, 129' }
+      );
+    });
+
+    if (chartSvg) {
+      let frame = 0;
+      const handleGlowMove = (event) => {
+        if (frame) return;
+        frame = requestAnimationFrame(() => {
+          frame = 0;
+          setGlowPosition(event);
+        });
+      };
+      chartSvg.addEventListener('pointermove', handleGlowMove);
+      chartSvg.addEventListener('pointerleave', resetGlowPosition);
+      resetGlowPosition();
+    }
 
     // Set initial state: prefer 'Programming Languages', fallback to first category
     const initialCategoryName = 'Programming Languages';

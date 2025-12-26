@@ -63,10 +63,12 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Typography */
@@ -276,6 +278,10 @@ li {
     position: relative;
   }
 
-
+@media (max-width: 768px) {
+  body {
+    padding-top: var(--header-height);
+  }
+}
 
 

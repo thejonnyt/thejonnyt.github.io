@@ -1,4 +1,6 @@
 ---
+import CopyResumeButton from './CopyResumeButton.astro';
+
 // Footer component
 const currentYear = new Date().getFullYear();
 ---
@@ -17,6 +19,9 @@ const currentYear = new Date().getFullYear();
           LinkedIn
         </a>
       </nav>
+      <div class="footer-cv-actions">
+        <CopyResumeButton idPrefix="footer-cv" />
+      </div>
     </div>
   </div>
 </footer>
@@ -54,6 +59,17 @@ const currentYear = new Date().getFullYear();
 
   .social-links a:hover {
     color: var(--color-foreground);
+  }
+
+  .footer-cv-actions {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .footer-cv-actions {
+      display: flex;
+      justify-content: center;
+    }
   }
 
   @media (max-width: 640px) {

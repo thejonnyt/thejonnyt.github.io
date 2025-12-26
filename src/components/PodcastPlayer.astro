@@ -865,6 +865,8 @@ const { src, title = "Podcast" } = Astro.props;
   function initPodcastPlayer() {
     const wrapper = document.querySelector('.podcast-player-wrapper') as HTMLElement;
     if (!wrapper) return;
+    if (wrapper.dataset.initialized === 'true') return;
+    wrapper.dataset.initialized = 'true';
 
     const audio = wrapper.querySelector('.hidden-audio') as HTMLAudioElement;
     const mainContainer = wrapper.querySelector('.audio-player-container') as HTMLElement;
@@ -957,9 +959,36 @@ const { src, title = "Podcast" } = Astro.props;
       localStorage.removeItem(storageKey);
     }
 
+    function notifyActivePlayer() {
+      window.dispatchEvent(
+        new CustomEvent('audio:activate', { detail: wrapper })
+      );
+    }
+
+    window.addEventListener('audio:activate', (event: Event) => {
+      const activeWrapper = (event as CustomEvent).detail as HTMLElement;
+      if (activeWrapper === wrapper) return;
+      audio.pause();
+      updatePlayPauseIcons(false);
+      miniPlayer.style.display = 'none';
+      minimizedPlayer.style.display = 'none';
+      isUserManuallyHidingMini = true;
+    });
+
     // Play/Pause functionality
+    function pauseOtherAudio() {
+      document.querySelectorAll('audio').forEach((other) => {
+        if (other !== audio) {
+          other.pause();
+        }
+      });
+    }
+
     function togglePlayPause() {
       if (audio.paused) {
+        pauseOtherAudio();
+        isUserManuallyHidingMini = false;
+        notifyActivePlayer();
         audio.play();
         updatePlayPauseIcons(true);
       } else {
@@ -1212,10 +1241,33 @@ const { src, title = "Podcast" } = Astro.props;
     }
   }
 
+  function initPodcastWhenVisible() {
+    const wrapper = document.querySelector('.podcast-player-wrapper') as HTMLElement | null;
+    if (!wrapper || wrapper.dataset.initialized === 'true') return;
+
+    if (!('IntersectionObserver' in window)) {
+      initPodcastPlayer();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const isVisible = entries.some((entry) => entry.isIntersecting);
+        if (isVisible) {
+          observer.disconnect();
+          initPodcastPlayer();
+        }
+      },
+      { rootMargin: '200px 0px' }
+    );
+
+    observer.observe(wrapper);
+  }
+
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPodcastPlayer);
+    document.addEventListener('DOMContentLoaded', initPodcastWhenVisible);
   } else {
-    initPodcastPlayer();
+    initPodcastWhenVisible();
   }
 </script>

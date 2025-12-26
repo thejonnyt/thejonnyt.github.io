@@ -42,6 +42,9 @@ const levelToStars: Record<string, number> = {
 };
 
 const stars = skillData ? levelToStars[skillData.level] || 0 : 0;
+const tooltipId = (showTooltip && skillData)
+  ? `skill-tooltip-${skillName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'item'}`
+  : undefined;
 ---
 
 <span
@@ -50,10 +53,12 @@ const stars = skillData ? levelToStars[skillData.level] || 0 : 0;
   data-has-meta={skillData ? 'true' : 'false'}
   data-category-color={categoryColor}
   style={`border-color: ${categoryColor};`}
+  tabindex={showTooltip && skillData ? 0 : undefined}
+  aria-describedby={tooltipId}
 >
   <span class="skill-name">{skillName}</span>
   {showTooltip && skillData && (
-    <span class="skill-tooltip">
+    <span class="skill-tooltip" id={tooltipId} role="tooltip">
       <div class="tooltip-header">
         <span class="tooltip-category">{skillData.category}</span>
         {stars > 0 && (
@@ -103,6 +108,11 @@ const stars = skillData ? levelToStars[skillData.level] || 0 : 0;
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     z-index: 101; /* Higher than header z-index */
+  }
+
+  .skill-tag:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 
   .skill-tag[data-has-meta="false"] {
@@ -165,6 +175,11 @@ const stars = skillData ? levelToStars[skillData.level] || 0 : 0;
   }
 
   .skill-tag:hover .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .skill-tag:focus-visible .skill-tooltip {
     opacity: 1;
     visibility: visible;
   }
@@ -312,6 +327,7 @@ const stars = skillData ? levelToStars[skillData.level] || 0 : 0;
     skillTags.forEach(tag => {
       // Use 'pointerenter' for better compatibility with various devices
       tag.addEventListener('pointerenter', () => positionTooltip(tag));
+      tag.addEventListener('focusin', () => positionTooltip(tag));
     });
   }
 

@@ -8,6 +8,7 @@ import SkillTag from '../../components/SkillTag.astro';
 import SkillsRadar from '../../components/SkillsRadar.astro';
 import MagneticContactCarousel from '../../components/MagneticContactCarousel.astro';
 import PodcastPlayer from '../../components/PodcastPlayer.astro';
+import LinkedInBadge from '../../components/LinkedInBadge.astro';
 import { Image } from 'astro:assets';
 
 // Import German content data
@@ -46,7 +47,7 @@ function formatDate(dateStr: string): string {
 <BaseLayout title={`${introData.name} - Portfolio & Lebenslauf`} description={introData.tagline}>
   <Header />
 
-  <main class="container">
+  <main id="main-content" class="container" role="main">
     <!-- Hero / Introduction Section -->
     <section class="hero section">
       <div class="hero-content">
@@ -98,14 +99,14 @@ function formatDate(dateStr: string): string {
           <TermText text={introData.bio[0]} as="p" />
         </div>
         {introData.bio.length > 1 && (
-          <div class="bio-full" style="display: none;">
+          <div class="bio-full" id="bio-full-content" style="display: none;">
             {introData.bio.slice(1).map((paragraph: string) => (
               <TermText text={paragraph} as="p" />
             ))}
           </div>
         )}
         {introData.bio.length > 1 && (
-          <button class="bio-toggle">
+          <button class="bio-toggle" aria-expanded="false" aria-controls="bio-full-content">
             <span class="toggle-text">Mehr lesen</span>
             <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -132,8 +133,8 @@ function formatDate(dateStr: string): string {
     <!-- Experience Section -->
     <section id="experience" class="section">
       <h2>Erfahrung</h2>
-      {experienceData.map((exp: any) => (
-        <div class="timeline-item">
+      {experienceData.map((exp: any, index: number) => (
+        <div class="timeline-item" data-experience-index={index} data-hidden={index >= 5 ? 'true' : 'false'}>
           <div class="timeline-header">
             <div>
               <h3>{exp.position}</h3>
@@ -158,6 +159,12 @@ function formatDate(dateStr: string): string {
           )}
         </div>
       ))}
+      <button class="experience-toggle" aria-expanded="false" id="experience-toggle">
+        <span class="toggle-text">Mehr Erfahrung anzeigen</span>
+        <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </section>
 
     <!-- Projects Section -->
@@ -171,12 +178,18 @@ function formatDate(dateStr: string): string {
               <p class="text-muted">{project.tagline}</p>
             </div>
             {project.links?.Video && (
-              <div class="video-thumbnail" data-project-index={index}>
+              <button
+                class="video-thumbnail"
+                data-project-index={index}
+                aria-label={`Play ${project.name} video`}
+                aria-expanded="false"
+                aria-controls={`video-container-${index}`}
+              >
                 <div class="play-icon">▶</div>
-              </div>
+              </button>
             )}
           </div>
-          <div class="video-container" data-project-index={index} style="display: none;">
+          <div class="video-container" id={`video-container-${index}`} data-project-index={index} style="display: none;" role="region" aria-label={`${project.name} video player`}>
             {project.links?.Video && (
               <iframe
                 title={`${project.name} video`}
@@ -332,9 +345,14 @@ function formatDate(dateStr: string): string {
       <p>Ich bin derzeit auf der Suche nach neuen Möglichkeiten. Kontaktieren Sie mich gerne!</p>
 
       <div class="linkedin-badge-wrapper">
-        <div class="badge-base LI-profile-badge" data-locale="de_DE" data-size="medium" data-theme="dark" data-type="VERTICAL" data-vanity="johannes-tauscher" data-version="v1">
-          <a class="badge-base__link LI-simple-link" href="https://de.linkedin.com/in/johannes-tauscher?trk=profile-badge">Johannes Tauscher</a>
-        </div>
+        <LinkedInBadge
+          name={introData.name}
+          title={introData.title}
+          location={introData.location}
+          profileUrl={introData.linkedin}
+          ctaLabel="LinkedIn-Profil ansehen"
+          ariaLabel={`LinkedIn-Profil von ${introData.name} ansehen (oeffnet in neuem Tab)`}
+        />
       </div>
 
       <MagneticContactCarousel email={introData.email} language="de" />
@@ -476,6 +494,35 @@ function formatDate(dateStr: string): string {
     border-bottom: none;
   }
 
+  .timeline-item[data-hidden="true"] {
+    display: none;
+  }
+
+  .experience-toggle {
+    background: transparent;
+    border: none;
+    color: var(--color-accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) 0;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
+    margin-top: var(--space-md);
+    font-family: inherit;
+  }
+
+  .experience-toggle:hover {
+    color: var(--color-accent-hover);
+  }
+
+  .experience-toggle .chevron {
+    transition: transform var(--transition-normal);
+    flex-shrink: 0;
+  }
+
   .timeline-header {
     display: flex;
     justify-content: space-between;
@@ -592,6 +639,7 @@ function formatDate(dateStr: string): string {
     gap: var(--space-lg);
     margin-top: var(--space-md);
   }
+
 
   /* Publication items */
   .publication-item {
@@ -775,61 +823,9 @@ function formatDate(dateStr: string): string {
   }
 </style>
 
-<script>
-  // Initialize Lucide icons
-  if (typeof window !== 'undefined' && typeof (window as any).lucide !== 'undefined') {
-    (window as any).lucide.createIcons();
-  }
-
-  // Handle video thumbnail clicks
-  document.addEventListener('DOMContentLoaded', () => {
-    const thumbnails = document.querySelectorAll('.video-thumbnail');
-
-    thumbnails.forEach(thumbnailEl => {
-      const thumbnail = thumbnailEl as HTMLElement;
-      thumbnail.addEventListener('click', () => {
-        const projectIndex = thumbnail.getAttribute('data-project-index');
-        const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`) as HTMLElement | null;
-
-        if (videoContainer) {
-          if (videoContainer.style.display === 'none') {
-            videoContainer.style.display = 'block';
-            thumbnail.style.opacity = '0.5';
-          } else {
-            videoContainer.style.display = 'none';
-            thumbnail.style.opacity = '1';
-          }
-        }
-      });
-    });
-
-    // Handle bio expand/collapse
-    const bioToggles = document.querySelectorAll('.bio-toggle');
-
-    bioToggles.forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        const button = e.currentTarget as HTMLButtonElement;
-        const expandable = button.closest('.bio-expandable');
-        if (!expandable) return;
-
-        const bioFull = expandable.querySelector('.bio-full') as HTMLElement;
-        const toggleText = button.querySelector('.toggle-text');
-        const chevron = button.querySelector('.chevron') as HTMLElement;
-
-        if (bioFull.style.display === 'none') {
-          // Expand
-          bioFull.style.display = 'block';
-          if (toggleText) toggleText.textContent = 'Weniger lesen';
-          if (chevron) chevron.style.transform = 'rotate(180deg)';
-        } else {
-          // Collapse
-          bioFull.style.display = 'none';
-          if (toggleText) toggleText.textContent = 'Mehr lesen';
-          if (chevron) chevron.style.transform = 'rotate(0deg)';
-        }
-      });
-    });
-  });
+<script define:vars={{ experienceData }}>
+  // Make experience data available to client-side JavaScript
+  window.__experienceData = experienceData;
 </script>
 
 <script>
@@ -838,27 +834,101 @@ function formatDate(dateStr: string): string {
     (window as any).lucide.createIcons();
   }
 
-  // Handle video thumbnail clicks
   document.addEventListener('DOMContentLoaded', () => {
+    // Calculate years of hidden experience
+    const hiddenExperiences = document.querySelectorAll('.timeline-item[data-hidden="true"]');
+    let totalYears = 0;
+
+    hiddenExperiences.forEach(exp => {
+      const index = parseInt(exp.getAttribute('data-experience-index') || '0');
+      const expData = (window as any).__experienceData[index];
+      if (expData) {
+        const startDate = new Date(expData.startDate);
+        const endDate = expData.current || expData.endDate === 'present'
+          ? new Date()
+          : new Date(expData.endDate);
+        const years = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
+        totalYears += years;
+      }
+    });
+
+    const roundedYears = Math.round(totalYears);
+    const toggleButton = document.getElementById('experience-toggle');
+    const toggleText = toggleButton?.querySelector('.toggle-text');
+
+    if (toggleText && roundedYears > 0) {
+      toggleText.textContent = `${roundedYears} weitere${roundedYears === 1 ? 's' : ''} Jahr${roundedYears === 1 ? '' : 'e'} Erfahrung anzeigen`;
+    }
+
+    // Handle experience section toggle
+    if (toggleButton) {
+      toggleButton.addEventListener('click', () => {
+        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
+        const chevron = toggleButton.querySelector('.chevron') as HTMLElement;
+
+        hiddenExperiences.forEach(exp => {
+          const expEl = exp as HTMLElement;
+          if (!isExpanded) {
+            expEl.style.display = 'block';
+            expEl.setAttribute('data-hidden', 'false');
+          } else {
+            expEl.style.display = 'none';
+            expEl.setAttribute('data-hidden', 'true');
+          }
+        });
+
+        if (!isExpanded) {
+          toggleButton.setAttribute('aria-expanded', 'true');
+          if (toggleText) toggleText.textContent = 'Weniger Erfahrung anzeigen';
+          if (chevron) chevron.style.transform = 'rotate(180deg)';
+        } else {
+          toggleButton.setAttribute('aria-expanded', 'false');
+          if (toggleText && roundedYears > 0) {
+            toggleText.textContent = `${roundedYears} weitere${roundedYears === 1 ? 's' : ''} Jahr${roundedYears === 1 ? '' : 'e'} Erfahrung anzeigen`;
+          } else if (toggleText) {
+            toggleText.textContent = 'Mehr Erfahrung anzeigen';
+          }
+          if (chevron) chevron.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+
+    // Handle video thumbnail clicks
     const thumbnails = document.querySelectorAll('.video-thumbnail');
 
     thumbnails.forEach(thumbnailEl => {
       const thumbnail = thumbnailEl as HTMLElement;
-      thumbnail.addEventListener('click', () => {
-        const projectIndex = thumbnail.getAttribute('data-project-index');
-        const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`) as HTMLElement | null;
 
-        if (videoContainer) {
-          if (videoContainer.style.display === 'none') {
-            videoContainer.style.display = 'block';
-            thumbnail.style.opacity = '0.5';
-          } else {
-            videoContainer.style.display = 'none';
-            thumbnail.style.opacity = '1';
-          }
+      thumbnail.addEventListener('click', () => {
+        toggleVideo(thumbnail);
+      });
+
+      thumbnail.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleVideo(thumbnail);
         }
       });
     });
+
+    function toggleVideo(thumbnail: HTMLElement) {
+      const projectIndex = thumbnail.getAttribute('data-project-index');
+      const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`) as HTMLElement | null;
+
+      if (videoContainer) {
+        const isExpanded = thumbnail.getAttribute('aria-expanded') === 'true';
+
+        if (!isExpanded) {
+          videoContainer.style.display = 'block';
+          thumbnail.style.opacity = '0.5';
+          thumbnail.setAttribute('aria-expanded', 'true');
+        } else {
+          videoContainer.style.display = 'none';
+          thumbnail.style.opacity = '1';
+          thumbnail.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
 
     // Handle bio expand/collapse
     const bioToggles = document.querySelectorAll('.bio-toggle');
@@ -872,17 +942,20 @@ function formatDate(dateStr: string): string {
         const bioFull = expandable.querySelector('.bio-full') as HTMLElement;
         const toggleText = button.querySelector('.toggle-text');
         const chevron = button.querySelector('.chevron') as HTMLElement;
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-        if (bioFull.style.display === 'none') {
+        if (!isExpanded) {
           // Expand
           bioFull.style.display = 'block';
           if (toggleText) toggleText.textContent = 'Weniger lesen';
           if (chevron) chevron.style.transform = 'rotate(180deg)';
+          button.setAttribute('aria-expanded', 'true');
         } else {
           // Collapse
           bioFull.style.display = 'none';
           if (toggleText) toggleText.textContent = 'Mehr lesen';
           if (chevron) chevron.style.transform = 'rotate(0deg)';
+          button.setAttribute('aria-expanded', 'false');
         }
       });
     });

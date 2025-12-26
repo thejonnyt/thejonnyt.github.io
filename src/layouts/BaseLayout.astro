@@ -19,6 +19,26 @@ const {
 // Determine if this is German page
 const isGerman = Astro.url.pathname.startsWith('/de');
 const pageLang = isGerman ? 'de' : lang;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.url.origin).toString();
+const ogLocale = isGerman ? 'de_DE' : 'en_US';
+const ogImagePath = isGerman ? '/og/de.jpg' : '/og/en.jpg';
+const ogImageUrl = new URL(ogImagePath, Astro.url).toString();
+const ogImageAlt = isGerman ? 'Portrait von Johannes Tauscher' : 'Portrait of Johannes Tauscher';
+const englishPath = isGerman ? Astro.url.pathname.replace(/^\/de/, '') || '/' : Astro.url.pathname;
+const germanPath = isGerman ? Astro.url.pathname : `/de${Astro.url.pathname === '/' ? '' : Astro.url.pathname}`;
+const englishUrl = new URL(englishPath, Astro.url.origin).toString();
+const germanUrl = new URL(germanPath, Astro.url.origin).toString();
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Johannes Tauscher",
+  url: "https://thejonnyt.github.io/",
+  image: ogImageUrl,
+  jobTitle: "Technical Generalist",
+  sameAs: [
+    "https://www.linkedin.com/in/johannes-tauscher/"
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -33,20 +53,29 @@ const pageLang = isGerman ? 'de' : lang;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://thejonnyt.github.io" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="Johannes Tauscher" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- Additional SEO -->
     <meta name="author" content="Johannes Tauscher" />
-    <link rel="canonical" href="https://thejonnyt.github.io" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="de" href={germanUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
 
     <title>{title}</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify(personJsonLd)}></script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
@@ -72,7 +101,5 @@ const pageLang = isGerman ? 'de' : lang;
     <slot />
     <TechnicalTermTooltip />
 
-    <!-- LinkedIn Badge Script - load directly -->
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
   </body>
 </html>

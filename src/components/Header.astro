@@ -16,19 +16,79 @@ import CopyResumeButton from './CopyResumeButton.astro';
         <ul class="nav-links" role="list">
           {isGerman ? (
             <>
-              <li><a href="#about" data-section="about">Über mich</a><div class="section-indicator"></div></li>
-              <li><a href="#experience" data-section="experience">Erfahrung</a><div class="section-indicator"></div></li>
-              <li><a href="#projects" data-section="projects">Projekte</a><div class="section-indicator"></div></li>
-              <li><a href="#education" data-section="education">Ausbildung</a><div class="section-indicator"></div></li>
-              <li><a href="#contact" data-section="contact">Kontakt</a><div class="section-indicator"></div></li>
+              <li>
+                <a href="#about" data-section="about" aria-label="Über mich">
+                  <span class="nav-label full">Über mich</span>
+                  <span class="nav-label short" aria-hidden="true">About</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#experience" data-section="experience" aria-label="Erfahrung">
+                  <span class="nav-label full">Erfahrung</span>
+                  <span class="nav-label short" aria-hidden="true">Exp</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#projects" data-section="projects" aria-label="Projekte">
+                  <span class="nav-label full">Projekte</span>
+                  <span class="nav-label short" aria-hidden="true">Projekte</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#education" data-section="education" aria-label="Ausbildung">
+                  <span class="nav-label full">Ausbildung</span>
+                  <span class="nav-label short" aria-hidden="true">Edu</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#contact" data-section="contact" aria-label="Kontakt">
+                  <span class="nav-label full">Kontakt</span>
+                  <span class="nav-label short" aria-hidden="true">Kontakt</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
             </>
           ) : (
             <>
-              <li><a href="#about" data-section="about">About</a><div class="section-indicator"></div></li>
-              <li><a href="#experience" data-section="experience">Experience</a><div class="section-indicator"></div></li>
-              <li><a href="#projects" data-section="projects">Projects</a><div class="section-indicator"></div></li>
-              <li><a href="#education" data-section="education">Education</a><div class="section-indicator"></div></li>
-              <li><a href="#contact" data-section="contact">Contact</a><div class="section-indicator"></div></li>
+              <li>
+                <a href="#about" data-section="about" aria-label="About">
+                  <span class="nav-label full">About</span>
+                  <span class="nav-label short" aria-hidden="true">About</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#experience" data-section="experience" aria-label="Experience">
+                  <span class="nav-label full">Experience</span>
+                  <span class="nav-label short" aria-hidden="true">Exp</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#projects" data-section="projects" aria-label="Projects">
+                  <span class="nav-label full">Projects</span>
+                  <span class="nav-label short" aria-hidden="true">Prjcts</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#education" data-section="education" aria-label="Education">
+                  <span class="nav-label full">Education</span>
+                  <span class="nav-label short" aria-hidden="true">Edu</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
+              <li>
+                <a href="#contact" data-section="contact" aria-label="Contact">
+                  <span class="nav-label full">Contact</span>
+                  <span class="nav-label short" aria-hidden="true">Contact</span>
+                </a>
+                <div class="section-indicator"></div>
+              </li>
             </>
           )}
         </ul>
@@ -36,8 +96,8 @@ import CopyResumeButton from './CopyResumeButton.astro';
     </div>
 
     <div class="header-actions">
-      <div class="copy-btn-wrapper">
-        <CopyResumeButton />
+      <div class="header-copy-actions">
+        <CopyResumeButton idPrefix="header-cv" />
       </div>
       <div class="lang-switcher" role="navigation" aria-label={isGerman ? "Sprachauswahl" : "Language selection"}>
         <a href="/" class={!isGerman ? 'active' : ''} aria-label="English" aria-current={!isGerman ? 'page' : undefined} lang="en">EN</a>
@@ -50,6 +110,7 @@ import CopyResumeButton from './CopyResumeButton.astro';
 
 <style>
   .header {
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     background-color: var(--color-background);
@@ -133,6 +194,7 @@ import CopyResumeButton from './CopyResumeButton.astro';
     font-size: 0.9rem;
     transition: all var(--transition-fast);
     position: relative;
+    white-space: nowrap;
   }
 
   .nav-links a:hover {
@@ -151,7 +213,11 @@ import CopyResumeButton from './CopyResumeButton.astro';
     flex-shrink: 0;
   }
 
-  .copy-btn-wrapper {
+  .nav-label.short {
+    display: none;
+  }
+
+  .header-copy-actions {
     display: flex;
     align-items: center;
   }
@@ -186,6 +252,13 @@ import CopyResumeButton from './CopyResumeButton.astro';
   }
 
   @media (max-width: 768px) {
+    .header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+
     .header-wrapper {
       gap: var(--space-md);
       padding-left: var(--space-lg);
@@ -212,6 +285,10 @@ import CopyResumeButton from './CopyResumeButton.astro';
     .header-actions {
       gap: var(--space-sm);
     }
+
+    .header-copy-actions {
+      display: none;
+    }
   }
 
   @media (max-width: 640px) {
@@ -226,6 +303,16 @@ import CopyResumeButton from './CopyResumeButton.astro';
 
     .lang-switcher {
       font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nav-label.full {
+      display: none;
+    }
+
+    .nav-label.short {
+      display: inline;
     }
   }
 </style>
