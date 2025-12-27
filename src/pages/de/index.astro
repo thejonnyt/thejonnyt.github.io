@@ -126,11 +126,11 @@ function formatDate(dateStr: string): string {
     <!-- Audio Summary Section -->
     <section id="audio-summary" class="section" aria-labelledby="audio-summary-heading">
       <div class="audio-summary-header">
-        <h3 id="audio-summary-heading">Audio-Zusammenfassung</h3>
-        <button class="button audio-summary-trigger" type="button" aria-expanded="false" aria-controls="audio-summary-player">
-          <span class="audio-summary-trigger-icon" aria-hidden="true">▶</span>
-          <span>Abspielen</span>
+        <button class="audio-summary-trigger play-pause-btn" type="button" aria-expanded="false" aria-controls="audio-summary-player" aria-label="Audio-Zusammenfassung abspielen">
+          <Icon name="play" class="icon play-icon" ariaHidden="true" />
+          <Icon name="pause" class="icon pause-icon" ariaHidden="true" style="display: none;" />
         </button>
+        <h3 id="audio-summary-heading">Audio-Zusammenfassung</h3>
       </div>
       <p>Hör Dir die Zusammenfassung von Johannes' Profil von Google's NotebookLM an.</p>
       <div id="audio-summary-player" class="audio-summary-player" hidden>
