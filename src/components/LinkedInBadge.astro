@@ -1,10 +1,14 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import profileImage from '../assets/profile.jpg';
+
 interface Props {
   name: string;
   title: string;
   location: string;
   profileUrl: string;
-  imageUrl?: string;
+  imageSrc?: ImageMetadata;
   ctaLabel?: string;
   ariaLabel?: string;
 }
@@ -14,7 +18,7 @@ const {
   title,
   location,
   profileUrl,
-  imageUrl = "/images/profile.jpg",
+  imageSrc = profileImage,
   ctaLabel = "View LinkedIn Profile",
   ariaLabel = `View ${name}'s LinkedIn profile (opens in new tab)`
 } = Astro.props;
@@ -22,7 +26,15 @@ const {
 
 <a href={profileUrl} target="_blank" rel="noopener noreferrer" class="linkedin-badge" aria-label={ariaLabel}>
   <div class="badge-header">
-    <img src={imageUrl} alt={name} class="badge-avatar" />
+    <Image
+      src={imageSrc}
+      alt={name}
+      width={80}
+      height={80}
+      class="badge-avatar"
+      loading="lazy"
+      format="webp"
+    />
     <div class="badge-info">
       <h3 class="badge-name">{name}</h3>
       <p class="badge-title">{title}</p>

@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   email: string;
   language?: 'en' | 'de';
@@ -30,7 +32,7 @@ const text = labels[language];
     data-card="download"
     aria-label={text.download}
   >
-    <i data-lucide="download" class="card-icon" aria-hidden="true"></i>
+    <Icon name="download" class="card-icon" ariaHidden="true" />
     <span class="card-label">{text.download}</span>
     <div class="tooltip" role="tooltip">
       <strong>Human-Readable CV (PDF)</strong>
@@ -44,7 +46,7 @@ const text = labels[language];
     data-card="email"
     aria-label={text.email}
   >
-    <i data-lucide="mail" class="card-icon" aria-hidden="true"></i>
+    <Icon name="mail" class="card-icon" ariaHidden="true" />
     <span class="card-label">{text.email}</span>
   </a>
 
@@ -345,9 +347,6 @@ const text = labels[language];
 <script>
   // Initialize Lucide icons
   function initIcons() {
-    if (typeof window !== 'undefined' && typeof (window as any).lucide !== 'undefined') {
-      (window as any).lucide.createIcons();
-    }
   }
 
   // Store timeout ID to allow manual clearing

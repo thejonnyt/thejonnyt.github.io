@@ -88,12 +88,7 @@ const personJsonLd = {
     <!-- View Transitions for smooth page navigation -->
     <ViewTransitions />
 
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "18c2944ca68243ab9c61ee755d7324fa"}'></script>
-    <!-- End Cloudflare Web Analytics -->
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Cloudflare Web Analytics (loaded after page load to avoid blocking) -->
   </head>
   <body>
     <InteractiveBackground />
@@ -101,5 +96,31 @@ const personJsonLd = {
     <slot />
     <TechnicalTermTooltip />
 
+    <script is:inline>
+      (function () {
+        const loadAnalytics = () => {
+          const script = document.createElement('script');
+          script.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+          script.defer = true;
+          script.setAttribute('data-cf-beacon', '{"token": "18c2944ca68243ab9c61ee755d7324fa"}');
+          document.head.appendChild(script);
+        };
+
+        const scheduleLoad = () => {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadAnalytics, { timeout: 2000 });
+          } else {
+            setTimeout(loadAnalytics, 2000);
+          }
+        };
+
+        if (document.readyState === 'complete') {
+          scheduleLoad();
+          return;
+        }
+
+        window.addEventListener('load', scheduleLoad, { once: true });
+      })();
+    </script>
   </body>
 </html>

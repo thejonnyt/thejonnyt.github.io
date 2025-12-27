@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 interface Props {
   src: string;
   title?: string;
@@ -11,7 +13,7 @@ const { src, title = "Podcast" } = Astro.props;
   <!-- Main Audio Player -->
   <div class="audio-player-container">
     <div class="audio-player-header">
-      <i data-lucide="headphones" class="icon" aria-hidden="true"></i>
+      <Icon name="headphones" class="icon" ariaHidden="true" />
       <span>{title}</span>
     </div>
 
@@ -23,8 +25,8 @@ const { src, title = "Podcast" } = Astro.props;
 
       <div class="player-controls">
         <button class="play-pause-btn" aria-label="Play/Pause">
-          <i data-lucide="play" class="icon play-icon" aria-hidden="true"></i>
-          <i data-lucide="pause" class="icon pause-icon" style="display: none;" aria-hidden="true"></i>
+          <Icon name="play" class="icon play-icon" ariaHidden="true" />
+          <Icon name="pause" class="icon pause-icon" ariaHidden="true" style="display: none;" />
         </button>
 
         <div class="time-display">
@@ -46,8 +48,8 @@ const { src, title = "Podcast" } = Astro.props;
 
         <div class="volume-control">
           <button class="volume-btn" aria-label="Mute/Unmute">
-            <i data-lucide="volume-2" class="icon volume-icon" aria-hidden="true"></i>
-            <i data-lucide="volume-x" class="icon muted-icon" style="display: none;" aria-hidden="true"></i>
+            <Icon name="volume-2" class="icon volume-icon" ariaHidden="true" />
+            <Icon name="volume-x" class="icon muted-icon" ariaHidden="true" style="display: none;" />
           </button>
           <input
             type="range"
@@ -81,8 +83,8 @@ const { src, title = "Podcast" } = Astro.props;
   <div class="mini-player" style="display: none;">
     <div class="mini-player-content">
       <button class="mini-play-pause-btn" aria-label="Play/Pause">
-        <i data-lucide="play" class="icon mini-play-icon" aria-hidden="true"></i>
-        <i data-lucide="pause" class="icon mini-pause-icon" style="display: none;" aria-hidden="true"></i>
+        <Icon name="play" class="icon mini-play-icon" ariaHidden="true" />
+        <Icon name="pause" class="icon mini-pause-icon" ariaHidden="true" style="display: none;" />
       </button>
 
       <div class="mini-info">
@@ -103,8 +105,8 @@ const { src, title = "Podcast" } = Astro.props;
 
       <div class="mini-volume-control">
         <button class="mini-volume-btn" aria-label="Volume">
-          <i data-lucide="volume-2" class="icon mini-volume-icon" aria-hidden="true"></i>
-          <i data-lucide="volume-x" class="icon mini-muted-icon" style="display: none;" aria-hidden="true"></i>
+          <Icon name="volume-2" class="icon mini-volume-icon" ariaHidden="true" />
+          <Icon name="volume-x" class="icon mini-muted-icon" ariaHidden="true" style="display: none;" />
         </button>
         <div class="mini-volume-slider-container">
           <input
@@ -134,11 +136,11 @@ const { src, title = "Podcast" } = Astro.props;
       </div>
 
       <button class="mini-minimize-btn" aria-label="Minimize player">
-        <i data-lucide="minimize-2" class="icon" aria-hidden="true"></i>
+        <Icon name="minimize-2" class="icon" ariaHidden="true" />
       </button>
 
       <button class="mini-close-btn" aria-label="Stop and close player">
-        <i data-lucide="x" class="icon" aria-hidden="true"></i>
+        <Icon name="x" class="icon" ariaHidden="true" />
       </button>
     </div>
   </div>
@@ -146,15 +148,15 @@ const { src, title = "Podcast" } = Astro.props;
   <!-- Minimized Player (ultra-compact) -->
   <div class="minimized-player" style="display: none;">
     <button class="minimized-play-pause-btn" aria-label="Play/Pause">
-      <i data-lucide="play" class="icon minimized-play-icon" aria-hidden="true"></i>
-      <i data-lucide="pause" class="icon minimized-pause-icon" style="display: none;" aria-hidden="true"></i>
+      <Icon name="play" class="icon minimized-play-icon" ariaHidden="true" />
+      <Icon name="pause" class="icon minimized-pause-icon" ariaHidden="true" style="display: none;" />
     </button>
     <span class="minimized-time">0:00 / 0:00</span>
     <button class="minimized-expand-btn" aria-label="Expand player">
-      <i data-lucide="maximize-2" class="icon" aria-hidden="true"></i>
+      <Icon name="maximize-2" class="icon" ariaHidden="true" />
     </button>
     <button class="minimized-close-btn" aria-label="Stop and close player">
-      <i data-lucide="x" class="icon" aria-hidden="true"></i>
+      <Icon name="x" class="icon" ariaHidden="true" />
     </button>
   </div>
 </div>
@@ -1160,10 +1162,6 @@ const { src, title = "Podcast" } = Astro.props;
           if (minimizedPlayer.style.display !== 'flex') {
             miniPlayer.style.display = 'block';
           }
-          // Re-initialize Lucide icons for mini player
-          if (typeof (window as any).lucide !== 'undefined') {
-            (window as any).lucide.createIcons();
-          }
         } else if (entry.isIntersecting) {
           // Hide both players when main player is visible and reset manual hiding flag
           miniPlayerTimeout = window.setTimeout(() => {
@@ -1183,18 +1181,12 @@ const { src, title = "Podcast" } = Astro.props;
     miniMinimizeBtn?.addEventListener('click', () => {
       miniPlayer.style.display = 'none';
       minimizedPlayer.style.display = 'flex';
-      if (typeof (window as any).lucide !== 'undefined') {
-        (window as any).lucide.createIcons();
-      }
     });
 
     // Expand minimized player (show full mini player)
     minimizedExpandBtn?.addEventListener('click', () => {
       minimizedPlayer.style.display = 'none';
       miniPlayer.style.display = 'block';
-      if (typeof (window as any).lucide !== 'undefined') {
-        (window as any).lucide.createIcons();
-      }
     });
 
     // Close mini player button - Pause and hide (save position)
@@ -1235,10 +1227,6 @@ const { src, title = "Podcast" } = Astro.props;
     // Initialize play/pause icons to show play by default
     updatePlayPauseIcons(false);
 
-    // Initialize Lucide icons
-    if (typeof (window as any).lucide !== 'undefined') {
-      (window as any).lucide.createIcons();
-    }
   }
 
   function initPodcastWhenVisible() {

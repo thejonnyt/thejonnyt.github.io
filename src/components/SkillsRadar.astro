@@ -457,7 +457,7 @@ const initialDetailsText = "Hover over a category for details";
   .side-by-side-container {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
     gap: var(--space-2xl);
     width: 100%;
   }
@@ -472,6 +472,7 @@ const initialDetailsText = "Hover over a category for details";
     flex: 1 1 45%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: var(--space-lg);
     min-width: 0;
   }
@@ -482,6 +483,13 @@ const initialDetailsText = "Hover over a category for details";
     padding: 0;
     height: auto; /* Fixed height */
     overflow-y: auto; /* Scroll if content overflows */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .details-content {
+    width: 100%;
   }
 
   .details-content.initial {
@@ -554,7 +562,7 @@ const initialDetailsText = "Hover over a category for details";
   /* Data visualization */
   .data-polygon {
     stroke-width: 2.5;
-    transition: all var(--transition-normal);
+    transition: opacity var(--transition-normal);
   }
 
   .proficiency-polygon {
@@ -700,34 +708,36 @@ const initialDetailsText = "Hover over a category for details";
   .migration-line {
     stroke: var(--color-accent);
     stroke-width: 2.5;
-    stroke-dasharray: 4 4;
+    stroke-dasharray: 6 6;
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--transition-normal);
-    animation: dashing 1s linear infinite;
   }
 
   .migration-line.visible {
-    opacity: 0.8;
+    animation: linePulse 1.6s ease-in-out infinite;
   }
 
   .migration-arrow-head {
     fill: var(--color-accent);
   }
 
-  @keyframes dashing {
-    from {
-      stroke-dashoffset: 16;
+  @keyframes linePulse {
+    0% {
+      opacity: 0.25;
     }
-    to {
-      stroke-dashoffset: 0;
+    50% {
+      opacity: 0.85;
+    }
+    100% {
+      opacity: 0.25;
     }
   }
 
   .data-point {
     stroke: var(--color-bg);
     stroke-width: 2;
-    transition: all var(--transition-fast);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
     cursor: pointer;
   }
 
@@ -758,7 +768,7 @@ const initialDetailsText = "Hover over a category for details";
     font-size: 26px;
     font-weight: 500;
     font-family: var(--font-sans);
-    transition: all var(--transition-fast);
+    transition: opacity var(--transition-fast), transform var(--transition-fast);
     cursor: pointer;
     user-select: none;
   }
@@ -1017,6 +1027,140 @@ const initialDetailsText = "Hover over a category for details";
       }
       
       detailsPanel.classList.add('active');
+    };
+
+    const buildDetailsPanel = () => {
+      if (!detailsPanel) return null;
+      const panel = document.createElement('div');
+      panel.className = 'details-panel active';
+      panel.style.position = 'absolute';
+      panel.style.left = '-9999px';
+      panel.style.top = '0';
+      panel.style.visibility = 'hidden';
+      panel.style.pointerEvents = 'none';
+      panel.style.height = 'auto';
+      panel.style.width = `${detailsPanel.getBoundingClientRect().width}px`;
+
+      const hoverState = document.createElement('div');
+      hoverState.className = 'details-content hover-state';
+
+      const header = document.createElement('div');
+      header.className = 'tooltip-header';
+
+      const body = document.createElement('div');
+      body.className = 'tooltip-content-body';
+
+      const makeRow = (labelText) => {
+        const row = document.createElement('div');
+        row.className = 'tooltip-row';
+        const label = document.createElement('span');
+        label.className = 'tooltip-label';
+        label.textContent = labelText;
+        const value = document.createElement('span');
+        value.className = 'tooltip-value';
+        row.appendChild(label);
+        row.appendChild(value);
+        return { row, value };
+      };
+
+      const profRow = makeRow('Self-Assessment:');
+      const expRow = makeRow('Avg Experience:');
+      const countRow = makeRow('Skills:');
+
+      const goal = document.createElement('div');
+      goal.className = 'tooltip-goal';
+      const targetValue = document.createElement('div');
+      targetValue.className = 'tooltip-target-value';
+      const skills = document.createElement('div');
+      skills.className = 'tooltip-skills';
+
+      body.appendChild(profRow.row);
+      body.appendChild(expRow.row);
+      body.appendChild(countRow.row);
+      body.appendChild(goal);
+      body.appendChild(targetValue);
+      body.appendChild(skills);
+
+      hoverState.appendChild(header);
+      hoverState.appendChild(body);
+      panel.appendChild(hoverState);
+
+      return {
+        panel,
+        header,
+        profValue: profRow.value,
+        expValue: expRow.value,
+        countValue: countRow.value,
+        goal,
+        targetValue,
+        skills
+      };
+    };
+
+    const populateDetailsPanel = (elements, category, showGoalExtension = false) => {
+      if (!elements || !category) return;
+      const {
+        header,
+        profValue,
+        expValue,
+        countValue,
+        goal,
+        targetValue,
+        skills
+      } = elements;
+
+      header.textContent = category.name;
+      profValue.innerHTML = `<span class="current-prof">${category.proficiency}</span>`;
+      expValue.textContent = `${category.experience} years`;
+      countValue.textContent = category.count;
+
+      goal.style.display = 'none';
+      if (category.goal) {
+        goal.innerHTML = `<strong>Goal:</strong> ${category.goal.description}`;
+        goal.style.display = 'block';
+      }
+
+      targetValue.style.display = 'none';
+      const proficiencyValue = parseFloat(category.proficiency);
+      const goalProficiencyValue = parseFloat(category.goalProficiency);
+      if (showGoalExtension && category.goal && proficiencyValue !== goalProficiencyValue) {
+        const isIncrease = goalProficiencyValue > proficiencyValue;
+        const arrowColor = isIncrease ? 'green' : 'hsl(0, 60%, 50%)';
+        const arrowSymbol = isIncrease ? '▲' : '▼';
+        targetValue.innerHTML = `
+          <div class="target-values">
+            <span class="current-prof">${category.proficiency}</span>
+            <span style="color: ${arrowColor}; font-weight: bold; margin: 0 8px; font-size: 1.2em;">${arrowSymbol}</span>
+            <span class="goal-prof visible">${category.goalProficiency}</span>
+          </div>
+        `;
+        targetValue.style.display = 'flex';
+      }
+
+      skills.innerHTML = (category.skills || [])
+        .map((skill) => `<span class="skill-tag">${skill}</span>`)
+        .join('');
+    };
+
+    const setDetailsPanelMinHeight = () => {
+      if (!detailsPanel) return;
+      const measure = buildDetailsPanel();
+      if (!measure) return;
+
+      document.body.appendChild(measure.panel);
+
+      let maxHeight = 0;
+      categoryData.forEach((category) => {
+        populateDetailsPanel(measure, category, true);
+        const height = measure.panel.getBoundingClientRect().height;
+        if (height > maxHeight) maxHeight = height;
+      });
+
+      measure.panel.remove();
+
+      if (maxHeight > 0) {
+        detailsPanel.style.minHeight = `${Math.ceil(maxHeight * 0.8)}px`;
+      }
     };
 
     const clearHighlights = (categoryIndex) => {
@@ -1345,5 +1489,16 @@ const initialDetailsText = "Hover over a category for details";
         // Ensure UI shows the initial category details even if there are no hover events
         handleMouseEnter(initialCategoryIndex);
     }
+
+    setDetailsPanelMinHeight();
+
+    let resizeFrame = 0;
+    window.addEventListener('resize', () => {
+      if (resizeFrame) return;
+      resizeFrame = requestAnimationFrame(() => {
+        resizeFrame = 0;
+        setDetailsPanelMinHeight();
+      });
+    });
   });
 </script>

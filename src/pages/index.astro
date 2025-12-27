@@ -9,7 +9,9 @@ import SkillsRadar from '../components/SkillsRadar.astro';
 import MagneticContactCarousel from '../components/MagneticContactCarousel.astro';
 import PodcastPlayer from '../components/PodcastPlayer.astro';
 import LinkedInBadge from '../components/LinkedInBadge.astro';
+import Icon from '../components/Icon.astro';
 import { Image } from 'astro:assets';
+import profileImage from '../assets/profile.jpg';
 
 // Import English content data only
 import introData from '../content/intro/data.json';
@@ -52,15 +54,20 @@ function formatDate(dateStr: string): string {
     <section class="hero section" aria-label="Introduction">
       <div class="hero-content">
         <div class="profile-image-wrapper">
-          <Image
-            src="/images/profile.jpg"
-            alt={`Profile photo of ${introData.name}`}
-            width={234}
-            height={234}
-            class="profile-image"
-            loading="eager"
-            format="webp"
-          />
+          <a href="/images/profile.jpg" target="_blank" rel="noopener noreferrer" aria-label={`Open high-resolution profile photo of ${introData.name}`}>
+            <Image
+              src={profileImage}
+              alt={`Profile photo of ${introData.name}`}
+              width={234}
+              height={234}
+              class="profile-image"
+              loading="eager"
+              fetchpriority="high"
+              format="webp"
+              widths={[234, 468]}
+              sizes="(max-width: 640px) 195px, 234px"
+            />
+          </a>
         </div>
         <div class="hero-text">
           <h1>{introData.name}<span class="degree">, M.Sc.</span></h1>
@@ -70,19 +77,19 @@ function formatDate(dateStr: string): string {
           <div class="contact-links">
             {introData.email && (
               <a href={`mailto:${introData.email}`} class="contact-link" aria-label="Send email">
-                <i data-lucide="mail" class="icon" aria-hidden="true"></i>
+                <Icon name="mail" class="icon" ariaHidden="true" />
                 <span>Email</span>
               </a>
             )}
             {introData.github && (
               <a href={introData.github} target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub profile (opens in new tab)">
-                <i data-lucide="github" class="icon" aria-hidden="true"></i>
+                <Icon name="github" class="icon" ariaHidden="true" />
                 <span>GitHub</span>
               </a>
             )}
             {introData.linkedin && (
               <a href={introData.linkedin} target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn profile (opens in new tab)">
-                <i data-lucide="linkedin" class="icon" aria-hidden="true"></i>
+                <Icon name="linkedin" class="icon" ariaHidden="true" />
                 <span>LinkedIn</span>
               </a>
             )}
@@ -118,16 +125,17 @@ function formatDate(dateStr: string): string {
 
     <!-- Audio Summary Section -->
     <section id="audio-summary" class="section" aria-labelledby="audio-summary-heading">
-        <details class="abstract-toggle">
-            <summary>
-                <h3 id="audio-summary-heading">Audio Summary</h3>
-                <svg class="chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </summary>
-            <p>Listen to the Summary of Johannes Profile by Google's NotebookLM.</p>
-            <AudioSummaryPlayer />
-        </details>
+      <div class="audio-summary-header">
+        <h3 id="audio-summary-heading">Audio Summary</h3>
+        <button class="button audio-summary-trigger" type="button" aria-expanded="false" aria-controls="audio-summary-player">
+          <span class="audio-summary-trigger-icon" aria-hidden="true">▶</span>
+          <span>Play</span>
+        </button>
+      </div>
+      <p>Listen to the Summary of Johannes Profile by Google's NotebookLM.</p>
+      <div id="audio-summary-player" class="audio-summary-player" hidden>
+        <AudioSummaryPlayer />
+      </div>
     </section>
 
     <!-- Experience Section -->
@@ -185,23 +193,29 @@ function formatDate(dateStr: string): string {
                 aria-expanded="false"
                 aria-controls={`video-container-${index}`}
               >
+                <img
+                  class="video-thumbnail-image"
+                  src={`https://vumbnail.com/${project.links.Video.split('/').pop()}.jpg`}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div class="play-icon" aria-hidden="true">▶</div>
               </button>
             )}
           </div>
-          <div class="video-container" id={`video-container-${index}`} data-project-index={index} style="display: none;" role="region" aria-label={`${project.name} video player`}>
-            {project.links?.Video && (
-              <iframe
-                title={`${project.name} video`}
-                src={`https://player.vimeo.com/video/${project.links.Video.split('/').pop()}?h=15018e51f5`}
-                width="100%"
-                height="400"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                allowfullscreen
-              />
-            )}
-          </div>
+          {project.links?.Video && (
+            <div
+              class="video-container"
+              id={`video-container-${index}`}
+              data-project-index={index}
+              data-video-src={`https://player.vimeo.com/video/${project.links.Video.split('/').pop()}?h=15018e51f5`}
+              data-video-title={`${project.name} video`}
+              style="display: none;"
+              role="region"
+              aria-label={`${project.name} video player`}
+            />
+          )}
           <p>{project.description}</p>
           {project.highlights && (
             <ul>
@@ -350,6 +364,7 @@ function formatDate(dateStr: string): string {
           title={introData.title}
           location={introData.location}
           profileUrl={introData.linkedin}
+          imageSrc={profileImage}
           ctaLabel="View LinkedIn Profile"
           ariaLabel={`View ${introData.name}'s LinkedIn profile (opens in new tab)`}
         />
@@ -587,6 +602,15 @@ function formatDate(dateStr: string): string {
     font-family: inherit;
   }
 
+  .video-thumbnail-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
   .video-thumbnail::before {
     content: '';
     position: absolute;
@@ -594,6 +618,7 @@ function formatDate(dateStr: string): string {
     background: rgba(0, 0, 0, 0.2);
     opacity: 0;
     transition: opacity var(--transition-fast);
+    z-index: 1;
   }
 
   .video-thumbnail:hover {
@@ -609,7 +634,7 @@ function formatDate(dateStr: string): string {
     color: white;
     font-size: 2rem;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 
@@ -833,9 +858,6 @@ function formatDate(dateStr: string): string {
 
 <script>
   // Initialize Lucide icons
-  if (typeof window !== 'undefined' && typeof (window as any).lucide !== 'undefined') {
-    (window as any).lucide.createIcons();
-  }
 
   // Handle experience section toggle
   document.addEventListener('DOMContentLoaded', () => {
@@ -920,6 +942,23 @@ function formatDate(dateStr: string): string {
         const isExpanded = thumbnail.getAttribute('aria-expanded') === 'true';
 
         if (!isExpanded) {
+          if (!videoContainer.querySelector('iframe')) {
+            const videoSrc = videoContainer.getAttribute('data-video-src');
+            const videoTitle = videoContainer.getAttribute('data-video-title') || 'Project video';
+
+            if (videoSrc) {
+              const iframe = document.createElement('iframe');
+              iframe.title = videoTitle;
+              iframe.src = videoSrc;
+              iframe.width = '100%';
+              iframe.height = '400';
+              iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+              iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share';
+              iframe.setAttribute('allowfullscreen', '');
+              videoContainer.appendChild(iframe);
+            }
+          }
+
           videoContainer.style.display = 'block';
           thumbnail.style.opacity = '0.5';
           thumbnail.setAttribute('aria-expanded', 'true');
@@ -929,6 +968,34 @@ function formatDate(dateStr: string): string {
           thumbnail.setAttribute('aria-expanded', 'false');
         }
       }
+    }
+
+    // Handle audio summary play trigger
+    const audioSummarySection = document.getElementById('audio-summary');
+    const audioSummaryTrigger = audioSummarySection?.querySelector('.audio-summary-trigger') as HTMLButtonElement | null;
+    const audioSummaryPlayer = audioSummarySection?.querySelector('.audio-summary-player') as HTMLElement | null;
+
+    if (audioSummaryTrigger && audioSummaryPlayer) {
+      audioSummaryTrigger.addEventListener('click', () => {
+        const isHidden = audioSummaryPlayer.hasAttribute('hidden');
+        if (isHidden) {
+          audioSummaryPlayer.removeAttribute('hidden');
+          audioSummaryTrigger.setAttribute('aria-expanded', 'true');
+        }
+
+        let attempts = 0;
+        const maxAttempts = 20;
+        const interval = window.setInterval(() => {
+          attempts += 1;
+          const playButton = audioSummaryPlayer.querySelector('.play-pause-btn') as HTMLButtonElement | null;
+          if (playButton && audioSummaryPlayer.querySelector('.audio-summary-player-wrapper')?.getAttribute('data-initialized') === 'true') {
+            playButton.click();
+            window.clearInterval(interval);
+          } else if (attempts >= maxAttempts) {
+            window.clearInterval(interval);
+          }
+        }, 100);
+      });
     }
 
     // Handle bio expand/collapse
