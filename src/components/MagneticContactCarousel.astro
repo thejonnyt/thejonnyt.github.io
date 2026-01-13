@@ -1,5 +1,12 @@
 ---
 import Icon from './Icon.astro';
+import introData from '../content/intro/data.json';
+import experienceData from '../content/experience/data.json';
+import educationData from '../content/education/data.json';
+import skillsDatabase from '../content/skillsDatabase.json';
+import projectsData from '../content/projects/data.json';
+import publicationsData from '../content/publications/data.json';
+import miscData from '../content/misc/data.json';
 
 interface Props {
   email: string;
@@ -7,6 +14,24 @@ interface Props {
 }
 
 const { email, language = 'en' } = Astro.props;
+
+const machineReadableCV = {
+  profile: introData,
+  experience: experienceData,
+  education: educationData,
+  skills: skillsDatabase.skills,
+  projects: projectsData,
+  publications: publicationsData,
+  awards: miscData.awards,
+  meta: {
+    version: "1.0",
+    generatedAt: new Date().toISOString(),
+    format: "machine-readable-cv-json",
+    description: "Structured CV data optimized for LLM and automated processing tools"
+  }
+};
+
+const cvJSON = JSON.stringify(machineReadableCV, null, 2);
 
 const labels = {
   en: {
@@ -54,6 +79,7 @@ const text = labels[language];
     class="carousel-card carousel-card--copy"
     data-card="copy"
     aria-label={text.copy}
+    data-cv={cvJSON}
   >
     <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -495,7 +521,7 @@ const text = labels[language];
         this.downloadCV();
       } else if (cardType === 'copy') {
         e.preventDefault();
-        await this.copyCV();
+        await this.copyCV(card);
       }
       // Email link handles itself naturally
     }
@@ -531,19 +557,15 @@ const text = labels[language];
       }
     }
 
-    private async copyCV() {
+    private async copyCV(card: HTMLElement) {
       try {
-        // Fetch CV content and copy to clipboard
-        const response = await fetch('/files/Johannes_Tauscher_CV.json');
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch CV data');
+        const cvData = card.dataset.cv;
+        if (!cvData) {
+          throw new Error('Missing CV data');
         }
 
-        const cvData = await response.json();
-
         // Copy JSON to clipboard
-        await navigator.clipboard.writeText(JSON.stringify(cvData, null, 2));
+        await navigator.clipboard.writeText(cvData);
 
         // Show success toast
         showToast('CV data copied to clipboard!', 'success');
