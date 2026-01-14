@@ -1,9 +1,15 @@
 ---
+import CopyResumeButton from './CopyResumeButton.astro';
+
+interface Props {
+  cvSource: any;
+}
+
 // Header component with navigation
 // Get current path to determine language
 const currentPath = Astro.url.pathname;
 const isGerman = currentPath.startsWith('/de');
-import CopyResumeButton from './CopyResumeButton.astro';
+const { cvSource } = Astro.props;
 ---
 
 <header class="header" role="banner">
@@ -97,7 +103,7 @@ import CopyResumeButton from './CopyResumeButton.astro';
 
     <div class="header-actions">
       <div class="header-copy-actions">
-        <CopyResumeButton idPrefix="header-cv" />
+        <CopyResumeButton idPrefix="header-cv" cvSource={cvSource} />
       </div>
       <div class="lang-switcher" role="navigation" aria-label={isGerman ? "Sprachauswahl" : "Language selection"}>
         <a href="/" class={!isGerman ? 'active' : ''} aria-label="English" aria-current={!isGerman ? 'page' : undefined} lang="en">EN</a>

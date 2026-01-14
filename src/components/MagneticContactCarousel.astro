@@ -1,37 +1,13 @@
 ---
 import Icon from './Icon.astro';
-import introData from '../content/intro/data.json';
-import experienceData from '../content/experience/data.json';
-import educationData from '../content/education/data.json';
-import skillsDatabase from '../content/skillsDatabase.json';
-import projectsData from '../content/projects/data.json';
-import publicationsData from '../content/publications/data.json';
-import miscData from '../content/misc/data.json';
 
 interface Props {
   email: string;
   language?: 'en' | 'de';
+  cvSource: any;
 }
 
-const { email, language = 'en' } = Astro.props;
-
-const machineReadableCV = {
-  profile: introData,
-  experience: experienceData,
-  education: educationData,
-  skills: skillsDatabase.skills,
-  projects: projectsData,
-  publications: publicationsData,
-  awards: miscData.awards,
-  meta: {
-    version: "1.0",
-    generatedAt: new Date().toISOString(),
-    format: "machine-readable-cv-json",
-    description: "Structured CV data optimized for LLM and automated processing tools"
-  }
-};
-
-const cvJSON = JSON.stringify(machineReadableCV, null, 2);
+const { email, language = 'en', cvSource } = Astro.props;
 
 const labels = {
   en: {
@@ -79,7 +55,6 @@ const text = labels[language];
     class="carousel-card carousel-card--copy"
     data-card="copy"
     aria-label={text.copy}
-    data-cv={cvJSON}
   >
     <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -370,17 +345,105 @@ const text = labels[language];
   }
 </style>
 
-<script>
+<script define:vars={{ cvSource }}>
   // Initialize Lucide icons
   function initIcons() {
   }
 
+  const proficiencyMap = {
+    beginner: 'beginner',
+    competent: 'intermediate',
+    proficient: 'advanced',
+    expert: 'expert',
+    wizard: 'wizard'
+  };
+
+  const proficiencyOrder = ['wizard', 'expert', 'advanced', 'intermediate', 'beginner', 'unspecified'];
+
+  function mapProficiency(level) {
+    if (!level) return 'unspecified';
+    return proficiencyMap[level] || level;
+  }
+
+  function buildSkillsSummary(skillsDatabase) {
+    const skills = skillsDatabase?.skills || {};
+    const items = Object.entries(skills).map(([name, skill]) => {
+      const years = typeof skill.yearsOfExperience === 'number' ? skill.yearsOfExperience : null;
+      return {
+        name,
+        proficiency: mapProficiency(skill.level),
+        yearsOfExperience: years
+      };
+    });
+
+    items.sort((a, b) => {
+      const orderDelta = proficiencyOrder.indexOf(a.proficiency) - proficiencyOrder.indexOf(b.proficiency);
+      if (orderDelta !== 0) return orderDelta;
+      if (a.yearsOfExperience !== b.yearsOfExperience) {
+        return (b.yearsOfExperience || 0) - (a.yearsOfExperience || 0);
+      }
+      return a.name.localeCompare(b.name);
+    });
+
+    const byProficiency = {};
+    items.forEach(skill => {
+      if (!byProficiency[skill.proficiency]) {
+        byProficiency[skill.proficiency] = [];
+      }
+      const yearsLabel = typeof skill.yearsOfExperience === 'number' ? skill.yearsOfExperience : '';
+      const entry = yearsLabel === '' ? skill.name : `${skill.name}(${yearsLabel})`;
+      byProficiency[skill.proficiency].push(entry);
+    });
+
+    const proficiencyOrderUsed = proficiencyOrder.filter(level => byProficiency[level]);
+    const extraBuckets = Object.keys(byProficiency)
+      .filter(level => !proficiencyOrder.includes(level))
+      .sort((a, b) => a.localeCompare(b));
+
+    const order = [...proficiencyOrderUsed, ...extraBuckets];
+    const summary = {
+      schema: 'Skills grouped by proficiency; each entry is "Skill(Years)" and omits years when unknown.',
+      order,
+      totalCount: items.length
+    };
+
+    order.forEach(level => {
+      summary[level] = byProficiency[level];
+    });
+
+    return summary;
+  }
+
+  function buildMachineCv(source) {
+    const papers = (source.publications || []).map(paper => ({
+      title: paper.title,
+      citations: typeof paper.citations === 'number' ? paper.citations : null
+    }));
+
+    return {
+      profile: source.profile,
+      experience: source.experience,
+      education: source.education,
+      projects: source.projects,
+      papers,
+      awards: source.awards || [],
+      skills: buildSkillsSummary(source.skillsDatabase),
+      meta: {
+        version: '1.1',
+        generatedAt: new Date().toISOString(),
+        format: 'machine-readable-cv-json',
+        language: source.language || 'en',
+        description: 'Structured CV data optimized for automated processing tools'
+      }
+    };
+  }
+
   // Store timeout ID to allow manual clearing
-  let magneticToastTimeout: number | null = null;
+  let magneticToastTimeout = null;
 
   // Function to hide toast
   function hideToast() {
-    const toast = document.getElementById('magnetic-carousel-toast') as HTMLElement;
+    const toast = document.getElementById('magnetic-carousel-toast');
     if (!toast) return;
 
     // Clear any existing timeout
@@ -393,11 +456,11 @@ const text = labels[language];
   }
 
   // Function to show toast notification
-  function showToast(message: string, type: 'success' | 'error' = 'success') {
-    const toast = document.getElementById('magnetic-carousel-toast') as HTMLElement;
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('magnetic-carousel-toast');
     if (!toast) return;
 
-    const messageEl = toast.querySelector('.toast-message') as HTMLElement;
+    const messageEl = toast.querySelector('.toast-message');
     if (!messageEl) return;
 
     // Clear any existing timeout first
@@ -416,20 +479,17 @@ const text = labels[language];
     magneticToastTimeout = window.setTimeout(() => {
       toast.classList.remove('show');
       magneticToastTimeout = null;
-    }, 3000) as unknown as number;
+    }, 3000);
   }
 
   class MagneticCarousel {
-    private carousel: HTMLElement;
-    private cards: NodeListOf<HTMLElement>;
-
-    constructor(element: HTMLElement) {
+    constructor(element) {
       this.carousel = element;
       this.cards = element.querySelectorAll('.carousel-card');
       this.init();
     }
 
-    private init() {
+    init() {
       // Add mouse move listener
       this.carousel.addEventListener('mousemove', this.handleMouseMove.bind(this));
       this.carousel.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
@@ -443,7 +503,7 @@ const text = labels[language];
       initIcons();
     }
 
-    private handleMouseMove(e: MouseEvent) {
+    handleMouseMove(e) {
       const rect = this.carousel.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -498,7 +558,7 @@ const text = labels[language];
       });
     }
 
-    private resetCard(card: HTMLElement) {
+    resetCard(card) {
       // Reset only the email button
       const isFocusCard = card.classList.contains('carousel-card--focus');
       if (isFocusCard) {
@@ -506,14 +566,14 @@ const text = labels[language];
       }
     }
 
-    private handleMouseLeave() {
+    handleMouseLeave() {
       this.cards.forEach(card => {
         this.resetCard(card);
       });
     }
 
-    private async handleCardClick(e: Event) {
-      const card = e.currentTarget as HTMLElement;
+    async handleCardClick(e) {
+      const card = e.currentTarget;
       const cardType = card.getAttribute('data-card');
 
       if (cardType === 'download') {
@@ -526,7 +586,7 @@ const text = labels[language];
       // Email link handles itself naturally
     }
 
-    private async downloadCV() {
+    async downloadCV() {
       try {
         // Fetch the PDF as a blob to force download instead of opening
         const response = await fetch('/files/Johannes_Tauscher_CV.pdf');
@@ -557,11 +617,12 @@ const text = labels[language];
       }
     }
 
-    private async copyCV(card: HTMLElement) {
+    async copyCV(card) {
+      const cvData = JSON.stringify(buildMachineCv(cvSource), null, 2);
+
       try {
-        const cvData = card.dataset.cv;
-        if (!cvData) {
-          throw new Error('Missing CV data');
+        if (!navigator.clipboard || !window.isSecureContext) {
+          throw new Error('Clipboard API unavailable');
         }
 
         // Copy JSON to clipboard
@@ -572,10 +633,10 @@ const text = labels[language];
       } catch (error) {
         console.error('Failed to copy CV:', error);
 
-        // Try fallback method for older browsers
+        // Try fallback method for older browsers/insecure contexts
         try {
           const textarea = document.createElement('textarea');
-          textarea.value = 'CV copy failed - please try again';
+          textarea.value = cvData;
           textarea.style.position = 'fixed';
           textarea.style.opacity = '0';
           document.body.appendChild(textarea);
@@ -593,28 +654,28 @@ const text = labels[language];
   // Initialize all magnetic carousels
   document.addEventListener('DOMContentLoaded', () => {
     // Handle toast close button
-    const toastCloseBtn = document.querySelector('#magnetic-carousel-toast .toast-close') as HTMLButtonElement;
+    const toastCloseBtn = document.querySelector('#magnetic-carousel-toast .toast-close');
     if (toastCloseBtn) {
       toastCloseBtn.addEventListener('click', hideToast);
     }
 
     const carousels = document.querySelectorAll('[data-magnetic-carousel]');
     carousels.forEach(carousel => {
-      new MagneticCarousel(carousel as HTMLElement);
+      new MagneticCarousel(carousel);
     });
   });
 
   // Re-initialize on Astro page transitions (if using View Transitions)
   document.addEventListener('astro:page-load', () => {
     // Handle toast close button
-    const toastCloseBtn = document.querySelector('#magnetic-carousel-toast .toast-close') as HTMLButtonElement;
+    const toastCloseBtn = document.querySelector('#magnetic-carousel-toast .toast-close');
     if (toastCloseBtn) {
       toastCloseBtn.addEventListener('click', hideToast);
     }
 
     const carousels = document.querySelectorAll('[data-magnetic-carousel]');
     carousels.forEach(carousel => {
-      new MagneticCarousel(carousel as HTMLElement);
+      new MagneticCarousel(carousel);
     });
   });
 </script>

@@ -38,6 +38,17 @@ const skillsCategories = Object.entries(featuredSkills).map(([category, skills])
   skills: skills.sort((a, b) => b.yearsOfExperience - a.yearsOfExperience)
 }));
 
+const cvSource = {
+  profile: introData,
+  experience: experienceData,
+  education: educationData,
+  skillsDatabase,
+  projects: projectsData,
+  publications: publicationsData,
+  awards: miscData.awards,
+  language: 'en'
+};
+
 // Helper function to format dates
 function formatDate(dateStr: string): string {
   if (dateStr === 'present') return 'Present';
@@ -47,7 +58,7 @@ function formatDate(dateStr: string): string {
 ---
 
 <BaseLayout title={`${introData.name} - Portfolio & Resume`} description={introData.tagline}>
-  <Header />
+  <Header cvSource={cvSource} />
 
   <main id="main-content" class="container" role="main">
     <!-- Hero / Introduction Section -->
@@ -370,11 +381,11 @@ function formatDate(dateStr: string): string {
         />
       </div>
 
-      <MagneticContactCarousel email={introData.email} language="en" />
+      <MagneticContactCarousel email={introData.email} language="en" cvSource={cvSource} />
     </section>
   </main>
 
-  <Footer />
+  <Footer cvSource={cvSource} />
 </BaseLayout>
 
 <style>

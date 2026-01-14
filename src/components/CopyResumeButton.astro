@@ -1,38 +1,21 @@
 ---
-// Import all CV data
-import introData from '../content/intro/data.json';
-import experienceData from '../content/experience/data.json';
-import educationData from '../content/education/data.json';
-import skillsDatabase from '../content/skillsDatabase.json';
-import projectsData from '../content/projects/data.json';
-import publicationsData from '../content/publications/data.json';
-import miscData from '../content/misc/data.json';
-
-// Consolidate all data into a comprehensive machine-readable CV
-const machineReadableCV = {
-  profile: introData,
-  experience: experienceData,
-  education: educationData,
-  skills: skillsDatabase.skills,
-  projects: projectsData,
-  publications: publicationsData,
-  awards: miscData.awards,
-  meta: {
-    version: "1.0",
-    generatedAt: new Date().toISOString(),
-    format: "machine-readable-cv-json",
-    description: "Structured CV data optimized for LLM and automated processing tools"
-  }
-};
-
-// Convert to JSON string for embedding in the component
-const cvJSON = JSON.stringify(machineReadableCV, null, 2);
+interface CvSource {
+  profile: any;
+  experience: any;
+  education: any;
+  skillsDatabase: any;
+  projects: any;
+  publications: any;
+  awards?: any;
+  language?: string;
+}
 
 interface Props {
   idPrefix?: string;
+  cvSource: CvSource;
 }
 
-const { idPrefix = 'cv-actions' } = Astro.props;
+const { idPrefix = 'cv-actions', cvSource } = Astro.props;
 const rootId = `${idPrefix}-root`;
 const downloadButtonId = `${idPrefix}-download-pdf-btn`;
 const copyButtonId = `${idPrefix}-copy-resume-btn`;
@@ -64,7 +47,6 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
       type="button"
       aria-label="Copy machine-readable CV (JSON) to clipboard"
       title="Copy CV"
-      data-cv={cvJSON}
     >
       <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
@@ -284,17 +266,17 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
   }
 </style>
 
-<script lang="ts" define:vars={{ rootId, downloadButtonId, copyButtonId }}>
+<script define:vars={{ rootId, downloadButtonId, copyButtonId, cvSource }}>
   // Store timeout ID to allow manual clearing
   let toastTimeout = null;
 
-  const root = document.getElementById(`${rootId}`) as HTMLElement | null;
+  const root = document.getElementById(`${rootId}`);
   if (!root) return;
 
-  const toast = root.querySelector('.toast-notification') as HTMLElement | null;
-  const toastCloseBtn = root.querySelector('.toast-close') as HTMLButtonElement | null;
-  const downloadBtn = root.querySelector(`#${downloadButtonId}`) as HTMLButtonElement | null;
-  const copyBtn = root.querySelector(`#${copyButtonId}`) as HTMLButtonElement | null;
+  const toast = root.querySelector('.toast-notification');
+  const toastCloseBtn = root.querySelector('.toast-close');
+  const downloadBtn = root.querySelector(`#${downloadButtonId}`);
+  const copyBtn = root.querySelector(`#${copyButtonId}`);
 
   // Function to hide toast
   function hideToast() {
@@ -310,10 +292,10 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
   }
 
   // Function to show toast notification
-  function showToast(message: string, type: 'success' | 'error' = 'success') {
+  function showToast(message, type = 'success') {
     if (!toast) return;
 
-    const messageEl = toast.querySelector('.toast-message') as HTMLElement | null;
+    const messageEl = toast.querySelector('.toast-message');
     if (!messageEl) return;
 
     // Clear any existing timeout first
@@ -332,10 +314,101 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
     toastTimeout = window.setTimeout(() => {
       toast.classList.remove('show');
       toastTimeout = null;
-    }, 3000) as unknown as number;
+    }, 3000);
+  }
+
+  const proficiencyMap = {
+    beginner: 'beginner',
+    competent: 'intermediate',
+    proficient: 'advanced',
+    expert: 'expert',
+    wizard: 'wizard'
+  };
+
+  const proficiencyOrder = ['wizard', 'expert', 'advanced', 'intermediate', 'beginner', 'unspecified'];
+
+  function mapProficiency(level) {
+    if (!level) return 'unspecified';
+    return proficiencyMap[level] || level;
+  }
+
+  function buildSkillsSummary(skillsDatabase) {
+    const skills = skillsDatabase?.skills || {};
+    const items = Object.entries(skills).map(([name, skill]) => {
+      const years = typeof skill.yearsOfExperience === 'number' ? skill.yearsOfExperience : null;
+      return {
+        name,
+        proficiency: mapProficiency(skill.level),
+        yearsOfExperience: years
+      };
+    });
+
+    items.sort((a, b) => {
+      const orderDelta = proficiencyOrder.indexOf(a.proficiency) - proficiencyOrder.indexOf(b.proficiency);
+      if (orderDelta !== 0) return orderDelta;
+      if (a.yearsOfExperience !== b.yearsOfExperience) {
+        return (b.yearsOfExperience || 0) - (a.yearsOfExperience || 0);
+      }
+      return a.name.localeCompare(b.name);
+    });
+
+    const byProficiency = {};
+    items.forEach(skill => {
+      if (!byProficiency[skill.proficiency]) {
+        byProficiency[skill.proficiency] = [];
+      }
+      const yearsLabel = typeof skill.yearsOfExperience === 'number' ? skill.yearsOfExperience : '';
+      const entry = yearsLabel === '' ? skill.name : `${skill.name}(${yearsLabel})`;
+      byProficiency[skill.proficiency].push(entry);
+    });
+
+    const proficiencyOrderUsed = proficiencyOrder.filter(level => byProficiency[level]);
+    const extraBuckets = Object.keys(byProficiency)
+      .filter(level => !proficiencyOrder.includes(level))
+      .sort((a, b) => a.localeCompare(b));
+
+    const order = [...proficiencyOrderUsed, ...extraBuckets];
+    const summary = {
+      schema: 'Skills grouped by proficiency; each entry is "Skill(Years)" and omits years when unknown.',
+      order,
+      totalCount: items.length
+    };
+
+    order.forEach(level => {
+      summary[level] = byProficiency[level];
+    });
+
+    return summary;
+  }
+
+  function buildMachineCv(source) {
+    const papers = (source.publications || []).map(paper => ({
+      title: paper.title,
+      citations: typeof paper.citations === 'number' ? paper.citations : null
+    }));
+
+    return {
+      profile: source.profile,
+      experience: source.experience,
+      education: source.education,
+      projects: source.projects,
+      papers,
+      awards: source.awards || [],
+      skills: buildSkillsSummary(source.skillsDatabase),
+      meta: {
+        version: '1.1',
+        generatedAt: new Date().toISOString(),
+        format: 'machine-readable-cv-json',
+        language: source.language || 'en',
+        description: 'Structured CV data optimized for automated processing tools'
+      }
+    };
   }
 
   function initCvActions() {
+    if (root.dataset.cvActionsInit === 'true') return;
+    root.dataset.cvActionsInit = 'true';
+
     if (toastCloseBtn) {
       toastCloseBtn.addEventListener('click', hideToast);
     }
@@ -363,11 +436,8 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
 
     // Handle JSON copy button
     if (!copyBtn) return;
-
-    const cvData = copyBtn.dataset.cv;
-
     copyBtn.addEventListener('click', async () => {
-      if (!cvData) return;
+      const cvData = JSON.stringify(buildMachineCv(cvSource), null, 2);
 
       try {
         // Copy to clipboard
@@ -399,4 +469,6 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
   } else {
     initCvActions();
   }
+
+  document.addEventListener('astro:page-load', initCvActions);
 </script>
