@@ -1,5 +1,31 @@
 [
   {
+    "name": "AutoCoverletter",
+    "tagline": "Agent-assisted cover letter automation",
+    "description": "Automates the end-to-end cover letter workflow using agents, local MCP resources, and context engineering to keep prompts focused while staying aligned with local application data.",
+    "technologies": [
+      "Agent workflows",
+      "Local MCP",
+      "Context engineering",
+      "Python",
+      "Codex",
+      "Typst",
+      "Notion Connections"
+    ],
+    "startDate": "2026",
+    "endDate": "Present",
+    "links": {
+      "GitHub": "https://github.com/thejonnyt/AutoCoverletter"
+    },
+    "highlights": [
+      "Automated about 90% of the cover letter writing process, including Notion sync and application tracking",
+      "Strong coverletters without flattering, lying or exaggeration",
+      "Neat design and consistency",
+      "Achieved 10%+ invitation-to-call rate during a weak hiring market"
+    ],
+    "featured": true
+  },
+  {
     "name": "Raumdeuter",
     "tagline": "Fanrelationship Management Software",
     "description": "Listen. Understand. Act. The Raumdeuter Software helps Sportclubs turn fan opinions into data-driven decisions and sustainable knowledge",

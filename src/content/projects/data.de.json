@@ -1,5 +1,31 @@
 [
   {
+    "name": "AutoCoverletter",
+    "tagline": "Agentengestuetzte Automatisierung von Anschreiben",
+    "description": "Automatisiert den End-to-End-Prozess fuer Anschreiben mit Agenten, lokalen MCP-Ressourcen und Context Engineering, damit Prompts fokussiert bleiben und mit lokalen Bewerbungsdaten abgestimmt sind.",
+    "technologies": [
+      "Agenten-Workflows",
+      "Lokales MCP",
+      "Context Engineering",
+      "Python",
+      "Codex",
+      "Typst",
+      "Notion Connections"
+    ],
+    "startDate": "2026",
+    "endDate": "Present",
+    "links": {
+      "GitHub": "https://github.com/thejonnyt/AutoCoverletter"
+    },
+    "highlights": [
+      "Rund 90% des Anschreiben-Prozesses automatisiert, inklusive Notion-Sync und Bewerbungs-Tracking",
+      "Starke Anschreiben ohne Übertreibungen oder Fehleinschätzungen dank smartem Context-Management",
+      "Einheitliches, cleanes Design mit Hilfe von Typst Templates",
+      "Über 10% Einladungsquote zu Erstgespraechen trotz schwachem Arbeitsmarkt"
+    ],
+    "featured": true
+  },
+  {
     "name": "Raumdeuter",
     "tagline": "Fanrelationship Management Software",
     "description": "Zuhören. Verstehen. Handeln. Raumdeuter hilft Sportclubs, Fanmeinungen in datenbasierte Entscheidungen und nachhaltiges Wissen zu verwandeln",
