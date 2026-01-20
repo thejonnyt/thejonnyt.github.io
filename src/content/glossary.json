@@ -272,7 +272,7 @@
     },
     {
       "id": "dns",
-      "term": "DNS (Domain Name System)",
+      "term": "DNS",
       "shortDefinition": "System that translates domain names to IP addresses",
       "definition": "DNS is like the internet's phone book—it translates human-readable domain names (like google.com) into IP addresses (like 142.250.185.46) that computers use to identify each other on networks.",
       "links": [
