@@ -7,54 +7,44 @@
     "endDate": "2025-12",
     "current": false,
     "cvInclude": true,
-    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. From Conceptualization and architecture to implementation of the product as an MVP with the help of a 4-person development team and coordinated external IT partners.",
+    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I lead the technical development: from conceptualization and architecture to implementation of the product as an customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievements": [
-      "Built engagement platform from 0 → 1 in 12 months on an overall €30k budget",
-      "Led product ideation workshops to align team vision and roadmap",
-      "Designed {{microservices}} architecture, {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}, dev/prod) and {{service-mesh}} patterns",
-      "Established {{devex}}/{{devops}}: {{cicd}} pipelines, {{linting}} and {{pre-commit-hooks}}, {{ssl}}/{{dns}} management and {{nginx}} routing",
-      "Developed {{ml}} prototypes: {{semantic-chunking}}, {{sentiment-analysis}}, {{topic-clustering}} and content summarization",
-      "Established {{gdpr}}-compliant data privacy and {{privacy-by-design}} practices"
+      "Given an ambiguous initial problem configuration, I led the product ideation workshops to align team vision and product-solution-fit roadmap.",
+      "Built engagement platform from 0 → 1 in less than 12 months on a €30k budget (likely resulting in  approx. EUR 1.5M post-money valuation).",
+      "Owned software architecture of the SaaS: Designed {{microservices}} utilizing {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) using {{service-mesh}} patterns.",
+      "Stabilized the frontend delivery pipeline: configured and optimized Next.js builds in a multi-workspace monorepo, and ensured reproducible builds across environments.",
+      "Established {{devex}}/{{devops}}: {{cicd}} pipelines, {{linting}} and {{pre-commit-hooks}}, logging and testing across Next.js and Python services, cutting release friction and significantly improving onboarding speed for new hires.",
+      "Owned system administration and networking: Microsoft tenant administration, {{ssl}}/{{dns}} management and {{nginx}} routing configuration for services.",
+      "Developed {{ml}} and (agentic) NLP pipelines in Python: {{semantic-chunking}} + RAG vectorization using Qdrant, {{sentiment-analysis}}, {{topic-clustering}} and content summarization.",
+      "Established {{gdpr}}-compliant data privacy and {{privacy-by-design}} practices.",
+      "Owned end‑to‑end technical delivery and coordinated interns, contractors, and external partners; partnered closely with the frontend lead."
     ],
     "technologies": [
       "Docker",
-      "gRPC",
       "Python",
+      "Bash",
+      "SpaCy",
+      "pytest",
+      "FastAPI",
+      "gRPC",
+      "Protocol Buffers",
       "JavaScript",
       "TypeScript",
       "Next.js",
       "React",
       "Qdrant",
+      "RAG",
       "MongoDB",
       "MariaDB",
+      "SQL",
       "LLMs",
       "NLP/ML",
       "nginx",
-      "CI/CD"
-    ]
-  },
-  {
-    "company": "Exist",
-    "position": "Entrepreneur",
-    "location": "Leipzig, Germany",
-    "startDate": "2024-11",
-    "endDate": "2025-10",
-    "current": false,
-    "cvInclude": true,
-    "description": "Responsible for developing and launching a startup idea as part of the {{exist}} scholarship program funded by the German Federal Ministry for Economic Affairs and Climate Action (BMWK).",
-    "achievements": [
-      "Winner of the Impulse Summit 2025",
-      "Winner of the TGFS Technologiegründerfonds Sachsen Award as part of the HHL Digitale Space Program 2025",
-      "Winner of TechStart Dresden 2025",
-      "Top 5 out of 150 Finalists at Samsung: Solve for Tomorrow 2025",
-      "Visited selected Business Seminars on diverse Topics from Leipzig University and Leipzig Graduate School of Management ({{hhl}})"
-    ],
-    "technologies": [
-      "Miro",
-      "Business Model Canvas",
-      "Lean Startup",
-      "Public Administration",
-      "etc"
+      "Linux",
+      "CI/CD",
+      "GitHub",
+      "Docker Hub",
+      "git"
     ]
   },
   {
@@ -65,12 +55,13 @@
     "endDate": "2023-06",
     "current": false,
     "cvInclude": true,
-    "description": "Responsible for the supervision of a few talented pupils",
+    "description": "Responsible for the supervision of talented pupils (Groups of 4 to 8)",
     "achievements": [
-      "Prepared customized university level material to challenge and spark interest for Mathematics",
-      "Taught basic principles of the mathematics behind 3D printing and coding"
+      "Prepared customized university level material to challenge and spark interest for Mathematics.",
+      "Initiated a pupil-led lecture series about Artificial Intelligence and its use cases.",
+      "Taught basic principles of the mathematics behind 3D printing and coding."
     ],
-    "technologies": ["Powerpoint", "Algebra", "gcode", "STL", "MS Teams"]
+    "technologies": ["PowerPoint", "Algebra", "gcode", "STL", "MS Teams"]
   },
   {
     "company": "Child and Adolescent Psychiatry, Philipps University Marburg",
@@ -80,13 +71,15 @@
     "endDate": "2021-01",
     "current": false,
     "cvInclude": true,
-    "description": "Responsible for the validation and reproduction of earlier results of research aswell as for programming {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
+    "description": "Responsible for the validation and reproduction of earlier results of research as well as for programming {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
     "achievements": [
-      "My analysis results supported the findings of 3 peer-reviewed publications that are listed in the publications section.",
-      "worked highly interdisciplinary with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data-scientists"
+      "My analysis results supported the findings of 3 peer-reviewed publications (listed in publications) and have been cited ~70 times.",
+      "Worked highly interdisciplinary with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data-scientists."
     ],
     "technologies": [
       "R",
+      "Markdown",
+      "HTML",
       "Machine Learning",
       "Decision Trees",
       "Random Forests",
@@ -110,11 +103,13 @@
     ],
     "technologies": [
       "Python",
+      "PyTorch",
       "Convolutional Neural Networks",
       "R",
       "R Shiny",
       "MongoDB",
       "PostgreSQL",
+      "SQL",
       "Git"
     ]
   },
@@ -128,10 +123,10 @@
     "cvInclude": false,
     "description": "In my role as a Sports and Athletes Marketing Manager, I updated and maintained the Athletes Portfolio as an asset of high value to the marketing mix of Red Bull. I furthermore participated in the Business Planning Process for 2017 by generating Ideas, their evaluation and processing for presentation",
     "achievements": [
-      "Team Activation of THW Kiel including personalized Asset Design + Production, and a flight for the Team in one of Mateschitz's private hangar airplanes",
-      "Event Supervision and organizational Role in Projects such as the Hospitality Area for Red Bulls VIPS at MotoGP 2016"
+      "Team Activation of THW Kiel including personalized Asset Design + Production, and a flight for the Team in one of Mateschitz's private hangar airplanes.",
+      "Event Supervision and organizational Role in Projects such as the Hospitality Area for Red Bull's VIPS at MotoGP 2016."
     ],
-    "technologies": ["Excel", "Powerpoint", "MS Office"]
+    "technologies": ["Excel", "PowerPoint", "MS Office", "Creativity"]
   },
   {
     "company": "Red Bull Germany GmbH",
@@ -141,13 +136,13 @@
     "endDate": "2016-12",
     "current": false,
     "cvInclude": false,
-    "description": "The Student Brand Manager Programm by Red Bull is designed find and educate the next generation of Red Bull Marketing Experts. As a Student Brand Manager, I was responsible for organizing guerilla marketing events and creating brand awareness among the student community. The role as a SBM allowed me to develop strong marketing and leadership skills while gaining practical experience in brand management from one of the most recognized brands worldwide.",
+    "description": "The Student Brand Manager Programm by Red Bull is designed find and educate the next generation of Red Bull Marketing Experts. As a Student Brand Manager, I was responsible for organizing guerrilla marketing events and creating brand awareness among the student community. The role as a SBM allowed me to develop strong marketing and leadership skills while gaining practical experience in brand management from one of the most recognized brands worldwide.",
     "achievements": [
       "Student Brand Manager of the Year 2016 in North Germany",
-      "Organized own Campus Events and moderated Campus Events of other Student Brand Managers",
-      "Participated and supported regional and national Events such as Red Bull Seifenkistenrennen and Red Bull Coast2Coast"
+      "Organized own campus events and moderated campus events of other Student Brand Managers",
+      "Participated and supported regional and national events such as Red Bull Seifenkistenrennen and Red Bull Coast2Coast"
     ],
-    "technologies": ["Excel", "Powerpoint", "MS Office", "Adobe Photoshop"]
+    "technologies": ["Excel", "PowerPoint", "MS Office", "Adobe Photoshop"]
   },
   {
     "company": "Goodgame Studios",
@@ -157,7 +152,7 @@
     "endDate": "2012-09",
     "current": false,
     "cvInclude": false,
-    "description": "Starting as an intern, I supported the HR team in various administrative tasks, recruitment processes, and employee onboarding activities. This role provided me with valuable insights into HR operations within a fast growing startup company.",
+    "description": "Starting out as an intern and later becoming a working student, I supported the HR team in various administrative tasks, recruitment processes, and employee onboarding activities. This role provided me with valuable insights into HR operations within a fast growing startup company.",
     "achievements": [
       "The HR recruiting process was responsible for hiring 70 new employees (from 30) within one year, contributing to the company's rapid growth.",
       "I was responsible for scouting and selecting candidates, scheduling interviews, and coordinating communication between applicants and hiring managers, improving the efficiency of the recruitment process."

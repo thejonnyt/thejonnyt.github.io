@@ -2,7 +2,7 @@
 
 ## Your CV is Ready!
 
-Your first CV has been generated at: `output/cv.pdf`
+Your CVs have been generated at: `output/cv.pdf` and `output/cv_ats.pdf`
 
 ## Making Changes
 
@@ -10,6 +10,7 @@ Your first CV has been generated at: `output/cv.pdf`
 Edit the generated `cv.typ` file directly and recompile:
 ```bash
 typst compile cv.typ output/cv.pdf
+typst compile cv_ats.typ output/cv_ats.pdf
 ```
 
 ### Option 2: Update JSON data (recommended for content updates)
@@ -25,7 +26,7 @@ typst compile cv.typ output/cv.pdf
 ```
 
 ### Option 3: CV-specific text (for concise versions)
-Add `cvDescription` or `cvText` fields to your JSON:
+Add `cvDescription` or `cvText` fields to your JSON. For the ATS version, you can use `atsDescription` or `atsText`:
 
 ```json
 {
@@ -34,7 +35,8 @@ Add `cvDescription` or `cvText` fields to your JSON:
   "achievements": [
     {
       "text": "Long achievement description",
-      "cvText": "Short bullet point"
+      "cvText": "Short bullet point",
+      "atsText": "Expanded ATS bullet point with keywords"
     }
   ]
 }
@@ -73,7 +75,7 @@ Generated from your data:
 
 ## Next Steps
 
-1. **Review** the PDF: `xdg-open output/cv.pdf`
+1. **Review** the PDFs: `xdg-open output/cv.pdf` and `xdg-open output/cv_ats.pdf`
 2. **Add** phone number and address (optional)
 3. **Customize** colors/fonts in template.typ
 4. **Refine** content:

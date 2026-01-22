@@ -347,20 +347,60 @@ function formatDate(dateStr: string): string {
       </div>
     </section>
 
-    <!-- Awards & Recognition Section -->
-    {miscData.awards && miscData.awards.length > 0 && (
+    <!-- Programs & Awards Section -->
+    {(miscData.programs?.length > 0 || miscData.awards?.length > 0) && (
       <section id="awards" class="section" aria-labelledby="awards-heading">
-        <h2 id="awards-heading">Awards & Recognition</h2>
-        {miscData.awards.map((award: any) => (
-          <div class="award-item">
-            <div class="award-header">
-              <h3>{award.title}</h3>
-              <p class="text-muted award-year">{award.year}</p>
-            </div>
-            <p class="text-muted">{award.organization}</p>
-            {award.description && <p>{award.description}</p>}
+        <h2 id="awards-heading">Programs & Awards</h2>
+        {miscData.programs?.length > 0 && (
+          <div class="award-group">
+            <h3 class="award-group-title">Programs</h3>
+            {miscData.programs.map((program: any) => (
+              <div class="award-item">
+                <div class="award-header">
+                  <h4>{program.title}</h4>
+                  {program.year && <p class="text-muted award-year">{program.year}</p>}
+                </div>
+                <p class="text-muted award-meta">
+                  {program.organization}
+                  {program.location && <span> · {program.location}</span>}
+                </p>
+                {program.description && <TermText text={program.description} as="p" />}
+                {program.achievements?.length > 0 && (
+                  <ul>
+                    {program.achievements.map((achievement: string) => (
+                      <TermText text={achievement} as="li" />
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
           </div>
-        ))}
+        )}
+        {miscData.awards?.length > 0 && (
+          <div class="award-group">
+            <h3 class="award-group-title">Awards</h3>
+            {miscData.awards.map((award: any) => (
+              <div class="award-item">
+                <div class="award-header">
+                  <h4>{award.title}</h4>
+                  {award.year && <p class="text-muted award-year">{award.year}</p>}
+                </div>
+                <p class="text-muted award-meta">
+                  {award.organization}
+                  {award.location && <span> · {award.location}</span>}
+                </p>
+                {award.description && <TermText text={award.description} as="p" />}
+                {award.achievements?.length > 0 && (
+                  <ul>
+                    {award.achievements.map((achievement: string) => (
+                      <TermText text={achievement} as="li" />
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </section>
     )}
 
@@ -738,9 +778,26 @@ function formatDate(dateStr: string): string {
     margin-bottom: 0;
   }
 
+  .award-header h4 {
+    margin-bottom: 0;
+  }
+
   .award-year {
     white-space: nowrap;
     font-size: 0.9rem;
+  }
+
+  .award-meta {
+    margin-bottom: var(--space-sm);
+  }
+
+  .award-group-title {
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+  }
+
+  .award-group + .award-group {
+    margin-top: var(--space-xl);
   }
 
   /* Tags */

@@ -428,10 +428,10 @@
     },
     {
       "id": "exist",
-      "term": "EXIST",
+      "term": "exist",
       "shortDefinition": "German startup grant program funding research-based business ideas",
-      "definition": "EXIST (Existenzgründungen aus der Wissenschaft) is a German federal program supporting university-based startups. Funded by the Federal Ministry for Economic Affairs and Climate Action (BMWK), it provides financial support and mentoring for founders developing innovative, research-based business ideas.",
-      "links": [{ "text": "EXIST Program", "href": "https://www.exist.de/" }],
+      "definition": "exist (Existenzgründungen aus der Wissenschaft) is a German federal program supporting university-based startups. Funded by the Federal Ministry for Economic Affairs and Climate Action (BMWK), it provides financial support and mentoring for founders developing innovative, research-based business ideas.",
+      "links": [{ "text": "exist Program", "href": "https://www.exist.de/" }],
       "category": "Funding/Program"
     },
     {

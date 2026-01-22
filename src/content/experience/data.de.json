@@ -6,56 +6,47 @@
     "startDate": "2024-11",
     "endDate": "2025-12",
     "current": false,
-    "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen, um Beteiligung und Engagement zu ermöglichen – eine Möglichkeit, seine Meinung zu äußern. Von Konzeption, Architektur bis Umsetzung des Produkts als MVP mit der Hilfe eines 4-köpfigen Entwicklungsteams und Koordination externer IT-Partner.",
+    "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen und Verbänden, um Beteiligung und Engagement zu ermöglichen — eine Möglichkeit, seine Meinung zu äußern. Ich leite die technische Entwicklung: von Konzept und Architektur bis zur Umsetzung des Produkts als kundenseitig ausgerolltes MVP mit einem 4-köpfigen Entwicklungsteam und Koordination externer IT-Partner.",
     "achievements": [
-      "Entwicklung einer Engagement-Plattform von 0 → 1 in 12 Monaten mit einem Gesamtbudget von 30.000 €",
-      "Management und Leitung eines kleinen Entwicklungsteams (4 Personen) und Koordination externer IT-Partnerschaften",
-      "Leitung von Produkt-Ideation-Workshops zur Abstimmung von Team-Vision und Roadmap",
-      "Entwurf einer {{microservices}}-Architektur, {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}, dev/prod) und {{service-mesh}}-Muster",
-      "Implementierung von {{devex}}/{{devops}}: {{cicd}}-Pipelines, {{linting}} und {{pre-commit-hooks}}, {{ssl}}/{{dns}}-Management und {{nginx}}-Routing",
-      "Entwicklung von {{ml}}-Prototypen: {{semantic-chunking}}, {{sentiment-analysis}}, {{topic-clustering}} und Content-Zusammenfassung",
-      "Etablierung {{gdpr}}-konformer Datenschutz- und {{privacy-by-design}}-Praktiken"
+      "Bei einer zunächst wagen Problemstellung leitete ich Product-Ideation-Workshops, um Team-Vision und Product-Solution-Fit-Roadmap auszurichten.",
+      "Aufbau der Engagement-Plattform von 0 → 1 in unter 12 Monaten mit 30.000 € Budget (voraussichtlich ca. 1,5 Mio. € Post-Money-Bewertung).",
+      "Verantwortlich für die Software-Architektur des SaaS: Design von {{microservices}} mit {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) und {{service-mesh}}-Patterns.",
+      "Stabilisierung der Frontend-Delivery-Pipeline: Next.js-Builds im Multi-Workspace-Monorepo konfiguriert/optimiert und reproduzierbare Builds über Umgebungen sichergestellt.",
+      "Aufbau von {{devex}}/{{devops}}: {{cicd}}-Pipelines, {{linting}} und {{pre-commit-hooks}} sowie Logging und Testing für Next.js- und Python-Services; reduzierte Release-Reibung und beschleunigte Onboarding-Zeiten.",
+      "Verantwortlich für Systemadministration und Networking: Microsoft-Tenant-Administration, {{ssl}}/{{dns}}-Management und {{nginx}}-Routing-Konfiguration.",
+      "Entwicklung von {{ml}}- und (agentic) NLP-Pipelines in Python: {{semantic-chunking}} + RAG-Vektorisierung mit Qdrant, {{sentiment-analysis}}, {{topic-clustering}} und Content-Zusammenfassung.",
+      "Etablierung {{gdpr}}-konformer Datenschutz- und {{privacy-by-design}}-Praktiken.",
+      "End-to-End technische Delivery verantwortet und Interns, Contractors und externe Partner koordiniert; enge Zusammenarbeit mit dem Frontend-Lead."
     ],
     "technologies": [
       "Docker",
-      "gRPC",
       "Python",
+      "Bash",
+      "SpaCy",
+      "pytest",
+      "FastAPI",
+      "gRPC",
+      "Protocol Buffers",
       "JavaScript",
       "TypeScript",
       "Next.js",
       "React",
       "Qdrant",
+      "RAG",
       "MongoDB",
       "MariaDB",
+      "SQL",
       "LLMs",
       "NLP/ML",
       "nginx",
-      "CI/CD"
+      "Linux",
+      "CI/CD",
+      "GitHub",
+      "Docker Hub",
+      "git"
     ]
   },
-  {
-    "company": "Exist",
-    "position": "Unternehmer",
-    "location": "Leipzig, Deutschland",
-    "startDate": "2024-11",
-    "endDate": "2025-10",
-    "current": false,
-    "description": "Verantwortlich für die Entwicklung und den Launch einer Startup-Idee im Rahmen des {{exist}}-Stipendienprogramms, finanziert vom Bundesministerium für Wirtschaft und Energie (BMWK).",
-    "achievements": [
-      "Gewinner der Impulse Summit 2025",
-      "Gewinner des TGFS Technologiegründerfonds Sachsen Awards im Rahmen des HHL Digitale Space Programms 2025",
-      "Gewinner der TechStart Dresden 2025",
-      "Top 5 von 150 Finalist bei Samsung: Solve for Tomorrow 2025",
-      "Besuch ausgewählter Business-Seminare zu verschiedenen Themen an der Universität Leipzig und der Leipzig Graduate School of Management ({{hhl}})"
-    ],
-    "technologies": [
-      "Miro",
-      "Business Model Canvas",
-      "Lean Startup",
-      "Öffentliche Verwaltung",
-      "etc"
-    ]
-  },
+
   {
     "company": "Rahn Education (Privatschule)",
     "position": "Mathematiklehrer (Vertretung)",
@@ -63,12 +54,13 @@
     "startDate": "2022-11",
     "endDate": "2023-06",
     "current": false,
-    "description": "Verantwortlich für die Betreuung einiger talentierter Schülerinnen und Schüler.",
+    "description": "Verantwortlich für die Betreuung talentierter Schülerinnen und Schüler (Gruppen von 4 bis 8).",
     "achievements": [
       "Erstellung individuell angepasster Materialien auf Universitätsniveau, um Herausforderungen zu bieten und Interesse an Mathematik zu wecken",
+      "Initiierung einer von Schülern geleiteten Vortragsreihe über Künstliche Intelligenz und deren Anwendungsfälle",
       "Unterricht der mathematischen Grundlagen hinter 3D-Druck und Programmierung"
     ],
-    "technologies": ["Powerpoint", "Algebra", "gcode", "STL", "MS Teams"]
+    "technologies": ["PowerPoint", "Algebra", "gcode", "STL", "MS Teams"]
   },
   {
     "company": "Kinder- und Jugendpsychiatrie, Philipps-Universität Marburg",
@@ -79,11 +71,13 @@
     "current": false,
     "description": "Verantwortlich für die Validierung und Reproduktion früherer Forschungsergebnisse sowie für die Implementierung von {{ml}}-Algorithmen in R zur Lösung von Klassifikationsproblemen im Bereich der {{asd}}-Diagnose.",
     "achievements": [
-      "Meine Analyseergebnisse trugen zu mehreren Publikationen bei, die im Publikationsbereich aufgeführt sind.",
+      "Meine Analyseergebnisse unterstützten die Findings von 3 peer-reviewten Publikationen (im Publikationsbereich aufgeführt) und wurden ca. 70-mal zitiert.",
       "Hochgradig interdisziplinäre Arbeit mit Psychologen und Medizinern, um den klinischen Hintergrund und die Implikationen der Daten zu verstehen + Erklärung der statistischen Methoden für Nicht-Data-Scientists"
     ],
     "technologies": [
       "R",
+      "Markdown",
+      "HTML",
       "Machine Learning",
       "Decision Trees",
       "Random Forests",
@@ -106,11 +100,13 @@
     ],
     "technologies": [
       "Python",
+      "PyTorch",
       "Convolutional Neural Networks",
       "R",
       "R Shiny",
       "MongoDB",
       "PostgreSQL",
+      "SQL",
       "Git"
     ]
   },
@@ -126,7 +122,7 @@
       "Team-Aktivierung von THW Kiel einschließlich personalisiertem Asset-Design und -Produktion sowie einem Flug in einem von Mateschitz' privaten Flugzeugen",
       "Event-Supervision und organisatorische Rolle in Projekten wie dem Hospitality-Bereich für Red Bulls VIPs beim MotoGP 2016"
     ],
-    "technologies": ["Excel", "Powerpoint", "MS Office"]
+    "technologies": ["Excel", "PowerPoint", "MS Office", "Creativity"]
   },
   {
     "company": "Red Bull Germany GmbH",
@@ -141,7 +137,7 @@
       "Organisation eigener Campus-Events und Moderation von Campus-Events anderer Student Brand Manager",
       "Teilnahme und Unterstützung diverser regionaler und nationaler Events wie Red Bull Seifenkistenrennen und Red Bull Coast2Coast"
     ],
-    "technologies": ["Excel", "Powerpoint", "MS Office", "Adobe Photoshop"]
+    "technologies": ["Excel", "PowerPoint", "MS Office", "Adobe Photoshop"]
   },
   {
     "company": "Goodgame Studios",

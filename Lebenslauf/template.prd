@@ -1,0 +1,12 @@
+# template.prd
+
+Goal: Improve spacing consistency and publication formatting for Lebenslauf/template.typ.
+
+Tasks:
+- [x] Add section comments to document template structure.
+- [x] Introduce global spacing/style tokens and apply them across components.
+- [x] Strengthen section separation with consistent spacing and rule styling.
+- [x] Rework publication layout (title/authors/venue on distinct lines; DOI+citations inline with venue).
+
+Notes:
+- Review CV output for any unexpected spacing changes near the header/section boundaries.

@@ -31,6 +31,7 @@
     [Established GDPR-compliant data privacy and Privacy by Design practices.],
     [Owned end‑to‑end technical delivery and coordinated interns, contractors, and external partners; partnered closely with the frontend lead.],
   ),
+  technologies: ("Docker", "Python", "Bash", "SpaCy", "pytest", "FastAPI", "gRPC", "Protocol Buffers", "JavaScript", "TypeScript", "Next.js", "React", "Qdrant", "RAG", "MongoDB", "MariaDB", "SQL", "LLMs", "NLP/ML", "nginx", "Linux", "CI/CD", "GitHub", "Docker Hub", "git"),
 )
 
 #entry(
@@ -74,11 +75,6 @@
   technologies: ("Python", "PyTorch", "Convolutional Neural Networks", "R", "R Shiny", "MongoDB", "PostgreSQL", "SQL", "Git"),
 )
 
-
-#v(0.2em)
-#align(center)[
-  #text(size: 9pt, style: "italic", fill: gray-color)[For brevity, this CV is curated. A complete work history is available on my #link("https://thejonnyt.github.io")[webpage] or upon request.]
-]
 #section("Education")
 
 #simple-entry(
@@ -146,11 +142,11 @@
 #section("Technical Skills")
 
 #skills-section((
-  ("Analysis, ML & AI", ("LLMs", "NLP/ML", "Machine Learning", "Statistics",)),
-  ("Backend & DevOps", ("Docker", "gRPC", "MongoDB", "PostgreSQL", "nginx",)),
-  ("Programming Languages", ("Java", "Python", "JavaScript", "R", "Bash", "SQL",)),
-  ("Tools & Systems", ("Git", "Linux", "Excel", "Powerpoint", "MS Office", "MS Teams", "VSCode", LaTeX,)),
-  ("Web & Creative", ("Next.js", "Adobe Photoshop", "HTML",)),
+  ("Analysis, ML & AI", ("LLMs", "NLP/ML", "Machine Learning", "SPSS", "Statistics",)),
+  ("Backend & DevOps", ("Docker", "gRPC", "MongoDB", "MariaDB", "PostgreSQL", "nginx", "CI/CD",)),
+  ("Programming Languages", ("Java", "Python", "JavaScript", "TypeScript", "R", "Bash", "SQL", "noSQL", "Qdrant",)),
+  ("Tools & Systems", ("Git", "Linux", "Excel", "Powerpoint", "MS Office", "MS Teams", "Miro", "Business Model Canvas", "Lean Startup", "VSCode", LaTeX,)),
+  ("Web & Creative", ("Next.js", "React", "R Shiny", "Adobe Photoshop", "HTML", "CSS",)),
 ))
 
 #section("Programs & Awards")
