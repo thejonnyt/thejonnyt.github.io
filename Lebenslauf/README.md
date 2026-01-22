@@ -13,11 +13,12 @@ curl -fsSL https://typst.app/install.sh | sh
 ./build-cv.sh
 
 # Or compile manually
-typst compile cv.typ output/cv.pdf
+typst compile cv_ats.typ ../public/files/Johannes_Tauscher_CV.pdf
+typst compile cv.typ output/cv_human.pdf
 typst compile cv_ats.typ output/cv_ats.pdf
 
 # Watch mode (auto-recompile on changes)
-typst watch cv.typ output/cv.pdf
+typst watch cv_ats.typ ../public/files/Johannes_Tauscher_CV.pdf
 ```
 
 ## Structure

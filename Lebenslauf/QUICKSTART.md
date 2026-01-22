@@ -2,14 +2,15 @@
 
 ## Your CV is Ready!
 
-Your CVs have been generated at: `output/cv.pdf` and `output/cv_ats.pdf`
+Your CVs have been generated at: `output/cv_human.pdf` and `output/cv_ats.pdf`
 
 ## Making Changes
 
 ### Option 1: Quick edits (for immediate changes)
 Edit the generated `cv.typ` file directly and recompile:
 ```bash
-typst compile cv.typ output/cv.pdf
+typst compile cv_ats.typ ../public/files/Johannes_Tauscher_CV.pdf
+typst compile cv.typ output/cv_human.pdf
 typst compile cv_ats.typ output/cv_ats.pdf
 ```
 
@@ -75,7 +76,7 @@ Generated from your data:
 
 ## Next Steps
 
-1. **Review** the PDFs: `xdg-open output/cv.pdf` and `xdg-open output/cv_ats.pdf`
+1. **Review** the PDFs: `xdg-open output/cv_human.pdf` and `xdg-open output/cv_ats.pdf`
 2. **Add** phone number and address (optional)
 3. **Customize** colors/fonts in template.typ
 4. **Refine** content:

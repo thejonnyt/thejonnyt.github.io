@@ -173,7 +173,6 @@
   "2019",
   description: [Developed a collision detection algorithm and visualization for data from a season of women's rugby.],
   achievements: (
-    [3rd place out of 19 teams for best data insight.],
-    [3rd place out of 19 teams for best data visualization.],
+    [Won 3rd place out of 19 teams for both best data insight and best data visualization.],
   ),
 )

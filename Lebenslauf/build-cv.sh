@@ -28,7 +28,8 @@ mkdir -p ../public/files
 
 # Step 4: Compile to PDF (outputs to both local and public directories)
 echo "[3/4] Compiling Typst to PDF..."
-typst compile cv.typ ../public/files/Johannes_Tauscher_CV.pdf
+typst compile cv_ats.typ ../public/files/Johannes_Tauscher_CV.pdf
+typst compile cv.typ output/cv_human.pdf
 typst compile cv_ats.typ output/cv_ats.pdf
 
 # Also create a local copy for convenience
@@ -38,14 +39,18 @@ echo "[4/4] Done!"
 echo ""
 echo "✓ CV generated: ../public/files/Johannes_Tauscher_CV.pdf"
 echo "✓ Local copy: output/cv.pdf"
+echo "✓ Local copy: output/cv_human.pdf"
 echo "✓ Local copy: output/cv_ats.pdf"
 echo ""
 echo "To view:"
 echo "  xdg-open ../public/files/Johannes_Tauscher_CV.pdf      # Linux"
+echo "  xdg-open output/cv_human.pdf                           # Linux"
 echo "  xdg-open output/cv_ats.pdf                             # Linux"
 echo "  open ../public/files/Johannes_Tauscher_CV.pdf          # macOS"
+echo "  open output/cv_human.pdf                               # macOS"
 echo "  open output/cv_ats.pdf                                 # macOS"
 echo ""
 echo "To watch for changes:"
-echo "  typst watch cv.typ ../public/files/Johannes_Tauscher_CV.pdf"
+echo "  typst watch cv_ats.typ ../public/files/Johannes_Tauscher_CV.pdf"
+echo "  typst watch cv.typ output/cv_human.pdf"
 echo "  typst watch cv_ats.typ output/cv_ats.pdf"
