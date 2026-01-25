@@ -83,7 +83,7 @@
       "featured": true
     },
     "noSQL": {
-      "category": "Programming Languages",
+      "category": "Backend & DevOps",
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "Document and key-value databases",
@@ -166,7 +166,7 @@
       "featured": true
     },
     "Qdrant": {
-      "category": "Programming Languages",
+      "category": "Backend & DevOps",
       "level": "beginner",
       "yearsOfExperience": 1,
       "description": "Vector database for semantic search and AI",
@@ -257,7 +257,7 @@
       "featured": true
     },
     "R Shiny": {
-      "category": "Web & Creative",
+      "category": "Analysis, ML & AI",
       "level": "competent",
       "yearsOfExperience": 2,
       "description": "Interactive web applications for data science",
@@ -440,9 +440,7 @@
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "Python testing framework and test automation",
-      "usedIn": [
-        "Raumdeuter GbR"
-      ],
+      "usedIn": ["Raumdeuter GbR"],
       "featured": true
     },
     "FastAPI": {
@@ -456,7 +454,7 @@
       "featured": true
     },
     "Protocol Buffers": {
-      "category": "Backend & DevOps",
+      "category": "Tools & Systems",
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "Schema-based data serialization for RPC and APIs",
@@ -490,7 +488,7 @@
       "featured": true
     },
     "Docker Hub": {
-      "category": "Backend & DevOps",
+      "category": "Tools & Systems",
       "level": "beginner",
       "yearsOfExperience": 1,
       "description": "Container image registry and distribution",
