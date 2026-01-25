@@ -74,8 +74,9 @@
   set text(font: heading-font)
 
   align(center)[
+    #v(-1em)
     #text(size: header-name-size, weight: "bold")[#name]
-    #v(header-gap-sm)
+    #v(-1em)
     #text(size: header-title-size, fill: gray-color)[#title]
   ]
 

@@ -23,12 +23,12 @@
   achievements: (
     [Given an ambiguous initial problem configuration, I led the product ideation workshops to align team vision and product-solution-fit roadmap.],
     [Built engagement platform from 0 → 1 in less than 12 months on a €30k budget (likely resulting in approx. EUR 1.5M post-money valuation).],
-    [Owned software architecture of the SaaS: Designed Microservices utilizing Docker Containerization (Distroless, Multistage Build) using Service Mesh patterns.],
-    [Stabilized the frontend delivery pipeline: configured and optimized Next.js builds in a multi-workspace monorepo, and ensured reproducible builds across environments.],
-    [Established DevEx/DevOps: CI/CD pipelines, Linting and Pre-commit Hooks, logging and testing across Next.js and Python services, cutting release friction and significantly improving onboarding speed for new hires.],
-    [Owned system administration and networking: Microsoft tenant administration, SSL/TLS/DNS management and nginx routing configuration for services.],
-    [Developed Machine Learning and (agentic) NLP pipelines in Python: Semantic Text Chunking + RAG vectorization using Qdrant, Sentiment Analysis, Topic Clustering and content summarization.],
-    [Established GDPR-compliant data privacy and Privacy by Design practices.],
+    [Owned software architecture of the SaaS: Designed Microservices utilizing Docker Containerization (Distroless, Multistage Build) using robust and easily expandable Service Mesh patterns to ensure fast scaleability and prevent expensivley rebuilding 'prototype slug' later on.],
+    [Stabilized the frontend delivery pipeline: configured and optimized Next.js builds in a multi-workspace monorepo, and ensured reproducible builds across environments to lower time spent+costs per dev on plattform issues.],
+    [Established DevEx/DevOps: CI/CD, Linting and Pre-commit Hooks, logging and testing across Next.js and Python services, cutting release friction and significantly improving onboarding speed for new hires.],
+    [Owned system administration and networking: Microsoft tenant administration, SSL/TLS/DNS management and nginx routing configuration for domains and services.],
+    [Developed Machine Learning and (agentic) NLP pipelines in Python: Semantic Text Chunking + RAG vectorization using Qdrant, Sentiment Analysis, Topic Clustering and content summarization as analysis services and core value contributor to our customer.],
+    [Established GDPR-compliant data privacy and Privacy by Design practices to address jurisdictional circumstances and obtain a valuable quality label.],
     [Owned end‑to‑end technical delivery and coordinated interns, contractors, and external partners; partnered closely with the frontend lead.],
   ),
 )
@@ -146,10 +146,10 @@
 #section("Technical Skills")
 
 #skills-section((
-  ("Analysis, ML & AI", ("LLMs", "NLP/ML", "Machine Learning", "Statistics",)),
-  ("Backend & DevOps", ("Docker", "gRPC", "MongoDB", "PostgreSQL", "nginx",)),
+  ("Analysis, ML & AI", ("LLMs", "NLP", "Machine Learning", "Statistics", "SpaCy", "RAG", "Decision Trees", "Random Forests", "PyTorch",)),
+  ("Backend & DevOps", ("Docker", "gRPC", "MongoDB", "PostgreSQL", "nginx", "FastAPI", "Protocol Buffers",)),
   ("Programming Languages", ("Java", "Python", "JavaScript", "R", "Bash", "SQL",)),
-  ("Tools & Systems", ("Git", "Linux", "Excel", "Powerpoint", "MS Office", "MS Teams", "VSCode", LaTeX,)),
+  ("Tools & Systems", ("git", "Linux", "Excel", "PowerPoint", "MS Office", "MS Teams", "VSCode", LaTeX, "pytest", "GitHub", "Markdown",)),
   ("Web & Creative", ("Next.js", "Adobe Photoshop", "HTML",)),
 ))
 
@@ -167,16 +167,5 @@
     [Winner of TechStart Dresden 2025.],
     [Top 5 out of 150 finalists at Samsung: Solve for Tomorrow 2025.],
     [Visited selected business seminars on diverse topics from Leipzig University and Leipzig Graduate School of Management (HHL).],
-  ),
-)
-
-#entry(
-  "DataFest 24h Hackathon",
-  "DataFest Mannheim",
-  "Mannheim, Germany",
-  "2019",
-  description: [Developed a collision detection algorithm and visualization for data from a season of women's rugby.],
-  achievements: (
-    [Won 3rd place out of 19 teams for both best data insight and best data visualization.],
   ),
 )

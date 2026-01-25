@@ -221,6 +221,8 @@ def generate_programs_awards_section(misc: Dict, variant: str) -> str:
     lines = ['#section("Programs & Awards")\n']
 
     for item in programs + awards:
+        if item.get("cvInclude", True) is False:
+            continue
         title = escape_typst(item.get("title", ""))
         organization = escape_typst(item.get("organization", ""))
         location = escape_typst(item.get("location", ""))
