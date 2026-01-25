@@ -11,12 +11,12 @@
     "achievements": [
       "Given an ambiguous initial problem configuration, I led the product ideation workshops to align team vision and product-solution-fit roadmap.",
       "Built engagement platform from 0 → 1 in less than 12 months on a €30k budget (likely resulting in  approx. EUR 1.5M post-money valuation).",
-      "Owned software architecture of the SaaS: Designed {{microservices}} utilizing {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) using {{service-mesh}} patterns.",
-      "Stabilized the frontend delivery pipeline: configured and optimized Next.js builds in a multi-workspace monorepo, and ensured reproducible builds across environments.",
+      "Owned software architecture of the SaaS: Designed {{microservices}} utilizing {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) using {{service-mesh}} patterns to ensure fast scaleability and prevent 'prototype slug'.",
+      "Stabilized the frontend delivery pipeline: configured and optimized Next.js builds in a multi-workspace monorepo, and ensured reproducible builds across environments to lower time spent+costs per dev on plattform issues.",
       "Established {{devex}}/{{devops}}: {{cicd}} pipelines, {{linting}} and {{pre-commit-hooks}}, logging and testing across Next.js and Python services, cutting release friction and significantly improving onboarding speed for new hires.",
       "Owned system administration and networking: Microsoft tenant administration, {{ssl}}/{{dns}} management and {{nginx}} routing configuration for services.",
-      "Developed {{ml}} and (agentic) NLP pipelines in Python: {{semantic-chunking}} + RAG vectorization using Qdrant, {{sentiment-analysis}}, {{topic-clustering}} and content summarization.",
-      "Established {{gdpr}}-compliant data privacy and {{privacy-by-design}} practices.",
+      "Developed {{ml}} and (agentic) NLP pipelines in Python: {{semantic-chunking}} + RAG vectorization using Qdrant, {{sentiment-analysis}}, {{topic-clustering}} and content summarization as analysis services and core value contributor to our customer.",
+      "Established {{gdpr}}-compliant data privacy and {{privacy-by-design}} practices to address jurisdictional circumstances and obtain a valuable quality label.",
       "Owned end‑to‑end technical delivery and coordinated interns, contractors, and external partners; partnered closely with the frontend lead."
     ],
     "technologies": [
