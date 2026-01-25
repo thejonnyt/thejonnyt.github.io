@@ -27,10 +27,10 @@
 
 // === Layout & Spacing Tokens ===
 #let page-margin = (x: 1.8cm, y: 2cm)
-#let header-gap-sm = 0.15em
+#let header-gap-sm = 0.05em
 #let header-gap-md = 0.5em
-#let header-divider-gap = 0.5em
-#let after-header-gap = 0.5em
+#let header-divider-gap = 0em
+#let after-header-gap = 0.2em
 #let section-top-gap = 0.6em
 #let section-title-gap = 0.15em
 #let section-bottom-gap = 0.35em
@@ -96,8 +96,6 @@
     ]
   ]
   
-  v(header-divider-gap)
-  line(length: 100%, stroke: divider-thickness + light-gray)
   v(after-header-gap)
 }
 

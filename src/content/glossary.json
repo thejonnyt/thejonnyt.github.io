@@ -632,6 +632,111 @@
         }
       ],
       "category": "Medical/Research"
+    },
+    {
+      "id": "spacy",
+      "term": "spaCy",
+      "shortDefinition": "Python NLP library for tokenization, tagging, and pipelines",
+      "definition": "spaCy is an open-source Python library for natural language processing that provides tokenization, tagging, parsing, and production-ready pipelines for text analysis.",
+      "category": "AI/ML"
+    },
+    {
+      "id": "pytest",
+      "term": "pytest",
+      "shortDefinition": "Python testing framework for unit and integration tests",
+      "definition": "pytest is a Python testing framework that provides simple test discovery, powerful assertions, and fixtures for reusable test setup and teardown.",
+      "category": "DevOps"
+    },
+    {
+      "id": "fastapi",
+      "term": "FastAPI",
+      "shortDefinition": "Python web framework for building APIs",
+      "definition": "FastAPI is a Python web framework for building REST APIs using type hints, offering high performance, automatic validation, and interactive documentation.",
+      "category": "DevOps"
+    },
+    {
+      "id": "protocol-buffers",
+      "term": "Protocol Buffers",
+      "shortDefinition": "Schema-based binary serialization format",
+      "definition": "Protocol Buffers is a language-agnostic interface definition and binary serialization format used to define data schemas and exchange structured data efficiently.",
+      "category": "DevOps"
+    },
+    {
+      "id": "rag",
+      "term": "RAG",
+      "shortDefinition": "Retrieval-augmented generation for LLM pipelines",
+      "definition": "Retrieval-augmented generation combines search over external sources with a language model to ground responses in retrieved context and reduce hallucinations.",
+      "category": "AI/ML"
+    },
+    {
+      "id": "github",
+      "term": "GitHub",
+      "shortDefinition": "Hosting platform for Git repositories",
+      "definition": "GitHub is a platform for hosting Git repositories with collaboration features like issues, pull requests, code review, and CI workflows.",
+      "category": "DevOps"
+    },
+    {
+      "id": "docker-hub",
+      "term": "Docker Hub",
+      "shortDefinition": "Hosted registry for Docker images",
+      "definition": "Docker Hub is a hosted registry where container images can be stored, shared, and distributed.",
+      "category": "DevOps"
+    },
+    {
+      "id": "git",
+      "term": "Git",
+      "shortDefinition": "Distributed version control system",
+      "definition": "Git is a distributed version control system for tracking changes in code, managing branches, and collaborating across teams.",
+      "category": "DevOps"
+    },
+    {
+      "id": "algebra",
+      "term": "Algebra",
+      "shortDefinition": "Mathematics of symbols and equations",
+      "definition": "Algebra is a branch of mathematics that uses symbols and rules to solve equations and model relationships between quantities.",
+      "category": "Statistics"
+    },
+    {
+      "id": "gcode",
+      "term": "G-code",
+      "shortDefinition": "Machine control language for CNC and 3D printing",
+      "definition": "G-code is a numerical control language that describes toolpaths and printer instructions for CNC machines and 3D printers.",
+      "category": "Tools"
+    },
+    {
+      "id": "stl",
+      "term": "STL",
+      "shortDefinition": "3D model file format used in printing",
+      "definition": "STL (stereolithography) is a file format that represents 3D geometry with triangulated surfaces, commonly used for 3D printing.",
+      "category": "Tools"
+    },
+    {
+      "id": "markdown",
+      "term": "Markdown",
+      "shortDefinition": "Lightweight markup for formatting text",
+      "definition": "Markdown is a lightweight markup language used to format text with simple syntax for headings, lists, links, and code blocks.",
+      "category": "Tools"
+    },
+    {
+      "id": "decision-trees",
+      "term": "Decision Trees",
+      "shortDefinition": "Tree-based models for classification and regression",
+      "definition": "Decision Trees split data into branches based on feature rules, creating an interpretable model for classification or regression tasks.",
+      "category": "AI/ML"
+    },
+    {
+      "id": "pytorch",
+      "term": "PyTorch",
+      "shortDefinition": "Deep learning framework for model training",
+      "definition": "PyTorch is a deep learning framework with dynamic computation graphs, commonly used for training and deploying neural networks.",
+      "category": "AI/ML"
+    },
+    {
+      "id": "convolutional-neural-networks",
+      "term": "Convolutional Neural Networks",
+      "shortDefinition": "Neural networks for image and spatial data",
+      "definition": "Convolutional Neural Networks use convolution layers to learn spatial features, making them well suited for image and signal processing tasks.",
+      "category": "AI/ML"
     }
   ]
 }

@@ -12,10 +12,10 @@
       "Bei einer zunächst vagen Problemstellung leitete ich Product-Ideation-Workshops, um Team-Vision und Product-Solution-Fit-Roadmap auszurichten.",
       "Aufbau der Engagement-Plattform von 0 → 1 in unter 12 Monaten mit 30.000 € Budget (voraussichtlich ca. 1,5 Mio. € Post-Money-Bewertung).",
       "Verantwortlich für die Software-Architektur des SaaS: Design von {{microservices}} mit {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) und {{service-mesh}}-Patterns, um schnelle Skalierbarkeit sicherzustellen und 'prototype slug' zu vermeiden.",
-      "Stabilisierung der Frontend-Delivery-Pipeline: Next.js-Builds im Multi-Workspace-Monorepo konfiguriert/optimiert und reproduzierbare Builds über Umgebungen sichergestellt, um Zeitaufwand und Kosten pro Dev für Plattform-Probleme zu senken.",
-      "Aufbau von {{devex}}/{{devops}}: {{cicd}}-Pipelines, {{linting}} und {{pre-commit-hooks}} sowie Logging und Testing für Next.js- und Python-Services; reduzierte Release-Reibung und beschleunigte Onboarding-Zeiten.",
+      "Stabilisierung der Frontend-Delivery-Pipeline: {{nextjs}}-Builds im Multi-Workspace-Monorepo konfiguriert/optimiert und reproduzierbare Builds über Umgebungen sichergestellt, um Zeitaufwand und Kosten pro Dev für Plattform-Probleme zu senken.",
+      "Aufbau von {{devex}}/{{devops}}: {{cicd}}-Pipelines, {{linting}} und {{pre-commit-hooks}} sowie Logging und Testing für {{nextjs}}- und Python-Services; reduzierte Release-Reibung und beschleunigte Onboarding-Zeiten.",
       "Verantwortlich für Systemadministration und Networking: Microsoft-Tenant-Administration, {{ssl}}/{{dns}}-Management und {{nginx}}-Routing-Konfiguration.",
-      "Entwicklung von {{ml}}- und (agentic) NLP-Pipelines in Python: {{semantic-chunking}} + RAG-Vektorisierung mit Qdrant, {{sentiment-analysis}}, {{topic-clustering}} und Content-Zusammenfassung als Analyse-Services und zentraler Werttreiber für den Kunden.",
+      "Entwicklung von {{ml}}- und (agentic) NLP-Pipelines in Python: {{semantic-chunking}} + {{rag}}-Vektorisierung mit {{qdrant}}, {{sentiment-analysis}}, {{topic-clustering}} und Content-Zusammenfassung als Analyse-Services und zentraler Werttreiber für den Kunden.",
       "Etablierung {{gdpr}}-konformer Datenschutz- und {{privacy-by-design}}-Praktiken, um juristische Rahmenbedingungen zu adressieren und ein wertvolles Gütesiegel zu erhalten.",
       "End-to-End technische Delivery verantwortet und Interns, Contractors und externe Partner koordiniert; enge Zusammenarbeit mit dem Frontend-Lead."
     ],
@@ -97,7 +97,7 @@
     "achievements": [
       "Implementierung und Verbesserung von Features für ein Experiment-Tracking R/Shiny-Frontend zur Verbesserung des Workflows und der Benutzerfreundlichkeit",
       "Analyse von 3D-Bild- und klinischen Datensätzen mit Python und R zur Ableitung umsetzbarer diagnostischer Erkenntnisse",
-      "Integration und Verwaltung von Projektdaten mit MongoDB und PostgreSQL sowie Pflege von Code/Versionierung mit Git"
+      "Integration und Verwaltung von Projektdaten mit {{mongodb}} und {{postgresql}} sowie Pflege von Code/Versionierung mit {{git}}"
     ],
     "technologies": [
       "Python",
