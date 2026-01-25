@@ -27,7 +27,7 @@
 
 // === Layout & Spacing Tokens ===
 #let page-margin = (x: 1.8cm, y: 2cm)
-#let header-gap-sm = 0.05em
+#let header-gap-sm = 0em
 #let header-gap-md = 0.5em
 #let header-divider-gap = 0em
 #let after-header-gap = 0.2em
