@@ -1,8 +1,8 @@
 ---
-/**
- * SkillTag - Displays a skill tag with hover tooltip showing metadata
- */
+import skillTooltipsUrl from '../scripts/skill-tooltips.ts?url';
 import skillsDatabase from '../content/skillsDatabase.json';
+
+// SkillTag - Displays a skill tag with hover tooltip showing metadata
 
 interface Props {
   skillName: string;
@@ -28,7 +28,7 @@ const categoryColors: Record<string, string> = {
   'Web & Creative': '#ec4899', // fuchsia
   'Business & Strategy': '#84cc16', // lime
   'Data Analysis': '#14b8a6', // teal
-};
+}; 
 
 const categoryColor = skillData ? categoryColors[skillData.category] || '#6366f1' : '#6366f1';
 
@@ -291,49 +291,4 @@ const tooltipId = (showTooltip && skillData)
   }
 </style>
 
-<script>
-  function positionTooltip(tag) {
-    const tooltip = tag.querySelector('.skill-tooltip');
-    if (!tooltip) return;
-
-    // Reset classes for re-calculation
-    tooltip.classList.remove('tooltip-above', 'tooltip-left', 'tooltip-right');
-
-    const tagRect = tag.getBoundingClientRect();
-    const tooltipRect = tooltip.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    const margin = 16; // 1rem
-
-    // Vertical check: If tooltip would go below the viewport, move it above
-    if (tagRect.bottom + tooltipRect.height + margin > viewportHeight) {
-      tooltip.classList.add('tooltip-above');
-    }
-
-    // Horizontal check
-    const centeredLeft = tagRect.left + tagRect.width / 2 - tooltipRect.width / 2;
-    
-    if (centeredLeft < margin) {
-      // If it overflows the left edge, align it to the left
-      tooltip.classList.add('tooltip-left');
-    } else if (centeredLeft + tooltipRect.width + margin > viewportWidth) {
-      // If it overflows the right edge, align it to the right
-      tooltip.classList.add('tooltip-right');
-    }
-  }
-
-  function initSkillTooltips() {
-    const skillTags = document.querySelectorAll('.skill-tag[data-has-meta="true"]');
-    skillTags.forEach(tag => {
-      // Use 'pointerenter' for better compatibility with various devices
-      tag.addEventListener('pointerenter', () => positionTooltip(tag));
-      tag.addEventListener('focusin', () => positionTooltip(tag));
-    });
-  }
-
-  // Run on initial page load
-  initSkillTooltips();
-  
-  // Re-run when Astro swaps pages for client-side navigation
-  document.addEventListener('astro:after-swap', initSkillTooltips);
-</script>
+<script type="module" src={skillTooltipsUrl}></script>

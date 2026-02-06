@@ -1,4 +1,4 @@
-import type { Language } from './languageStore';
+import type { Language } from './language';
 
 export async function loadContent<T>(section: string, language: Language): Promise<T> {
   const fileName = language === 'en' ? 'data.json' : `data.${language}.json`;

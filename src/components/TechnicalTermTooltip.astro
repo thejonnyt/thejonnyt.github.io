@@ -4,13 +4,21 @@
  * This component should be included once per page, typically in the layout
  */
 import glossaryData from '../content/glossary.json';
+import techTermTooltipsUrl from '../scripts/tech-term-tooltips.ts?url';
 
 // Make glossary data available to client-side JS
 const glossaryJson = JSON.stringify(glossaryData);
 ---
 
 <!-- Tooltip container (hidden by default, positioned by JS) -->
-<div id="tech-term-tooltip" class="tooltip-container" role="tooltip" aria-hidden="true" aria-live="polite">
+<div
+  id="tech-term-tooltip"
+  class="tooltip-container"
+  role="tooltip"
+  aria-hidden="true"
+  aria-live="polite"
+  data-glossary={glossaryJson}
+>
   <div class="tooltip-arrow"></div>
   <div class="tooltip-content">
     <h4 class="tooltip-title" aria-label="Technical term definition"><!-- Content populated by JS --></h4>
@@ -19,168 +27,7 @@ const glossaryJson = JSON.stringify(glossaryData);
   </div>
 </div>
 
-<script define:vars={{ glossaryJson }}>
-  // Parse glossary data
-  const glossary = new Map(
-    JSON.parse(glossaryJson).terms.map((term) => [term.id, term])
-  );
-
-  let tooltip = null;
-  let currentTerm = null;
-  let hideTimeout = null;
-
-  // Initialize tooltip functionality
-  function initTooltips() {
-    tooltip = document.getElementById('tech-term-tooltip');
-    if (!tooltip) return;
-
-    // Find all technical terms
-    const terms = document.querySelectorAll('.tech-term');
-
-    terms.forEach((termElement) => {
-      // Make term focusable for accessibility
-      if (!termElement.hasAttribute('tabindex')) {
-        termElement.setAttribute('tabindex', '0');
-      }
-
-      const showHandler = (event) => {
-        const target = event.currentTarget;
-        if (!target) return;
-        const termId = target.dataset.termId;
-        showTooltip(termId, target);
-      };
-
-      const hideHandler = () => {
-        scheduleHide();
-      };
-
-      // Show on hover or focus
-      termElement.addEventListener('mouseenter', showHandler);
-      termElement.addEventListener('focusin', showHandler);
-
-      // Hide on mouse leave or focus out
-      termElement.addEventListener('mouseleave', hideHandler);
-      termElement.addEventListener('focusout', hideHandler);
-    });
-
-    const cancelHide = () => {
-      clearTimeout(hideTimeout);
-    };
-
-    // Keep tooltip open when it's hovered or has focus
-    tooltip.addEventListener('mouseenter', cancelHide);
-    tooltip.addEventListener('focusin', cancelHide);
-
-    // Hide when mouse leaves or focus moves out
-    tooltip.addEventListener('mouseleave', scheduleHide);
-    tooltip.addEventListener('focusout', scheduleHide);
-  }
-
-  function showTooltip(termId, targetElement) {
-    clearTimeout(hideTimeout);
-
-    const term = glossary.get(termId);
-    if (!term || !tooltip) return;
-
-    currentTerm = termId;
-
-    // Populate tooltip content
-    const title = tooltip.querySelector('.tooltip-title');
-    const definition = tooltip.querySelector('.tooltip-definition');
-    const linksContainer = tooltip.querySelector('.tooltip-links');
-
-    title.textContent = term.term;
-    definition.textContent = term.definition;
-
-    // Populate links
-    if (term.links && term.links.length > 0) {
-      linksContainer.innerHTML = term.links
-        .map(
-          (link) =>
-            `<a href="${link.href}" target="_blank" rel="noopener noreferrer">${link.text} →</a>`
-        )
-        .join('');
-      linksContainer.style.display = 'block';
-    } else {
-      linksContainer.innerHTML = '';
-      linksContainer.style.display = 'none';
-    }
-
-    // Position tooltip
-    positionTooltip(targetElement);
-
-    // Show tooltip
-    tooltip.classList.add('visible');
-    tooltip.setAttribute('aria-hidden', 'false');
-  }
-
-  function scheduleHide() {
-    hideTimeout = setTimeout(() => {
-      hideTooltip();
-    }, 200); // Small delay to allow moving to tooltip
-  }
-
-  function hideTooltip() {
-    if (!tooltip) return;
-    tooltip.classList.remove('visible');
-    tooltip.setAttribute('aria-hidden', 'true');
-    currentTerm = null;
-  }
-
-  function positionTooltip(targetElement) {
-    if (!tooltip) return;
-
-    const targetRect = targetElement.getBoundingClientRect();
-    const tooltipRect = tooltip.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    // Default: position below the term
-    let top = targetRect.bottom + window.scrollY + 8;
-    let left = targetRect.left + window.scrollX + targetRect.width / 2;
-
-    // Check if tooltip would overflow viewport
-    const wouldOverflowRight = left + tooltipRect.width / 2 > viewportWidth - 20;
-    const wouldOverflowLeft = left - tooltipRect.width / 2 < 20;
-    const wouldOverflowBottom =
-      targetRect.bottom + tooltipRect.height + 8 > viewportHeight - 20;
-
-    // Adjust horizontal position
-    if (wouldOverflowRight) {
-      left = viewportWidth - tooltipRect.width - 20;
-    } else if (wouldOverflowLeft) {
-      left = 20;
-    } else {
-      left = left - tooltipRect.width / 2;
-    }
-
-    // Position above if would overflow bottom
-    if (wouldOverflowBottom) {
-      top = targetRect.top + window.scrollY - tooltipRect.height - 8;
-      tooltip.classList.add('tooltip-above');
-    } else {
-      tooltip.classList.remove('tooltip-above');
-    }
-
-    tooltip.style.top = `${top}px`;
-    tooltip.style.left = `${left}px`;
-
-    // Position arrow to point at the term
-    const arrow = tooltip.querySelector('.tooltip-arrow');
-    const arrowLeft = targetRect.left + targetRect.width / 2 - left;
-    arrow.style.left = `${arrowLeft}px`;
-  }
-
-  // Initialize on page load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initTooltips);
-  } else {
-    initTooltips();
-  }
-
-  // Re-initialize on navigation (for SPA-like behavior)
-  document.addEventListener('astro:page-load', initTooltips);
-</script>
+<script type="module" src={techTermTooltipsUrl}></script>
 
 <style>
   .tooltip-container {

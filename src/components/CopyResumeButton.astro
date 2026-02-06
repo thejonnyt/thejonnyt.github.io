@@ -1,4 +1,5 @@
 ---
+import copyResumeUrl from '../scripts/copy-resume.ts?url';
 interface CvSource {
   profile: any;
   experience: any;
@@ -21,11 +22,16 @@ const downloadButtonId = `${idPrefix}-download-pdf-btn`;
 const copyButtonId = `${idPrefix}-copy-resume-btn`;
 ---
 
-<div class="cv-actions-wrapper" id={rootId}>
+<div
+  class="cv-actions-wrapper"
+  id={rootId}
+  data-cv-source={JSON.stringify(cvSource)}
+>
   <div class="cv-actions">
     <button
       class="cv-action-btn"
       id={downloadButtonId}
+      data-action="download"
       type="button"
       aria-label="Download printable CV (PDF)"
       title="Download CV"
@@ -44,6 +50,7 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
     <button
       class="cv-action-btn"
       id={copyButtonId}
+      data-action="copy"
       type="button"
       aria-label="Copy machine-readable CV (JSON) to clipboard"
       title="Copy CV"
@@ -266,209 +273,4 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
   }
 </style>
 
-<script define:vars={{ rootId, downloadButtonId, copyButtonId, cvSource }}>
-  // Store timeout ID to allow manual clearing
-  let toastTimeout = null;
-
-  const root = document.getElementById(`${rootId}`);
-  if (!root) return;
-
-  const toast = root.querySelector('.toast-notification');
-  const toastCloseBtn = root.querySelector('.toast-close');
-  const downloadBtn = root.querySelector(`#${downloadButtonId}`);
-  const copyBtn = root.querySelector(`#${copyButtonId}`);
-
-  // Function to hide toast
-  function hideToast() {
-    if (!toast) return;
-
-    // Clear any existing timeout
-    if (toastTimeout !== null) {
-      clearTimeout(toastTimeout);
-      toastTimeout = null;
-    }
-
-    toast.classList.remove('show');
-  }
-
-  // Function to show toast notification
-  function showToast(message, type = 'success') {
-    if (!toast) return;
-
-    const messageEl = toast.querySelector('.toast-message');
-    if (!messageEl) return;
-
-    // Clear any existing timeout first
-    if (toastTimeout !== null) {
-      clearTimeout(toastTimeout);
-    }
-
-    // Set message
-    messageEl.textContent = message;
-
-    // Set type
-    toast.classList.remove('success', 'error');
-    toast.classList.add(type, 'show');
-
-    // Hide after 3 seconds
-    toastTimeout = window.setTimeout(() => {
-      toast.classList.remove('show');
-      toastTimeout = null;
-    }, 3000);
-  }
-
-  const proficiencyMap = {
-    beginner: 'beginner',
-    competent: 'intermediate',
-    proficient: 'advanced',
-    expert: 'expert',
-    wizard: 'wizard'
-  };
-
-  const proficiencyOrder = ['wizard', 'expert', 'advanced', 'intermediate', 'beginner', 'unspecified'];
-
-  function mapProficiency(level) {
-    if (!level) return 'unspecified';
-    return proficiencyMap[level] || level;
-  }
-
-  function buildSkillsSummary(skillsDatabase) {
-    const skills = skillsDatabase?.skills || {};
-    const items = Object.entries(skills).map(([name, skill]) => {
-      const years = typeof skill.yearsOfExperience === 'number' ? skill.yearsOfExperience : null;
-      return {
-        name,
-        proficiency: mapProficiency(skill.level),
-        yearsOfExperience: years
-      };
-    });
-
-    items.sort((a, b) => {
-      const orderDelta = proficiencyOrder.indexOf(a.proficiency) - proficiencyOrder.indexOf(b.proficiency);
-      if (orderDelta !== 0) return orderDelta;
-      if (a.yearsOfExperience !== b.yearsOfExperience) {
-        return (b.yearsOfExperience || 0) - (a.yearsOfExperience || 0);
-      }
-      return a.name.localeCompare(b.name);
-    });
-
-    const byProficiency = {};
-    items.forEach(skill => {
-      if (!byProficiency[skill.proficiency]) {
-        byProficiency[skill.proficiency] = [];
-      }
-      const yearsLabel = typeof skill.yearsOfExperience === 'number' ? skill.yearsOfExperience : '';
-      const entry = yearsLabel === '' ? skill.name : `${skill.name}(${yearsLabel})`;
-      byProficiency[skill.proficiency].push(entry);
-    });
-
-    const proficiencyOrderUsed = proficiencyOrder.filter(level => byProficiency[level]);
-    const extraBuckets = Object.keys(byProficiency)
-      .filter(level => !proficiencyOrder.includes(level))
-      .sort((a, b) => a.localeCompare(b));
-
-    const order = [...proficiencyOrderUsed, ...extraBuckets];
-    const summary = {
-      schema: 'Skills grouped by proficiency; each entry is "Skill(Years)" and omits years when unknown.',
-      order,
-      totalCount: items.length
-    };
-
-    order.forEach(level => {
-      summary[level] = byProficiency[level];
-    });
-
-    return summary;
-  }
-
-  function buildMachineCv(source) {
-    const papers = (source.publications || []).map(paper => ({
-      title: paper.title,
-      citations: typeof paper.citations === 'number' ? paper.citations : null
-    }));
-
-    return {
-      profile: source.profile,
-      experience: source.experience,
-      education: source.education,
-      projects: source.projects,
-      papers,
-      awards: source.awards || [],
-      skills: buildSkillsSummary(source.skillsDatabase),
-      meta: {
-        version: '1.1',
-        generatedAt: new Date().toISOString(),
-        format: 'machine-readable-cv-json',
-        language: source.language || 'en',
-        description: 'Structured CV data optimized for automated processing tools'
-      }
-    };
-  }
-
-  function initCvActions() {
-    if (root.dataset.cvActionsInit === 'true') return;
-    root.dataset.cvActionsInit = 'true';
-
-    if (toastCloseBtn) {
-      toastCloseBtn.addEventListener('click', hideToast);
-    }
-
-    // Handle PDF download button
-    if (downloadBtn) {
-      downloadBtn.addEventListener('click', () => {
-        try {
-          // Create a temporary link element
-          const link = document.createElement('a');
-          link.href = '/files/Johannes_Tauscher_CV.pdf';
-          link.download = 'Johannes_Tauscher_CV.pdf';
-          link.style.display = 'none';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-
-          showToast('Downloading CV...', 'success');
-        } catch (err) {
-          console.error('Failed to download PDF:', err);
-          showToast('Download failed', 'error');
-        }
-      });
-    }
-
-    // Handle JSON copy button
-    if (!copyBtn) return;
-    copyBtn.addEventListener('click', async () => {
-      const cvData = JSON.stringify(buildMachineCv(cvSource), null, 2);
-
-      try {
-        // Copy to clipboard
-        await navigator.clipboard.writeText(cvData);
-        showToast('CV data copied to clipboard!', 'success');
-      } catch (err) {
-        console.error('Failed to copy CV data:', err);
-
-        // Fallback for older browsers
-        try {
-          const textarea = document.createElement('textarea');
-          textarea.value = cvData;
-          textarea.style.position = 'fixed';
-          textarea.style.opacity = '0';
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand('copy');
-          document.body.removeChild(textarea);
-          showToast('CV data copied to clipboard!', 'success');
-        } catch (fallbackErr) {
-          showToast('Copy failed', 'error');
-        }
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCvActions);
-  } else {
-    initCvActions();
-  }
-
-  document.addEventListener('astro:page-load', initCvActions);
-</script>
+<script type="module" src={copyResumeUrl}></script>

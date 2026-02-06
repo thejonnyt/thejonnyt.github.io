@@ -11,8 +11,8 @@
     "achievements": [
       "Given an ambiguous initial problem configuration, I led the product ideation workshops to align team vision and product-solution-fit roadmap.",
       "Built engagement platform from 0 → 1 in less than 12 months on a €30k budget (likely resulting in  approx. EUR 1.5M post-money valuation).",
-      "Owned software architecture of the SaaS: Designed {{microservices}} utilizing {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) using  robust and easily expandable {{service-mesh}} patterns to ensure fast scaleability and prevent expensivley rebuilding 'prototype slug' later on.",
-      "Stabilized the frontend delivery pipeline: configured and optimized {{nextjs}} builds in a multi-workspace monorepo, and ensured reproducible builds across environments to lower time spent+costs per dev on plattform issues.",
+      "Owned software architecture of the SaaS: Designed {{microservices}} utilizing {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) using  robust and easily expandable {{service-mesh}} patterns to ensure fast scaleability and prevent expensively rebuilding 'prototype slug' later on.",
+      "Stabilized the frontend delivery pipeline: configured and optimized {{nextjs}} builds in a multi-workspace monorepo, and ensured reproducible builds across environments to lower time spent+costs per dev on platform issues.",
       "Established {{devex}}/{{devops}}: {{cicd}}, {{linting}} and {{pre-commit-hooks}}, logging and testing across {{nextjs}} and Python services, cutting release friction and significantly improving onboarding speed for new hires.",
       "Owned system administration and networking: Microsoft tenant administration, {{ssl}}/{{dns}} management and {{nginx}} routing configuration for domains and services.",
       "Developed {{ml}} and (agentic) NLP pipelines in Python: {{semantic-chunking}} + {{rag}} vectorization using {{qdrant}}, {{sentiment-analysis}}, {{topic-clustering}} and content summarization as analysis services and core value contributor to our customer.",

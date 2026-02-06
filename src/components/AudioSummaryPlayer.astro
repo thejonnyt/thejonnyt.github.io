@@ -1,15 +1,16 @@
 ---
-import { getLangFromUrl, useTranslations } from "../utils/languageStore";
+import { getLangFromUrl } from "../utils/language";
 import Icon from "./Icon.astro";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 
 const enSrc = "/files/CTO_Built_on_Marketing_and_AI.m4a";
 const deSrc = "/files/Der_Technical_Generalist_als_Brückenbauer_Superkraft.m4a";
 
 const src = lang === "de" ? deSrc : enSrc;
-const title = lang === "de" ? t("CV Johannes Tauscher - NotebookLM Zusammenfassung") : t("CV Johannes Tauscher - NotebookLM Summary");
+const title = lang === "de"
+  ? "CV Johannes Tauscher - NotebookLM Zusammenfassung"
+  : "CV Johannes Tauscher - NotebookLM Summary";
 ---
 
 <div class="audio-summary-player-wrapper" data-src={src} data-title={title}>

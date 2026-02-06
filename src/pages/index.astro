@@ -150,7 +150,12 @@ function formatDate(dateStr: string): string {
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section" aria-labelledby="experience-heading">
+    <section
+      id="experience"
+      class="section"
+      aria-labelledby="experience-heading"
+      data-experience={JSON.stringify(experienceData)}
+    >
       <h2 id="experience-heading">Experience</h2>
       {experienceData.map((exp: any, index: number) => (
         <div class="timeline-item" data-experience-index={index} data-hidden={index >= 5 ? 'true' : 'false'}>
@@ -919,23 +924,22 @@ function formatDate(dateStr: string): string {
   }
 </style>
 
-<script define:vars={{ experienceData }}>
-  // Make experience data available to client-side JavaScript
-  window.__experienceData = experienceData;
-</script>
-
 <script>
   // Initialize Lucide icons
 
   // Handle experience section toggle
   document.addEventListener('DOMContentLoaded', () => {
+    const experienceSection = document.getElementById('experience');
+    const experienceJson = experienceSection?.getAttribute('data-experience') || '[]';
+    const experienceData = JSON.parse(experienceJson);
+
     // Calculate years of hidden experience
     const hiddenExperiences = document.querySelectorAll('.timeline-item[data-hidden="true"]');
     let totalYears = 0;
 
     hiddenExperiences.forEach(exp => {
       const index = parseInt(exp.getAttribute('data-experience-index') || '0');
-      const expData = (window as any).__experienceData[index];
+      const expData = experienceData[index];
       if (expData) {
         const startDate = new Date(expData.startDate);
         const endDate = expData.current || expData.endDate === 'present'
