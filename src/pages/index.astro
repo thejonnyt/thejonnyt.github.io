@@ -21,6 +21,8 @@ import projectsData from '../content/projects/data.json';
 import publicationsData from '../content/publications/data.json';
 import miscData from '../content/misc/data.json';
 import skillsDatabase from '../content/skillsDatabase.json';
+import homeInteractionsUrl from '../scripts/home-interactions.ts?url';
+import experienceToggleUrl from '../scripts/experience-toggle.ts?url';
 
 // Process skills from database - group featured skills by category
 const featuredSkills = Object.entries(skillsDatabase.skills)
@@ -60,7 +62,15 @@ function formatDate(dateStr: string): string {
 <BaseLayout title={`${introData.name} - Portfolio & Resume`} description={introData.tagline}>
   <Header cvSource={cvSource} />
 
-  <main id="main-content" class="container" role="main">
+  <main
+    id="main-content"
+    class="container"
+    role="main"
+    data-home-interactions
+    data-bio-more="Read more"
+    data-bio-less="Read less"
+    data-video-title-default="Project video"
+  >
     <!-- Hero / Introduction Section -->
     <section class="hero section" aria-label="Introduction">
       <div class="hero-content">
@@ -155,6 +165,10 @@ function formatDate(dateStr: string): string {
       class="section"
       aria-labelledby="experience-heading"
       data-experience={JSON.stringify(experienceData)}
+      data-toggle-more-singular="Show {count} more year of experience"
+      data-toggle-more-plural="Show {count} more years of experience"
+      data-toggle-less="Show less experience"
+      data-toggle-more-fallback="Show more experience"
     >
       <h2 id="experience-heading">Experience</h2>
       {experienceData.map((exp: any, index: number) => (
@@ -924,180 +938,5 @@ function formatDate(dateStr: string): string {
   }
 </style>
 
-<script>
-  // Initialize Lucide icons
-
-  // Handle experience section toggle
-  document.addEventListener('DOMContentLoaded', () => {
-    const experienceSection = document.getElementById('experience');
-    const experienceJson = experienceSection?.getAttribute('data-experience') || '[]';
-    const experienceData = JSON.parse(experienceJson);
-
-    // Calculate years of hidden experience
-    const hiddenExperiences = document.querySelectorAll('.timeline-item[data-hidden="true"]');
-    let totalYears = 0;
-
-    hiddenExperiences.forEach(exp => {
-      const index = parseInt(exp.getAttribute('data-experience-index') || '0');
-      const expData = experienceData[index];
-      if (expData) {
-        const startDate = new Date(expData.startDate);
-        const endDate = expData.current || expData.endDate === 'present'
-          ? new Date()
-          : new Date(expData.endDate);
-        const years = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24 * 365.25);
-        totalYears += years;
-      }
-    });
-
-    const roundedYears = Math.round(totalYears);
-    const toggleButton = document.getElementById('experience-toggle');
-    const toggleText = toggleButton?.querySelector('.toggle-text');
-
-    if (toggleText && roundedYears > 0) {
-      toggleText.textContent = `Show ${roundedYears} more year${roundedYears !== 1 ? 's' : ''} of experience`;
-    }
-
-    // Handle toggle click
-    if (toggleButton) {
-      toggleButton.addEventListener('click', () => {
-        const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true';
-        const chevron = toggleButton.querySelector('.chevron') as HTMLElement;
-
-        hiddenExperiences.forEach(exp => {
-          const expEl = exp as HTMLElement;
-          if (!isExpanded) {
-            expEl.style.display = 'block';
-            expEl.setAttribute('data-hidden', 'false');
-          } else {
-            expEl.style.display = 'none';
-            expEl.setAttribute('data-hidden', 'true');
-          }
-        });
-
-        if (!isExpanded) {
-          toggleButton.setAttribute('aria-expanded', 'true');
-          if (toggleText) toggleText.textContent = 'Show less experience';
-          if (chevron) chevron.style.transform = 'rotate(180deg)';
-        } else {
-          toggleButton.setAttribute('aria-expanded', 'false');
-          if (toggleText) toggleText.textContent = `Show ${roundedYears} more year${roundedYears !== 1 ? 's' : ''} of experience`;
-          if (chevron) chevron.style.transform = 'rotate(0deg)';
-        }
-      });
-    }
-
-    // Handle video thumbnail clicks
-    const thumbnails = document.querySelectorAll('.video-thumbnail');
-
-    thumbnails.forEach(thumbnailEl => {
-      const thumbnail = thumbnailEl as HTMLElement;
-
-      // Make it keyboard accessible
-      thumbnail.addEventListener('click', () => {
-        toggleVideo(thumbnail);
-      });
-
-      thumbnail.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleVideo(thumbnail);
-        }
-      });
-    });
-
-    function toggleVideo(thumbnail: HTMLElement) {
-      const projectIndex = thumbnail.getAttribute('data-project-index');
-      const videoContainer = document.querySelector(`.video-container[data-project-index="${projectIndex}"]`) as HTMLElement | null;
-
-      if (videoContainer) {
-        const isExpanded = thumbnail.getAttribute('aria-expanded') === 'true';
-
-        if (!isExpanded) {
-          if (!videoContainer.querySelector('iframe')) {
-            const videoSrc = videoContainer.getAttribute('data-video-src');
-            const videoTitle = videoContainer.getAttribute('data-video-title') || 'Project video';
-
-            if (videoSrc) {
-              const iframe = document.createElement('iframe');
-              iframe.title = videoTitle;
-              iframe.src = videoSrc;
-              iframe.width = '100%';
-              iframe.height = '400';
-              iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-              iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share';
-              iframe.setAttribute('allowfullscreen', '');
-              videoContainer.appendChild(iframe);
-            }
-          }
-
-          videoContainer.style.display = 'block';
-          thumbnail.style.opacity = '0.5';
-          thumbnail.setAttribute('aria-expanded', 'true');
-        } else {
-          videoContainer.style.display = 'none';
-          thumbnail.style.opacity = '1';
-          thumbnail.setAttribute('aria-expanded', 'false');
-        }
-      }
-    }
-
-    // Handle audio summary play trigger
-    const audioSummarySection = document.getElementById('audio-summary');
-    const audioSummaryTrigger = audioSummarySection?.querySelector('.audio-summary-trigger') as HTMLButtonElement | null;
-    const audioSummaryPlayer = audioSummarySection?.querySelector('.audio-summary-player') as HTMLElement | null;
-
-    if (audioSummaryTrigger && audioSummaryPlayer) {
-      audioSummaryTrigger.addEventListener('click', () => {
-        const isHidden = audioSummaryPlayer.hasAttribute('hidden');
-        if (isHidden) {
-          audioSummaryPlayer.removeAttribute('hidden');
-          audioSummaryTrigger.setAttribute('aria-expanded', 'true');
-        }
-
-        let attempts = 0;
-        const maxAttempts = 20;
-        const interval = window.setInterval(() => {
-          attempts += 1;
-          const playButton = audioSummaryPlayer.querySelector('.play-pause-btn') as HTMLButtonElement | null;
-          if (playButton && audioSummaryPlayer.querySelector('.audio-summary-player-wrapper')?.getAttribute('data-initialized') === 'true') {
-            playButton.click();
-            window.clearInterval(interval);
-          } else if (attempts >= maxAttempts) {
-            window.clearInterval(interval);
-          }
-        }, 100);
-      });
-    }
-
-    // Handle bio expand/collapse
-    const bioToggles = document.querySelectorAll('.bio-toggle');
-
-    bioToggles.forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        const button = e.currentTarget as HTMLButtonElement;
-        const expandable = button.closest('.bio-expandable');
-        if (!expandable) return;
-
-        const bioFull = expandable.querySelector('.bio-full') as HTMLElement;
-        const toggleText = button.querySelector('.toggle-text');
-        const chevron = button.querySelector('.chevron') as HTMLElement;
-        const isExpanded = button.getAttribute('aria-expanded') === 'true';
-
-        if (!isExpanded) {
-          // Expand
-          bioFull.style.display = 'block';
-          if (toggleText) toggleText.textContent = 'Read less';
-          if (chevron) chevron.style.transform = 'rotate(180deg)';
-          button.setAttribute('aria-expanded', 'true');
-        } else {
-          // Collapse
-          bioFull.style.display = 'none';
-          if (toggleText) toggleText.textContent = 'Read more';
-          if (chevron) chevron.style.transform = 'rotate(0deg)';
-          button.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-  });
-</script>
+<script type="module" src={experienceToggleUrl}></script>
+<script type="module" src={homeInteractionsUrl}></script>

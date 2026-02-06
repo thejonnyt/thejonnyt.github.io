@@ -1,7 +1,7 @@
 # Inline Script Refactor Plan
 
 ## Progress
-- [ ] Finished
+- [x] Finished
 
 ## Checklist
 - [x] Move `InteractiveBackground` script to `src/scripts/interactive-background.ts`.
@@ -9,14 +9,14 @@
 - [x] Move `SkillTag` tooltip script to `src/scripts/skill-tooltips.ts`.
 - [x] Move Cloudflare analytics loader to `src/scripts/analytics-cloudflare.ts`.
 - [x] Move `TechnicalTermTooltip` script to `src/scripts/tech-term-tooltips.ts`.
-- [ ] Move `AudioSummaryPlayer` script to `src/scripts/audio-summary-player.ts`.
-- [ ] Move `AudioPlaylistPlayer` script to `src/scripts/audio-playlist-player.ts`.
-- [ ] Move `PodcastPlayer` script to `src/scripts/podcast-player.ts`.
+- [x] Move `AudioSummaryPlayer` script to `src/scripts/audio-summary-player.ts`.
+- [x] Move `AudioPlaylistPlayer` script to `src/scripts/audio-playlist-player.ts`.
+- [x] Move `PodcastPlayer` script to `src/scripts/podcast-player.ts`.
 - [x] Move `CopyResumeButton` script to `src/scripts/copy-resume.ts`.
 - [x] Move `MagneticContactCarousel` script to `src/scripts/magnetic-contact-carousel.ts`.
-- [ ] Move `SkillsRadar` script to `src/scripts/skills-radar.ts`.
-- [ ] Move experience data bootstrap to a module (`src/scripts/experience-toggle.ts` or similar).
-- [ ] Move home page interactions to `src/scripts/home-interactions.ts` for EN/DE pages.
+- [x] Move `SkillsRadar` script to `src/scripts/skills-radar.ts`.
+- [x] Move experience data bootstrap to a module (`src/scripts/experience-toggle.ts` or similar).
+- [x] Move home page interactions to `src/scripts/home-interactions.ts` for EN/DE pages.
 
 ## Goals
 - Reduce inline JS in Astro components and pages.
