@@ -1,3 +1,5 @@
+export {};
+
 type SkillGoal = {
   description?: string;
   proficiencyTarget?: number;
@@ -58,7 +60,7 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
   const experienceHighlightSparks = root.querySelector('.experience-highlight.sparks');
   const proficiencySparkLayer = root.querySelector('.proficiency-sparks');
   const experienceSparkLayer = root.querySelector('.experience-sparks');
-  const chartSvg = root.querySelector('.radar-chart');
+  const chartSvg = root.querySelector<SVGSVGElement>('.radar-chart');
   const glowSpots = root.querySelectorAll('.radar-glow-spot');
   const goalWedges = root.querySelectorAll('.goal-wedge');
   const migrationLines = root.querySelectorAll('.migration-line');
@@ -67,14 +69,14 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
   const dataPoints = root.querySelectorAll('.data-point-group');
 
   // Details panel elements
-  const detailsPanel = root.querySelector('#details-panel');
-  const detailsHeader = root.querySelector('#details-header');
-  const detailsProficiency = root.querySelector('#details-proficiency');
-  const detailsExperience = root.querySelector('#details-experience');
-  const detailsCount = root.querySelector('#details-count');
-  const detailsGoal = root.querySelector('#details-goal');
-  const detailsSkills = root.querySelector('#details-skills');
-  const detailsTargetValue = root.querySelector('#details-target-value');
+  const detailsPanel = root.querySelector<HTMLElement>('#details-panel');
+  const detailsHeader = root.querySelector<HTMLElement>('#details-header');
+  const detailsProficiency = root.querySelector<HTMLElement>('#details-proficiency');
+  const detailsExperience = root.querySelector<HTMLElement>('#details-experience');
+  const detailsCount = root.querySelector<HTMLElement>('#details-count');
+  const detailsGoal = root.querySelector<HTMLElement>('#details-goal');
+  const detailsSkills = root.querySelector<HTMLElement>('#details-skills');
+  const detailsTargetValue = root.querySelector<HTMLElement>('#details-target-value');
 
   const updateDetailsPanel = (category: CategoryData, showGoalExtension = false) => {
     if (!detailsPanel || !category) return;
@@ -281,7 +283,7 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
     element.style.setProperty('--highlight-travel-offset', `${-(length * 0.75)}px`);
   };
 
-  const getLocalPoint = (event: MouseEvent) => {
+  const getLocalPoint = (event: MouseEvent | PointerEvent) => {
     if (!chartSvg || !(chartSvg instanceof SVGSVGElement) || !chartSvg.createSVGPoint) return null;
     const point = chartSvg.createSVGPoint();
     point.x = event.clientX;
@@ -291,7 +293,7 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
     return point.matrixTransform(matrix.inverse());
   };
 
-  const setGlowPosition = (event: MouseEvent) => {
+  const setGlowPosition = (event: MouseEvent | PointerEvent) => {
     const localPoint = getLocalPoint(event);
     if (!localPoint) return;
     glowSpots.forEach((spot) => {
@@ -500,7 +502,7 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
     const categoryIndex = raw ? parseInt(raw, 10) : NaN;
     label.addEventListener('mouseenter', (event) => {
       handleMouseEnter(categoryIndex);
-      const localPoint = getLocalPoint(event);
+      const localPoint = getLocalPoint(event as MouseEvent);
       const proficiencyOffset = getClosestPathOffset(proficiencyPoints, localPoint);
       const experienceOffset = getClosestPathOffset(experiencePoints, localPoint);
       triggerEdgeHighlight(
@@ -549,7 +551,7 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
   wireHighlightReset(experienceHighlightCore, experienceHighlightGlow, experienceHighlightSparks);
 
   proficiencyPolygon?.addEventListener('mouseenter', (event) => {
-    const localPoint = getLocalPoint(event);
+    const localPoint = getLocalPoint(event as MouseEvent);
     const startOffset = getClosestPathOffset(proficiencyPoints, localPoint);
     triggerEdgeHighlight(
       [proficiencyHighlightCore, proficiencyHighlightGlow, proficiencyHighlightSparks],
@@ -559,7 +561,7 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
   });
 
   experiencePolygon?.addEventListener('mouseenter', (event) => {
-    const localPoint = getLocalPoint(event);
+    const localPoint = getLocalPoint(event as MouseEvent);
     const startOffset = getClosestPathOffset(experiencePoints, localPoint);
     triggerEdgeHighlight(
       [experienceHighlightCore, experienceHighlightGlow, experienceHighlightSparks],
@@ -570,7 +572,7 @@ function initSkillsRadar(root: HTMLElement, payload: SkillsRadarPayload): void {
 
   if (chartSvg) {
     let frame = 0;
-    const handleGlowMove = (event: MouseEvent) => {
+    const handleGlowMove = (event: PointerEvent) => {
       if (frame) return;
       frame = requestAnimationFrame(() => {
         frame = 0;

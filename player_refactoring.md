@@ -20,6 +20,84 @@
 - They appear to share behaviors (play/pause, progress, volume, speed, minimization when scrolled out of view).
 - Cross-player coordination exists (starting a new player stops another).
 
+## Inventory (What Exists Today)
+- Scripts
+  - `src/scripts/audio-summary-player.ts`
+  - `src/scripts/podcast-player.ts`
+  - `src/scripts/audio-playlist-player.ts`
+- Components
+  - `src/components/AudioSummaryPlayer.astro`
+  - `src/components/PodcastPlayer.astro`
+  - `src/components/AudioPlaylistPlayer.astro`
+- Pages using them
+  - `src/pages/index.astro`
+  - `src/pages/de/index.astro`
+- Shared behaviors across all three scripts
+  - Play/pause toggles and icon sync across main, mini, minimized.
+  - Progress bar + time display updates.
+  - Seek with progress bar input.
+  - Volume + mute toggle with mirrored mini controls.
+  - Speed menus with active state and click-outside close.
+  - Mini player visibility controlled by `IntersectionObserver`.
+  - Mini minimized/expanded/closed flows.
+  - Save/restore playback position via `localStorage`, 7-day TTL, auto-save every 5s.
+- Notable differences
+  - `audio-summary-player.ts` and `podcast-player.ts` dispatch and listen for `audio:activate` to hide other mini players; playlist does not.
+  - Playlist supports track list, next/prev, active item UI, and external triggers via `.playlist-trigger`.
+  - Storage keys are prefixed per player type (`summary-position-`, `podcast-position-`, `playlist-position-`) and include `audio.src`.
+  - Playlist handles `pendingAutoplay` after track switch; others are single-source players.
+  - Summary and podcast are nearly identical (suggested first refactor target).
+
+## Gaps vs Desired Behavior
+- Saved state is already per audio source, but coordination when switching between different player types is mixed:
+  - `audio:activate` only used by summary/podcast, not playlist.
+  - All players also call `pauseOtherAudio()` which only pauses audio elements, not UI state.
+- There is no shared state store, so each player manages UI sync separately (duplication risk).
+
+## Draft: Shared State Shape
+Per-audio (keyed by `src`):
+- `src`: string
+- `title`: string
+- `currentTime`: number
+- `duration`: number
+- `isPlaying`: boolean
+- `playbackRate`: number
+- `volume`: number (0..1)
+- `muted`: boolean
+- `lastUpdated`: number (ms timestamp)
+- `isCompleted`: boolean
+- `lastUserAction`: 'play' | 'pause' | 'seek' | 'stop' | 'ended' | 'init'
+
+Global:
+- `activeSrc`: string | null
+- `activeWrapperId`: string | null (optional if we want per-instance UI coordination)
+- `lastFocusedAt`: number
+
+Storage model:
+- `localStorage` per-src entry:
+  - `currentTime`, `duration`, `playbackRate`, `volume`, `muted`, `timestamp`
+  - TTL 7 days (as now)
+  - `isCompleted` optional (for clearing vs keeping state)
+
+## Draft: Shared Module Skeleton
+Target file: `src/scripts/audio-state.ts`
+
+Exports:
+- `getState(src: string): AudioState`
+- `setState(src: string, patch: Partial<AudioState>): AudioState`
+- `setActive(src: string | null): void`
+- `getActive(): string | null`
+- `loadState(src: string): AudioState` (from localStorage)
+- `saveState(src: string): void`
+- `clearState(src: string): void`
+- `subscribe(src: string, cb: (state: AudioState) => void): () => void`
+- `broadcastActive(wrapper?: HTMLElement): void` (optional: for legacy `audio:activate`)
+
+Notes:
+- Keep store in-memory, persist on `pause`, `beforeunload`, and debounced `timeupdate`.
+- The state module should not touch DOM directly; players own DOM binding.
+- Provide a tiny event bus inside the module to sync mini/big players for the same `src`.
+
 ## Goals to Clarify
 - Should there be one global player state (only one audio source at a time) or per-player state?
 - Should the mini-player be shared across all audio instances or per instance?

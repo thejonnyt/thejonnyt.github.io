@@ -1,9 +1,19 @@
+import type { AudioState } from './audio-state';
+import {
+  clearState,
+  getActive,
+  loadState,
+  saveState,
+  setActive,
+  setState,
+} from './audio-state';
+
 function initAudioPlaylistPlayer(wrapper: HTMLElement) {
   if (wrapper.dataset.initialized === 'true') return;
   wrapper.dataset.initialized = 'true';
 
   const audio = wrapper.querySelector('.hidden-audio') as HTMLAudioElement;
-  const source = audio.querySelector('source') as HTMLSourceElement | null;
+  const source = audio.querySelector('source') as HTMLSourceElement;
   const mainContainer = wrapper.querySelector('.audio-player-container') as HTMLElement;
   const miniPlayer = wrapper.querySelector('.mini-player') as HTMLElement;
   const minimizedPlayer = wrapper.querySelector('.minimized-player') as HTMLElement;
@@ -68,6 +78,7 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
     playlistItems.length - 1
   );
   let storageKey = getStorageKey(playlistItems[currentIndex].src);
+  let currentSrc = playlistItems[currentIndex].src;
 
   function getStorageKey(src: string) {
     return `playlist-position-${src}`;
@@ -80,6 +91,34 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
       }
     });
   }
+
+  function syncStateFromAudio(patch: Partial<AudioState> = {}) {
+    setState(currentSrc, {
+      currentTime: audio.currentTime,
+      duration: Number.isFinite(audio.duration) ? audio.duration : 0,
+      isPlaying: !audio.paused,
+      playbackRate: audio.playbackRate,
+      volume: audio.volume,
+      muted: audio.volume === 0,
+      ...patch,
+    });
+  }
+
+  function savePlaybackPosition() {
+    syncStateFromAudio();
+    saveState(currentSrc, storageKey);
+  }
+
+  window.addEventListener('audio:active', (event: Event) => {
+    const activeSrc = (event as CustomEvent).detail?.src as string | undefined;
+    if (!activeSrc || activeSrc === currentSrc) return;
+    audio.pause();
+    updatePlayPauseIcons(false);
+    miniPlayer.style.display = 'none';
+    minimizedPlayer.style.display = 'none';
+    isUserManuallyHidingMini = true;
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'pause' });
+  });
 
   function updateActiveItem() {
     playlistButtons.forEach((button, index) => {
@@ -112,6 +151,7 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
     savePlaybackPosition();
     currentIndex = boundedIndex;
     const item = playlistItems[currentIndex];
+    currentSrc = item.src;
     storageKey = getStorageKey(item.src);
     titleEl.textContent = item.title;
     miniTitle.textContent = item.title;
@@ -128,39 +168,6 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
-  }
-
-  // Save playback position to localStorage
-  function savePlaybackPosition() {
-    if (audio.currentTime > 0 && audio.currentTime < audio.duration - 5) {
-      localStorage.setItem(storageKey, JSON.stringify({
-        currentTime: audio.currentTime,
-        duration: audio.duration,
-        timestamp: Date.now()
-      }));
-    }
-  }
-
-  // Restore playback position from localStorage
-  function restorePlaybackPosition() {
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        const data = JSON.parse(saved);
-        // Only restore if saved within last 7 days
-        const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
-        if (data.timestamp > sevenDaysAgo && data.currentTime > 5) {
-          audio.currentTime = data.currentTime;
-        }
-      }
-    } catch (e) {
-      console.error('Failed to restore playback position:', e);
-    }
-  }
-
-  // Clear saved position
-  function clearPlaybackPosition() {
-    localStorage.removeItem(storageKey);
   }
 
   function updatePlayPauseIcons(isPlaying: boolean) {
@@ -185,6 +192,8 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
     pauseOtherAudio();
     audio.play();
     updatePlayPauseIcons(true);
+    setActive(currentSrc);
+    syncStateFromAudio({ isPlaying: true, lastUserAction: 'play' });
   }
 
   // Play/Pause functionality
@@ -225,7 +234,17 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
   // Update time and progress
   audio.addEventListener('loadedmetadata', () => {
     durationEl.textContent = formatTime(audio.duration);
-    restorePlaybackPosition();
+    const savedState = loadState(currentSrc, storageKey);
+    if (savedState.currentTime > 5) {
+      audio.currentTime = savedState.currentTime;
+    }
+    if (savedState.playbackRate) {
+      setSpeed(savedState.playbackRate);
+    }
+    const restoredVolume = savedState.muted
+      ? 0
+      : Math.round((savedState.volume || 1) * 100);
+    updateVolume(restoredVolume);
     if (pendingAutoplay) {
       playAudio();
       pendingAutoplay = false;
@@ -236,12 +255,15 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
   let autoSaveInterval: number;
   audio.addEventListener('play', () => {
     autoSaveInterval = window.setInterval(savePlaybackPosition, 5000);
+    setActive(currentSrc);
     updatePlayPauseIcons(true);
+    syncStateFromAudio({ isPlaying: true, lastUserAction: 'play' });
   });
 
   audio.addEventListener('pause', () => {
     clearInterval(autoSaveInterval);
-    savePlaybackPosition();
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'pause' });
+    saveState(currentSrc, storageKey);
     updatePlayPauseIcons(false);
   });
 
@@ -258,6 +280,8 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
       progressBar.value = progress.toString();
       miniProgressBar.value = progress.toString();
     }
+
+    setState(currentSrc, { currentTime, duration });
   });
 
   // Seek functionality
@@ -265,6 +289,7 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
     const target = e.target as HTMLInputElement;
     const seekTime = (parseFloat(target.value) / 100) * audio.duration;
     audio.currentTime = seekTime;
+    syncStateFromAudio({ lastUserAction: 'seek' });
   }
 
   progressBar?.addEventListener('input', seek);
@@ -287,6 +312,8 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
       miniVolumeIcon.style.display = 'inline-block';
       miniMutedIcon.style.display = 'none';
     }
+
+    setState(currentSrc, { volume: audio.volume, muted: audio.volume === 0 });
   }
 
   volumeSlider?.addEventListener('input', (e) => {
@@ -324,6 +351,8 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
         btn.classList.add('active');
       }
     });
+
+    setState(currentSrc, { playbackRate: speed });
   }
 
   // Speed button toggle
@@ -362,7 +391,12 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // Show mini player if main player is not visible and audio has been played
-      if (!entry.isIntersecting && (audio.currentTime > 0 || !audio.paused) && !isUserManuallyHidingMini) {
+      if (
+        !entry.isIntersecting &&
+        (audio.currentTime > 0 || !audio.paused) &&
+        !isUserManuallyHidingMini &&
+        getActive() === currentSrc
+      ) {
         clearTimeout(miniPlayerTimeout);
         // Only show mini player if minimized player is not visible
         if (minimizedPlayer.style.display !== 'flex') {
@@ -398,7 +432,9 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
   // Close mini player button - Pause and hide (save position)
   miniCloseBtn?.addEventListener('click', () => {
     audio.pause();
-    savePlaybackPosition();
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'stop' });
+    saveState(currentSrc, storageKey);
+    setActive(null);
     updatePlayPauseIcons(false);
     miniPlayer.style.display = 'none';
     minimizedPlayer.style.display = 'none';
@@ -408,7 +444,9 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
   // Close minimized player button - Pause and hide (save position)
   minimizedCloseBtn?.addEventListener('click', () => {
     audio.pause();
-    savePlaybackPosition();
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'stop' });
+    saveState(currentSrc, storageKey);
+    setActive(null);
     updatePlayPauseIcons(false);
     miniPlayer.style.display = 'none';
     minimizedPlayer.style.display = 'none';
@@ -417,7 +455,9 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
 
   // Handle audio end - Clear saved position when track completes
   audio.addEventListener('ended', () => {
-    clearPlaybackPosition();
+    clearState(currentSrc, storageKey);
+    syncStateFromAudio({ isPlaying: false, isCompleted: true, lastUserAction: 'ended' });
+    setActive(null);
     updatePlayPauseIcons(false);
     miniPlayer.style.display = 'none';
     minimizedPlayer.style.display = 'none';
@@ -426,7 +466,8 @@ function initAudioPlaylistPlayer(wrapper: HTMLElement) {
   // Save position when page is about to unload
   window.addEventListener('beforeunload', () => {
     if (!audio.paused) {
-      savePlaybackPosition();
+      syncStateFromAudio();
+      saveState(currentSrc, storageKey);
     }
   });
 

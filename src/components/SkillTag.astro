@@ -12,11 +12,22 @@ interface Props {
 
 const { skillName, showTooltip = true, showStars = false } = Astro.props;
 
+interface SkillData {
+  category: string;
+  level: string;
+  yearsOfExperience: number;
+  description?: string;
+  usedIn?: string[];
+  featured?: boolean;
+}
+
+const skills = skillsDatabase.skills as Record<string, SkillData>;
+
 // Look up skill in database (case-insensitive)
-const skillKey = Object.keys(skillsDatabase.skills).find(
+const skillKey = Object.keys(skills).find(
   key => key.toLowerCase() === skillName.toLowerCase()
 );
-const skillData = skillKey ? skillsDatabase.skills[skillKey] : null;
+const skillData = skillKey ? skills[skillKey] : null;
 
 // Category to color mapping (consolidated to categories)
 const categoryColors: Record<string, string> = {
@@ -78,7 +89,7 @@ const tooltipId = (showTooltip && skillData)
         <div class="tooltip-used-in">
           <strong>Used in:</strong>
           <ul>
-            {skillData.usedIn.map(exp => <li>{exp}</li>)}
+            {skillData.usedIn.map((exp: string) => <li>{exp}</li>)}
           </ul>
         </div>
       )}

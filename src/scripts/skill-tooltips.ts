@@ -1,3 +1,5 @@
+export {};
+
 function positionTooltip(tag: Element): void {
   const tooltip = tag.querySelector('.skill-tooltip') as HTMLElement | null;
   if (!tooltip) return;

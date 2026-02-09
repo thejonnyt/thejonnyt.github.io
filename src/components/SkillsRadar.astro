@@ -11,6 +11,25 @@ interface Props {
 
 const { size = 750 } = Astro.props;
 
+type SkillEntry = {
+  category: string;
+  level: string;
+  yearsOfExperience: number;
+};
+
+type CategoryGoal = {
+  proficiencyTarget: number;
+  experienceTarget: number;
+  description: string | string[];
+};
+
+type SkillsDatabase = {
+  skills: Record<string, SkillEntry>;
+  categoryGoals?: Record<string, CategoryGoal>;
+};
+
+const db = skillsDatabase as SkillsDatabase;
+
 // Map skill levels to numeric values (0-5)
 const levelToValue: Record<string, number> = {
   'beginner': 1,
@@ -28,9 +47,8 @@ const categoryStats: Record<string, {
   skills: string[]
 }> = {};
 
-for (const key in skillsDatabase.skills) {
-  const k = key as keyof typeof skillsDatabase.skills;
-  const skill = skillsDatabase.skills[k];
+for (const key in db.skills) {
+  const skill = db.skills[key];
   const category = skill.category;
   const proficiencyValue = levelToValue[skill.level] || 0;
   const experienceYears = skill.yearsOfExperience || 0;
@@ -54,7 +72,13 @@ const categories = Object.entries(categoryStats)
     // Scale experience: 5 years = 4.0 on visual scale
     const visualExperience = Math.min((avgExperience / 5) * 4, 4);
 
-    const goal = skillsDatabase.categoryGoals?.[name];
+    const goal = db.categoryGoals?.[name];
+    const goalDescription = Array.isArray(goal?.description)
+      ? goal.description.join(', ')
+      : goal?.description;
+    const normalizedGoal = goal
+      ? { ...goal, description: goalDescription ?? '' }
+      : null;
     return {
       name,
       proficiency: avgProficiency,
@@ -63,9 +87,9 @@ const categories = Object.entries(categoryStats)
       visualExperience: visualExperience,
       count: stats.count,
       skills: stats.skills,
-      goal: goal || null,
-      goalProficiency: goal?.proficiencyTarget || avgProficiency,
-      visualGoalProficiency: Math.min(goal?.proficiencyTarget || avgProficiency, 4)
+      goal: normalizedGoal,
+      goalProficiency: normalizedGoal?.proficiencyTarget || avgProficiency,
+      visualGoalProficiency: Math.min(normalizedGoal?.proficiencyTarget || avgProficiency, 4)
     };
   });
 

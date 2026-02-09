@@ -1,3 +1,13 @@
+import type { AudioState } from './audio-state';
+import {
+  clearState,
+  getActive,
+  loadState,
+  saveState,
+  setActive,
+  setState,
+} from './audio-state';
+
 function initPodcastPlayer() {
   const wrapper = document.querySelector('.podcast-player-wrapper') as HTMLElement;
   if (!wrapper) return;
@@ -50,8 +60,13 @@ function initPodcastPlayer() {
 
   let isUserManuallyHidingMini = false;
 
+  const audioSrc =
+    wrapper.dataset.src ||
+    (audio.querySelector('source') as HTMLSourceElement | null)?.src ||
+    audio.currentSrc ||
+    audio.src;
   // LocalStorage key for saving playback position
-  const storageKey = `podcast-position-${audio.src}`;
+  const storageKey = `podcast-position-${audioSrc}`;
 
   // Format time helper
   function formatTime(seconds: number): string {
@@ -61,54 +76,32 @@ function initPodcastPlayer() {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   }
 
-  // Save playback position to localStorage
+  function syncStateFromAudio(patch: Partial<AudioState> = {}) {
+    setState(audioSrc, {
+      currentTime: audio.currentTime,
+      duration: Number.isFinite(audio.duration) ? audio.duration : 0,
+      isPlaying: !audio.paused,
+      playbackRate: audio.playbackRate,
+      volume: audio.volume,
+      muted: audio.volume === 0,
+      ...patch,
+    });
+  }
+
   function savePlaybackPosition() {
-    if (audio.currentTime > 0 && audio.currentTime < audio.duration - 5) {
-      localStorage.setItem(storageKey, JSON.stringify({
-        currentTime: audio.currentTime,
-        duration: audio.duration,
-        timestamp: Date.now()
-      }));
-    }
+    syncStateFromAudio();
+    saveState(audioSrc, storageKey);
   }
 
-  // Restore playback position from localStorage
-  function restorePlaybackPosition() {
-    try {
-      const saved = localStorage.getItem(storageKey);
-      if (saved) {
-        const data = JSON.parse(saved);
-        // Only restore if saved within last 7 days
-        const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
-        if (data.timestamp > sevenDaysAgo && data.currentTime > 5) {
-          audio.currentTime = data.currentTime;
-          console.log(`Resumed playback from ${formatTime(data.currentTime)}`);
-        }
-      }
-    } catch (e) {
-      console.error('Failed to restore playback position:', e);
-    }
-  }
-
-  // Clear saved position
-  function clearPlaybackPosition() {
-    localStorage.removeItem(storageKey);
-  }
-
-  function notifyActivePlayer() {
-    window.dispatchEvent(
-      new CustomEvent('audio:activate', { detail: wrapper })
-    );
-  }
-
-  window.addEventListener('audio:activate', (event: Event) => {
-    const activeWrapper = (event as CustomEvent).detail as HTMLElement;
-    if (activeWrapper === wrapper) return;
+  window.addEventListener('audio:active', (event: Event) => {
+    const activeSrc = (event as CustomEvent).detail?.src as string | undefined;
+    if (!activeSrc || activeSrc === audioSrc) return;
     audio.pause();
     updatePlayPauseIcons(false);
     miniPlayer.style.display = 'none';
     minimizedPlayer.style.display = 'none';
     isUserManuallyHidingMini = true;
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'pause' });
   });
 
   // Play/Pause functionality
@@ -124,12 +117,14 @@ function initPodcastPlayer() {
     if (audio.paused) {
       pauseOtherAudio();
       isUserManuallyHidingMini = false;
-      notifyActivePlayer();
       audio.play();
+      setActive(audioSrc);
       updatePlayPauseIcons(true);
+      syncStateFromAudio({ isPlaying: true, lastUserAction: 'play' });
     } else {
       audio.pause();
       updatePlayPauseIcons(false);
+      syncStateFromAudio({ isPlaying: false, lastUserAction: 'pause' });
     }
   }
 
@@ -158,19 +153,33 @@ function initPodcastPlayer() {
   // Update time and progress
   audio.addEventListener('loadedmetadata', () => {
     durationEl.textContent = formatTime(audio.duration);
-    // Restore saved playback position
-    restorePlaybackPosition();
+    const savedState = loadState(audioSrc, storageKey);
+    if (savedState.currentTime > 5) {
+      audio.currentTime = savedState.currentTime;
+    }
+    if (savedState.playbackRate) {
+      setSpeed(savedState.playbackRate);
+    }
+    const restoredVolume = savedState.muted
+      ? 0
+      : Math.round((savedState.volume || 1) * 100);
+    updateVolume(restoredVolume);
   });
 
   // Auto-save playback position every 5 seconds
   let autoSaveInterval: number;
   audio.addEventListener('play', () => {
     autoSaveInterval = window.setInterval(savePlaybackPosition, 5000);
+    setActive(audioSrc);
+    updatePlayPauseIcons(true);
+    syncStateFromAudio({ isPlaying: true, lastUserAction: 'play' });
   });
 
   audio.addEventListener('pause', () => {
     clearInterval(autoSaveInterval);
-    savePlaybackPosition();
+    updatePlayPauseIcons(false);
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'pause' });
+    saveState(audioSrc, storageKey);
   });
 
   audio.addEventListener('timeupdate', () => {
@@ -186,6 +195,8 @@ function initPodcastPlayer() {
       progressBar.value = progress.toString();
       miniProgressBar.value = progress.toString();
     }
+
+    setState(audioSrc, { currentTime, duration });
   });
 
   // Seek functionality
@@ -193,6 +204,7 @@ function initPodcastPlayer() {
     const target = e.target as HTMLInputElement;
     const seekTime = (parseFloat(target.value) / 100) * audio.duration;
     audio.currentTime = seekTime;
+    syncStateFromAudio({ lastUserAction: 'seek' });
   }
 
   progressBar?.addEventListener('input', seek);
@@ -215,6 +227,8 @@ function initPodcastPlayer() {
       miniVolumeIcon.style.display = 'inline-block';
       miniMutedIcon.style.display = 'none';
     }
+
+    setState(audioSrc, { volume: audio.volume, muted: audio.volume === 0 });
   }
 
   volumeSlider?.addEventListener('input', (e) => {
@@ -252,6 +266,8 @@ function initPodcastPlayer() {
         btn.classList.add('active');
       }
     });
+
+    setState(audioSrc, { playbackRate: speed });
   }
 
   // Speed button toggle
@@ -290,7 +306,12 @@ function initPodcastPlayer() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       // Show mini player if main player is not visible and audio has been played
-      if (!entry.isIntersecting && (audio.currentTime > 0 || !audio.paused) && !isUserManuallyHidingMini) {
+      if (
+        !entry.isIntersecting &&
+        (audio.currentTime > 0 || !audio.paused) &&
+        !isUserManuallyHidingMini &&
+        getActive() === audioSrc
+      ) {
         clearTimeout(miniPlayerTimeout);
         // Only show mini player if minimized player is not visible
         if (minimizedPlayer.style.display !== 'flex') {
@@ -326,7 +347,9 @@ function initPodcastPlayer() {
   // Close mini player button - Pause and hide (save position)
   miniCloseBtn?.addEventListener('click', () => {
     audio.pause();
-    savePlaybackPosition();
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'stop' });
+    saveState(audioSrc, storageKey);
+    setActive(null);
     updatePlayPauseIcons(false);
     miniPlayer.style.display = 'none';
     minimizedPlayer.style.display = 'none';
@@ -336,7 +359,9 @@ function initPodcastPlayer() {
   // Close minimized player button - Pause and hide (save position)
   minimizedCloseBtn?.addEventListener('click', () => {
     audio.pause();
-    savePlaybackPosition();
+    syncStateFromAudio({ isPlaying: false, lastUserAction: 'stop' });
+    saveState(audioSrc, storageKey);
+    setActive(null);
     updatePlayPauseIcons(false);
     miniPlayer.style.display = 'none';
     minimizedPlayer.style.display = 'none';
@@ -345,7 +370,9 @@ function initPodcastPlayer() {
 
   // Handle audio end - Clear saved position when podcast completes
   audio.addEventListener('ended', () => {
-    clearPlaybackPosition();
+    clearState(audioSrc, storageKey);
+    syncStateFromAudio({ isPlaying: false, isCompleted: true, lastUserAction: 'ended' });
+    setActive(null);
     updatePlayPauseIcons(false);
     miniPlayer.style.display = 'none';
     minimizedPlayer.style.display = 'none';
@@ -354,7 +381,8 @@ function initPodcastPlayer() {
   // Save position when page is about to unload
   window.addEventListener('beforeunload', () => {
     if (!audio.paused) {
-      savePlaybackPosition();
+      syncStateFromAudio();
+      saveState(audioSrc, storageKey);
     }
   });
 

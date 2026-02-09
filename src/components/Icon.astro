@@ -1,14 +1,4 @@
 ---
-const {
-  name,
-  class: className = '',
-  size = 24,
-  strokeWidth = 2,
-  ariaHidden,
-  ariaLabel,
-  ...rest
-} = Astro.props;
-
 const icons = {
   mail: `
     <rect x="3" y="5" width="18" height="14" rx="2"></rect>
@@ -76,7 +66,30 @@ const icons = {
     <line x1="12" y1="8" x2="12" y2="12"></line>
     <circle cx="12" cy="16" r="1"></circle>
   `
-};
+} as const;
+
+type IconName = keyof typeof icons;
+
+interface Props {
+  name: IconName;
+  class?: string;
+  size?: number;
+  strokeWidth?: number;
+  ariaHidden?: boolean | 'true' | 'false' | null;
+  ariaLabel?: string;
+  style?: string;
+  [key: string]: string | number | boolean | undefined | null;
+}
+
+const {
+  name,
+  class: className = '',
+  size = 24,
+  strokeWidth = 2,
+  ariaHidden,
+  ariaLabel,
+  ...rest
+} = Astro.props as Props;
 
 const iconMarkup = icons[name] ?? icons.default;
 const ariaHiddenValue = ariaLabel ? undefined : (ariaHidden ?? 'true');

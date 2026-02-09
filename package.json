@@ -10,7 +10,9 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "astro": "^5.15.9"
+    "@astrojs/check": "^0.9.6",
+    "astro": "^5.15.9",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@playwright/test": "^1.50.1"

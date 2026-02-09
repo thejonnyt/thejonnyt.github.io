@@ -1,0 +1,374 @@
+# Astro Check Error Track
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Errors:
+- src/components/Icon.astro:81:20 ts(7053) Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ mail: string; github: string; linkedin: string; download: string; headphones: string; play: string; pause: string; "volume-2": string; "volume-x": string; "minimize-2": string; "maximize-2": string; x: string; "skip-back": string; "skip-forward": string; default: string; }'.
+- src/components/SkillTag.astro:81:35 ts(7006) Parameter 'exp' implicitly has an 'any' type.
+- src/components/SkillTag.astro:19:30 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ Java: { category: string; level: string; yearsOfExperience: number; description: string; usedIn: string[]; featured: boolean; }; Python: { category: string; level: string; yearsOfExperience: number; description: string; usedIn: string[]; featured: boolean; }; ... }'.
+- src/components/SkillsRadar.astro:57:18 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ "Programming Languages": { proficiencyTarget: number; experienceTarget: number; description: string; }; ... }'.
+- src/scripts/audio-playlist-player.ts:158:5 ts(18047) 'source' is possibly 'null'.
+- src/scripts/audio-playlist-player.ts:143:42 ts(18047) 'source' is possibly 'null'.
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call (pointermove handler).
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:13:42 [content] Syncing content
+11:13:42 [content] Synced content
+11:13:42 [types] Generated 266ms
+11:13:42 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/components/AudioPlaylistPlayer.astro:181:78 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/AudioPlaylistPlayer.astro:138:80 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/AudioPlaylistPlayer.astro:116:75 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/AudioPlaylistPlayer.astro:66:77 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/AudioPlaylistPlayer.astro:40:72 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/AudioSummaryPlayer.astro:189:9 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/AudioSummaryPlayer.astro:141:13 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/PodcastPlayer.astro:143:11 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/PodcastPlayer.astro:121:11 ts(2322) Property 'style' does not exist on type 'IntrinsicAttributes & Props'.
+- src/components/SkillTag.astro:81:35 ts(7006) Parameter 'exp' implicitly has an 'any' type.
+- src/components/SkillTag.astro:19:30 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/components/SkillsRadar.astro:57:18 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/scripts/audio-playlist-player.ts:158:5 ts(18047) 'source' is possibly 'null'.
+- src/scripts/audio-playlist-player.ts:143:42 ts(18047) 'source' is possibly 'null'.
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:14:16 [content] Syncing content
+11:14:16 [content] Synced content
+11:14:16 [types] Generated 244ms
+11:14:16 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/components/Icon.astro:99:2 ts(2322) 'aria-hidden' type incompatible (string not assignable to boolean | 'true' | 'false' | null | undefined).
+- src/components/SkillTag.astro:81:35 ts(7006) Parameter 'exp' implicitly has an 'any' type.
+- src/components/SkillTag.astro:19:30 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/components/SkillsRadar.astro:57:18 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/scripts/audio-playlist-player.ts:158:5 ts(18047) 'source' is possibly 'null'.
+- src/scripts/audio-playlist-player.ts:143:42 ts(18047) 'source' is possibly 'null'.
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:14:43 [content] Syncing content
+11:14:43 [content] Synced content
+11:14:43 [types] Generated 282ms
+11:14:43 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/components/Icon.astro:78:3 ts(2411) Property 'ariaHidden' not assignable to index signature.
+- src/components/SkillTag.astro:81:35 ts(7006) Parameter 'exp' implicitly has an 'any' type.
+- src/components/SkillTag.astro:19:30 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/components/SkillsRadar.astro:57:18 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/scripts/audio-playlist-player.ts:158:5 ts(18047) 'source' is possibly 'null'.
+- src/scripts/audio-playlist-player.ts:143:42 ts(18047) 'source' is possibly 'null'.
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:15:08 [content] Syncing content
+11:15:08 [content] Synced content
+11:15:09 [types] Generated 322ms
+11:15:09 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/components/SkillTag.astro:81:35 ts(7006) Parameter 'exp' implicitly has an 'any' type.
+- src/components/SkillTag.astro:19:30 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/components/SkillsRadar.astro:57:18 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/scripts/audio-playlist-player.ts:158:5 ts(18047) 'source' is possibly 'null'.
+- src/scripts/audio-playlist-player.ts:143:42 ts(18047) 'source' is possibly 'null'.
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:15:43 [content] Syncing content
+11:15:43 [content] Synced content
+11:15:43 [types] Generated 351ms
+11:15:43 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/components/SkillTag.astro:81:35 ts(7006) Parameter 'exp' implicitly has an 'any' type.
+- src/components/SkillTag.astro:19:30 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/components/SkillsRadar.astro:57:18 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:16:15 [content] Syncing content
+11:16:15 [content] Synced content
+11:16:15 [types] Generated 326ms
+11:16:15 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/components/SkillsRadar.astro:57:18 ts(7053) Element implicitly has an 'any' type because expression of type 'string' can't be used to index type.
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:16:50 [content] Syncing content
+11:16:50 [content] Synced content
+11:16:50 [types] Generated 397ms
+11:16:50 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/scripts/copy-resume.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/copy-resume.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:17:30 [content] Syncing content
+11:17:30 [content] Synced content
+11:17:30 [types] Generated 321ms
+11:17:30 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/scripts/interactive-background.ts:14:11 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:17:6 ts(2300) Duplicate identifier 'Point'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:17:56 [content] Syncing content
+11:17:56 [content] Synced content
+11:17:56 [types] Generated 269ms
+11:17:56 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/scripts/magnetic-contact-carousel.ts:76:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:12:10 ts(2393) Duplicate function implementation.
+- src/scripts/magnetic-contact-carousel.ts:1:6 ts(2300) Duplicate identifier 'CvSource'.
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:18:23 [content] Syncing content
+11:18:23 [content] Synced content
+11:18:23 [types] Generated 286ms
+11:18:23 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/scripts/skill-tooltips.ts:1:10 ts(2393) Duplicate function implementation.
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/tech-term-tooltips.ts:26:10 ts(2393) Duplicate function implementation.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: failed
+
+Output:
+11:18:48 [content] Syncing content
+11:18:48 [content] Synced content
+11:18:48 [types] Generated 266ms
+11:18:48 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+- src/scripts/skills-radar.ts:580:14 ts(2769) No overload matches this call.
+- src/scripts/skills-radar.ts:562:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:552:38 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:503:40 ts(2345) Argument of type 'Event' is not assignable to parameter of type 'MouseEvent'.
+- src/scripts/skills-radar.ts:265:20 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:118:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:116:21 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:105:28 ts(2339) Property 'style' does not exist on type 'Element'.
+- src/scripts/skills-radar.ts:89:26 ts(2339) Property 'style' does not exist on type 'Element'.
+
+Run: 2026-02-09
+Command: npx astro check
+Status: success (0 errors)
+
+Output:
+11:20:45 [content] Syncing content
+11:20:45 [content] Synced content
+11:20:45 [types] Generated 269ms
+11:20:45 [check] Getting diagnostics for Astro files in /home/jonny/Documents/Privat/Bewerbungsunterlagen/thejonnyt.github.io...
+Result (42 files):
+- 0 errors
+- 0 warnings
+- 25 hints
