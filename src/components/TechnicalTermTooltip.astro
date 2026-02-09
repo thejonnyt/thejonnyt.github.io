@@ -4,7 +4,6 @@
  * This component should be included once per page, typically in the layout
  */
 import glossaryData from '../content/glossary.json';
-import techTermTooltipsUrl from '../scripts/tech-term-tooltips.ts?url';
 
 // Make glossary data available to client-side JS
 const glossaryJson = JSON.stringify(glossaryData);
@@ -27,7 +26,7 @@ const glossaryJson = JSON.stringify(glossaryData);
   </div>
 </div>
 
-<script type="module" src={techTermTooltipsUrl}></script>
+<script>import '../scripts/tech-term-tooltips.ts';</script>
 
 <style>
   .tooltip-container {

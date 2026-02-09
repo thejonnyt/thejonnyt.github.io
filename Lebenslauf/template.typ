@@ -6,7 +6,7 @@
 // === Color Tokens ===
 #let accent-color = rgb("#427bbbff")  // A classic, deep navy blue (solid)
 #let text-color = rgb("#28313fff")    // A slightly softer dark gray/black
-#let gray-color = rgb("#a1a1a1ff")    // A medium-dark gray for readable secondary text
+#let gray-color = rgb("#717171ff")    // A medium-dark gray for readable secondary text
 #let light-gray = rgb("#edededff")    // A light, subtle gray for dividers (solid)
 
 // === Typography Tokens ===

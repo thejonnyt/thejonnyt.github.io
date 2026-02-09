@@ -3,7 +3,6 @@
  * SkillsRadar.astro - Interactive radar/spider chart for skill categories
  */
 import skillsDatabase from '../content/skillsDatabase.json';
-import skillsRadarUrl from '../scripts/skills-radar.ts?url';
 
 interface Props {
   size?: number;
@@ -976,4 +975,4 @@ const skillsRadarPayload = {
   }
 </style>
 
-<script type="module" src={skillsRadarUrl}></script>
+<script>import '../scripts/skills-radar.ts';</script>

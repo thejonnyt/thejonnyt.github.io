@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl } from "../utils/language";
-import audioSummaryUrl from "../scripts/audio-summary-player.ts?url";
+
 import Icon from "./Icon.astro";
 
 const lang = getLangFromUrl(Astro.url);
@@ -901,4 +901,4 @@ const title = lang === "de"
   }
 </style>
 
-<script type="module" src={audioSummaryUrl}></script>
+<script>import '../scripts/audio-summary-player.ts';</script>

@@ -1,5 +1,5 @@
 ---
-import copyResumeUrl from '../scripts/copy-resume.ts?url';
+
 interface CvSource {
   profile: any;
   experience: any;
@@ -273,4 +273,4 @@ const copyButtonId = `${idPrefix}-copy-resume-btn`;
   }
 </style>
 
-<script type="module" src={copyResumeUrl}></script>
+<script>import '../scripts/copy-resume.ts';</script>

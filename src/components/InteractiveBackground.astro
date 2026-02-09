@@ -1,10 +1,10 @@
 ---
-import interactiveBackgroundUrl from '../scripts/interactive-background.ts?url';
+
 ---
 
 <canvas id="interactive-bg" aria-hidden="true"></canvas>
 
-<script type="module" src={interactiveBackgroundUrl}></script>
+<script>import '../scripts/interactive-background.ts';</script>
 
 <style>
   #interactive-bg {

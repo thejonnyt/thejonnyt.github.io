@@ -1,5 +1,5 @@
 ---
-import skillTooltipsUrl from '../scripts/skill-tooltips.ts?url';
+
 import skillsDatabase from '../content/skillsDatabase.json';
 
 // SkillTag - Displays a skill tag with hover tooltip showing metadata
@@ -302,4 +302,4 @@ const tooltipId = (showTooltip && skillData)
   }
 </style>
 
-<script type="module" src={skillTooltipsUrl}></script>
+<script>import '../scripts/skill-tooltips.ts';</script>

@@ -1,5 +1,5 @@
 ---
-import audioPlaylistUrl from "../scripts/audio-playlist-player.ts?url";
+
 import Icon from "./Icon.astro";
 interface PlaylistItem {
   src: string;
@@ -954,4 +954,4 @@ const initialItem = items?.[defaultIndex] ?? items?.[0];
   }
 </style>
 
-<script type="module" src={audioPlaylistUrl}></script>
+<script>import '../scripts/audio-playlist-player.ts';</script>

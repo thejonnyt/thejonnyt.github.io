@@ -1,6 +1,5 @@
 ---
 import CopyResumeButton from './CopyResumeButton.astro';
-import headerScrollUrl from '../scripts/header-scroll.ts?url';
 
 interface Props {
   cvSource: any;
@@ -323,4 +322,4 @@ const { cvSource } = Astro.props;
   }
 </style>
 
-<script type="module" src={headerScrollUrl}></script>
+<script>import '../scripts/header-scroll.ts';</script>

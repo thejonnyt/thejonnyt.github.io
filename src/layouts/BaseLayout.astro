@@ -3,7 +3,6 @@ import { ViewTransitions } from 'astro:transitions';
 import InteractiveBackground from '../components/InteractiveBackground.astro';
 import TechnicalTermTooltip from '../components/TechnicalTermTooltip.astro';
 import '../styles/global.css';
-import analyticsCloudflareUrl from '../scripts/analytics-cloudflare.ts?url';
 
 interface Props {
   title?: string;
@@ -97,6 +96,6 @@ const personJsonLd = {
     <slot />
     <TechnicalTermTooltip />
 
-    <script type="module" src={analyticsCloudflareUrl}></script>
+    <script>import '../scripts/analytics-cloudflare.ts';</script>
   </body>
 </html>

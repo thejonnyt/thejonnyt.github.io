@@ -1,5 +1,5 @@
 ---
-import podcastPlayerUrl from '../scripts/podcast-player.ts?url';
+
 import Icon from './Icon.astro';
 
 interface Props {
@@ -864,4 +864,4 @@ const { src, title = "Podcast" } = Astro.props;
   }
 </style>
 
-<script type="module" src={podcastPlayerUrl}></script>
+<script>import '../scripts/podcast-player.ts';</script>

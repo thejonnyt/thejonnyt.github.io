@@ -21,8 +21,7 @@ import projectsData from '../../content/projects/data.de.json';
 import publicationsData from '../../content/publications/data.de.json';
 import miscData from '../../content/misc/data.de.json';
 import skillsDatabase from '../../content/skillsDatabase.json';
-import homeInteractionsUrl from '../../scripts/home-interactions.ts?url';
-import experienceToggleUrl from '../../scripts/experience-toggle.ts?url';
+
 
 // Process skills from database - group featured skills by category
 const featuredSkills = Object.entries(skillsDatabase.skills)
@@ -934,5 +933,5 @@ function formatDate(dateStr: string): string {
   }
 </style>
 
-<script type="module" src={experienceToggleUrl}></script>
-<script type="module" src={homeInteractionsUrl}></script>
+<script>import '../../scripts/experience-toggle.ts';</script>
+<script>import '../../scripts/home-interactions.ts';</script>

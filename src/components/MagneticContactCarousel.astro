@@ -1,6 +1,5 @@
 ---
 import Icon from './Icon.astro';
-import magneticCarouselUrl from '../scripts/magnetic-contact-carousel.ts?url';
 
 interface Props {
   email: string;
@@ -350,4 +349,4 @@ const text = labels[language];
   }
 </style>
 
-<script type="module" src={magneticCarouselUrl}></script>
+<script>import '../scripts/magnetic-contact-carousel.ts';</script>
