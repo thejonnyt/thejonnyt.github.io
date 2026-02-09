@@ -149,3 +149,60 @@ test.describe('CV JSON copy buttons', () => {
     expect(json.profile?.name).toBeTruthy();
   });
 });
+
+test.describe('CV PDF download actions', () => {
+  test.use({ acceptDownloads: true });
+
+  test('header download button downloads PDF on EN', async ({ page }) => {
+    const pageErrors: string[] = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+    page.on('console', msg => {
+      if (msg.type() === 'error') {
+        const message = msg.text();
+        if (!isIgnorableError(message)) {
+          pageErrors.push(message);
+        }
+      }
+    });
+
+    await page.goto('/');
+
+    const downloadBtn = page.locator('#header-cv-download-pdf-btn');
+    await expect(downloadBtn).toBeVisible();
+
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      downloadBtn.click()
+    ]);
+
+    expect(pageErrors, `Page errors: ${pageErrors.join(' | ')}`).toEqual([]);
+    expect(download.suggestedFilename()).toBe('Johannes_Tauscher_CV.pdf');
+  });
+
+  test('magnetic carousel download card downloads PDF', async ({ page }) => {
+    const pageErrors: string[] = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+    page.on('console', msg => {
+      if (msg.type() === 'error') {
+        const message = msg.text();
+        if (!isIgnorableError(message)) {
+          pageErrors.push(message);
+        }
+      }
+    });
+
+    await page.goto('/');
+
+    const downloadCard = page.locator('[data-magnetic-carousel] [data-card="download"]').first();
+    await downloadCard.scrollIntoViewIfNeeded();
+    await expect(downloadCard).toBeVisible();
+
+    const [download] = await Promise.all([
+      page.waitForEvent('download'),
+      downloadCard.click()
+    ]);
+
+    expect(pageErrors, `Page errors: ${pageErrors.join(' | ')}`).toEqual([]);
+    expect(download.suggestedFilename()).toBe('Johannes_Tauscher_CV.pdf');
+  });
+});

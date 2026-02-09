@@ -109,7 +109,12 @@ function initCvActions(root: HTMLElement): void {
   const copyBtn = root.querySelector('[data-action="copy"]') as HTMLButtonElement | null;
 
   const cvSourceJson = root.dataset.cvSource || '{}';
-  const cvSource = JSON.parse(cvSourceJson) as CvSource;
+  let cvSource: CvSource | null = null;
+  try {
+    cvSource = JSON.parse(cvSourceJson) as CvSource;
+  } catch (err) {
+    console.error('Failed to parse CV source data:', err);
+  }
 
   let toastTimeout: number | null = null;
 
@@ -169,6 +174,11 @@ function initCvActions(root: HTMLElement): void {
 
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
+      if (!cvSource) {
+        showToast('CV data unavailable', 'error');
+        return;
+      }
+
       const cvData = JSON.stringify(buildMachineCv(cvSource), null, 2);
 
       try {
