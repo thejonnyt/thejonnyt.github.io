@@ -61,6 +61,12 @@
       "OpenNMT-Library",
       "Large Language Models",
       "Artificial Neural Networks",
+      "OpenNMT-py",
+      "PyTorch",
+      "SentencePiece",
+      "pandas",
+      "NumPy",
+      "scikit-learn",
       "Bash",
       "Python"
     ],

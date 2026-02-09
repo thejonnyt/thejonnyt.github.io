@@ -61,7 +61,7 @@
       "Initiierung einer von Schülern geleiteten Vortragsreihe über Künstliche Intelligenz und deren Anwendungsfälle",
       "Unterricht der mathematischen Grundlagen hinter 3D-Druck und Programmierung"
     ],
-    "technologies": ["PowerPoint", "Algebra", "gcode", "STL", "MS Teams"]
+    "technologies": ["MS Teams", "PowerPoint", "Algebra", "gcode"]
   },
   {
     "company": "Kinder- und Jugendpsychiatrie, Philipps-Universität Marburg",

@@ -22,6 +22,8 @@ VARIANTS = {
         "max_technologies": 10,
         "skills_mode": "featured",
         "curated_note": True,
+        "include_publications": False,
+        "include_programs_awards": False,
     },
     "ats": {
         "output_file": CV_DIR / "cv_ats.typ",
@@ -29,6 +31,8 @@ VARIANTS = {
         "max_technologies": None,
         "skills_mode": "all",
         "curated_note": False,
+        "include_publications": False,
+        "include_programs_awards": False,
     },
 }
 
@@ -140,7 +144,9 @@ def generate_experience_section(
         description = get_variant_text(exp, "description", variant, "cvDescription", "atsDescription")
         description = escape_typst(description)
 
-        achievements = format_achievements(exp.get("achievements", []), variant)
+        short_achievements = exp.get("achievementsShort") or exp.get("achievements_short")
+        achievements_source = short_achievements if short_achievements else exp.get("achievements", [])
+        achievements = format_achievements(achievements_source, variant)
         technologies = [escape_typst(t) for t in exp.get("technologies", [])]
 
         # Build entry call
@@ -291,6 +297,13 @@ def generate_skills_section(data: Dict, skills_mode: str) -> str:
 
     # Group skills by category, only show featured or high-proficiency ones
     categories = {}
+    category_order = [
+        "Programming Languages",
+        "Backend & DevOps",
+        "Analysis, ML & AI",
+        "Web & Creative",
+        "Tools & Systems",
+    ]
 
     for skill_name, skill_data in data.get("skills", {}).items():
         category = skill_data.get("category", "Other")
@@ -308,7 +321,12 @@ def generate_skills_section(data: Dict, skills_mode: str) -> str:
 
     # Build skills section
     lines.append("#skills-section((")
-    for category, skills in sorted(categories.items()):
+    ordered_categories = [c for c in category_order if c in categories]
+    remaining_categories = [c for c in categories.keys() if c not in category_order]
+    ordered_categories.extend(sorted(remaining_categories))
+
+    for category in ordered_categories:
+        skills = categories[category]
         processed_skills = []
         for s in skills:
             if s == "LaTeX":
@@ -375,9 +393,11 @@ def build_cv(
         )
     )
     lines.append(generate_education_section(education, variant))
-    lines.append(generate_publications_section(publications))
+    if config.get("include_publications", True):
+        lines.append(generate_publications_section(publications))
     lines.append(generate_skills_section(skills_db, config["skills_mode"]))
-    lines.append(generate_programs_awards_section(misc, variant))
+    if config.get("include_programs_awards", True):
+        lines.append(generate_programs_awards_section(misc, variant))
 
     # Write output
     output_content = '\n'.join(lines)

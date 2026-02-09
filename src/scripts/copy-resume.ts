@@ -81,9 +81,21 @@ function buildMachineCv(source: CvSource) {
     citations: typeof paper.citations === 'number' ? paper.citations : null
   }));
 
+  const experience = (source.experience || []).map((role: any) => {
+    const { achievementsShort, achievements_short, ...rest } = role;
+    const shortAchievements = achievementsShort || achievements_short;
+    const achievements = Array.isArray(shortAchievements) && shortAchievements.length > 0
+      ? shortAchievements
+      : role.achievements;
+    return {
+      ...rest,
+      achievements
+    };
+  });
+
   return {
     profile: source.profile,
-    experience: source.experience,
+    experience,
     education: source.education,
     projects: source.projects,
     papers,

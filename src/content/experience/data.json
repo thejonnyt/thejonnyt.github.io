@@ -1,13 +1,19 @@
 [
   {
     "company": "Raumdeuter GbR",
-    "position": "Co-Founder & CTO",
+    "position": "Co-Founder, Technical Lead (Early Stage)",
     "location": "Leipzig, Germany",
     "startDate": "2024-11",
     "endDate": "2025-12",
     "current": false,
     "cvInclude": true,
-    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I lead the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
+    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
+    "achievementsShort": [
+      "Delivered a customer-deployed MVP 0 → 1 in under 12 months on a €30k budget, targeting capital-efficient scale.",
+      "Led product ideation workshops to align vision and product-solution fit roadmap.",
+      "Architected ML/NLP pipelines (RAG, sentiment, topic clustering) as core AI/ML solution capabilities.",
+      "Owned infrastructure and DevOps delivery, cutting release friction and improving onboarding for interns, contractors, and external partners."
+    ],
     "achievements": [
       "Given an ambiguous initial problem configuration, I led the product ideation workshops to align team vision and product-solution fit roadmap.",
       "Built engagement platform from 0 → 1 in less than 12 months on a €30k budget (likely resulting in approx. EUR 1.5M post-money valuation).",
@@ -21,6 +27,7 @@
     ],
     "technologies": [
       "Docker",
+      "Docker Compose",
       "Python",
       "Bash",
       "SpaCy",
@@ -61,7 +68,7 @@
       "Initiated a pupil-led lecture series about Artificial Intelligence and its use cases.",
       "Taught basic principles of the mathematics behind 3D printing and coding."
     ],
-    "technologies": ["PowerPoint", "Algebra", "gcode", "STL", "MS Teams"]
+    "technologies": ["MS Teams", "PowerPoint", "Algebra", "gcode"]
   },
   {
     "company": "Child and Adolescent Psychiatry, Philipps University Marburg",
@@ -73,11 +80,13 @@
     "cvInclude": true,
     "description": "Responsible for the validation and reproduction of earlier results of research as well as for programming {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
     "achievements": [
-      "My analysis results supported the findings of 3 peer-reviewed publications (listed in publications) and have been cited ~70 times.",
+      "Hyperparameter tuning for decision trees/random forests improved diagnostic performance by ~10–15 percentage points; results supported 3 peer‑reviewed publications (~70 citations).",
       "Worked in a highly interdisciplinary manner with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data scientists."
     ],
     "technologies": [
       "R",
+      "ggplot2",
+      "tidyverse",
       "Markdown",
       "HTML",
       "Machine Learning",
@@ -97,15 +106,16 @@
     "cvInclude": true,
     "description": "As a Data Analyst intern at Westphalia DataLab GmbH, I worked on a medical-diagnostics project combining 3D imaging and clinical data; developed and improved an experiment-tracking R/Shiny frontend and performed clinical-data analysis with Python and R.",
     "achievements": [
-      "Worked out and enhanced existing features for an experiment-tracking R/Shiny frontend to improve researcher workflow and usability",
-      "Analyzed 3D-image and clinical datasets with Python and R to derive actionable diagnostic insights",
-      "Integrated and managed project data using {{mongodb}} and {{postgresql}} and maintained code/versioning with {{git}}"
+      "Enhanced experiment‑tracking R/Shiny frontend accessing data in {{mongodb}}/{{postgresql}} to improve researcher workflow.",
+      "Analyzed 3D imaging + clinical datasets in Python/R to surface diagnostic insights."
     ],
     "technologies": [
       "Python",
       "PyTorch",
       "Convolutional Neural Networks",
       "R",
+      "data.table",
+      "tidyverse",
       "R Shiny",
       "MongoDB",
       "PostgreSQL",
