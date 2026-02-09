@@ -19,7 +19,7 @@
     },
     "highlights": [
       "Automated about 90% of the cover letter writing process, including Notion sync and application tracking",
-      "Strong coverletters without flattering, lying or exaggeration",
+      "Strong cover letters without flattering, lying or exaggeration",
       "Neat design and consistency",
       "Achieved 10%+ invitation-to-call rate during a weak hiring market"
     ],
@@ -27,10 +27,10 @@
   },
   {
     "name": "Raumdeuter",
-    "tagline": "Fanrelationship Management Software",
-    "description": "Listen. Understand. Act. The Raumdeuter Software helps Sportclubs turn fan opinions into data-driven decisions and sustainable knowledge",
+    "tagline": "Fan relationship Management Software",
+    "description": "Listen. Understand. Act. The Raumdeuter Software helps sport clubs turn fan opinions into data-driven decisions and sustainable knowledge",
     "technologies": [
-      "Way to few Resources",
+      "too few Resources",
       "Overtime",
       "Creativity",
       "Teamwork",
@@ -53,7 +53,7 @@
   {
     "name": "Neural Machine Translation with Pivot Strategies",
     "tagline": "Master's Thesis on Low-Resource Language Pairs",
-    "description": "Master's thesis demonstrating that pivot translation strategies can achieve compareable translation quality with 99% less parallel training data, making NMT viable for low-resource language pairs.",
+    "description": "Master's thesis demonstrating that pivot translation strategies can achieve comparable translation quality with 99% less parallel training data, making NMT viable for low-resource language pairs.",
     "technologies": [
       "Neural Machine Translation",
       "Pivot-Based Translation",
@@ -80,8 +80,8 @@
   },
   {
     "name": "Cook Up Kitchen",
-    "tagline": "PopUp Restaurant",
-    "description": "A few friends and me started a repeating PopUp Restaurant in Hamburg to explore whether food blogging could be a viable marketing strategy for restaurants, which resulted in a since then lasting business opportunity for one of us.",
+    "tagline": "pop-up Restaurant",
+    "description": "A few friends and I started a repeating pop-up Restaurant in Hamburg to explore whether food blogging could be a viable marketing strategy for restaurants, which resulted in a since then lasting business opportunity for one of us.",
     "technologies": ["Hot Pan", "Oil", "Creativity", "Teamwork"],
     "startDate": "2013",
     "endDate": "2016",

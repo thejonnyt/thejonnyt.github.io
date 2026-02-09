@@ -7,17 +7,17 @@
     "endDate": "2025-12",
     "current": false,
     "cvInclude": true,
-    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I lead the technical development: from conceptualization and architecture to implementation of the product as an customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
+    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I lead the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievements": [
-      "Given an ambiguous initial problem configuration, I led the product ideation workshops to align team vision and product-solution-fit roadmap.",
-      "Built engagement platform from 0 → 1 in less than 12 months on a €30k budget (likely resulting in  approx. EUR 1.5M post-money valuation).",
-      "Owned software architecture of the SaaS: Designed {{microservices}} utilizing {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) using  robust and easily expandable {{service-mesh}} patterns to ensure fast scaleability and prevent expensively rebuilding 'prototype slug' later on.",
-      "Stabilized the frontend delivery pipeline: configured and optimized {{nextjs}} builds in a multi-workspace monorepo, and ensured reproducible builds across environments to lower time spent+costs per dev on platform issues.",
+      "Given an ambiguous initial problem configuration, I led the product ideation workshops to align team vision and product-solution fit roadmap.",
+      "Built engagement platform from 0 → 1 in less than 12 months on a €30k budget (likely resulting in approx. EUR 1.5M post-money valuation).",
+      "Owned software architecture of the SaaS: Designed {{microservices}} utilizing {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) using robust and easily expandable {{service-mesh}} patterns to ensure fast scalability and prevent expensive rebuilding 'prototype slug' later on.",
+      "Stabilized the frontend delivery pipeline: configured and optimized {{nextjs}} builds in a multi-workspace monorepo, and ensured reproducible builds across environments to lower time spent and costs per dev on platform issues.",
       "Established {{devex}}/{{devops}}: {{cicd}}, {{linting}} and {{pre-commit-hooks}}, logging and testing across {{nextjs}} and Python services, cutting release friction and significantly improving onboarding speed for new hires.",
       "Owned system administration and networking: Microsoft tenant administration, {{ssl}}/{{dns}} management and {{nginx}} routing configuration for domains and services.",
-      "Developed {{ml}} and (agentic) NLP pipelines in Python: {{semantic-chunking}} + {{rag}} vectorization using {{qdrant}}, {{sentiment-analysis}}, {{topic-clustering}} and content summarization as analysis services and core value contributor to our customer.",
+      "Developed {{ml}} and (agentic) NLP pipelines in Python: {{semantic-chunking}} + {{rag}} vectorization using {{qdrant}}, {{sentiment-analysis}}, {{topic-clustering}} and content summarization as analysis services and core value contributor to our customers.",
       "Established {{gdpr}}-compliant data privacy and {{privacy-by-design}} practices to address jurisdictional circumstances and obtain a valuable quality label.",
-      "Owned end‑to‑end technical delivery and coordinated interns, contractors, and external partners; partnered closely with the frontend lead."
+      "Owned end-to-end technical delivery and coordinated interns, contractors, and external partners; partnered closely with the frontend lead."
     ],
     "technologies": [
       "Docker",
@@ -55,9 +55,9 @@
     "endDate": "2023-06",
     "current": false,
     "cvInclude": true,
-    "description": "Responsible for the supervision of talented pupils (Groups of 4 to 8)",
+    "description": "Responsible for the supervision of talented pupils (groups of 4 to 8)",
     "achievements": [
-      "Prepared customized university level material to challenge and spark interest for Mathematics.",
+      "Prepared customized university-level material to challenge and spark interest in mathematics.",
       "Initiated a pupil-led lecture series about Artificial Intelligence and its use cases.",
       "Taught basic principles of the mathematics behind 3D printing and coding."
     ],
@@ -74,7 +74,7 @@
     "description": "Responsible for the validation and reproduction of earlier results of research as well as for programming {{ml}} algorithms in R to solve classification problems in the field of {{asd}} diagnosis.",
     "achievements": [
       "My analysis results supported the findings of 3 peer-reviewed publications (listed in publications) and have been cited ~70 times.",
-      "Worked highly interdisciplinary with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data-scientists."
+      "Worked in a highly interdisciplinary manner with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data scientists."
     ],
     "technologies": [
       "R",
@@ -121,10 +121,10 @@
     "endDate": "2016-08",
     "current": false,
     "cvInclude": false,
-    "description": "In my role as a Sports and Athletes Marketing Manager, I updated and maintained the Athletes Portfolio as an asset of high value to the marketing mix of Red Bull. I furthermore participated in the Business Planning Process for 2017 by generating Ideas, their evaluation and processing for presentation",
+    "description": "In my role as a Sport and Athletes Marketing Manager, I updated and maintained the athletes portfolio as an asset of high value to the marketing mix of Red Bull. I participated in the business planning process for 2017 by generating ideas, their evaluation and processing for presentation.",
     "achievements": [
-      "Team Activation of THW Kiel including personalized Asset Design + Production, and a flight for the Team in one of Mateschitz's private hangar airplanes.",
-      "Event Supervision and organizational Role in Projects such as the Hospitality Area for Red Bull's VIPS at MotoGP 2016."
+      "Team Activation of THW Kiel including personalized asset design + production, and a flight for the team in one of Mateschitz's private hangar airplanes.",
+      "Event Supervision and organizational role in projects such as the hospitality area for Red Bull's VIPs at MotoGP 2016."
     ],
     "technologies": ["Excel", "PowerPoint", "MS Office", "Creativity"]
   },
@@ -136,7 +136,7 @@
     "endDate": "2016-12",
     "current": false,
     "cvInclude": false,
-    "description": "The Student Brand Manager Programm by Red Bull is designed find and educate the next generation of Red Bull Marketing Experts. As a Student Brand Manager, I was responsible for organizing guerrilla marketing events and creating brand awareness among the student community. The role as a SBM allowed me to develop strong marketing and leadership skills while gaining practical experience in brand management from one of the most recognized brands worldwide.",
+    "description": "The Student Brand Manager program by Red Bull is designed to find and educate the next generation of Red Bull marketing experts. As a Student Brand Manager, I was responsible for organizing guerrilla marketing events and creating brand awareness among the student community. The role as an SBM allowed me to develop strong marketing and leadership skills while gaining practical experience in brand management from one of the most recognized brands worldwide.",
     "achievements": [
       "Student Brand Manager of the Year 2016 in North Germany",
       "Organized own campus events and moderated campus events of other Student Brand Managers",
@@ -152,9 +152,9 @@
     "endDate": "2012-09",
     "current": false,
     "cvInclude": false,
-    "description": "Starting out as an intern and later becoming a working student, I supported the HR team in various administrative tasks, recruitment processes, and employee onboarding activities. This role provided me with valuable insights into HR operations within a fast growing startup company.",
+    "description": "Starting out as an intern and later becoming a working student, I supported the HR team in various administrative tasks, recruitment processes, and employee onboarding activities. This role provided me with valuable insights into HR operations within a fast-growing startup company.",
     "achievements": [
-      "The HR recruiting process was responsible for hiring 70 new employees (from 30) within one year, contributing to the company's rapid growth.",
+      "The HR recruiting process resulted in hiring 70 new employees (up from 30) within one year, contributing to the company's rapid growth.",
       "I was responsible for scouting and selecting candidates, scheduling interviews, and coordinating communication between applicants and hiring managers, improving the efficiency of the recruitment process."
     ],
     "technologies": ["Excel", "MS Office"]

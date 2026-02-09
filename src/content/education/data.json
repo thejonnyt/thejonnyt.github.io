@@ -7,8 +7,8 @@
     "startDate": "2021-04",
     "endDate": "2024-10",
     "highlights": [
-      "Overall Score: 1.7, personal focus on advanced Statistics, {{ml}}, Data Privacy, {{llm}}s",
-      "Master's Thesis  (1.1): {{nmt}} with {{transformers}} - Leveraging the {{pivot-technique}} for Low-Resource Language Pairs"
+      "Overall Score: 1.7, personal focus on advanced statistics, {{ml}}, data privacy, {{llm}}s",
+      "Master's Thesis (1.1): {{nmt}} with {{transformers}} - Leveraging the {{pivot-technique}} for Low-Resource Language Pairs"
     ]
   },
   {
@@ -20,7 +20,7 @@
     "endDate": "2021-03",
     "highlights": [
       "Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes",
-      "Curriculum focusses on Mathematics, Statistics, Computer Science and Programming"
+      "Curriculum focuses on mathematics, statistics, computer science and programming"
     ]
   },
   {
@@ -32,7 +32,7 @@
     "endDate": "2017-10",
     "highlights": [
       "Bachelor's Thesis (1.7): Use of {{lda}} as an alternative to tree analysis - methodological evaluation and exemplary implementation using a survey on the success of movies.",
-      "Curriculum focusses on Marketing, Engineering and Business Administration"
+      "Curriculum focuses on marketing, engineering and business administration"
     ]
   }
 ]

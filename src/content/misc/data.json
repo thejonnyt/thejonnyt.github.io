@@ -32,20 +32,20 @@
   "Freelance & Pro Bono": [
     {
       "title": "Pro Bono Tutoring",
-      "year": "2016-now",
+      "year": "2016-present",
       "description": "Helping fellow students and peers with mathematics and statistics, or study design and analytics."
     },
     {
       "title": "Author-Index-Matching",
       "year": "2024",
       "location": "Department of Educational Sciences, Halle",
-      "description": "Built a author-index-matching to prevent manually checking ~60,000 literature index entries."
+      "description": "Built an author-index-matching to prevent manually checking ~60,000 literature index entries."
     },
     {
       "title": "Predictive Analytics Shiny Frontend",
       "year": "2016",
       "location": "Marburg",
-      "description": "Built a predicitve analytics frontend in R Shiny."
+      "description": "Built a predictive analytics frontend in R Shiny."
     }
   ]
 }
