@@ -134,6 +134,8 @@ def generate_experience_section(
     lines = ['#section("Professional Experience")\n']
 
     for exp in filter_experiences(data, variant):
+        if exp.get("pageBreakBefore", False):
+            lines.append("#pagebreak()")
         company = escape_typst(exp.get("company", ""))
         position = escape_typst(exp.get("position", ""))
         location = escape_typst(exp.get("location", ""))

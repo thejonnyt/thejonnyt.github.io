@@ -52,10 +52,12 @@
   achievements: (
     [Hyperparameter tuning for decision trees/random forests improved diagnostic performance by ~10–15 percentage points; results supported 3 peer‑reviewed publications (~70 citations).],
     [Worked in a highly interdisciplinary manner with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data scientists.],
+    [Commended for a reliable, way of conveying statistical content; invited to stay on as a scientific researcher.],
   ),
   technologies: ("R", "ggplot2", "tidyverse", "Markdown", "HTML", "Machine Learning", "Decision Trees", "Random Forests", "Statistics", "Interdisciplinary Collaboration"),
 )
 
+#pagebreak()
 #entry(
   "Intern, Data Analyst",
   "Westphalia DataLab GmbH",
@@ -65,6 +67,7 @@
   achievements: (
     [Enhanced experiment‑tracking R/Shiny frontend accessing data in MongoDB/PostgreSQL to improve researcher workflow.],
     [Analyzed 3D imaging + clinical datasets in Python/R to surface diagnostic insights.],
+    [Internship evaluation rated performance as outstanding.],
   ),
   technologies: ("Python", "PyTorch", "Convolutional Neural Networks", "R", "data.table", "tidyverse", "R Shiny", "MongoDB", "PostgreSQL", "SQL", "Git"),
 )

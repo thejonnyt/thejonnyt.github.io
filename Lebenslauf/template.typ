@@ -26,7 +26,7 @@
 #let publication-meta-size = 9.5pt
 
 // === Layout & Spacing Tokens ===
-#let page-margin = (x: 1.8cm, y: 2cm)
+#let page-margin = (x: 1.8cm, top: 2cm, bottom: 40pt)
 #let header-gap-sm = 0em
 #let header-gap-md = 0.5em
 #let header-divider-gap = 0em
