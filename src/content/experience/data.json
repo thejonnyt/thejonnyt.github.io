@@ -7,10 +7,10 @@
     "endDate": "2025-12",
     "current": false,
     "cvInclude": true,
-    "description": "Building a AI-driven communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
+    "description": "Building an AI-driven communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievementsShort": [
       "Delivered a customer-deployed MVP 0 → 1 in under 12 months on a €30k budget, targeting capital-efficient scale.",
-      "Led product ideation workshops to align vision and product-solution fit roadmap.",
+      "Led product ideation workshops to align vision and problem-solution fit roadmap.",
       "Architected ML/NLP pipelines (RAG, sentiment, topic clustering) as core AI/ML solution capabilities.",
       "Owned infrastructure and DevOps delivery, cutting release friction and improving onboarding for interns, contractors, and external partners."
     ],
@@ -55,31 +55,17 @@
     ],
     "cvTechnologies": [
       "Docker",
-      "Docker Compose",
-      "Python",
+      "CI/CD",
       "Bash",
+      "Python",
+      "NLP/ML",
+      "LLMs",
       "SpaCy",
-      "pytest",
       "FastAPI",
       "gRPC",
-      "Protocol Buffers",
-      "JavaScript",
-      "TypeScript",
-      "Next.js",
-      "React",
       "Qdrant",
       "RAG",
-      "MongoDB",
-      "MariaDB",
-      "SQL",
-      "LLMs",
-      "NLP/ML",
-      "nginx",
-      "Linux",
-      "CI/CD",
-      "GitHub",
-      "Docker Hub",
-      "git"
+      "pytest"
     ]
   },
   {
@@ -122,6 +108,7 @@
       "Commended for a reliable, way of conveying statistical content; invited to stay on as a scientific researcher."
     ],
     "technologies": [
+      "Statistics",
       "R",
       "ggplot2",
       "tidyverse",
@@ -130,16 +117,16 @@
       "Machine Learning",
       "Decision Trees",
       "Random Forests",
-      "Statistics",
       "Interdisciplinary Collaboration"
     ],
     "cvTechnologies": [
-      "R",
-      "tidyverse",
+      "Statistics",
       "Machine Learning",
-      "Decision Trees",
       "Random Forests",
-      "Statistics"
+      "Decision Trees",
+      "R",
+      "ggplot2",
+      "tidyverse"
     ]
   },
   {
@@ -153,7 +140,7 @@
     "pageBreakBefore": true,
     "description": "As a Data Analyst intern at Westphalia DataLab GmbH, I worked on a medical-diagnostics project combining 3D imaging and clinical data; developed and improved an experiment-tracking R/Shiny frontend and performed clinical-data analysis with Python and R.",
     "achievements": [
-      "Enhanced experiment‑tracking R/Shiny frontend accessing data in {{mongodb}}/{{postgresql}} to improve researcher workflow.",
+      "Enhanced experiment‑tracking R/Shiny frontend accessing data in {{mongodb}} and SQL to improve researcher workflow.",
       "Analyzed 3D imaging + clinical datasets in Python/R to surface diagnostic insights.",
       "Internship evaluation rated performance as outstanding."
     ],
@@ -173,14 +160,12 @@
     "cvTechnologies": [
       "Python",
       "R",
+      "R Shiny",
       "tidyverse",
       "data.table",
-      "R Shiny",
       "PyTorch",
       "Convolutional Neural Networks",
-      "MongoDB",
-      "PostgreSQL",
-      "SQL"
+      "MongoDB"
     ]
   },
   {

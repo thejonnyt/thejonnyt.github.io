@@ -19,7 +19,7 @@ VARIANTS = {
     "standard": {
         "output_file": CV_DIR / "cv.typ",
         "experience_filter": "curated",
-        "max_technologies": 10,
+        "max_technologies": None,
         "skills_mode": "featured",
         "curated_note": True,
         "include_publications": False,
@@ -308,8 +308,8 @@ def generate_skills_section(data: Dict, skills_mode: str) -> str:
     categories = {}
     category_order = [
         "Programming Languages",
-        "Backend & DevOps",
         "Analysis, ML & AI",
+        "Backend & DevOps",
         "Web & Creative",
         "Tools & Systems",
     ]
@@ -319,9 +319,8 @@ def generate_skills_section(data: Dict, skills_mode: str) -> str:
         if skills_mode == "all":
             include = True
         else:
-            level = skill_data.get("level", "beginner")
             featured = skill_data.get("featured", False)
-            include = featured or level in ["proficient", "expert", "wizard"]
+            include = featured
 
         if include:
             if category not in categories:

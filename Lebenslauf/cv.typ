@@ -4,8 +4,8 @@
 
 #cv-header(
   "Johannes Michael Tauscher",
-  "Data Scientist and AI/ML Solutions Engineer",
-  summary: "Data Scientist and AI/ML Solutions Engineer focused on problem-solution fit, optimization, and reliable systems. Strong in software engineering, machine learning, and data analysis, with end-to-end experience from framing to delivery.",
+  "Data Scientist – Applied AI & Production Systems",
+  summary: "Data Scientist and Applied AI Engineer grounded in statistics and optimization, building reliable ML/LLM systems from framing to production.",
   email: "j-tauscher@hotmail.com",
   linkedin: link("https://linkedin.com/in/johannes-tauscher")[linkedin.com/in/johannes-tauscher],
   github: link("https://github.com/thejonnyt")[github.com/thejonnyt],
@@ -19,13 +19,14 @@
   "Raumdeuter GbR",
   "Leipzig, Germany",
   format-date("2024-11", "2025-12", current: false),
-  description: [Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.],
+  description: [Building an AI-driven communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.],
   achievements: (
     [Delivered a customer-deployed MVP 0 → 1 in under 12 months on a €30k budget, targeting capital-efficient scale.],
-    [Led product ideation workshops to align vision and product-solution fit roadmap.],
+    [Led product ideation workshops to align vision and problem-solution fit roadmap.],
     [Architected ML/NLP pipelines (RAG, sentiment, topic clustering) as core AI/ML solution capabilities.],
     [Owned infrastructure and DevOps delivery, cutting release friction and improving onboarding for interns, contractors, and external partners.],
   ),
+  technologies: ("Docker", "CI/CD", "Bash", "Python", "NLP/ML", "LLMs", "SpaCy", "FastAPI", "gRPC", "Qdrant", "RAG", "pytest"),
 )
 
 #entry(
@@ -39,7 +40,7 @@
     [Initiated a pupil-led lecture series about Artificial Intelligence and its use cases.],
     [Taught basic principles of the mathematics behind 3D printing and coding.],
   ),
-  technologies: ("MS Teams", "PowerPoint", "Algebra", "gcode"),
+  technologies: ("PowerPoint", "Algebra"),
 )
 
 #entry(
@@ -53,7 +54,7 @@
     [Worked in a highly interdisciplinary manner with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data scientists.],
     [Commended for a reliable, way of conveying statistical content; invited to stay on as a scientific researcher.],
   ),
-  technologies: ("R", "ggplot2", "tidyverse", "Markdown", "HTML", "Machine Learning", "Decision Trees", "Random Forests", "Statistics", "Interdisciplinary Collaboration"),
+  technologies: ("Statistics", "Machine Learning", "Random Forests", "Decision Trees", "R", "ggplot2", "tidyverse"),
 )
 
 #pagebreak()
@@ -64,10 +65,11 @@
   format-date("2019-08", "2019-10", current: false),
   description: [As a Data Analyst intern at Westphalia DataLab GmbH, I worked on a medical-diagnostics project combining 3D imaging and clinical data; developed and improved an experiment-tracking R/Shiny frontend and performed clinical-data analysis with Python and R.],
   achievements: (
-    [Enhanced experiment‑tracking R/Shiny frontend accessing data in MongoDB/PostgreSQL to improve researcher workflow.],
+    [Enhanced experiment‑tracking R/Shiny frontend accessing data in MongoDB and SQL to improve researcher workflow.],
     [Analyzed 3D imaging + clinical datasets in Python/R to surface diagnostic insights.],
     [Internship evaluation rated performance as outstanding.],
   ),
+  technologies: ("Python", "R", "R Shiny", "tidyverse", "data.table", "PyTorch", "Convolutional Neural Networks", "MongoDB"),
 )
 
 
@@ -83,7 +85,7 @@
   "Leipzig, Germany",
   format-date("2021-04", "2024-10"),
   highlights: (
-    [Overall Score: 1.7, personal focus on advanced statistics, Machine Learning, data privacy, LLMs],
+    [Overall Score: 1.7, personal focus on advanced statistics, Machine Learning, data privacy, and LLM applications.],
     [Master's Thesis (1.1): Neural Machine Translation with Transformers - Leveraging the Pivot Technique for Low-Resource Language Pairs],
   ),
 )
@@ -95,7 +97,7 @@
   format-date("2017-10", "2021-03"),
   highlights: (
     [Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes],
-    [Curriculum focuses on mathematics, statistics, computer science and programming],
+    [Curriculum focuses on mathematics, statistics, computer science and programming.],
   ),
 )
 
@@ -106,7 +108,7 @@
   format-date("2012-03", "2017-10"),
   highlights: (
     [Bachelor's Thesis (1.7): Use of Linear Discriminant Analysis as an alternative to tree analysis - methodological evaluation and exemplary implementation using a survey on the success of movies.],
-    [Curriculum focuses on marketing, engineering and business administration],
+    [Curriculum focuses on marketing, engineering and business administration.],
   ),
 )
 
@@ -114,8 +116,7 @@
 
 #skills-section((
   ("Programming Languages", ("Python", "Bash", "R", "Java", "JavaScript", "SQL",)),
-  ("Backend & DevOps", ("Docker", "gRPC", "MongoDB", "PostgreSQL", "nginx", "FastAPI", "Docker Compose",)),
-  ("Analysis, ML & AI", ("LLMs", "NLP", "Machine Learning", "Statistics", "SpaCy", "RAG", "Decision Trees", "Random Forests", "PyTorch", "pandas", "NumPy", "scikit-learn", "matplotlib", "ggplot2", "tidyverse", "data.table",)),
-  ("Web & Creative", ("Next.js", "Adobe Photoshop", "HTML",)),
-  ("Tools & Systems", ("git", "Linux", "Excel", "PowerPoint", "MS Office", "MS Teams", "VSCode", LaTeX, "pytest", "Protocol Buffers", "GitHub", "Markdown",)),
+  ("Analysis, ML & AI", ("LLMs", "NLP", "Machine Learning", "Statistics", "SpaCy", "RAG", "Decision Trees", "Random Forests", "PyTorch", "pandas", "NumPy", "matplotlib", "ggplot2", "tidyverse", "data.table",)),
+  ("Backend & DevOps", ("Docker", "MongoDB", "Qdrant", "nginx", "FastAPI", "Docker Compose",)),
+  ("Tools & Systems", ("Linux", "Markdown", "git", "GitHub", LaTeX,)),
 ))
