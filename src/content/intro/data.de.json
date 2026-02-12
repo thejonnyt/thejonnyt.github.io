@@ -1,18 +1,19 @@
 {
   "name": "Johannes Michael Tauscher",
-  "title": "Data Scientist und technischer Generalist",
-  "tagline": "Interessiert an Marketing, Management, Politik, Technologie, Wirtschaft, Statistik und Innovation.",
+  "title": "Data Scientist – Applied AI & Production Systems",
+  "tagline": "Stark interessiert an Marketing, Management, Politik, Technologie, Wirtschaft, Statistik und Innovation.",
   "location": "Leipzig, Deutschland",
   "email": "j-tauscher@hotmail.com",
   "linkedin": "https://linkedin.com/in/johannes-tauscher",
   "github": "https://github.com/thejonnyt",
   "website": "https://thejonnyt.github.io",
   "bio": [
-    "Hi! Mein Name ist Johannes. Ich bin ein technischer Generalist, der sich für die Optimierung von Systemen und Workflows begeistert – sei es die Architektur von {{microservices}} und {{devops}}, die Feinabstimmung von {{ml}}-Pipelines, die Suche nach der optimalen Badminton-Strategie oder dem perfekten Fahrrad-Setup.",
-    "Eine meiner vielen Interessen ist die KI-Revolution: {{llm}}s, die Software darum und die Infrastruktur, die Intelligenz skalierbar macht. Diese Entwicklungen nicht nur mitzuerleben sondern sie zu gestalten, treibt mich täglich an!",
-    "Für mich ist Wissen das Spannendste überhaupt. Dass die aktuellen KI-Trends Wissen demokratisieren und Zugangsbarrieren abbauen, finde das großartig.",
-    "Ich balanciere Bildschirmzeit mit praktischer Arbeit (z.B. Catering-Jobs), bringe mir selbst Klavier und Japanisch bei und gebe kostenlose Statistik-Nachhilfe, weil Wissen geteilt werden sollte.",
-    "Zur Zeit bin ich auf der Suche nach neuen Herausforderungen. Wenn du denkst, dass ich zu deiner Unternehmung und deinem Team passe, melde dich gerne!"
+    "Hi! Ich heiße Johannes. Ich bin Data Scientist und eine Art technischer Generalist mit Fokus auf Problem-Solution-Fit, Optimierung und den Bau zuverlässiger Systeme.",
+    "Ich arbeite gern end-to-end: von der richtigen Fragestellung bis zum Ausliefern robuster {{ml}}-gestützter Services (ohne Frontend).",
+    "Eines meiner vielen Interessen ist die KI-Revolution: {{llm}}s, die Software darum und die Infrastruktur, die Intelligenz skalierbar macht. Diese Entwicklungen nicht nur mitzuerleben, sondern mitzugestalten, treibt mich täglich an!",
+    "Wissen ist für mich eines der spannendsten und wichtigsten Dinge überhaupt. Dass KI Wissen demokratisiert und Zugangsbarrieren für alle senkt, finde ich großartig.",
+    "Ich gleiche Bildschirmzeit mit praktischer Arbeit aus (z. B. Catering-Jobs), bringe mir zum Spaß Klavier und Japanisch bei und gebe pro bono Statistik-Nachhilfe, weil Wissen geteilt werden sollte.",
+    "Aktuell suche ich neue Herausforderungen. Wenn du denkst, dass ich zu deinem Unternehmen und Team passe, melde dich gern!"
   ],
-  "cvSummary": "Data Scientist und technischer Generalist mit starkem Hintergrund in Softwareentwicklung, maschinellem Lernen und Datenanalyse. Erfahren im Aufbau skalierbarer Systeme und der Leitung technischer Projekte von der Konzeption bis zur Bereitstellung."
+  "cvSummary": "Data Scientist und AI/ML Solutions Engineer mit Fokus auf Problem-Solution-Fit, Optimierung und zuverlässige Systeme. Stark in Softwareentwicklung, Machine Learning und Datenanalyse, mit End-to-End-Erfahrung von der Fragestellung bis zur Auslieferung."
 }

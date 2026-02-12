@@ -1,10 +1,10 @@
 [
   {
     "name": "AutoCoverletter",
-    "tagline": "Agentengestuetzte Automatisierung von Anschreiben",
-    "description": "Automatisiert den End-to-End-Prozess fuer Anschreiben mit Agenten, lokalen MCP-Ressourcen und Context Engineering, damit Prompts fokussiert bleiben und mit lokalen Bewerbungsdaten abgestimmt sind.",
+    "tagline": "Agenten-unterstützte Anschreiben-Automatisierung",
+    "description": "Automatisiert den End-to-End-Prozess für Anschreiben mit Agenten, lokalen MCP-Ressourcen und Context Engineering, sodass Prompts fokussiert bleiben und mit lokalen Bewerbungsdaten abgestimmt sind.",
     "technologies": [
-      "Agenten-Workflows",
+      "Agent-Workflows",
       "Lokales MCP",
       "Context Engineering",
       "Python",
@@ -18,41 +18,42 @@
       "GitHub": "https://github.com/thejonnyt/AutoCoverletter"
     },
     "highlights": [
-      "Rund 90% des Anschreiben-Prozesses automatisiert, inklusive Notion-Sync und Bewerbungs-Tracking",
-      "Starke Anschreiben ohne Übertreibungen oder Fehleinschätzungen dank smartem Context-Management",
-      "Einheitliches, cleanes Design mit Hilfe von Typst Templates",
-      "Über 10% Einladungsquote zu Erstgespraechen trotz schwachem Arbeitsmarkt"
+      "Rund 90% des Anschreiben-Prozesses automatisiert, inklusive Notion-Sync und Bewerbungs-Tracking.",
+      "Starke Anschreiben ohne Schmeichelei, Lügen oder Übertreibungen.",
+      "Sauberes Design und konsistente Gestaltung.",
+      "Über 10% Einladungsquote zu Erstgesprächen trotz schwachem Arbeitsmarkt."
     ],
     "featured": true
   },
   {
     "name": "Raumdeuter",
-    "tagline": "Fanrelationship Management Software",
-    "description": "Zuhören. Verstehen. Handeln. Raumdeuter hilft Sportclubs, Fanmeinungen in datenbasierte Entscheidungen und nachhaltiges Wissen zu verwandeln",
+    "tagline": "Fan relationship Management Software",
+    "description": "Zuhören. Verstehen. Handeln. Die Raumdeuter-Software hilft Sportclubs, Fanmeinungen in datenbasierte Entscheidungen und nachhaltiges Wissen zu verwandeln.",
     "technologies": [
-      "viel zu wenig Ressourcen",
+      "zu wenige Ressourcen",
       "Überstunden",
       "Kreativität",
-      "Teamarbeit",
+      "Teamwork",
       "Verantwortung"
     ],
     "startDate": "2024",
     "endDate": "2025",
     "links": {
+      "LinkedIn": "https://www.linkedin.com/company/dieraumdeuter/",
       "Website": "https://dieraumdeuter.de"
     },
     "highlights": [
-      "Raumdeuter steht für das Gespür, Chancen zu erkennen und zu verwandeln, wie Thomas Müller auf dem Platz. Die Software gibt Sportclubs das Werkzeug an die Hand, um die Stimmen ihrer Fans in Erfolge abseits des Platzes zu übersetzen.",
-      "Quantitaive Umfragen, Zusammenfassung ähnlicher Texte über embedded Vectors und Clustering-Verfahren in qualitativen Umfragen, Sentiment Analyse der Ergebnisse zur frühen Trenderkennung",
-      "Die Software lässt sich nahtlos in bestehende Systeme wie Websites, Club-Apps oder Mitgliederportale integrieren. Damit bleibt alles im vertrauten Umfeld des Vereins. Die Fans müssen keine neue Plattform erlernen, sondern können direkt dort teilnehmen, wo sie ohnehin schon aktiv sind.",
-      "Pilotprojekt (Website Integration+Nutzende) mit Fußballclub aus der Region (Chemie Leipzig)"
+      "Raumdeuter steht für das Gespür, Chancen zu erkennen und zu verwandeln, wie Thomas Müller auf dem Platz. Die Software gibt Sportclubs das Werkzeug an die Hand, die Stimmen ihrer Fans in Erfolge abseits des Platzes zu übersetzen.",
+      "Quantitative Umfragen, Zusammenfassung ähnlicher Texte mittels embedded vectors und Clustering-Verfahren in qualitativen Umfragen, Sentiment-Analyse der Ergebnisse zur frühen Trenderkennung.",
+      "Die Software integriert sich nahtlos in bestehende Systeme wie Websites, Club-Apps oder Mitgliederportale. Damit bleibt alles im vertrauten Umfeld des Vereins. Fans müssen keine neue Plattform erlernen, sondern können direkt dort teilnehmen, wo sie ohnehin schon aktiv sind.",
+      "Pilotprojekt (Website-Integration + Nutzer) mit einem Fußballclub aus der Region (Chemie Leipzig)."
     ],
     "featured": true
   },
   {
     "name": "Neuronale Maschinenübersetzung mit Pivot-Strategien",
     "tagline": "Masterarbeit über ressourcenarme Sprachpaare",
-    "description": "Die Masterarbeit zeigt, dass Pivot-Übersetzungsstrategien ähnliche Übersetzungsqualitäten erreichen, was jedoch mit 99% weniger parallelen Trainingsdaten erreicht werden kann, wodurch NMT für ressourcenarme Sprachpaare praktikabel wird.",
+    "description": "Die Masterarbeit zeigt, dass Pivot-Übersetzungsstrategien vergleichbare Übersetzungsqualität mit 99% weniger parallelen Trainingsdaten erreichen, wodurch NMT für ressourcenarme Sprachpaare praktikabel wird.",
     "technologies": [
       "Neural Machine Translation",
       "Pivot-Based Translation",
@@ -60,6 +61,12 @@
       "OpenNMT-Library",
       "Large Language Models",
       "Artificial Neural Networks",
+      "OpenNMT-py",
+      "PyTorch",
+      "SentencePiece",
+      "pandas",
+      "NumPy",
+      "scikit-learn",
       "Bash",
       "Python"
     ],
@@ -70,27 +77,27 @@
       "Podcast": "/files/Thesis Podcast.mp3"
     },
     "highlights": [
-      "Erreichte 70-80% der direkten Übersetzungsqualität mit nur 1% paralleler Daten durch die Nutzung von Englisch als Brückensprache zwischen Französisch und Deutsch",
-      "Das leistungsstärkste Pivot-Modell zeigte substanzielle Verbesserungen gegenüber der Baseline: +15,4% BLEU, +5,8% chrF und -4,7% TER-Scores",
-      "Demonstrierte klaren Zusammenhang zwischen Pivot-Ressourcenverfügbarkeit und Übersetzungsqualität mittels Transformer-Architektur",
-      "Lieferte grundlegende Erkenntnisse für ressourcenarme NMT und die Entwicklung großer Sprachmodelle"
+      "Erreichte 70-80% der direkten Übersetzungsqualität mit nur 1% paralleler Daten durch die Nutzung von Englisch als Brückensprache zwischen Französisch und Deutsch.",
+      "Das leistungsstärkste Pivot-Modell zeigte substanzielle Verbesserungen gegenüber der Baseline: +15,4% BLEU, +5,8% chrF und -4,7% TER-Scores.",
+      "Demonstrierte einen klaren Zusammenhang zwischen Pivot-Ressourcenverfügbarkeit und Übersetzungsqualität mittels Transformer-Architektur.",
+      "Lieferte grundlegende Erkenntnisse für ressourcenarme NMT und die Entwicklung großer Sprachmodelle."
     ],
     "featured": true
   },
   {
     "name": "Cook Up Kitchen",
-    "tagline": "PopUp Restaurant",
-    "description": "Ein paar Freunde und ich starteten ein wiederkehrendes PopUp-Restaurant in Hamburg, um herauszufinden, ob Food-Blogging eine echte Marketing-Strategie für Restaurants sein könnte, was zu einer seitdem anhaltenden Business-Opportunity für einen von uns führte.",
+    "tagline": "Pop-up Restaurant",
+    "description": "Ein paar Freunde und ich starteten ein wiederkehrendes Pop-up-Restaurant in Hamburg, um zu prüfen, ob Food-Blogging eine tragfähige Marketingstrategie für Restaurants sein kann, was zu einer bis heute anhaltenden Geschäftschance für einen von uns führte.",
     "technologies": ["Heiße Pfanne", "Öl", "Kreativität", "Teamarbeit"],
     "startDate": "2013",
     "endDate": "2016",
     "links": {
       "Video": "https://vimeo.com/131561210",
-      "Website": "https://thefoodguide.de/"
+      "resulted in": "https://thefoodguide.de/"
     },
     "highlights": [
-      "2. Event: Video produziert von professionellem Videografen verfügbar auf Vimeo",
-      "3. Event: Catering für 100 Personen in einer Nacht auf 3-Gänge-Menü-Basis in einer Küche, die sehr eindeutig nicht dafür ausgelegt war"
+      "2. Event: Video von professionellem Videografen produziert und auf Vimeo verfügbar.",
+      "3. Event: Catering für 100 Personen in einer Nacht auf 3-Gänge-Menü-Basis in einer Küche, die dafür sehr eindeutig nicht ausgelegt war."
     ],
     "featured": true
   }

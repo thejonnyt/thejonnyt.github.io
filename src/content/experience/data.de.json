@@ -1,26 +1,61 @@
 [
   {
     "company": "Raumdeuter GbR",
-    "position": "Mitgründer & CTO",
+    "position": "Mitgründer, Technical Lead (Early Stage)",
     "location": "Leipzig, Deutschland",
     "startDate": "2024-11",
     "endDate": "2025-12",
     "current": false,
     "cvInclude": true,
-    "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen und Verbänden, um Beteiligung und Engagement zu ermöglichen — eine Möglichkeit, seine Meinung zu äußern. Ich leite die technische Entwicklung: von Konzept und Architektur bis zur Umsetzung des Produkts als kundenseitig ausgerolltes MVP mit einem 4-köpfigen Entwicklungsteam und Koordination externer IT-Partner.",
+    "description": "Entwicklung einer modernen Kommunikations- und Engagement-Plattform für Mitglieder und Fans von Vereinen und Verbänden, um Beteiligung und Engagement zu ermöglichen — eine Möglichkeit, seine Meinung zu äußern. Ich leitete die technische Entwicklung: von Konzept und Architektur bis zur Umsetzung des Produkts als kundenseitig ausgerolltes MVP mit einem 4-köpfigen Entwicklungsteam und der Koordination externer IT-Partner.",
+    "achievementsShort": [
+      "Lieferte ein kundenseitig ausgerolltes MVP 0 → 1 in unter 12 Monaten mit 30.000 € Budget, mit Fokus auf kapitaleffiziente Skalierung.",
+      "Leitete Product-Ideation-Workshops zur Ausrichtung von Vision und Product-Solution-Fit-Roadmap.",
+      "Architektur von ML/NLP-Pipelines (RAG, Sentiment, Topic Clustering) als zentrale AI/ML-Fähigkeiten.",
+      "Verantwortete Infrastruktur und DevOps-Delivery, reduzierte Release-Reibung und verbesserte Onboarding für Interns, Contractors und externe Partner."
+    ],
     "achievements": [
-      "Bei einer zunächst vagen Problemstellung leitete ich Product-Ideation-Workshops, um Team-Vision und Product-Solution-Fit-Roadmap auszurichten.",
-      "Aufbau der Engagement-Plattform von 0 → 1 in unter 12 Monaten mit 30.000 € Budget (voraussichtlich ca. 1,5 Mio. € Post-Money-Bewertung).",
-      "Verantwortlich für die Software-Architektur des SaaS: Design von {{microservices}} mit {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) und {{service-mesh}}-Patterns, um schnelle Skalierbarkeit sicherzustellen und 'prototype slug' zu vermeiden.",
-      "Stabilisierung der Frontend-Delivery-Pipeline: {{nextjs}}-Builds im Multi-Workspace-Monorepo konfiguriert/optimiert und reproduzierbare Builds über Umgebungen sichergestellt, um Zeitaufwand und Kosten pro Dev für Plattform-Probleme zu senken.",
-      "Aufbau von {{devex}}/{{devops}}: {{cicd}}-Pipelines, {{linting}} und {{pre-commit-hooks}} sowie Logging und Testing für {{nextjs}}- und Python-Services; reduzierte Release-Reibung und beschleunigte Onboarding-Zeiten.",
-      "Verantwortlich für Systemadministration und Networking: Microsoft-Tenant-Administration, {{ssl}}/{{dns}}-Management und {{nginx}}-Routing-Konfiguration.",
-      "Entwicklung von {{ml}}- und (agentic) NLP-Pipelines in Python: {{semantic-chunking}} + {{rag}}-Vektorisierung mit {{qdrant}}, {{sentiment-analysis}}, {{topic-clustering}} und Content-Zusammenfassung als Analyse-Services und zentraler Werttreiber für den Kunden.",
+      "Angesichts einer zunächst unklaren Problemkonfiguration leitete ich Product-Ideation-Workshops, um Team-Vision und Product-Solution-Fit-Roadmap auszurichten.",
+      "Aufbau der Engagement-Plattform von 0 → 1 in unter 12 Monaten mit 30.000 € Budget (voraussichtlich ca. 1,5 Mio. EUR Post-Money-Bewertung).",
+      "Verantwortlich für die Software-Architektur des SaaS: Design von {{microservices}} mit {{docker}} {{containerization}} ({{distroless}}, {{multistage-build}}) und robusten, leicht erweiterbaren {{service-mesh}}-Patterns, um schnelle Skalierung zu ermöglichen und spätere teure Neuaufbauten eines 'prototype slug' zu vermeiden.",
+      "Stabilisierung der Frontend-Delivery-Pipeline: {{nextjs}}-Builds im Multi-Workspace-Monorepo konfiguriert und optimiert sowie reproduzierbare Builds über Umgebungen sichergestellt, um Zeitaufwand und Kosten pro Dev für Plattform-Probleme zu senken.",
+      "Aufbau von {{devex}}/{{devops}}: {{cicd}}, {{linting}} und {{pre-commit-hooks}} sowie Logging und Testing über {{nextjs}}- und Python-Services hinweg; reduzierte Release-Reibung und deutlich schnelleres Onboarding neuer Teammitglieder.",
+      "Verantwortlich für Systemadministration und Networking: Microsoft-Tenant-Administration, {{ssl}}/{{dns}}-Management und {{nginx}}-Routing-Konfiguration für Domains und Services.",
+      "Entwicklung von {{ml}}- und (agentic) NLP-Pipelines in Python: {{semantic-chunking}} + {{rag}}-Vektorisierung mit {{qdrant}}, {{sentiment-analysis}}, {{topic-clustering}} und Content-Zusammenfassung als Analyse-Services und zentraler Werttreiber für Kunden.",
       "Etablierung {{gdpr}}-konformer Datenschutz- und {{privacy-by-design}}-Praktiken, um juristische Rahmenbedingungen zu adressieren und ein wertvolles Gütesiegel zu erhalten.",
       "End-to-End technische Delivery verantwortet und Interns, Contractors und externe Partner koordiniert; enge Zusammenarbeit mit dem Frontend-Lead."
     ],
     "technologies": [
       "Docker",
+      "Docker Compose",
+      "Python",
+      "Bash",
+      "SpaCy",
+      "pytest",
+      "FastAPI",
+      "gRPC",
+      "Protocol Buffers",
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Qdrant",
+      "RAG",
+      "MongoDB",
+      "MariaDB",
+      "SQL",
+      "LLMs",
+      "NLP/ML",
+      "nginx",
+      "Linux",
+      "CI/CD",
+      "GitHub",
+      "Docker Hub",
+      "git"
+    ],
+    "cvTechnologies": [
+      "Docker",
+      "Docker Compose",
       "Python",
       "Bash",
       "SpaCy",
@@ -47,7 +82,6 @@
       "git"
     ]
   },
-
   {
     "company": "Rahn Education (Privatschule)",
     "position": "Mathematiklehrer (Vertretung)",
@@ -55,13 +89,25 @@
     "startDate": "2022-11",
     "endDate": "2023-06",
     "current": false,
+    "cvInclude": true,
     "description": "Verantwortlich für die Betreuung talentierter Schülerinnen und Schüler (Gruppen von 4 bis 8).",
     "achievements": [
-      "Erstellung individuell angepasster Materialien auf Universitätsniveau, um Herausforderungen zu bieten und Interesse an Mathematik zu wecken",
-      "Initiierung einer von Schülern geleiteten Vortragsreihe über Künstliche Intelligenz und deren Anwendungsfälle",
-      "Unterricht der mathematischen Grundlagen hinter 3D-Druck und Programmierung"
+      "Erstellung individuell angepasster Materialien auf Universitätsniveau, um Herausforderungen zu bieten und Interesse an Mathematik zu wecken.",
+      "Initiierung einer von Schülern geleiteten Vortragsreihe über Künstliche Intelligenz und deren Anwendungsfälle.",
+      "Unterricht der mathematischen Grundlagen hinter 3D-Druck und Programmierung."
     ],
-    "technologies": ["MS Teams", "PowerPoint", "Algebra", "gcode"]
+    "technologies": [
+      "MS Teams",
+      "PowerPoint",
+      "Algebra",
+      "gcode"
+    ],
+    "cvTechnologies": [
+      "MS Teams",
+      "PowerPoint",
+      "Algebra",
+      "gcode"
+    ]
   },
   {
     "company": "Kinder- und Jugendpsychiatrie, Philipps-Universität Marburg",
@@ -70,20 +116,36 @@
     "startDate": "2019-05",
     "endDate": "2021-01",
     "current": false,
+    "cvInclude": true,
     "description": "Verantwortlich für die Validierung und Reproduktion früherer Forschungsergebnisse sowie für die Implementierung von {{ml}}-Algorithmen in R zur Lösung von Klassifikationsproblemen im Bereich der {{asd}}-Diagnose.",
     "achievements": [
-      "Meine Analyseergebnisse unterstützten die Findings von 3 peer-reviewten Publikationen (im Publikationsbereich aufgeführt) und wurden ca. 70-mal zitiert.",
-      "Hochgradig interdisziplinäre Arbeit mit Psychologen und Medizinern, um den klinischen Hintergrund und die Implikationen der Daten zu verstehen + Erklärung der statistischen Methoden für Nicht-Data-Scientists"
+      "Hyperparameter-Tuning für Decision Trees/Random Forests verbesserte die diagnostische Leistung um ca. 10–15 Prozentpunkte; die Ergebnisse stützten 3 peer-reviewte Publikationen (~70 Zitationen).",
+      "Hochgradig interdisziplinäre Zusammenarbeit mit Psychologen und Medizinern, um den klinischen Hintergrund und die Implikationen der Daten zu verstehen sowie statistische Methoden für Nicht-Data-Scientists zu erklären.",
+      "Für verlässliche Vermittlung statistischer Inhalte gelobt; Einladung, als wissenschaftlicher Mitarbeiter zu bleiben."
     ],
     "technologies": [
       "R",
+      "ggplot2",
+      "tidyverse",
       "Markdown",
       "HTML",
       "Machine Learning",
       "Decision Trees",
       "Random Forests",
-      "Statistik",
-      "Interdisziplinäre Zusammenarbeit"
+      "Statistics",
+      "Interdisciplinary Collaboration"
+    ],
+    "cvTechnologies": [
+      "R",
+      "ggplot2",
+      "tidyverse",
+      "Markdown",
+      "HTML",
+      "Machine Learning",
+      "Decision Trees",
+      "Random Forests",
+      "Statistics",
+      "Interdisciplinary Collaboration"
     ]
   },
   {
@@ -93,17 +155,34 @@
     "startDate": "2019-08",
     "endDate": "2019-10",
     "current": false,
-    "description": "Als Data Analyst Praktikant bei Westphalia DataLab GmbH arbeitete ich an einem medizinischen Diagnostikprojekt, das 3D-Bildgebung und klinische Daten kombinierte; entwickelte und verbesserte ein Experiment-Tracking R/Shiny-Frontend und führte klinische Datenanalysen mit Python und R durch.",
+    "cvInclude": true,
+    "pageBreakBefore": true,
+    "description": "Als Data-Analyst-Praktikant bei Westphalia DataLab GmbH arbeitete ich an einem medizinischen Diagnostikprojekt, das 3D-Bildgebung und klinische Daten kombinierte; ich entwickelte und verbesserte ein Experiment-Tracking-R/Shiny-Frontend und führte klinische Datenanalysen mit Python und R durch.",
     "achievements": [
-      "Implementierung und Verbesserung von Features für ein Experiment-Tracking R/Shiny-Frontend zur Verbesserung des Workflows und der Benutzerfreundlichkeit",
-      "Analyse von 3D-Bild- und klinischen Datensätzen mit Python und R zur Ableitung umsetzbarer diagnostischer Erkenntnisse",
-      "Integration und Verwaltung von Projektdaten mit {{mongodb}} und {{postgresql}} sowie Pflege von Code/Versionierung mit {{git}}"
+      "Experiment-Tracking-R/Shiny-Frontend, das auf Daten in {{mongodb}}/{{postgresql}} zugreift, verbessert, um den Workflow von Forschenden zu optimieren.",
+      "3D-Bildgebung und klinische Datensätze in Python/R analysiert, um diagnostische Erkenntnisse zu gewinnen.",
+      "Praktikumsbeurteilung als ausgezeichnet bewertet."
     ],
     "technologies": [
       "Python",
       "PyTorch",
       "Convolutional Neural Networks",
       "R",
+      "data.table",
+      "tidyverse",
+      "R Shiny",
+      "MongoDB",
+      "PostgreSQL",
+      "SQL",
+      "Git"
+    ],
+    "cvTechnologies": [
+      "Python",
+      "PyTorch",
+      "Convolutional Neural Networks",
+      "R",
+      "data.table",
+      "tidyverse",
       "R Shiny",
       "MongoDB",
       "PostgreSQL",
@@ -118,12 +197,24 @@
     "startDate": "2016-03",
     "endDate": "2016-08",
     "current": false,
-    "description": "In meiner Rolle als Sport- und Athleten-Marketing-Manager aktualisierte und pflegte ich das Athleten-Portfolio als wertvolles Asset für den Marketing-Mix von Red Bull. Außerdem nahm ich am Business-Planning-Prozess für 2017 teil, indem ich Ideen generierte, diese evaluierte und für BP-Präsentationen aufbereitete.",
+    "cvInclude": false,
+    "description": "In meiner Rolle als Sport- und Athleten-Marketing-Manager aktualisierte und pflegte ich das Athleten-Portfolio als wertvolles Asset im Marketing-Mix von Red Bull. Ich nahm am Business-Planning-Prozess für 2017 teil, indem ich Ideen generierte, bewertete und für Präsentationen aufbereitete.",
     "achievements": [
-      "Team-Aktivierung von THW Kiel einschließlich personalisiertem Asset-Design und -Produktion sowie einem Flug in einem von Mateschitz' privaten Flugzeugen",
-      "Event-Supervision und organisatorische Rolle in Projekten wie dem Hospitality-Bereich für Red Bulls VIPs beim MotoGP 2016"
+      "Team-Aktivierung von THW Kiel einschließlich personalisiertem Asset-Design und -Produktion sowie einem Flug mit der Mannschaft in einem von Mateschitz' privaten Hangar-Flugzeugen.",
+      "Event-Supervision und organisatorische Rolle in Projekten wie dem Hospitality-Bereich für Red Bulls VIPs bei der MotoGP 2016."
     ],
-    "technologies": ["Excel", "PowerPoint", "MS Office", "Creativity"]
+    "technologies": [
+      "Excel",
+      "PowerPoint",
+      "MS Office",
+      "Creativity"
+    ],
+    "cvTechnologies": [
+      "Excel",
+      "PowerPoint",
+      "MS Office",
+      "Creativity"
+    ]
   },
   {
     "company": "Red Bull Germany GmbH",
@@ -132,13 +223,25 @@
     "startDate": "2013-05",
     "endDate": "2016-12",
     "current": false,
-    "description": "Das Student Brand Manager Programm von Red Bull ist darauf ausgelegt, die nächste Generation von Red Bull Marketing-Experten zu finden und auszubilden. Als Student Brand Manager war ich verantwortlich für die Organisation von Guerilla-Marketing-Events und die Schaffung von Markenbekanntheit in der Studentengemeinschaft. Die Rolle als SBM ermöglichte es mir, starke Marketing- und Führungskompetenzen zu entwickeln und praktische Erfahrungen im Markenmanagement von einer der weltweit bekanntesten Marken zu sammeln.",
+    "cvInclude": false,
+    "description": "Das Student Brand Manager Programm von Red Bull ist darauf ausgelegt, die nächste Generation von Red Bull Marketing-Experten zu finden und auszubilden. Als Student Brand Manager war ich verantwortlich für die Organisation von Guerilla-Marketing-Events und die Schaffung von Markenbekanntheit in der Studentengemeinschaft. Die Rolle als SBM ermöglichte es mir, starke Marketing- und Führungskompetenzen zu entwickeln und praktische Erfahrungen im Markenmanagement einer der weltweit bekanntesten Marken zu sammeln.",
     "achievements": [
-      "Student Brand Manager des Jahres 2016 in Norddeutschland",
-      "Organisation eigener Campus-Events und Moderation von Campus-Events anderer Student Brand Manager",
-      "Teilnahme und Unterstützung diverser regionaler und nationaler Events wie Red Bull Seifenkistenrennen und Red Bull Coast2Coast"
+      "Student Brand Manager des Jahres 2016 in Norddeutschland.",
+      "Organisation eigener Campus-Events und Moderation von Campus-Events anderer Student Brand Manager.",
+      "Teilnahme und Unterstützung regionaler und nationaler Events wie Red Bull Seifenkistenrennen und Red Bull Coast2Coast."
     ],
-    "technologies": ["Excel", "PowerPoint", "MS Office", "Adobe Photoshop"]
+    "technologies": [
+      "Excel",
+      "PowerPoint",
+      "MS Office",
+      "Adobe Photoshop"
+    ],
+    "cvTechnologies": [
+      "Excel",
+      "PowerPoint",
+      "MS Office",
+      "Adobe Photoshop"
+    ]
   },
   {
     "company": "Goodgame Studios",
@@ -147,11 +250,19 @@
     "startDate": "2011-08",
     "endDate": "2012-09",
     "current": false,
-    "description": "Angefangen als Praktikant unterstützte ich das HR-Team bei verschiedenen administrativen Aufgaben, Rekrutierungsprozessen und Mitarbeiter-Onboarding-Aktivitäten. Diese Rolle gab mir wertvolle Einblicke in HR-Abläufe innerhalb eines schnell wachsenden Startup-Unternehmens.",
+    "cvInclude": false,
+    "description": "Begonnen als Praktikant und später als Werkstudent unterstützte ich das HR-Team bei verschiedenen administrativen Aufgaben, Recruiting-Prozessen und Employee-Onboarding-Aktivitäten. Diese Rolle gab mir wertvolle Einblicke in HR-Abläufe innerhalb eines schnell wachsenden Startup-Unternehmens.",
     "achievements": [
-      "Der HR-Rekrutierungsprozess war verantwortlich für die Einstellung von 70 neuen Mitarbeitern (von 30) innerhalb eines Jahres und trug zum schnellen Wachstum des Unternehmens bei.",
-      "Ich war verantwortlich für das Scouting und die Auswahl von Kandidaten, die Terminplanung von Interviews und die Koordination der Kommunikation zwischen Bewerbern und Hiring Managern, wodurch die Effizienz des Rekrutierungsprozesses verbessert wurde."
+      "Der HR-Rekrutierungsprozess führte innerhalb eines Jahres zur Einstellung von 70 neuen Mitarbeitenden (zuvor 30) und trug zum schnellen Wachstum des Unternehmens bei.",
+      "Verantwortlich für das Sourcing und die Auswahl von Kandidaten, die Terminplanung von Interviews sowie die Koordination der Kommunikation zwischen Bewerbenden und Hiring Managern, wodurch die Effizienz des Rekrutierungsprozesses verbessert wurde."
     ],
-    "technologies": ["Excel", "MS Office"]
+    "technologies": [
+      "Excel",
+      "MS Office"
+    ],
+    "cvTechnologies": [
+      "Excel",
+      "MS Office"
+    ]
   }
 ]

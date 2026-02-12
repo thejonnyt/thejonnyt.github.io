@@ -1,6 +1,6 @@
 {
   "name": "Johannes Michael Tauscher",
-  "title": "Data Scientist and AI/ML Solutions Engineer",
+  "title": "Data Scientist – Applied AI & Production Systems",
   "tagline": "Highly interested in marketing, management, politics, technology, economics, statistics and innovation.",
   "location": "Leipzig, Germany",
   "email": "j-tauscher@hotmail.com",
@@ -8,12 +8,12 @@
   "github": "https://github.com/thejonnyt",
   "website": "https://thejonnyt.github.io",
   "bio": [
-    "Hi! My name is Johannes. I'm a data scientist and technical generalist focused on problem-solution fit, optimization, and building reliable systems.",
+    "Hi! My name is Johannes. I'm a data scientist and somewhat of a technical allrounder focused on problem-solution fit, optimization, and building reliable systems.",
     "I enjoy working end-to-end: from framing the right question to shipping robust {{ml}}-enabled services (without the frontend).",
     "One of my many interests is the AI revolution: {{llm}}s, its software and infrastructure which makes intelligence scale. To not only witness but help shape these developments drives me every day!",
     "Knowledge for me is one of the most exciting and important things out there. AI democratizing knowledge and lowering access barriers for everyone sounds great to me.",
     "I balance screen time with hands-on work (e.g., catering gigs), teach myself piano and Japanese for fun, and give pro bono stats tutoring because knowledge should be shared.",
     "Currently, I'm looking for new challenges. If you think I'd be a good fit for your company and team, feel free to reach out!"
   ],
-  "cvSummary": "Data Scientist and AI/ML Solutions Engineer focused on problem-solution fit, optimization, and reliable systems. Strong in software engineering, machine learning, and data analysis, with end-to-end experience from framing to delivery."
+  "cvSummary": "Data Scientist and Applied AI Engineer for Production System focused on problem-solution fit, optimization, and reliable systems with a strong statistical background, building production-ready LLM and NLP systems from research to deployment."
 }

@@ -7,7 +7,7 @@
     "endDate": "2025-12",
     "current": false,
     "cvInclude": true,
-    "description": "Building a modern communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
+    "description": "Building a AI-driven communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievementsShort": [
       "Delivered a customer-deployed MVP 0 → 1 in under 12 months on a €30k budget, targeting capital-efficient scale.",
       "Led product ideation workshops to align vision and product-solution fit roadmap.",
@@ -52,6 +52,34 @@
       "GitHub",
       "Docker Hub",
       "git"
+    ],
+    "cvTechnologies": [
+      "Docker",
+      "Docker Compose",
+      "Python",
+      "Bash",
+      "SpaCy",
+      "pytest",
+      "FastAPI",
+      "gRPC",
+      "Protocol Buffers",
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Qdrant",
+      "RAG",
+      "MongoDB",
+      "MariaDB",
+      "SQL",
+      "LLMs",
+      "NLP/ML",
+      "nginx",
+      "Linux",
+      "CI/CD",
+      "GitHub",
+      "Docker Hub",
+      "git"
     ]
   },
   {
@@ -68,7 +96,16 @@
       "Initiated a pupil-led lecture series about Artificial Intelligence and its use cases.",
       "Taught basic principles of the mathematics behind 3D printing and coding."
     ],
-    "technologies": ["MS Teams", "PowerPoint", "Algebra", "gcode"]
+    "technologies": [
+      "MS Teams",
+      "PowerPoint",
+      "Algebra",
+      "gcode"
+    ],
+    "cvTechnologies": [
+      "PowerPoint",
+      "Algebra"
+    ]
   },
   {
     "company": "Child and Adolescent Psychiatry, Philipps University Marburg",
@@ -95,6 +132,14 @@
       "Random Forests",
       "Statistics",
       "Interdisciplinary Collaboration"
+    ],
+    "cvTechnologies": [
+      "R",
+      "tidyverse",
+      "Machine Learning",
+      "Decision Trees",
+      "Random Forests",
+      "Statistics"
     ]
   },
   {
@@ -124,6 +169,18 @@
       "PostgreSQL",
       "SQL",
       "Git"
+    ],
+    "cvTechnologies": [
+      "Python",
+      "R",
+      "tidyverse",
+      "data.table",
+      "R Shiny",
+      "PyTorch",
+      "Convolutional Neural Networks",
+      "MongoDB",
+      "PostgreSQL",
+      "SQL"
     ]
   },
   {
@@ -139,7 +196,14 @@
       "Team Activation of THW Kiel including personalized asset design + production, and a flight for the team in one of Mateschitz's private hangar airplanes.",
       "Event Supervision and organizational role in projects such as the hospitality area for Red Bull's VIPs at MotoGP 2016."
     ],
-    "technologies": ["Excel", "PowerPoint", "MS Office", "Creativity"]
+    "technologies": [
+      "Excel",
+      "PowerPoint",
+      "MS Office",
+      "Creativity"
+    ],
+    "cvTechnologies": [
+    ]
   },
   {
     "company": "Red Bull Germany GmbH",
@@ -155,7 +219,14 @@
       "Organized own campus events and moderated campus events of other Student Brand Managers",
       "Participated and supported regional and national events such as Red Bull Seifenkistenrennen and Red Bull Coast2Coast"
     ],
-    "technologies": ["Excel", "PowerPoint", "MS Office", "Adobe Photoshop"]
+    "technologies": [
+      "Excel",
+      "PowerPoint",
+      "MS Office",
+      "Adobe Photoshop"
+    ],
+    "cvTechnologies": [
+    ]
   },
   {
     "company": "Goodgame Studios",
@@ -170,6 +241,11 @@
       "The HR recruiting process resulted in hiring 70 new employees (up from 30) within one year, contributing to the company's rapid growth.",
       "I was responsible for scouting and selecting candidates, scheduling interviews, and coordinating communication between applicants and hiring managers, improving the efficiency of the recruitment process."
     ],
-    "technologies": ["Excel", "MS Office"]
+    "technologies": [
+      "Excel",
+      "MS Office"
+    ],
+    "cvTechnologies": [
+    ]
   }
 ]

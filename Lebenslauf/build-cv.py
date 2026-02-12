@@ -149,7 +149,14 @@ def generate_experience_section(
         short_achievements = exp.get("achievementsShort") or exp.get("achievements_short")
         achievements_source = short_achievements if short_achievements else exp.get("achievements", [])
         achievements = format_achievements(achievements_source, variant)
-        technologies = [escape_typst(t) for t in exp.get("technologies", [])]
+        if variant == "ats" and exp.get("atsTechnologies"):
+            raw_technologies = exp.get("atsTechnologies", [])
+        elif exp.get("cvTechnologies"):
+            raw_technologies = exp.get("cvTechnologies", [])
+        else:
+            raw_technologies = exp.get("technologies", [])
+
+        technologies = [escape_typst(t) for t in raw_technologies]
 
         # Build entry call
         lines.append("#entry(")
