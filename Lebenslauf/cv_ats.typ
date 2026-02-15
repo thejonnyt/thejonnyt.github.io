@@ -5,7 +5,7 @@
 #cv-header(
   "Johannes Michael Tauscher",
   "Data Scientist – Applied AI & Production Systems",
-  summary: "Data Scientist and Applied AI Engineer grounded in statistics and optimization, building reliable ML/LLM systems from framing to production.",
+  summary: "Data Scientist and Applied AI Engineer grounded in statistics, focussed on process automation and optimization, building reliable ML/LLM systems from framing to production.",
   email: "j-tauscher@hotmail.com",
   linkedin: link("https://linkedin.com/in/johannes-tauscher")[linkedin.com/in/johannes-tauscher],
   github: link("https://github.com/thejonnyt")[github.com/thejonnyt],
@@ -22,11 +22,11 @@
   description: [Building an AI-driven communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.],
   achievements: (
     [Delivered a customer-deployed MVP 0 → 1 in under 12 months on a €30k budget, targeting capital-efficient scale.],
-    [Led product ideation workshops to align vision and problem-solution fit roadmap.],
-    [Architected ML/NLP pipelines (RAG, sentiment, topic clustering) as core AI/ML solution capabilities.],
+    [Led product ideation workshops to align vision and problem-solution fit.],
+    [Architected Machine Learning/NLP pipelines (RAG, sentiment, topic clustering) as core AI/Machine Learning solution capabilities.],
     [Owned infrastructure and DevOps delivery, cutting release friction and improving onboarding for interns, contractors, and external partners.],
   ),
-  technologies: ("Docker", "CI/CD", "Bash", "Python", "NLP/ML", "LLMs", "SpaCy", "FastAPI", "gRPC", "Qdrant", "RAG", "pytest"),
+  technologies: ("Docker", "CI/CD", "Bash", "Python", "NLP", "Machine Learning", "LLMs", "SpaCy", "FastAPI", "gRPC", "Qdrant", "RAG"),
 )
 
 #entry(
@@ -52,7 +52,7 @@
   achievements: (
     [Hyperparameter tuning for decision trees/random forests improved diagnostic performance by ~10–15 percentage points; results supported 3 peer‑reviewed publications (~70 citations).],
     [Worked in a highly interdisciplinary manner with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data scientists.],
-    [Commended for a reliable, way of conveying statistical content; invited to stay on as a scientific researcher.],
+    [Commended for a reliable way of conveying statistical content; invited to stay on as a scientific researcher.],
   ),
   technologies: ("Statistics", "Machine Learning", "Random Forests", "Decision Trees", "R", "ggplot2", "tidyverse"),
 )
@@ -81,7 +81,7 @@
   format-date("2021-04", "2024-10"),
   highlights: (
     [Overall Score: 1.7, personal focus on advanced statistics, Machine Learning, data privacy, and LLM applications.],
-    [Master's Thesis (1.1): Neural Machine Translation with Transformers - Leveraging the Pivot Technique for Low-Resource Language Pairs],
+    [Master's Thesis (1.1): Neural Machine Translation with Transformers - Leveraging the Pivot Technique for Low-Resource Language Pairs.],
   ),
 )
 
@@ -91,7 +91,7 @@
   "Marburg, Germany",
   format-date("2017-10", "2021-03"),
   highlights: (
-    [Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes],
+    [Bachelor's Thesis (1.7): Multidimensional Data Exploration and Visualization of Membrane Proteins Attributes.],
     [Curriculum focuses on mathematics, statistics, computer science and programming.],
   ),
 )

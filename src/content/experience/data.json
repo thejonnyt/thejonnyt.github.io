@@ -10,8 +10,8 @@
     "description": "Building an AI-driven communication and engagement platform for members and fans of clubs and associations to enable participation and engagement — a way to voice your opinion. I led the technical development: from conceptualization and architecture to implementation of the product as a customer-deployed MVP with the help of a 4-person development team and coordinated external IT partners.",
     "achievementsShort": [
       "Delivered a customer-deployed MVP 0 → 1 in under 12 months on a €30k budget, targeting capital-efficient scale.",
-      "Led product ideation workshops to align vision and problem-solution fit roadmap.",
-      "Architected ML/NLP pipelines (RAG, sentiment, topic clustering) as core AI/ML solution capabilities.",
+      "Led product ideation workshops to align vision and problem-solution fit.",
+      "Architected {{ml}}/NLP pipelines (RAG, sentiment, topic clustering) as core AI/{{ml}} solution capabilities.",
       "Owned infrastructure and DevOps delivery, cutting release friction and improving onboarding for interns, contractors, and external partners."
     ],
     "achievements": [
@@ -45,7 +45,8 @@
       "MariaDB",
       "SQL",
       "LLMs",
-      "NLP/ML",
+      "NLP",
+      "Machine Learning",
       "nginx",
       "Linux",
       "CI/CD",
@@ -58,14 +59,14 @@
       "CI/CD",
       "Bash",
       "Python",
-      "NLP/ML",
+      "NLP",
+      "Machine Learning",
       "LLMs",
       "SpaCy",
       "FastAPI",
       "gRPC",
       "Qdrant",
-      "RAG",
-      "pytest"
+      "RAG"
     ]
   },
   {
@@ -105,7 +106,7 @@
     "achievements": [
       "Hyperparameter tuning for decision trees/random forests improved diagnostic performance by ~10–15 percentage points; results supported 3 peer‑reviewed publications (~70 citations).",
       "Worked in a highly interdisciplinary manner with psychologists and medical doctors to understand the clinical background and implications of the data + explain the statistical methods to non-data scientists.",
-      "Commended for a reliable, way of conveying statistical content; invited to stay on as a scientific researcher."
+      "Commended for a reliable way of conveying statistical content; invited to stay on as a scientific researcher."
     ],
     "technologies": [
       "Statistics",

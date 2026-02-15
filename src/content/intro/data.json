@@ -8,12 +8,12 @@
   "github": "https://github.com/thejonnyt",
   "website": "https://thejonnyt.github.io",
   "bio": [
-    "Hi! My name is Johannes. I'm a data scientist and somewhat of a technical allrounder focused on problem-solution fit, optimization, and building reliable systems.",
+    "Hi! My name is Johannes. I'm a applied data scientist and AI Engineer focused on problem-solution fit, optimization, and building reliable systems.",
     "I enjoy working end-to-end: from framing the right question to shipping robust {{ml}}-enabled services (without the frontend).",
     "One of my many interests is the AI revolution: {{llm}}s, its software and infrastructure which makes intelligence scale. To not only witness but help shape these developments drives me every day!",
     "Knowledge for me is one of the most exciting and important things out there. AI democratizing knowledge and lowering access barriers for everyone sounds great to me.",
     "I balance screen time with hands-on work (e.g., catering gigs), teach myself piano and Japanese for fun, and give pro bono stats tutoring because knowledge should be shared.",
     "Currently, I'm looking for new challenges. If you think I'd be a good fit for your company and team, feel free to reach out!"
   ],
-  "cvSummary": "Data Scientist and Applied AI Engineer grounded in statistics and optimization, building reliable ML/LLM systems from framing to production."
+  "cvSummary": "Data Scientist and Applied AI Engineer grounded in statistics, focussed on process automation and optimization, building reliable ML/LLM systems from framing to production."
 }

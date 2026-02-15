@@ -11,7 +11,7 @@
     "achievementsShort": [
       "Lieferte ein kundenseitig ausgerolltes MVP 0 → 1 in unter 12 Monaten mit 30.000 € Budget, mit Fokus auf kapitaleffiziente Skalierung.",
       "Leitete Product-Ideation-Workshops zur Ausrichtung von Vision und Product-Solution-Fit-Roadmap.",
-      "Architektur von ML/NLP-Pipelines (RAG, Sentiment, Topic Clustering) als zentrale AI/ML-Fähigkeiten.",
+      "Architektur von {{ml}}/NLP-Pipelines (RAG, Sentiment, Topic Clustering) als zentrale AI/{{ml}}-Fähigkeiten.",
       "Verantwortete Infrastruktur und DevOps-Delivery, reduzierte Release-Reibung und verbesserte Onboarding für Interns, Contractors und externe Partner."
     ],
     "achievements": [
