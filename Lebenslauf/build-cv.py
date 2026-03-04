@@ -322,7 +322,7 @@ def generate_skills_section(data: Dict, skills_mode: str) -> str:
             featured = skill_data.get("featured", False)
             include = featured
 
-        if include:
+        if include and not skill_data.get("excludeFromCv", False):
             if category not in categories:
                 categories[category] = []
             categories[category].append(skill_name)

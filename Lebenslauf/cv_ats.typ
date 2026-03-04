@@ -114,5 +114,5 @@
   ("Analysis, ML & AI", ("LLMs", "NLP", "Machine Learning", "R Shiny", "SPSS", "Statistics", "SpaCy", "RAG", "Algebra", "Decision Trees", "Random Forests", "PyTorch", "pandas", "NumPy", "scikit-learn", "SentencePiece", "OpenNMT-py", "Convolutional Neural Networks", "matplotlib", "ggplot2", "tidyverse", "data.table",)),
   ("Backend & DevOps", ("noSQL", "Docker", "gRPC", "MongoDB", "MariaDB", "PostgreSQL", "Qdrant", "nginx", "CI/CD", "FastAPI", "Docker Compose",)),
   ("Web & Creative", ("Next.js", "React", "Adobe Photoshop", "HTML", "CSS",)),
-  ("Tools & Systems", ("Linux", "Markdown", "git", "GitHub", LaTeX, "Excel", "PowerPoint", "MS Office", "MS Teams", "Miro", "Business Model Canvas", "Lean Startup", "VSCode", "pytest", "Protocol Buffers", "Docker Hub", "gcode",)),
+  ("Tools & Systems", ("Linux", "Markdown", "git", "GitHub", LaTeX, "Excel", "PowerPoint", "MS Office", "MS Teams", "Miro", "VSCode", "pytest", "Protocol Buffers", "Docker Hub", "gcode",)),
 ))

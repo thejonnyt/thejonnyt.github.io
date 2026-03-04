@@ -380,6 +380,7 @@
     },
     "Business Model Canvas": {
       "category": "Tools & Systems",
+      "excludeFromCv": true,
       "level": "competent",
       "yearsOfExperience": 1,
       "description": "Business strategy and model development",
@@ -390,6 +391,7 @@
     },
     "Lean Startup": {
       "category": "Tools & Systems",
+      "excludeFromCv": true,
       "level": "beginner",
       "yearsOfExperience": 1,
       "description": "Iterative product development methodology",
