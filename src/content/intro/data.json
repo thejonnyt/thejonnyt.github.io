@@ -1,19 +1,21 @@
 {
   "name": "Johannes Michael Tauscher",
-  "title": "Data Scientist – Applied AI & Production Systems",
-  "tagline": "Highly interested in marketing, management, politics, technology, economics, statistics and innovation.",
+  "title": "Applied Machine Learning Engineer – Industrial AI & Scientific Software",
+  "tagline": "Building mathematically grounded software that turns data, models, and optimization into measurable improvements in real-world systems.",
   "location": "Leipzig, Germany",
   "email": "j-tauscher@hotmail.com",
   "linkedin": "https://linkedin.com/in/johannes-tauscher",
   "github": "https://github.com/thejonnyt",
   "website": "https://thejonnyt.github.io",
   "bio": [
-    "Hi! My name is Johannes. I'm a applied data scientist and AI Engineer focused on problem-solution fit, optimization, and building reliable systems.",
-    "I enjoy working end-to-end: from framing the right question to shipping robust {{ml}}-enabled services (without the frontend).",
-    "One of my many interests is the AI revolution: {{llm}}s, its software and infrastructure which makes intelligence scale. To not only witness but help shape these developments drives me every day!",
-    "Knowledge for me is one of the most exciting and important things out there. AI democratizing knowledge and lowering access barriers for everyone sounds great to me.",
+    "Hi! My name is Johannes. I'm an applied machine learning engineer and technical generalist focused on mathematically demanding software for real-world systems.",
+    "I enjoy working end-to-end: from framing the right question and exploring data to implementing algorithms, evaluating models, and shipping reliable systems.",
+    "I'm especially interested in problems where data, models, and algorithms create transparent and measurable improvements.",
+    "I prefer Linux-first environments and open-source tools. For me, AI is an engineering tool, not an end in itself.",
+    "One of my many interests is the AI revolution: {{llm}}s, the surrounding software, and the infrastructure that makes intelligence scale. Not only witnessing but helping shape these developments drives me every day!",
+    "Knowledge is one of the most exciting and important things out there to me. I find the potential of AI to democratize knowledge and lower access barriers for everyone genuinely inspiring.",
     "I balance screen time with hands-on work (e.g., catering gigs), teach myself piano and Japanese for fun, and give pro bono stats tutoring because knowledge should be shared.",
-    "Currently, I'm looking for new challenges. If you think I'd be a good fit for your company and team, feel free to reach out!"
+    "I'm looking for roles where I can combine machine learning, mathematics, and software engineering to improve physical, industrial, or scientific systems. If that sounds like your team, feel free to reach out!"
   ],
-  "cvSummary": "Data Scientist and Applied AI Engineer grounded in statistics, focussed on process automation and optimization, building reliable ML/LLM systems from framing to production."
+  "cvSummary": "Applied Machine Learning Engineer and Data Scientist grounded in statistics, optimization, and software engineering. Builds reliable ML and data systems end-to-end for industrial, physical, and scientific applications."
 }

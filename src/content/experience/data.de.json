@@ -1,5 +1,44 @@
 [
   {
+    "company": "Leipziger Verkehrsbetriebe (LVB)",
+    "position": "Spezialist Data & Innovation · Digitalstrategie",
+    "location": "Leipzig, Deutschland",
+    "startDate": "2026-05",
+    "endDate": "",
+    "current": true,
+    "cvInclude": true,
+    "description": "Breit angelegte Innovationsrolle an der Schnittstelle von Technologie, Digitalstrategie und verantwortungsvoller KI-Einführung in einem kommunalen Mobilitätsunternehmen.",
+    "cvDescription": "Technische Unterstützung von KI- und Dateninitiativen innerhalb der Digitalstrategie – von der Technologiebewertung bis zur sicheren Erprobung in Proofs of Concept.",
+    "atsDescription": "Spezialist für Data & Innovation in der Digitalstrategie mit Verantwortung für technische Leuchtturmprojekte, Proofs of Concept, Technologie-Scouting, Cloud-Ressourcen, KI-Governance und Befähigung.",
+    "achievementsShort": [
+      "Unterstützung technischer Leuchtturmprojekte und Proofs of Concept sowie Übersetzung fachlicher Fragestellungen in testbare technische Ansätze.",
+      "Bewertung von Technologietrends und ihrer potenziellen Einsatzmöglichkeiten in einem kommunalen Mobilitätsumfeld.",
+      "Verwaltung von Cloud-Ressourcen für KI-Entwicklung und Experimente.",
+      "Begleitung der Governance-Arbeitsstränge für den Copilot-Rollout an mehr als 500 Mitarbeitende und Erstellung praxisnaher KI-Schulungsmaterialien."
+    ],
+    "achievements": [
+      "Unterstützung technischer Leuchtturmprojekte und Proofs of Concept sowie Strukturierung ihrer technischen Zielbilder.",
+      "Kontinuierliches Scouting und Bewertung von Technologietrends für potenzielle Anwendungen im öffentlichen Nahverkehr.",
+      "Verwaltung der Cloud-Ressourcen zur Entwicklung und Erprobung von KI-Anwendungen.",
+      "Begleitung von Governance-Themen für den Copilot-Rollout an mehr als 500 Mitarbeitende und Erstellung von Schulungsmaterialien für einen verantwortungsvollen KI-Einsatz."
+    ],
+    "technologies": [
+      "AI Foundry",
+      "Cloud-Ressourcen",
+      "Proofs of Concept",
+      "Technologie-Scouting",
+      "KI-Governance",
+      "Microsoft 365 Copilot"
+    ],
+    "cvTechnologies": [
+      "AI Foundry",
+      "Cloud-Ressourcen",
+      "PoC-Scoping",
+      "Technologie-Scouting",
+      "KI-Governance"
+    ]
+  },
+  {
     "company": "Raumdeuter GbR",
     "position": "Mitgründer, Technical Lead (Early Stage)",
     "location": "Leipzig, Deutschland",

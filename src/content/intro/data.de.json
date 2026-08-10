@@ -1,19 +1,21 @@
 {
   "name": "Johannes Michael Tauscher",
-  "title": "Data Scientist – Applied AI & Production Systems",
-  "tagline": "Stark interessiert an Marketing, Management, Politik, Technologie, Wirtschaft, Statistik und Innovation.",
+  "title": "Applied Machine Learning Engineer – Industrial AI & Scientific Software",
+  "tagline": "Ich entwickle mathematisch fundierte Software, die Daten, Modelle und Optimierung in messbare Verbesserungen realer Systeme übersetzt.",
   "location": "Leipzig, Deutschland",
   "email": "j-tauscher@hotmail.com",
   "linkedin": "https://linkedin.com/in/johannes-tauscher",
   "github": "https://github.com/thejonnyt",
   "website": "https://thejonnyt.github.io",
   "bio": [
-    "Hi! Ich heiße Johannes. Ich bin Data Scientist und eine Art technischer Generalist mit Fokus auf Problem-Solution-Fit, Optimierung und den Bau zuverlässiger Systeme.",
-    "Ich arbeite gern end-to-end: von der richtigen Fragestellung bis zum Ausliefern robuster {{ml}}-gestützter Services (ohne Frontend).",
+    "Hi! Ich heiße Johannes. Ich bin Applied Machine Learning Engineer und technischer Generalist mit Fokus auf mathematisch anspruchsvolle Software für reale Systeme.",
+    "Ich arbeite gern end-to-end: von der richtigen Fragestellung und Datenexploration über die Implementierung von Algorithmen und Evaluation von Modellen bis zum zuverlässigen produktiven System.",
+    "Besonders interessieren mich Aufgaben, bei denen Daten, Modelle und Algorithmen nachvollziehbare und messbare Verbesserungen schaffen.",
+    "Ich bevorzuge Linux-first-Umgebungen und Open-Source-Werkzeuge. KI ist für mich ein Engineering-Werkzeug, kein Selbstzweck.",
     "Eines meiner vielen Interessen ist die KI-Revolution: {{llm}}s, die Software darum und die Infrastruktur, die Intelligenz skalierbar macht. Diese Entwicklungen nicht nur mitzuerleben, sondern mitzugestalten, treibt mich täglich an!",
     "Wissen ist für mich eines der spannendsten und wichtigsten Dinge überhaupt. Dass KI Wissen demokratisiert und Zugangsbarrieren für alle senkt, finde ich großartig.",
     "Ich gleiche Bildschirmzeit mit praktischer Arbeit aus (z. B. Catering-Jobs), bringe mir zum Spaß Klavier und Japanisch bei und gebe pro bono Statistik-Nachhilfe, weil Wissen geteilt werden sollte.",
-    "Aktuell suche ich neue Herausforderungen. Wenn du denkst, dass ich zu deinem Unternehmen und Team passe, melde dich gern!"
+    "Ich suche Rollen, in denen ich Machine Learning, Mathematik und Software Engineering verbinden kann, um physische, industrielle oder wissenschaftliche Systeme zu verbessern. Wenn das nach deinem Team klingt, melde dich gern!"
   ],
-  "cvSummary": "Data Scientist und AI/ML Solutions Engineer mit Fokus auf Problem-Solution-Fit, Optimierung und zuverlässige Systeme. Stark in Softwareentwicklung, Machine Learning und Datenanalyse, mit End-to-End-Erfahrung von der Fragestellung bis zur Auslieferung."
+  "cvSummary": "Data Scientist (M.Sc.) mit Erfahrung in der ML-Forschung. Entwickelte Software für Fanbefragungen und Auswertungen, die mit einem regionalen Fußballverein getestet wurde. Arbeitet sich schnell in neue Themen ein und verbindet nachvollziehbare Datenanalysen mit Softwareentwicklung in Python auf Linux-Systemen."
 }

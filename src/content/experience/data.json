@@ -1,5 +1,44 @@
 [
   {
+    "company": "Leipziger Verkehrsbetriebe (LVB)",
+    "position": "Specialist Data & Innovation · Digital Strategy",
+    "location": "Leipzig, Germany",
+    "startDate": "2026-05",
+    "endDate": "",
+    "current": true,
+    "cvInclude": true,
+    "description": "Broad innovation role at the intersection of technology, digital strategy, and responsible AI adoption in a municipal mobility company.",
+    "cvDescription": "Technical support for AI and data initiatives within digital strategy, from technology evaluation to safe experimentation through proofs of concept.",
+    "atsDescription": "Data & Innovation Specialist in digital strategy responsible for technical lighthouse projects, proofs of concept, technology scouting, cloud resources, AI governance, and enablement.",
+    "achievementsShort": [
+      "Support technical lighthouse projects and proofs of concept, translating business questions into testable technical approaches.",
+      "Evaluate technology trends and their potential applications in a municipal mobility environment.",
+      "Manage cloud resources for AI development and experimentation.",
+      "Guide governance workstreams for a Copilot rollout to more than 500 employees and create practical AI training material."
+    ],
+    "achievements": [
+      "Support technical lighthouse projects and proofs of concept and structure their technical target states.",
+      "Continuously scout and assess technology trends for potential public-transport applications.",
+      "Manage cloud resources used to develop and test AI applications.",
+      "Guide governance topics for a Copilot rollout to more than 500 employees and create training materials for responsible AI use."
+    ],
+    "technologies": [
+      "AI Foundry",
+      "Cloud Resources",
+      "Proofs of Concept",
+      "Technology Scouting",
+      "AI Governance",
+      "Microsoft 365 Copilot"
+    ],
+    "cvTechnologies": [
+      "AI Foundry",
+      "Cloud Resources",
+      "PoC Scoping",
+      "Technology Scouting",
+      "AI Governance"
+    ]
+  },
+  {
     "company": "Raumdeuter GbR",
     "position": "Co-Founder, Technical Lead (Early Stage)",
     "location": "Leipzig, Germany",
