@@ -7,35 +7,49 @@
     "endDate": "",
     "current": true,
     "cvInclude": true,
-    "description": "Broad innovation role at the intersection of technology, digital strategy, and responsible AI adoption in a municipal mobility company.",
-    "cvDescription": "Technical support for AI and data initiatives within digital strategy, from technology evaluation to safe experimentation through proofs of concept.",
-    "atsDescription": "Data & Innovation Specialist in digital strategy responsible for technical lighthouse projects, proofs of concept, technology scouting, cloud resources, AI governance, and enablement.",
+    "description": "Developing business applications and automations and introducing AI in public transport. I combine technical delivery with platform administration, internal consulting and practical training, working closely with business departments.",
+    "cvDescription": "Business application development and process automation, AI and low-code platform administration, and consulting and training for business departments.",
+    "atsDescription": "Data & Innovation Specialist focused on Power Platform, process automation and AI adoption: application development, Azure provisioning, platform administration, DLP policies, technology and model selection, internal consulting and training.",
     "achievementsShort": [
-      "Support technical lighthouse projects and proofs of concept, translating business questions into testable technical approaches.",
-      "Evaluate technology trends and their potential applications in a municipal mobility environment.",
-      "Manage cloud resources for AI development and experimentation.",
-      "Guide governance workstreams for a Copilot rollout to more than 500 employees and create practical AI training material."
+      "Built a driving assessment application for mobile quality assurance using canvas and model-driven Power Apps, avoiding approximately €90,000 in annual costs for a comparable commercial solution.",
+      "Built a tool to track and manage digital initiatives using SharePoint lists, a native Teams app and automated project updates through Adaptive Cards.",
+      "Administer Power Platform and Copilot, Claude and OpenAI workspaces; manage connector DLP policies, security groups and Azure resources.",
+      "Deliver AI projects with business departments, from requirements and technology and model selection to Copilot Studio agents and practical coaching on AI and digital work."
     ],
     "achievements": [
-      "Support technical lighthouse projects and proofs of concept and structure their technical target states.",
-      "Continuously scout and assess technology trends for potential public-transport applications.",
-      "Manage cloud resources used to develop and test AI applications.",
-      "Guide governance topics for a Copilot rollout to more than 500 employees and create training materials for responsible AI use."
+      "Built a driving assessment application using canvas and model-driven Power Apps, enabling quality assurance staff to conduct assessments digitally on mobile devices. The in-house application avoids approximately €90,000 in annual costs for a comparable commercial solution.",
+      "Built a project management tool for digital initiatives using SharePoint lists, a native Teams app and automated Adaptive Cards to collect project updates.",
+      "Automate workflows across Teams, Planner and Outlook with Power Automate and create scripts to generate PowerPoint presentations.",
+      "Administer Power Platform, including connector DLP policies and security groups; provision and manage Azure resources.",
+      "Administer Copilot, Claude and OpenAI workspaces and build and manage agents in Copilot Studio.",
+      "Provide internal consulting on digital and AI projects: work with business departments to identify requirements, evaluate and select products, technologies and AI models, and implement solutions together.",
+      "Deliver practical training and coaching on AI and digital work, supporting colleagues with different levels of digital experience as they adopt new tools."
     ],
     "technologies": [
-      "AI Foundry",
-      "Cloud Resources",
-      "Proofs of Concept",
-      "Technology Scouting",
-      "AI Governance",
-      "Microsoft 365 Copilot"
+      "Power Apps (Canvas & Model-driven)",
+      "Power Automate",
+      "Power Platform",
+      "Copilot Studio",
+      "Azure",
+      "SharePoint",
+      "Microsoft Teams",
+      "Adaptive Cards",
+      "Planner",
+      "Outlook",
+      "Office Scripts",
+      "Microsoft 365 Copilot",
+      "Claude",
+      "OpenAI",
+      "DLP"
     ],
     "cvTechnologies": [
-      "AI Foundry",
-      "Cloud Resources",
-      "PoC Scoping",
-      "Technology Scouting",
-      "AI Governance"
+      "Power Apps",
+      "Power Automate",
+      "Copilot Studio",
+      "Azure",
+      "SharePoint",
+      "Microsoft Teams",
+      "DLP"
     ]
   },
   {

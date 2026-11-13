@@ -7,35 +7,49 @@
     "endDate": "",
     "current": true,
     "cvInclude": true,
-    "description": "Breit angelegte Innovationsrolle an der Schnittstelle von Technologie, Digitalstrategie und verantwortungsvoller KI-Einführung in einem kommunalen Mobilitätsunternehmen.",
-    "cvDescription": "Technische Unterstützung von KI- und Dateninitiativen innerhalb der Digitalstrategie – von der Technologiebewertung bis zur sicheren Erprobung in Proofs of Concept.",
-    "atsDescription": "Spezialist für Data & Innovation in der Digitalstrategie mit Verantwortung für technische Leuchtturmprojekte, Proofs of Concept, Technologie-Scouting, Cloud-Ressourcen, KI-Governance und Befähigung.",
+    "description": "Entwicklung digitaler Anwendungen und Automatisierungen sowie Einführung von KI im kommunalen Mobilitätsumfeld. Ich verbinde die technische Umsetzung mit Plattformadministration, interner Beratung und praxisnaher Weiterbildung – in enger Zusammenarbeit mit den Fachbereichen.",
+    "cvDescription": "Entwicklung betrieblicher Anwendungen und Automatisierungen, Administration von KI- und Low-Code-Plattformen sowie Beratung und Weiterbildung der Fachbereiche.",
+    "atsDescription": "Spezialist Data & Innovation mit Schwerpunkt Power Platform, Prozessautomatisierung und KI-Einführung: Anwendungsentwicklung, Azure-Provisionierung, Plattformadministration, DLP-Richtlinien, Technologie- und Modellauswahl sowie interne Beratung und Schulungen.",
     "achievementsShort": [
-      "Unterstützung technischer Leuchtturmprojekte und Proofs of Concept sowie Übersetzung fachlicher Fragestellungen in testbare technische Ansätze.",
-      "Bewertung von Technologietrends und ihrer potenziellen Einsatzmöglichkeiten in einem kommunalen Mobilitätsumfeld.",
-      "Verwaltung von Cloud-Ressourcen für KI-Entwicklung und Experimente.",
-      "Begleitung der Governance-Arbeitsstränge für den Copilot-Rollout an mehr als 500 Mitarbeitende und Erstellung praxisnaher KI-Schulungsmaterialien."
+      "Entwicklung einer Fahrprüfungs-App für die mobile Qualitätssicherung mit Canvas- und modellgesteuerten Power Apps; vermeidet rund 90.000 € jährliche Kosten einer vergleichbaren Marktlösung.",
+      "Aufbau eines Tools zur Erfassung und Steuerung von Digitalinitiativen mit SharePoint-Listen, nativer Teams-App und automatisierten Projektupdates über Adaptive Cards.",
+      "Administration der Power Platform und der Copilot-, Claude- und OpenAI-Workspaces; Verwaltung von Connector-DLP-Richtlinien, Sicherheitsgruppen und Azure-Ressourcen.",
+      "Gemeinsame Umsetzung von KI-Projekten mit Fachbereichen: Bedarfsklärung, Technologie- und Modellauswahl, Entwicklung von Copilot-Studio-Agenten sowie Coachings zu KI und digitalem Arbeiten."
     ],
     "achievements": [
-      "Unterstützung technischer Leuchtturmprojekte und Proofs of Concept sowie Strukturierung ihrer technischen Zielbilder.",
-      "Kontinuierliches Scouting und Bewertung von Technologietrends für potenzielle Anwendungen im öffentlichen Nahverkehr.",
-      "Verwaltung der Cloud-Ressourcen zur Entwicklung und Erprobung von KI-Anwendungen.",
-      "Begleitung von Governance-Themen für den Copilot-Rollout an mehr als 500 Mitarbeitende und Erstellung von Schulungsmaterialien für einen verantwortungsvollen KI-Einsatz."
+      "Entwicklung einer Fahrprüfungs-App mit Canvas- und modellgesteuerten Power Apps, mit der die Qualitätssicherung Prüfungen auf mobilen Geräten digital durchführen kann. Die Eigenentwicklung vermeidet rund 90.000 € jährliche Kosten einer vergleichbaren Marktlösung.",
+      "Aufbau eines Projektmanagement- und Steuerungstools für Digitalinitiativen: SharePoint-Listen als Datengrundlage, eine native Teams-App und automatisierte Adaptive Cards zur Abfrage von Projektupdates.",
+      "Automatisierung von Arbeitsabläufen in Teams, Planner und Outlook mit Power Automate sowie skriptgestützte Erstellung von PowerPoint-Präsentationen.",
+      "Administration der Power Platform einschließlich DLP-Richtlinien für Connectoren und Sicherheitsgruppenverwaltung; Bereitstellung und Verwaltung von Azure-Ressourcen.",
+      "Administration der Copilot-, Claude- und OpenAI-Workspaces sowie Erstellung und Verwaltung von Agenten in Copilot Studio.",
+      "Interne Beratung zu Digital- und KI-Projekten: Anforderungen gemeinsam mit Fachbereichen erheben, Produkte, Technologien und KI-Modelle bewerten und auswählen sowie Lösungen gemeinsam umsetzen.",
+      "Praxisnahe Schulungen und Coachings zu KI und digitalem Arbeiten, um unterschiedliche digitale Vorkenntnisse aufzugreifen und Mitarbeitende bei der Einführung neuer Werkzeuge zu begleiten."
     ],
     "technologies": [
-      "AI Foundry",
-      "Cloud-Ressourcen",
-      "Proofs of Concept",
-      "Technologie-Scouting",
-      "KI-Governance",
-      "Microsoft 365 Copilot"
+      "Power Apps (Canvas & Model-driven)",
+      "Power Automate",
+      "Power Platform",
+      "Copilot Studio",
+      "Azure",
+      "SharePoint",
+      "Microsoft Teams",
+      "Adaptive Cards",
+      "Planner",
+      "Outlook",
+      "Office Scripts",
+      "Microsoft 365 Copilot",
+      "Claude",
+      "OpenAI",
+      "DLP"
     ],
     "cvTechnologies": [
-      "AI Foundry",
-      "Cloud-Ressourcen",
-      "PoC-Scoping",
-      "Technologie-Scouting",
-      "KI-Governance"
+      "Power Apps",
+      "Power Automate",
+      "Copilot Studio",
+      "Azure",
+      "SharePoint",
+      "Microsoft Teams",
+      "DLP"
     ]
   },
   {
