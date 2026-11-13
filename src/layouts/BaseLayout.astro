@@ -1,5 +1,5 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
+import { ClientRouter } from 'astro:transitions';
 import InteractiveBackground from '../components/InteractiveBackground.astro';
 import TechnicalTermTooltip from '../components/TechnicalTermTooltip.astro';
 import '../styles/global.css';
@@ -86,7 +86,7 @@ const personJsonLd = {
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- View Transitions for smooth page navigation -->
-    <ViewTransitions />
+    <ClientRouter />
 
     <!-- Cloudflare Web Analytics (loaded after page load to avoid blocking) -->
   </head>
